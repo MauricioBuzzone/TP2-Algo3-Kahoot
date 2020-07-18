@@ -1,8 +1,8 @@
-# TP2 Algoritmos 3: {N-02}
+# TP2 Algoritmos 3: Kahoot
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo N-02
 
 * **Integrante 1** - [Lukas De Angelis Riva](https://github.com/Lukas-De-Angelis-Riva)
 * **Integrante 2** - [Mauricio Buzzone](https://github.com/MauricioBuzzone)
@@ -10,7 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 4** - [Pedro Aguilar](https://github.com/PedroAguilar98)
 * **Integrante 5** - [Santiago Martin Valdez Ulzurrun](https://github.com/SantiValdezUlzurrun)
 
-Corrector: **{Tomas Bustamante}**
+Corrector: **Tomas Bustamante**
 
 ### Pre-requisitos
 
