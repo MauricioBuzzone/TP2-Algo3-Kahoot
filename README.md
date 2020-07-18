@@ -1,15 +1,16 @@
-# TP2 Algoritmos 3: {nombre}
+# TP2 Algoritmos 3: {N-02}
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
 ## Grupo {N}
 
-* **Integrante 1** - [integrante1](https://github.com/integrante1)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 1** - [Lukas De Angelis Riva](https://github.com/Lukas-De-Angelis-Riva)
+* **Integrante 2** - [Mauricio Buzzone](https://github.com/MauricioBuzzone)
+* **Integrante 3** - [Pedro Molteni](https://github.com/PedroMolteni)
+* **Integrante 4** - [Pedro Aguilar](https://github.com/PedroAguilar98)
+* **Integrante 5** - [Santiago Martin Valdez Ulzurrun](https://github.com/SantiValdezUlzurrun)
 
-Corrector: **{Corrector}**
+Corrector: **{Tomas Bustamante}**
 
 ### Pre-requisitos
 
