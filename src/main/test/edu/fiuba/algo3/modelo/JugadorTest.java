@@ -35,7 +35,7 @@ public class JugadorTest {
         jugadorUno.responderBien();
         JugadorDos.responderParcial();
 
-        assert (jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
+        assert(jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
 
     }
 
