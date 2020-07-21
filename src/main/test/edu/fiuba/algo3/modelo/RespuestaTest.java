@@ -14,13 +14,13 @@ public class RespuestaTest {
         Criterio mockedCriterio = mock(Criterio.class);
         Validez mockedValidez = mock(Correcta.class);
 
-        when(mockedCriterio.validarCriterio(mockedOpcionCorrecta)).thenReturn(mockedValidez);
+        when(mockedCriterio.validarCriterio(any(Opcion.class))).thenReturn(mockedValidez);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedOpcionCorrecta);
 
         respuesta.evaluarConCriterio(mockedCriterio);
 
-        verify(mockedCriterio, times(1)).validarCriterio(mockedOpcionCorrecta);
+        verify(mockedCriterio, times(1)).validarCriterio(any(Opcion.class));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class RespuestaTest {
         Criterio mockedCriterio = mock(Criterio.class);
         Validez mockedValidez = mock(Correcta.class);
 
-        when(mockedCriterio.validarCriterio(mockedOpcionCorrecta)).thenReturn(mockedValidez);
+        when(mockedCriterio.validarCriterio(any(Opcion.class))).thenReturn(mockedValidez);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedOpcionCorrecta);
         respuesta.evaluarConCriterio(mockedCriterio);
