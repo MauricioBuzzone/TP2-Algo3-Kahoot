@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class IntegracionTest {
+public class PreguntaTest {
 
     @Test
-    public void test01UnaPreguntaDeVFCPuedeCrearseIndicandoleCualEsLaRespuestaCorrecta(){
+    public void test01UnaPreguntaDeVFCPuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
@@ -19,9 +19,9 @@ public class IntegracionTest {
         VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
 
     }
-    
+
     @Test
-    public void test02UnaPreguntaDeVFCRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
+    public void test02UnaPreguntaDeVFCRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente() {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
@@ -45,12 +45,12 @@ public class IntegracionTest {
         verdaderoFalso.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 0);
-        assert(tomas.puntosTotales() > 0);
+        assert (tomas.puntosTotales() > 0);
 
     }
-    
+
     @Test
-    public void test03UnJugadorQueRespondeDosPreguntasBienTieneMasPuntosQueUnJugadorQueRespondeUnaBienYUnaMal(){
+    public void test03UnJugadorQueRespondeDosPreguntasBienTieneMasPuntosQueUnJugadorQueRespondeUnaBienYUnaMal() {
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomás");
