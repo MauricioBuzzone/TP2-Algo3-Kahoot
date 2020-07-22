@@ -19,7 +19,7 @@ public class IntegracionTest {
         VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
 
     }
-
+    
     @Test
     public void test02UnaPreguntaDeVFCRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
 
@@ -48,8 +48,48 @@ public class IntegracionTest {
         assert(tomas.puntosTotales() > 0);
 
     }
+    
+    @Test
+    public void test03UnJugadorQueRespondeDosPreguntasBienTieneMasPuntosQueUnJugadorQueRespondeUnaBienYUnaMal(){
 
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomás");
 
+        String enunciadoUno = "Diego es pintorRodillo";
+        String solucionUno = "Verdadero";
+        Opcion opcionCorrectaUno = new Opcion(solucionUno);
+        VerdaderoFalso preguntaUno = new VerdaderoFalso(enunciadoUno, opcionCorrectaUno);
 
+        Opcion primeraEleccionDiego = new Opcion("Falso");
+        Opcion primeraEleccionTomas = new Opcion("Verdadero");
+
+        Respuesta primeraRespuestaDiego = new Respuesta(diego, primeraEleccionDiego);
+        Respuesta primeraRespuestaTomas = new Respuesta(tomas, primeraEleccionTomas);
+        ArrayList<Respuesta> respuestasUno = new ArrayList<Respuesta>();
+        respuestasUno.add(primeraRespuestaDiego);
+        respuestasUno.add(primeraRespuestaTomas);
+
+        preguntaUno.evaluarRespuestas(respuestasUno);
+        preguntaUno.responderPregunta(respuestasUno);
+
+        String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
+        String solucionDos = "Falso";
+        Opcion opcionCorrectaDos = new Opcion(solucionDos);
+        VerdaderoFalso preguntaDos = new VerdaderoFalso(enunciadoDos, opcionCorrectaDos);
+
+        Opcion segundaEleccionDiego = new Opcion("Falso");
+        Opcion segundaEleccionTomas = new Opcion("Falso");
+
+        Respuesta segundaRespuestaDiego = new Respuesta(diego, segundaEleccionDiego);
+        Respuesta segundaRespuestaTomas = new Respuesta(tomas, segundaEleccionTomas);
+        ArrayList<Respuesta> respuestasDos = new ArrayList<Respuesta>();
+        respuestasDos.add(segundaRespuestaDiego);
+        respuestasDos.add(segundaRespuestaTomas);
+
+        preguntaDos.evaluarRespuestas(respuestasDos);
+        preguntaUno.responderPregunta(respuestasDos);
+
+        assert (tomas.puntosTotales() > diego.puntosTotales());
+    }
 
 }
