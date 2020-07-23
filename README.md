@@ -22,6 +22,9 @@ maven 3.6.0
 ...
 ```
 
+## Informe
+Link a Overleaf:
+
 ## Ejecutando las pruebas
 
 Explicación de como ejecutar las pruebas
