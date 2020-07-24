@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.com/MauricioBuzzone/TP2-Algo3-Kahoot.svg?token=A9gGczBvi2TPurW9mEEG&branch=master)](https://travis-ci.com/github/MauricioBuzzone/TP2-Algo3-Kahoot) [![codecov](https://codecov.io/gh/MauricioBuzzone/TP2-Algo3-Kahoot/branch/master/graph/badge.svg?token=YGQK57TRE2)](https://codecov.io/gh/MauricioBuzzone/TP2-Algo3-Kahoot)
+
+
+
+
 # TP2 Algoritmos 3: Kahoot
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
