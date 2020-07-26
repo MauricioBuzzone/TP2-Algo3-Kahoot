@@ -12,8 +12,8 @@ public class Respuesta {
         this.validez = null; //Por ahora queda así, pero estaría bien refactorizar
     }
 
-    public void evaluarConCriterio(CriterioVerdaderoFalso criterioVerdaderoFalso) {
-        validez = criterioVerdaderoFalso.validarCriterio(opcion);
+    public void evaluarConCriterio(Criterio unCriterio) {
+        validez = unCriterio.validarCriterio(opcion);
     }
 
     public void responder() {

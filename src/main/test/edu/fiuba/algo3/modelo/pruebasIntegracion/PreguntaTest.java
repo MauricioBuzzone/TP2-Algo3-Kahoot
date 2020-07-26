@@ -26,7 +26,7 @@ public class PreguntaTest {
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
         Opcion opcionCorrecta = new Opcion(solucion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        Pregunta verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomas");
@@ -58,7 +58,7 @@ public class PreguntaTest {
         String enunciadoUno = "Diego es pintorRodillo";
         String solucionUno = "Verdadero";
         Opcion opcionCorrectaUno = new Opcion(solucionUno);
-        VerdaderoFalso preguntaUno = new VerdaderoFalso(enunciadoUno, opcionCorrectaUno);
+        Pregunta preguntaUno = new VerdaderoFalso(enunciadoUno, opcionCorrectaUno);
 
         Opcion primeraEleccionDiego = new Opcion("Falso");
         Opcion primeraEleccionTomas = new Opcion("Verdadero");
@@ -75,7 +75,7 @@ public class PreguntaTest {
         String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
         String solucionDos = "Falso";
         Opcion opcionCorrectaDos = new Opcion(solucionDos);
-        VerdaderoFalso preguntaDos = new VerdaderoFalso(enunciadoDos, opcionCorrectaDos);
+        Pregunta preguntaDos = new VerdaderoFalso(enunciadoDos, opcionCorrectaDos);
 
         Opcion segundaEleccionDiego = new Opcion("Falso");
         Opcion segundaEleccionTomas = new Opcion("Falso");
