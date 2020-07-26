@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class VerdaderoFalso {
+public class VerdaderoFalso implements Pregunta{
 
     private CriterioVerdaderoFalso criterioVerdaderoFalso;
     private String enunciado;
