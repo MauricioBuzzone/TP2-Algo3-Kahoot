@@ -12,18 +12,6 @@ public class Jugador {
         this.puntosPorRespuesta = new ArrayList<Integer>();
     }
 
-    public void responderBien(){
-        puntosPorRespuesta.add(2);
-    }
-
-    public void responderMal(){
-        puntosPorRespuesta.add(0);
-    }
-
-    public void responderParcial(){
-        puntosPorRespuesta.add(1);
-    }
-
     public void responderBien(int puntos){
         puntosPorRespuesta.add(puntos);
     }
