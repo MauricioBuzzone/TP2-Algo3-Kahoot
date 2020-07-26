@@ -19,7 +19,7 @@ public class CriterioTest{
 
         (criterio.validarCriterio(opcion)).responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderBien();
+        verify(mockedJugador, times(1)).responderBien(any(Integer.class));
     }
 
     @Test
@@ -35,6 +35,6 @@ public class CriterioTest{
 
         (criterio.validarCriterio(opcion)).responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderMal();
+        verify(mockedJugador, times(1)).responderMal(any(Integer.class));
     }
 }
