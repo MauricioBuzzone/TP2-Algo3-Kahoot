@@ -11,13 +11,13 @@ public class CriterioVerdaderoFalsoTest {
 
         String texto = "Vamos a aprobar la entrega 0";
         Opcion opcionCorrecta = new Opcion(texto);
-        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcionCorrecta);
+        CriterioVF criterioVF = new CriterioVF(opcionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Opcion opcion = mock(Opcion.class);
         when(opcion.igualA(opcionCorrecta)).thenReturn(true);
 
-        (criterioVerdaderoFalso.validarCriterio(opcion)).responder(mockedJugador);
+        (criterioVF.validarCriterio(opcion)).responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderBien(1);
     }
@@ -27,13 +27,13 @@ public class CriterioVerdaderoFalsoTest {
 
         String texto = " 2+2 = 4 ";
         Opcion opcionCorrecta = new Opcion(texto);
-        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcionCorrecta);
+        CriterioVF criterioVF = new CriterioVF(opcionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Opcion opcion = mock(Opcion.class);
         when(opcion.igualA(opcionCorrecta)).thenReturn(false);
 
-        Validez validez = criterioVerdaderoFalso.validarCriterio(opcion);
+        Validez validez = criterioVF.validarCriterio(opcion);
         validez.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
