@@ -1,25 +1,25 @@
 package edu.fiuba.algo3.modelo;
 import static org.mockito.Mockito.*;
-import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CriterioTest{
+public class CriterioVerdaderoFalsoTest {
 
     @Test
     public void test01CriterioRecibeUnaOpcionCorrectaYDevuelvaValidezCorrecta(){
 
         String texto = "Vamos a aprobar la entrega 0";
         Opcion opcionCorrecta = new Opcion(texto);
-        Criterio criterio = new Criterio(opcionCorrecta);
+        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Opcion opcion = mock(Opcion.class);
         when(opcion.igualA(opcionCorrecta)).thenReturn(true);
 
-        (criterio.validarCriterio(opcion)).responder(mockedJugador);
+        (criterioVerdaderoFalso.validarCriterio(opcion)).responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderBien(any(Integer.class));
+        verify(mockedJugador, times(1)).responderBien(1);
     }
 
     @Test
@@ -27,14 +27,15 @@ public class CriterioTest{
 
         String texto = " 2+2 = 4 ";
         Opcion opcionCorrecta = new Opcion(texto);
-        Criterio criterio = new Criterio(opcionCorrecta);
+        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Opcion opcion = mock(Opcion.class);
         when(opcion.igualA(opcionCorrecta)).thenReturn(false);
 
-        (criterio.validarCriterio(opcion)).responder(mockedJugador);
+        Validez validez = criterioVerdaderoFalso.validarCriterio(opcion);
+        validez.responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderMal(any(Integer.class));
+        verify(mockedJugador, times(1)).responderMal(0);
     }
 }
