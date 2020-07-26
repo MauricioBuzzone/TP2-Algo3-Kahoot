@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,8 +25,8 @@ public class VerdaderoFalsoTest {
 
         verdaderoFalso.evaluarRespuestas(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(Criterio.class));
-        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(Criterio.class));
+        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
     }
 
     @Test

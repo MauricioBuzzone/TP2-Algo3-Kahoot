@@ -10,20 +10,20 @@ public class ValidezTest{
     public void test01CorrectaRecibeUnJugadorYResponde(){
 
         Jugador mockedJugador = mock(Jugador.class);
-        Correcta validez = new Correcta();
+        Correcta validez = new Correcta(8);
 
         validez.responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderBien();
+        verify(mockedJugador, times(1)).responderBien(8);
     }
     @Test
     public void test01IncorretaRecibeUnJugadorYResponde(){
 
         Jugador mockedJugador = mock(Jugador.class);
-        Incorrecta validez = new Incorrecta();
+        Incorrecta validez = new Incorrecta(7);
 
         validez.responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderMal();
+        verify(mockedJugador, times(1)).responderMal(7);
     }
 }

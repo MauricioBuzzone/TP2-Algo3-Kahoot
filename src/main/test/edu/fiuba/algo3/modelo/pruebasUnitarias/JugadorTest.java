@@ -10,32 +10,56 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderBien();
+        jugador.responderBien(4);
 
-        assert (jugador.puntosTotales() > 0);
+        assertEquals(jugador.puntosTotales(), 4);
     }
 
     @Test
-    public void test02UnJugadorAlResponderMalNoSeLeSumanPuntos(){
+    public void test02UnJugadorAlResponderMalTieneCeroPuntos(){
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderMal();
+        jugador.responderMal(2);
 
         assertEquals(jugador.puntosTotales(),0);
 
     }
 
     @Test
-    public void test03UnJugadorAlResponderParcialementeBienSeLeSumanPuntosPeroMenosQueSiHubieseRespondidoBien(){
+    public void test03UnJugadorAlResponderMalNoSeLeSumanPuntosYTieneMenosQueSiHubieseRespondidoBien(){
 
         Jugador jugadorUno = new Jugador("Tomas");
         Jugador JugadorDos = new Jugador("Pablo");
 
-        jugadorUno.responderBien();
-        JugadorDos.responderParcial();
+        jugadorUno.responderBien(5);
+        JugadorDos.responderMal(5);
 
         assert(jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
+
+    }
+
+    @Test
+    public void test04UnJugadorAlResponderMalDadoQuePreviamenteRespondioBienLeQuitanPuntos(){
+
+        Jugador jugador = new Jugador("Tomas");
+
+        jugador.responderBien(5);
+        jugador.responderMal(2);
+
+        assertEquals(jugador.puntosTotales(),3);
+
+    }
+
+    @Test
+    public void test05UnJugadorRespondeMalSinPenalizacionNoLeRestanPuntos(){
+
+        Jugador jugador = new Jugador("Tomas");
+
+        jugador.responderBien(5);
+        jugador.responderMal(0);
+
+        assertEquals(jugador.puntosTotales(),5);
 
     }
 
