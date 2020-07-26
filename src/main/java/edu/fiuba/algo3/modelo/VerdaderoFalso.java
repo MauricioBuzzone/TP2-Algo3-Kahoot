@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class VerdaderoFalso {
 
-    private CriterioVF criterioVF;
+    private CriterioVerdaderoFalso criterioVerdaderoFalso;
     private String enunciado;
 
     public VerdaderoFalso(String enunciado, Opcion opcion) {
-        this.criterioVF = new CriterioVF(opcion);
+        this.criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcion);
         this.enunciado = enunciado;
     }
 
     public void evaluarRespuestas(ArrayList<Respuesta> respuestas) {
         for (Respuesta respuesta : respuestas) {
-            respuesta.evaluarConCriterio(criterioVF);
+            respuesta.evaluarConCriterio(criterioVerdaderoFalso);
         }
     }
 

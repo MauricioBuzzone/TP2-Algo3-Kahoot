@@ -25,8 +25,8 @@ public class VerdaderoFalsoTest {
 
         verdaderoFalso.evaluarRespuestas(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVF.class));
-        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVF.class));
+        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
     }
 
     @Test
