@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,11 @@ public class PreguntaTest {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
+        List<String> opcionCorrecta = new ArrayList<String>();
+        opcionCorrecta.add(solucion);
+
+        Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
         VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
     }
@@ -22,14 +27,24 @@ public class PreguntaTest {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
+        List<String> opcionCorrecta = new ArrayList<String>();
+        opcionCorrecta.add(solucion);
+
+        Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
         Pregunta verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomas");
 
-        Eleccion eleccionDiego = new Eleccion("Falso");
-        Eleccion eleccionTomas = new Eleccion("Verdadero");
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add("Falso");
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+
+
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add("Verdadero");
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
 
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
@@ -54,11 +69,18 @@ public class PreguntaTest {
 
         String enunciadoUno = "Diego es pintorRodillo";
         String solucionUno = "Verdadero";
-        Eleccion eleccionCorrectaUno = new Eleccion(solucionUno);
+        List<String> opcionCorrectaUno = new ArrayList<String>();
+        opcionCorrectaUno.add(solucionUno);
+        Eleccion eleccionCorrectaUno = new Eleccion(opcionCorrectaUno);
         Pregunta preguntaUno = new VerdaderoFalso(enunciadoUno, eleccionCorrectaUno);
 
-        Eleccion primeraEleccionDiego = new Eleccion("Falso");
-        Eleccion primeraEleccionTomas = new Eleccion("Verdadero");
+        List<String> opcionDiegoUno = new ArrayList<String>();
+        opcionDiegoUno.add("Falso");
+        Eleccion primeraEleccionDiego = new Eleccion(opcionDiegoUno);
+
+        List<String> opcionTomasUno = new ArrayList<String>();
+        opcionTomasUno.add("Verdadero");
+        Eleccion primeraEleccionTomas = new Eleccion(opcionTomasUno);
 
         Respuesta primeraRespuestaDiego = new Respuesta(diego, primeraEleccionDiego);
         Respuesta primeraRespuestaTomas = new Respuesta(tomas, primeraEleccionTomas);
@@ -69,13 +91,25 @@ public class PreguntaTest {
         preguntaUno.evaluarRespuestas(respuestasUno);
         preguntaUno.responderPregunta(respuestasUno);
 
+
+
+
         String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
         String solucionDos = "Falso";
-        Eleccion eleccionCorrectaDos = new Eleccion(solucionDos);
+        List<String> opcionCorrectaDos = new ArrayList<String>();
+        opcionCorrectaDos.add(solucionDos);
+
+        Eleccion eleccionCorrectaDos = new Eleccion(opcionCorrectaDos);
         Pregunta preguntaDos = new VerdaderoFalso(enunciadoDos, eleccionCorrectaDos);
 
-        Eleccion segundaEleccionDiego = new Eleccion("Falso");
-        Eleccion segundaEleccionTomas = new Eleccion("Falso");
+
+        List<String> opcionDiegoDos = new ArrayList<String>();
+        opcionDiegoDos.add("Falso");
+        Eleccion segundaEleccionDiego = new Eleccion(opcionDiegoDos);
+
+        List<String> opcionTomasDos = new ArrayList<String>();
+        opcionTomasDos.add("Falso");
+        Eleccion segundaEleccionTomas = new Eleccion(opcionTomasDos);
 
         Respuesta segundaRespuestaDiego = new Respuesta(diego, segundaEleccionDiego);
         Respuesta segundaRespuestaTomas = new Respuesta(tomas, segundaEleccionTomas);
