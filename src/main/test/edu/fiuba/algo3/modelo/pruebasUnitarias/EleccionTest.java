@@ -53,4 +53,95 @@ public class EleccionTest {
 
         assertFalse(eleccion.igualA(otraEleccion));
     }
+
+    @Test
+    public void test04UnaEleccionDeMasDeUnaOpcionEsIgualASiMisma(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+
+        List<String> jugada = new ArrayList<String>();
+        jugada.add(texto1);
+        jugada.add(texto2);
+        jugada.add(texto3);
+        jugada.add(texto4);
+        Eleccion eleccion = new Eleccion(jugada);
+        assert(eleccion.igualA(eleccion));
+    }
+
+    @Test
+    public void test05UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesSonIguales(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto1);
+        jugada1.add(texto2);
+        jugada1.add(texto3);
+        jugada1.add(texto4);
+
+        jugada2.add(texto1);
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto4);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+        assert(eleccion1.igualA(eleccion2));
+    }
+
+    @Test
+    public void test06UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesDesordenadasSonIguales(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto4);
+        jugada1.add(texto3);
+        jugada1.add(texto2);
+        jugada1.add(texto1);
+
+        jugada2.add(texto1);
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto4);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+        assert(eleccion1.igualA(eleccion2));
+    }
+
+    @Test
+    public void test07UnaEleccionDeMasDeUnaOpcionYOtraEleccionConDistintasOpcionesNoSonIguales(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto5);
+        jugada1.add(texto3);
+        jugada1.add(texto2);
+
+        jugada2.add(texto1);
+        jugada2.add(texto2);
+        jugada2.add(texto4);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+        assertFalse(eleccion1.igualA(eleccion2));
+    }
+
 }
