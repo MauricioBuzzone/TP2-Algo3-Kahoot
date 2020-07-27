@@ -2,19 +2,19 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class VerdaderoFalso implements Pregunta{
+public class VerdaderoFalsoConPenalidad implements Pregunta{
 
-    private CriterioVerdaderoFalso criterioVerdaderoFalso;
+    private CriterioVerdaderoFalsoConPenalidad criterioVerdaderoFalsoConPenalidad;
     private String enunciado;
 
-    public VerdaderoFalso(String enunciado, Eleccion eleccion) {
-        this.criterioVerdaderoFalso = new CriterioVerdaderoFalso(eleccion);
+    public VerdaderoFalsoConPenalidad(String enunciado, Eleccion eleccion) {
+        this.criterioVerdaderoFalsoConPenalidad = new CriterioVerdaderoFalsoConPenalidad(eleccion);
         this.enunciado = enunciado;
     }
 
     public void evaluarRespuestas(ArrayList<Respuesta> respuestas) {
         for (Respuesta respuesta : respuestas) {
-            respuesta.evaluarConCriterio(criterioVerdaderoFalso);
+            respuesta.evaluarConCriterio(criterioVerdaderoFalsoConPenalidad);
         }
     }
 
