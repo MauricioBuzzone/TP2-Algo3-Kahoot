@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-interface Validez{
-    public void responder(Jugador jugador);
+public interface Validez{
+    void responder(Jugador jugador);
 }

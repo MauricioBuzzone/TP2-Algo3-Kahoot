@@ -9,7 +9,7 @@ import java.util.List;
 public class CriterioVerdaderoFalsoTest {
 
     @Test
-    public void test01CriterioRecibeUnaOpcionCorrectaYDevuelvaValidezCorrecta(){
+    public void test01CriterioRecibeUnaOpcionCorrectaYDevuelveLaValidezCorrecta(){
 
         String texto = "Vamos a aprobar la entrega 0";
         List<String> opcion= new ArrayList<String>();
@@ -27,7 +27,7 @@ public class CriterioVerdaderoFalsoTest {
     }
 
     @Test
-    public void test02CriterioRecibeUnaOpcionIncorrectaYDevuelvaValidezIncorrecta(){
+    public void test02CriterioRecibeUnaOpcionIncorrectaYDevuelveLaValidezIncorrecta(){
 
         String texto = " 2+2 = 4 ";
         List<String> opcion= new ArrayList<String>();
