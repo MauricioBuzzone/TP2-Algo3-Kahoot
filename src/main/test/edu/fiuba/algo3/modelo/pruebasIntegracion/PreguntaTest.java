@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import static org.mockito.Mockito.*;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,8 +12,8 @@ public class PreguntaTest {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
-        Opcion opcionCorrecta = new Opcion(solucion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
     }
 
@@ -25,14 +22,14 @@ public class PreguntaTest {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
-        Opcion opcionCorrecta = new Opcion(solucion);
-        Pregunta verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        Pregunta verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomas");
 
-        Opcion eleccionDiego = new Opcion("Falso");
-        Opcion eleccionTomas = new Opcion("Verdadero");
+        Eleccion eleccionDiego = new Eleccion("Falso");
+        Eleccion eleccionTomas = new Eleccion("Verdadero");
 
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
@@ -57,11 +54,11 @@ public class PreguntaTest {
 
         String enunciadoUno = "Diego es pintorRodillo";
         String solucionUno = "Verdadero";
-        Opcion opcionCorrectaUno = new Opcion(solucionUno);
-        Pregunta preguntaUno = new VerdaderoFalso(enunciadoUno, opcionCorrectaUno);
+        Eleccion eleccionCorrectaUno = new Eleccion(solucionUno);
+        Pregunta preguntaUno = new VerdaderoFalso(enunciadoUno, eleccionCorrectaUno);
 
-        Opcion primeraEleccionDiego = new Opcion("Falso");
-        Opcion primeraEleccionTomas = new Opcion("Verdadero");
+        Eleccion primeraEleccionDiego = new Eleccion("Falso");
+        Eleccion primeraEleccionTomas = new Eleccion("Verdadero");
 
         Respuesta primeraRespuestaDiego = new Respuesta(diego, primeraEleccionDiego);
         Respuesta primeraRespuestaTomas = new Respuesta(tomas, primeraEleccionTomas);
@@ -74,11 +71,11 @@ public class PreguntaTest {
 
         String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
         String solucionDos = "Falso";
-        Opcion opcionCorrectaDos = new Opcion(solucionDos);
-        Pregunta preguntaDos = new VerdaderoFalso(enunciadoDos, opcionCorrectaDos);
+        Eleccion eleccionCorrectaDos = new Eleccion(solucionDos);
+        Pregunta preguntaDos = new VerdaderoFalso(enunciadoDos, eleccionCorrectaDos);
 
-        Opcion segundaEleccionDiego = new Opcion("Falso");
-        Opcion segundaEleccionTomas = new Opcion("Falso");
+        Eleccion segundaEleccionDiego = new Eleccion("Falso");
+        Eleccion segundaEleccionTomas = new Eleccion("Falso");
 
         Respuesta segundaRespuestaDiego = new Respuesta(diego, segundaEleccionDiego);
         Respuesta segundaRespuestaTomas = new Respuesta(tomas, segundaEleccionTomas);

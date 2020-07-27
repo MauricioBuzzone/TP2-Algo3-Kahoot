@@ -10,14 +10,14 @@ public class CriterioVerdaderoFalsoTest {
     public void test01CriterioRecibeUnaOpcionCorrectaYDevuelvaValidezCorrecta(){
 
         String texto = "Vamos a aprobar la entrega 0";
-        Opcion opcionCorrecta = new Opcion(texto);
-        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(texto);
+        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
-        Opcion opcion = mock(Opcion.class);
-        when(opcion.igualA(opcionCorrecta)).thenReturn(true);
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.igualA(eleccionCorrecta)).thenReturn(true);
 
-        (criterioVerdaderoFalso.validarCriterio(opcion)).responder(mockedJugador);
+        (criterioVerdaderoFalso.validarCriterio(eleccion)).responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderBien(1);
     }
@@ -26,14 +26,14 @@ public class CriterioVerdaderoFalsoTest {
     public void test02CriterioRecibeUnaOpcionIncorrectaYDevuelvaValidezIncorrecta(){
 
         String texto = " 2+2 = 4 ";
-        Opcion opcionCorrecta = new Opcion(texto);
-        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(texto);
+        CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
-        Opcion opcion = mock(Opcion.class);
-        when(opcion.igualA(opcionCorrecta)).thenReturn(false);
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.igualA(eleccionCorrecta)).thenReturn(false);
 
-        Validez validez = criterioVerdaderoFalso.validarCriterio(opcion);
+        Validez validez = criterioVerdaderoFalso.validarCriterio(eleccion);
         validez.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
