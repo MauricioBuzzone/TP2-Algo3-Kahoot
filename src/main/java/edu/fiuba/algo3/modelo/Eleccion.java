@@ -6,12 +6,6 @@ public class Eleccion {
 
     private List<String> opciones;
 
-    public Eleccion(String texto){
-
-        this.opciones = new ArrayList<String>();
-        this.opciones.add(texto);
-    }
-
     public Eleccion(List<String> unasOpciones){
 
         this.opciones = unasOpciones;

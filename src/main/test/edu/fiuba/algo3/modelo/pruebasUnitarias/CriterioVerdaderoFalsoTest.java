@@ -3,6 +3,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CriterioVerdaderoFalsoTest {
 
@@ -10,7 +12,9 @@ public class CriterioVerdaderoFalsoTest {
     public void test01CriterioRecibeUnaOpcionCorrectaYDevuelvaValidezCorrecta(){
 
         String texto = "Vamos a aprobar la entrega 0";
-        Eleccion eleccionCorrecta = new Eleccion(texto);
+        List<String> opcion= new ArrayList<String>();
+        opcion.add(texto);
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
         CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
@@ -26,7 +30,9 @@ public class CriterioVerdaderoFalsoTest {
     public void test02CriterioRecibeUnaOpcionIncorrectaYDevuelvaValidezIncorrecta(){
 
         String texto = " 2+2 = 4 ";
-        Eleccion eleccionCorrecta = new Eleccion(texto);
+        List<String> opcion= new ArrayList<String>();
+        opcion.add(texto);
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
         CriterioVerdaderoFalso criterioVerdaderoFalso = new CriterioVerdaderoFalso(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
