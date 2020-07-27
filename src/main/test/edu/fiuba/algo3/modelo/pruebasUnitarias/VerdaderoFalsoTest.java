@@ -13,8 +13,8 @@ public class VerdaderoFalsoTest {
 
         String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
-        Opcion opcionCorrecta = new Opcion(solucion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
@@ -33,8 +33,8 @@ public class VerdaderoFalsoTest {
     public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
         String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
-        Opcion opcionCorrecta = new Opcion(solucion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
