@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,8 +14,10 @@ public class VerdaderoFalsoTest {
 
         String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
-        Opcion opcionCorrecta = new Opcion(solucion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        List<String> opcion= new ArrayList<String>();
+        opcion.add(solucion);
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
@@ -33,8 +36,10 @@ public class VerdaderoFalsoTest {
     public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
         String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
-        Opcion opcionCorrecta = new Opcion(solucion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, opcionCorrecta);
+        List<String> opcion= new ArrayList<String>();
+        opcion.add(solucion);
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);

@@ -7,8 +7,8 @@ public class VerdaderoFalso implements Pregunta{
     private CriterioVerdaderoFalso criterioVerdaderoFalso;
     private String enunciado;
 
-    public VerdaderoFalso(String enunciado, Opcion opcion) {
-        this.criterioVerdaderoFalso = new CriterioVerdaderoFalso(opcion);
+    public VerdaderoFalso(String enunciado, Eleccion eleccion) {
+        this.criterioVerdaderoFalso = new CriterioVerdaderoFalso(eleccion);
         this.enunciado = enunciado;
     }
 

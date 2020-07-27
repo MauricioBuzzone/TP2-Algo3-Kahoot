@@ -1,15 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
 public class CriterioVerdaderoFalso implements Criterio {
-    private  Opcion opcionCorrecta;
 
-    public CriterioVerdaderoFalso(Opcion opcionCorrecta){
-        this.opcionCorrecta = opcionCorrecta;
+    private Eleccion eleccionCorrecta;
+
+    public CriterioVerdaderoFalso(Eleccion eleccionCorrecta){
+        this.eleccionCorrecta = eleccionCorrecta;
     }
 
-    public Validez validarCriterio(Opcion opcion){
+    public Validez validarCriterio(Eleccion eleccion){
 
-        if(opcion.igualA(this.opcionCorrecta)){
+        if(eleccion.igualA(this.eleccionCorrecta)){
             Validez correcta = new Correcta(1);
             return correcta;
         }
