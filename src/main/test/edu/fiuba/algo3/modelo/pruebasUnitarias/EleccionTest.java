@@ -143,5 +143,193 @@ public class EleccionTest {
         Eleccion eleccion2 = new Eleccion(jugada2);
         assertFalse(eleccion1.igualA(eleccion2));
     }
+    @Test
+    public void test08EleccionRecibeOtraEleccionYDevuelveLaCantidadDeCoincidencias(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
 
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto1);
+        jugada1.add(texto3);
+        jugada1.add(texto4);
+
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 1);
+
+    }
+    @Test
+    public void test09EleccionRecibeOtraEleccionSinCoincidenciasYDevuelveCero(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto1);
+        jugada1.add(texto4);
+
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 0);
+    }
+    @Test
+    public void test10EleccionRecibeOtraEleccionConTresCoincidenciasYDevuelveTresCoincidencias(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto2);
+        jugada1.add(texto3);
+        jugada1.add(texto5);
+
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+        jugada2.add(texto4);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 3);
+    }
+    @Test
+    public void test11EleccionRecibeOtraEleccionConLasMismasOpcionesYDevuelveLaCantidadDeOpciones(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto2);
+        jugada1.add(texto3);
+        jugada1.add(texto5);
+
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 3);
+    }
+    @Test
+    public void test12EleccionRecibeOtraEleccionQueEstaContenidaYDevuelveQueEstaContenida(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto2);
+        jugada1.add(texto3);
+        jugada1.add(texto5);
+
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assert (eleccion1.contieneA(eleccion2));
+    }
+    @Test
+    public void test13EleccionRecibeOtraEleccionQueNoEstaContenidaYDevuelveQueNoEstaContenida(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto2);
+        jugada1.add(texto3);
+        jugada1.add(texto5);
+
+        jugada2.add(texto3);
+        jugada2.add(texto4);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assertFalse (eleccion1.contieneA(eleccion2));
+    }
+    @Test
+    public void test14EleccionRecibeOtraEleccionQueEsIgualYDevuelveQueEstaContenido(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto2);
+        jugada1.add(texto3);
+        jugada1.add(texto5);
+
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assert (eleccion1.contieneA(eleccion2));
+    }
+    @Test
+    public void test15EleccionRecibeOtraEleccionQueEsMayorYDevuelveQueNoEstaContenido(){
+        String texto1 = new String("El cabildo de Buenos Aires");
+        String texto2 = new String("La casa rosada");
+        String texto3 = new String("El gran Rex");
+        String texto4 = new String("El obelisco");
+        String texto5 = new String("La cancha de Boca");
+
+        List<String> jugada1 = new ArrayList<String>();
+        List<String> jugada2 = new ArrayList<String>();
+
+        jugada1.add(texto2);
+
+        jugada2.add(texto2);
+        jugada2.add(texto3);
+        jugada2.add(texto5);
+
+        Eleccion eleccion1 = new Eleccion(jugada1);
+        Eleccion eleccion2 = new Eleccion(jugada2);
+
+        assertFalse (eleccion1.contieneA(eleccion2));
+    }
 }
