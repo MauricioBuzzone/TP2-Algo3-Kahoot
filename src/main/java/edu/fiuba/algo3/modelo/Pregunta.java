@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Pregunta {
-    void evaluarRespuestas(ArrayList<Respuesta> respuestas);
-    void responderPregunta(ArrayList<Respuesta> respuestas);
+    void evaluarRespuestas(List<Respuesta> respuestas);
+    void responderPregunta(List<Respuesta> respuestas);
 }
