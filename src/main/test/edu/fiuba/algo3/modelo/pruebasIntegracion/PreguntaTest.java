@@ -154,6 +154,27 @@ public class PreguntaTest {
     }
 
     @Test
+    public void test1_3UnaPreguntaMultipleChoicePuntajeParcialPuedeCrearseIndicandoleCualesSonLasRespuestasCorrectas(){
+
+        String enunciado = "¿Quién está toooodo de ooooro?";
+
+        String opcion1 = "El Chino";
+        String opcion2 = "Duko";
+        String opcion3 = "El Truenito pai";
+        String opcion4 = "Aczino";
+        String opcion5 = "Ysy A";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion5);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        MultipleChoicePuntajeParcial pregunta = new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
+    }
+
+
+    @Test
     public void test1_6UnaPreguntaDeMCPPRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
 
         String enunciado= "¿Qué temas se dan en Física II?";
