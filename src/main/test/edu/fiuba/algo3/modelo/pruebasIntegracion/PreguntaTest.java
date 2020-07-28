@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PreguntaTest {
 
     @Test
-    public void test01UnaPreguntaDeVFCPuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
+    public void test0_1UnaPreguntaDeVFCPuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
@@ -23,7 +23,7 @@ public class PreguntaTest {
     }
 
     @Test
-    public void test02UnaPreguntaDeVFCRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente() {
+    public void test0_2UnaPreguntaDeVFCRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente() {
 
         String enunciado = "Diego es pintorRodillo (?";
         String solucion = "Verdadero";
@@ -62,7 +62,7 @@ public class PreguntaTest {
     }
 
     @Test
-    public void test03UnJugadorQueRespondeDosPreguntasBienTieneMasPuntosQueUnJugadorQueRespondeUnaBienYUnaMal() {
+    public void test0_3UnJugadorQueRespondeDosPreguntasBienTieneMasPuntosQueUnJugadorQueRespondeUnaBienYUnaMal() {
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomás");
@@ -90,9 +90,6 @@ public class PreguntaTest {
 
         preguntaUno.evaluarRespuestas(respuestasUno);
         preguntaUno.responderPregunta(respuestasUno);
-
-
-
 
         String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
         String solucionDos = "Falso";
@@ -123,4 +120,68 @@ public class PreguntaTest {
         assert (tomas.puntosTotales() > diego.puntosTotales());
     }
 
+    @Test
+    public void test1_6UnaPreguntaDeMCPPRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
+
+        String enunciado= "¿Qué temas se dan en Física II?";
+
+        String texto1 = new String("Induccion magnetica");
+        String texto2 = new String("Fuerza De Lorenz");
+        String texto3 = new String("Diferenciacion");
+        String texto4 = new String("Cuerpo Rigido");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(texto1);
+        solucion.add(texto2);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
+        Pregunta multipleChoice= new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+        Jugador pablo = new Jugador("Pablo M");
+        Jugador edson = new Jugador("Edson");
+
+        //caso correcto
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(texto1);
+        opcionDiego.add(texto2);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
+
+        //caso parcialmente incorrecto
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(texto2);
+        opcionTomas.add(texto3);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
+
+        //caso parcialmente correcto
+        List<String> opcionPablo = new ArrayList<String>();
+        opcionPablo.add(texto1);
+        Eleccion eleccionPablo = new Eleccion(opcionPablo);
+        Respuesta respuestaPablo = new Respuesta(pablo, eleccionPablo);
+
+        //caso incorrecto
+        List<String> opcionEdson = new ArrayList<String>();
+        opcionEdson.add(texto4);
+        opcionEdson.add(texto3);
+        Eleccion eleccionEdson = new Eleccion(opcionEdson);
+        Respuesta respuestaEdson = new Respuesta(edson, eleccionEdson);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+        respuestas.add(respuestaPablo);
+        respuestas.add(respuestaEdson);
+
+        multipleChoice.evaluarRespuestas(respuestas);
+        multipleChoice.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 2);
+        assertEquals(tomas.puntosTotales(), 0);
+        assertEquals(pablo.puntosTotales(), 1);
+        assertEquals(edson.puntosTotales(), 0);
+
+    }
 }
