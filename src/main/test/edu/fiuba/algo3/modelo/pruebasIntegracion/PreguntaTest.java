@@ -119,6 +119,40 @@ public class PreguntaTest {
 
         assert (tomas.puntosTotales() > diego.puntosTotales());
     }
+
+    @Test
+    public void test1_1UnaPreguntaDeVerdaderoFalsoConPenalidadSePuedeCrearIndicandoleCualEsLaRespuestaCorrecta(){
+
+        String enunciado = "El caballo blanco de San Martin es efectivamente blanco";
+        String opcion1 = "Verdadero";
+        String opcion2 = "Falso";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
+    }
+
+    @Test
+    public void test1_2UnaPreguntaMultipleChoiceClasicoPuedeCrearseIndicandoleCualesSonLasRespuestasCorrectas(){
+
+        String enunciado = "Horóscopo Chino:¿Cuáles realmente pertenecen?";
+
+        String opcion1 = "Perro";
+        String opcion2 = "Gallo";
+        String opcion3 = "Rinoceronte";
+        String opcion4 = "Cerdo";
+        String opcion5 = "Carpincho";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion4);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        MultipleChoiceClasico pregunta = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
+    }
+
     @Test
     public void test1_6UnaPreguntaDeMCPPRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
 
@@ -182,17 +216,5 @@ public class PreguntaTest {
         assertEquals(pablo.puntosTotales(), 1);
         assertEquals(edson.puntosTotales(), 0);
 
-    }
-    @Test
-    public void test1_1UnaPreguntaDeVerdaderoFalsoConPenalidadSePuedeCrearIndicandoleCualEsLaRespuestaCorrecta(){
-
-        String enunciado = "El caballo blanco de San Martin es efectivamente blanco";
-        String opcion1 = "Verdadero";
-        String opcion2 = "Falso";
-
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(opcion1);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
     }
 }
