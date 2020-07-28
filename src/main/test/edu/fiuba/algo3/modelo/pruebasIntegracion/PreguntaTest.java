@@ -119,7 +119,6 @@ public class PreguntaTest {
 
         assert (tomas.puntosTotales() > diego.puntosTotales());
     }
-
     @Test
     public void test1_6UnaPreguntaDeMCPPRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
 
@@ -183,5 +182,17 @@ public class PreguntaTest {
         assertEquals(pablo.puntosTotales(), 1);
         assertEquals(edson.puntosTotales(), 0);
 
+    }
+    @Test
+    public void test1_1UnaPreguntaDeVerdaderoFalsoConPenalidadSePuedeCrearIndicandoleCualEsLaRespuestaCorrecta(){
+
+        String enunciado = "El caballo blanco de San Martin es efectivamente blanco";
+        String opcion1 = "Verdadero";
+        String opcion2 = "Falso";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
     }
 }
