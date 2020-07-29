@@ -173,6 +173,51 @@ public class PreguntaTest {
         MultipleChoicePuntajeParcial pregunta = new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
     }
 
+    @Test
+    public void test1_4UnaPreguntaVerdaderoFalsoConPenalidadRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente() {
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        diego.responderBien(10);
+        tomas.responderBien(7);
+
+
+        String enunciado = "No es cierto que nunca hay que testear métodos privados";
+
+        String opcion1 = "Verdadero";
+        String opcion2 = "Falso";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion2);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
+
+
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(opcion1);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
+
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(opcion2);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+
+        pregunta.evaluarRespuestas(respuestas);
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 9);
+        assertEquals(tomas.puntosTotales(), 8);
+    //Diego no se equivocó... leyó mal la pregunta. Maldita doble negación!!!
+    }
 
     @Test
     public void test1_6UnaPreguntaDeMCPPRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){

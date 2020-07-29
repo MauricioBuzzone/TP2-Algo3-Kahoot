@@ -31,6 +31,4 @@ public class Jugador {
             return 0;
         return puntosTotales;
     }
-
-
 }
