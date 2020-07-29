@@ -121,7 +121,171 @@ public class PreguntaTest {
     }
 
     @Test
-    public void test1_6UnaPreguntaDeMCPPRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlosJugadoresQueRespondieronCorrectamente(){
+    public void test1_1UnaPreguntaDeVerdaderoFalsoConPenalidadSePuedeCrearIndicandoleCualEsLaRespuestaCorrecta(){
+
+        String enunciado = "El caballo blanco de San Martin es efectivamente blanco";
+        String opcion1 = "Verdadero";
+        String opcion2 = "Falso";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
+    }
+
+    @Test
+    public void test1_2UnaPreguntaMultipleChoiceClasicoPuedeCrearseIndicandoleCualesSonLasRespuestasCorrectas(){
+
+        String enunciado = "Horóscopo Chino:¿Cuáles realmente pertenecen?";
+
+        String opcion1 = "Perro";
+        String opcion2 = "Gallo";
+        String opcion3 = "Rinoceronte";
+        String opcion4 = "Cerdo";
+        String opcion5 = "Carpincho";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion4);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        MultipleChoiceClasico pregunta = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
+    }
+
+    @Test
+    public void test1_3UnaPreguntaMultipleChoicePuntajeParcialPuedeCrearseIndicandoleCualesSonLasRespuestasCorrectas(){
+
+        String enunciado = "¿Quién está toooodo de ooooro?";
+
+        String opcion1 = "El Chino";
+        String opcion2 = "Duko";
+        String opcion3 = "El Truenito pai";
+        String opcion4 = "Aczino";
+        String opcion5 = "Ysy A";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion5);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        MultipleChoicePuntajeParcial pregunta = new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
+    }
+
+    @Test
+    public void test1_4UnaPreguntaVerdaderoFalsoConPenalidadRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente() {
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        diego.responderBien(10);
+        tomas.responderBien(7);
+
+
+        String enunciado = "No es cierto que nunca hay que testear métodos privados";
+
+        String opcion1 = "Verdadero";
+        String opcion2 = "Falso";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion2);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
+
+
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(opcion1);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
+
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(opcion2);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+
+        pregunta.evaluarRespuestas(respuestas);
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 9);
+        assertEquals(tomas.puntosTotales(), 8);
+    //Diego no se equivocó... leyó mal la pregunta. Maldita doble negación!!!
+    }
+
+    @Test
+    public void test1_5UnaPreguntaDeMultipleChoiceClasicoRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente() {
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+        Jugador pablo = new Jugador("Pablo");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        diego.responderBien(3);
+        tomas.responderBien(6);
+        pablo.responderBien(5);
+
+        String enunciado = "¿Cuáles son lunas de Jupiter?";
+
+        String opcion1 = "Ío";
+        String opcion2 = "Caronte";
+        String opcion3 = "Ganímedes";
+        String opcion4 = "Titán";
+        String opcion5 = "Europa";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion3);
+        solucion.add(opcion5);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        MultipleChoiceClasico pregunta = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
+
+        //todas correcta   --> 1 diego
+        //parcialmente mal --> 0 tomas
+        //todas mal        --> 0 pablo
+
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(opcion1);
+        opcionDiego.add(opcion3);
+        opcionDiego.add(opcion5);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
+
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(opcion1);
+        opcionTomas.add(opcion3);
+        opcionTomas.add(opcion4);
+        opcionTomas.add(opcion5);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
+
+        List<String> opcionPablo = new ArrayList<String>();
+        opcionPablo.add(opcion2);
+        opcionPablo.add(opcion4);
+        Eleccion eleccionPablo = new Eleccion(opcionPablo);
+        Respuesta respuestaPablo = new Respuesta(pablo, eleccionPablo);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+        respuestas.add(respuestaPablo);
+
+        pregunta.evaluarRespuestas(respuestas);
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 4);
+        assertEquals(tomas.puntosTotales(), 6);
+        assertEquals(pablo.puntosTotales(), 5);
+    }
+
+    @Test
+    public void test1_6UnaPreguntaDeMultipleChoiceParcialRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente(){
 
         String enunciado= "¿Qué temas se dan en Física II?";
 
@@ -182,6 +346,5 @@ public class PreguntaTest {
         assertEquals(tomas.puntosTotales(), 0);
         assertEquals(pablo.puntosTotales(), 1);
         assertEquals(edson.puntosTotales(), 0);
-
     }
 }
