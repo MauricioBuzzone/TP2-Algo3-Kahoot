@@ -33,11 +33,11 @@ public class CriterioMultipleChoiceParcialTest{
         CriterioMultipleChoiceParcial criterio = new CriterioMultipleChoiceParcial(eleccionCorrecta);
 
 
-        Validez validez = criterio.validarCriterio(eleccionJugador);
+        Certificado certificado = criterio.validarCriterio(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        validez.responder(mockedJugador);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderBien(2);
     }
@@ -64,11 +64,11 @@ public class CriterioMultipleChoiceParcialTest{
 
         CriterioMultipleChoiceParcial criterio = new CriterioMultipleChoiceParcial(eleccionCorrecta);
 
-        Validez validez = criterio.validarCriterio(eleccionJugador);
+        Certificado certificado = criterio.validarCriterio(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        validez.responder(mockedJugador);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderBien(1);
     }
@@ -95,11 +95,11 @@ public class CriterioMultipleChoiceParcialTest{
 
         CriterioMultipleChoiceParcial criterio = new CriterioMultipleChoiceParcial(eleccionCorrecta);
 
-        Validez validez = criterio.validarCriterio(eleccionJugador);
+        Certificado certificado = criterio.validarCriterio(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        validez.responder(mockedJugador);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
     }
@@ -126,11 +126,11 @@ public class CriterioMultipleChoiceParcialTest{
 
         CriterioMultipleChoiceParcial criterio = new CriterioMultipleChoiceParcial(eleccionCorrecta);
 
-        Validez validez = criterio.validarCriterio(eleccionJugador);
+        Certificado certificado = criterio.validarCriterio(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        validez.responder(mockedJugador);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
     }
@@ -160,11 +160,11 @@ public class CriterioMultipleChoiceParcialTest{
 
         CriterioMultipleChoiceParcial criterio = new CriterioMultipleChoiceParcial(eleccionCorrecta);
 
-        Validez validez = criterio.validarCriterio(eleccionJugador);
+        Certificado certificado = criterio.validarCriterio(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        validez.responder(mockedJugador);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
     }

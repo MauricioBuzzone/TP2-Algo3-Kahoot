@@ -39,8 +39,8 @@ public class CriterioVerdaderoFalsoConPenalidadTest {
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(eleccionCorrecta)).thenReturn(false);
 
-        Validez validez = criterioVerdaderoFalsoConPenalidad.validarCriterio(eleccion);
-        validez.responder(mockedJugador);
+        Certificado certificado = criterioVerdaderoFalsoConPenalidad.validarCriterio(eleccion);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(1);
     }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 
-public class Incorrecta implements Validez{
+public class Incorrecta implements Certificado {
 
     private int puntos;
 

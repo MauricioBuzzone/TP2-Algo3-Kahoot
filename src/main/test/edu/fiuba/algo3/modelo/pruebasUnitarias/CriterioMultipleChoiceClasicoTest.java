@@ -56,8 +56,8 @@ public class CriterioMultipleChoiceClasicoTest {
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(eleccionCorrecta)).thenReturn(false);
 
-        Validez validez = criterioVerdaderoFalso.validarCriterio(eleccion);
-        validez.responder(mockedJugador);
+        Certificado certificado = criterioVerdaderoFalso.validarCriterio(eleccion);
+        certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
     }

@@ -8,13 +8,13 @@ public class CriterioVerdaderoFalso implements Criterio {
         this.eleccionCorrecta = eleccionCorrecta;
     }
 
-    public Validez validarCriterio(Eleccion eleccion){
+    public Certificado validarCriterio(Eleccion eleccion){
 
         if(eleccion.igualA(this.eleccionCorrecta)){
-            Validez correcta = new Correcta(1);
+            Certificado correcta = new Correcta(1);
             return correcta;
         }
-        Validez incorrecta = new Incorrecta(0);
+        Certificado incorrecta = new Incorrecta(0);
         return incorrecta;
     }
 
