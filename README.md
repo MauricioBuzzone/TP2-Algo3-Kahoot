@@ -31,9 +31,11 @@ maven 3.6.0
 Link a Overleaf: https://www.overleaf.com/read/chbjmpyjykvd
 
 ## Ejecutando las pruebas
-
-Explicación de como ejecutar las pruebas
-
+```
+git clone https://github.com/MauricioBuzzone/TP2-Algo3-Kahoot.git
+cd TP2-Algo3-Kahoot/
+mvn test
+```
 ## Ejecutando la aplicación
 
 Explicación de como ejecutar la aplicación
