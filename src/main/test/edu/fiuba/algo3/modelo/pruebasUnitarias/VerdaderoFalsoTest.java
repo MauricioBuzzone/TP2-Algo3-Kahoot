@@ -58,8 +58,6 @@ public class VerdaderoFalsoTest {
     }
 
 
-
-
     @Test
     public void test03UnaPreguntaVerdaderoFalsoCuandoSeLaCreaConMasDeDosRespuestasCorrectasLanzaExcepcion(){
 
