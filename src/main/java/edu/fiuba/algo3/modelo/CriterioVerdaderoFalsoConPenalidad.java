@@ -9,6 +9,9 @@ public class CriterioVerdaderoFalsoConPenalidad implements Criterio {
     }
     @Override
     public Certificado validarCriterio(Eleccion eleccion){
+        if(eleccion.cantidadDeOpciones() > 1){
+            throw new EleccionInvalidaException();
+        }
         if(eleccion.igualA(this.eleccionCorrecta)){
             Certificado correcta = new Correcta(1);
             return correcta;

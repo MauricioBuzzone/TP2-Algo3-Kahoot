@@ -5,10 +5,14 @@ public class CriterioVerdaderoFalso implements Criterio {
     private Eleccion eleccionCorrecta;
 
     public CriterioVerdaderoFalso(Eleccion eleccionCorrecta){
+
         this.eleccionCorrecta = eleccionCorrecta;
     }
 
     public Certificado validarCriterio(Eleccion eleccion){
+        if(eleccion.cantidadDeOpciones() > 1){
+            throw new EleccionInvalidaException();
+        }
 
         if(eleccion.igualA(this.eleccionCorrecta)){
             Certificado correcta = new Correcta(1);
