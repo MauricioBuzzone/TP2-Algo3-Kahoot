@@ -6,6 +6,9 @@ public class Incorrecta implements Certificado {
     private int puntos;
 
     public Incorrecta(int puntos){
+        if(puntos < 0){
+            throw new PuntosInvalidosException();
+        }
         this.puntos = puntos;
     }
     @Override
