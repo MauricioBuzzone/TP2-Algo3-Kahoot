@@ -47,4 +47,9 @@ public class Eleccion {
 
         return otraEleccion.contenidoEn(opciones);
     }
+
+    public int cantidadDeOpciones(){
+        return this.opciones.size();
+    }
+
 }

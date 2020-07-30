@@ -12,9 +12,9 @@ public class RespuestaTest {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Criterio mockedCriterioVerdaderoFalso = mock(CriterioVerdaderoFalso.class);
-        Validez mockedValidez = mock(Correcta.class);
+        Certificado mockedCertificado = mock(Correcta.class);
 
-        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedValidez);
+        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
 
@@ -28,14 +28,14 @@ public class RespuestaTest {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Criterio mockedCriterioVerdaderoFalso = mock(CriterioVerdaderoFalso.class);
-        Validez mockedValidez = mock(Correcta.class);
+        Certificado mockedCertificado = mock(Correcta.class);
 
-        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedValidez);
+        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
         respuesta.evaluarConCriterio(mockedCriterioVerdaderoFalso);
         respuesta.responder();
 
-        verify(mockedValidez, times(1)).responder(mockedJugador);
+        verify(mockedCertificado, times(1)).responder(mockedJugador);
     }
 }

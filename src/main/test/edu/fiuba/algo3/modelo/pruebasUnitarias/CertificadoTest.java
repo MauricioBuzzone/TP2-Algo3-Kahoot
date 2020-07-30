@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ValidezTest{
+public class CertificadoTest {
 
     @Test
     public void test01CorrectaRecibeUnJugadorYResponde(){

@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -54,5 +55,21 @@ public class VerdaderoFalsoConPenalidadTest {
         verify(mockRespuesta, times(1)).responder();
         verify(mockRespuesta2, times(1)).responder();
         verify(mockRespuesta3, times(1)).responder();
+    }
+
+    @Test
+    public void test03UnaPreguntaVerdaderoFalsoConPenalidadCuandoSeLaCreaConMasDeDosRespuestasCorrectasLanzaExcepcion(){
+
+        String enunciado = "El gato de Schrodinger esta muerto";
+        String solucion1 = "Verdadero";
+        String solucion2 = "Falso";
+        List<String> opcion= new ArrayList<String>();
+        opcion.add(solucion1);
+        opcion.add(solucion2);
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
+        assertThrows(SolucionInvalidaException.class,
+                ()->{
+                    VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
+                });
     }
 }
