@@ -1,10 +1,18 @@
 package edu.fiuba.algo3.modelo;
 
 
-public class Incorrecta implements Validez{
+public class Incorrecta implements Certificado {
 
+    private int puntos;
+
+    public Incorrecta(int puntos){
+        if(puntos < 0){
+            throw new PuntosInvalidosException();
+        }
+        this.puntos = puntos;
+    }
     @Override
     public void responder(Jugador jugador){
-        jugador.responderMal();
+        jugador.responderMal(puntos);
     }
 }

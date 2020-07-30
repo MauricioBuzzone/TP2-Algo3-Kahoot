@@ -10,32 +10,32 @@ public class RespuestaTest {
     public void test01UnaRespuestaSeEvaluaConUnCriterioYLePideAlCriterioQueEvalueSuOpcion(){
         // public Respuesta(Jugador jugador, Opcion opcion) {
         Jugador mockedJugador = mock(Jugador.class);
-        Opcion mockedOpcionCorrecta = mock(Opcion.class);
-        Criterio mockedCriterio = mock(Criterio.class);
-        Validez mockedValidez = mock(Correcta.class);
+        Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
+        Criterio mockedCriterioVerdaderoFalso = mock(CriterioVerdaderoFalso.class);
+        Certificado mockedCertificado = mock(Correcta.class);
 
-        when(mockedCriterio.validarCriterio(any(Opcion.class))).thenReturn(mockedValidez);
+        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
 
-        Respuesta respuesta = new Respuesta(mockedJugador, mockedOpcionCorrecta);
+        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
 
-        respuesta.evaluarConCriterio(mockedCriterio);
+        respuesta.evaluarConCriterio(mockedCriterioVerdaderoFalso);
 
-        verify(mockedCriterio, times(1)).validarCriterio(any(Opcion.class));
+        verify(mockedCriterioVerdaderoFalso, times(1)).validarCriterio(any(Eleccion.class));
     }
 
     @Test
     public void test02UnaRespuestaConValidezCuandoSePideQueRespondaAValidezSeLePideResponderAUnJugador(){
         Jugador mockedJugador = mock(Jugador.class);
-        Opcion mockedOpcionCorrecta = mock(Opcion.class);
-        Criterio mockedCriterio = mock(Criterio.class);
-        Validez mockedValidez = mock(Correcta.class);
+        Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
+        Criterio mockedCriterioVerdaderoFalso = mock(CriterioVerdaderoFalso.class);
+        Certificado mockedCertificado = mock(Correcta.class);
 
-        when(mockedCriterio.validarCriterio(any(Opcion.class))).thenReturn(mockedValidez);
+        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
 
-        Respuesta respuesta = new Respuesta(mockedJugador, mockedOpcionCorrecta);
-        respuesta.evaluarConCriterio(mockedCriterio);
+        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
+        respuesta.evaluarConCriterio(mockedCriterioVerdaderoFalso);
         respuesta.responder();
 
-        verify(mockedValidez, times(1)).responder(mockedJugador);
+        verify(mockedCertificado, times(1)).responder(mockedJugador);
     }
 }

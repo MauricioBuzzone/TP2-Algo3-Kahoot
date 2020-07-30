@@ -8,17 +8,17 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VerdaderoFalsoTest {
+public class VerdaderoFalsoConPenalidadTest {
 
     @Test
     public void test01evaluarRespuestasAplicaEvaluarConCriterioACadaRespuestaEnviada(){
 
-        String solucion = "Seeee";
-        String enunciado = "Se aprueba la entrega 0?";
+        String solucion = "Falso";
+        String enunciado = "En FIUBA hay 11 carreras";
         List<String> opcion= new ArrayList<String>();
         opcion.add(solucion);
         Eleccion eleccionCorrecta = new Eleccion(opcion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
+        VerdaderoFalsoConPenalidad verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
@@ -27,20 +27,20 @@ public class VerdaderoFalsoTest {
         respuestas.add(mockRespuesta);
         respuestas.add(mockRespuesta2);
 
-        verdaderoFalso.evaluarRespuestas(respuestas);
+        verdaderoFalsoConPenalidad.evaluarRespuestas(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
-        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
+        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
     }
 
     @Test
     public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
-        String solucion = "Seeee";
-        String enunciado = "Se aprueba la entrega 0?";
+        String solucion = "Verdadero";
+        String enunciado = "En caballo blanco de San Martin es blanco";
         List<String> opcion= new ArrayList<String>();
         opcion.add(solucion);
         Eleccion eleccionCorrecta = new Eleccion(opcion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(enunciado, eleccionCorrecta);
+        VerdaderoFalsoConPenalidad verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
@@ -50,16 +50,15 @@ public class VerdaderoFalsoTest {
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        verdaderoFalso.responderPregunta(respuestas);
+        verdaderoFalsoConPenalidad.responderPregunta(respuestas);
 
         verify(mockRespuesta, times(1)).responder();
         verify(mockRespuesta2, times(1)).responder();
         verify(mockRespuesta3, times(1)).responder();
     }
 
-
     @Test
-    public void test03UnaPreguntaVerdaderoFalsoCuandoSeLaCreaConMasDeDosRespuestasCorrectasLanzaExcepcion(){
+    public void test03UnaPreguntaVerdaderoFalsoConPenalidadCuandoSeLaCreaConMasDeDosRespuestasCorrectasLanzaExcepcion(){
 
         String enunciado = "El gato de Schrodinger esta muerto";
         String solucion1 = "Verdadero";
@@ -70,7 +69,7 @@ public class VerdaderoFalsoTest {
         Eleccion eleccionCorrecta = new Eleccion(opcion);
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    VerdaderoFalso pregunta = new VerdaderoFalso(enunciado, eleccionCorrecta);
+                    VerdaderoFalsoConPenalidad pregunta = new VerdaderoFalsoConPenalidad(enunciado, eleccionCorrecta);
                 });
     }
 }
