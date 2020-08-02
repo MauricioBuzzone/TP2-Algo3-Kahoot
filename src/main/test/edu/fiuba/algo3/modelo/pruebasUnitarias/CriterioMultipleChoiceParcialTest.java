@@ -189,7 +189,7 @@ public class CriterioMultipleChoiceParcialTest{
     }
 
     @Test
-    public void test06UnCriterioMCPRecibeUnaListaCon6OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+    public void test07UnCriterioMCPRecibeUnaListaCon6OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         Criterio criterio = new CriterioMultipleChoiceParcial(eleccion);
         String opcion1 = "Mulán";
@@ -209,7 +209,7 @@ public class CriterioMultipleChoiceParcialTest{
         assertFalse(criterio.sonOpcionesValidas(opciones));
     }
     @Test
-    public void test06UnCriterioMCPRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+    public void test08UnCriterioMCPRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         Criterio criterio = new CriterioMultipleChoiceParcial(eleccion);
         List<String> opciones = new ArrayList<String>();

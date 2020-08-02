@@ -98,4 +98,45 @@ public class CriterioVerdaderoFalsoTest {
         List<String> opciones = new ArrayList<String>();
         assertFalse(criterio.sonOpcionesValidas(opciones));
     }
+    @Test
+    public void test06UnCriterioMCCRecibeUnaListaCon3OpcionesYDevuelveQueEsasOpcionesSonValidas(){
+        Eleccion eleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioMultipleChoiceClasico(eleccion);
+        String opcion1 = "Mike Wazowski";
+        String opcion2 = "James P. Sullivan";
+        String opcion3 = "Randall Boggs";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        assert(criterio.sonOpcionesValidas(opciones));
+    }
+
+    @Test
+    public void test07UnCriterioMCCecibeUnaListaCon6OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+        Eleccion eleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioMultipleChoiceClasico(eleccion);
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+        opciones.add(opcion6);
+        assertFalse(criterio.sonOpcionesValidas(opciones));
+    }
+    @Test
+    public void test08UnCriterioMCCecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+        Eleccion eleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioMultipleChoiceClasico(eleccion);
+        List<String> opciones = new ArrayList<String>();
+        assertFalse(criterio.sonOpcionesValidas(opciones));
+    }
 }
