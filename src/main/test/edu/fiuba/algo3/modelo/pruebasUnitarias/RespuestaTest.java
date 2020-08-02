@@ -18,7 +18,7 @@ public class RespuestaTest {
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
 
-        respuesta.evaluarConCriterio(mockedCriterioVerdaderoFalso);
+        respuesta.responderConCriterio(mockedCriterioVerdaderoFalso);
 
         verify(mockedCriterioVerdaderoFalso, times(1)).validarCriterio(any(Eleccion.class));
     }
@@ -33,8 +33,7 @@ public class RespuestaTest {
         when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
-        respuesta.evaluarConCriterio(mockedCriterioVerdaderoFalso);
-        respuesta.responder();
+        respuesta.responderConCriterio(mockedCriterioVerdaderoFalso);
 
         verify(mockedCertificado, times(1)).responder(mockedJugador);
     }

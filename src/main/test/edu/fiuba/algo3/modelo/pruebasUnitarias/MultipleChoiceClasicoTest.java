@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 public class MultipleChoiceClasicoTest {
 
     @Test
-    public void test01evaluarRespuestasAplicaEvaluarConCriterioACadaRespuestaEnviada(){
+    public void test01ResponderPreguntaConDosRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
 
         String enunciado = "¿Quien creo el patron Poxi?";
 
@@ -39,14 +39,14 @@ public class MultipleChoiceClasicoTest {
         respuestas.add(mockRespuesta);
         respuestas.add(mockRespuesta2);
 
-        multipleChoice.evaluarRespuestas(respuestas);
+        multipleChoice.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioMultipleChoiceClasico.class));
-        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioMultipleChoiceClasico.class));
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
     }
 
     @Test
-    public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
+    public void test02ResponderPreguntaConTresRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
 
         String enunciado = "¿Cuales no son principios SOLID";
 
@@ -74,9 +74,9 @@ public class MultipleChoiceClasicoTest {
 
         multipleChoice.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).responder();
-        verify(mockRespuesta2, times(1)).responder();
-        verify(mockRespuesta3, times(1)).responder();
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
+        verify(mockRespuesta3, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
     }
 
     @Test

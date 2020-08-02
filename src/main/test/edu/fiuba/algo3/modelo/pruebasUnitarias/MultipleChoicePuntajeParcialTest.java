@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 
 public class MultipleChoicePuntajeParcialTest{
     @Test
-    public void test01MCPPAlEvaluarUnaRespuestaLePasaElCriterioCorrespondiente(){
+    public void test01MCPPAlResponderPreguntaConUnaRespuestaAEstaLePasaElCriterioCorrespondiente(){
         String enunciado = "¿Quiénes son profesores de AMII?";
 
         String opcion1 = "Sirne";
@@ -35,14 +35,14 @@ public class MultipleChoicePuntajeParcialTest{
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
         respuestas.add(mockRespuesta);
 
-        multipleChoicePuntajeParcial.evaluarRespuestas(respuestas);
+        multipleChoicePuntajeParcial.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioMultipleChoiceParcial.class));
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
 
     }
 
     @Test
-    public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
+    public void test02responderPreguntaConTresRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
 
         String enunciado = "¿Cuales no son principios SOLID";
 
@@ -70,9 +70,9 @@ public class MultipleChoicePuntajeParcialTest{
 
         multipleChoice.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).responder();
-        verify(mockRespuesta2, times(1)).responder();
-        verify(mockRespuesta3, times(1)).responder();
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
+        verify(mockRespuesta3, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
     }
 
     @Test
