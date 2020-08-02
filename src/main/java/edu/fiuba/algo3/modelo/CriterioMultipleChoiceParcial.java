@@ -22,6 +22,6 @@ public class CriterioMultipleChoiceParcial implements Criterio {
     }
     @Override
     public boolean sonOpcionesValidas(List<String> opciones){
-        return(opciones.size() == 1);
+        return(opciones.size() >= 1 && opciones.size() <= 5);
     }
 }
