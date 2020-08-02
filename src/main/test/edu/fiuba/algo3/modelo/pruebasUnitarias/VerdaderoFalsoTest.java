@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VerdaderoFalsoTest {
 
     @Test
-    public void test01evaluarRespuestasAplicaEvaluarConCriterioACadaRespuestaEnviada(){
+    public void test01responderPreguntaConDosRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
 
         String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
@@ -27,14 +27,14 @@ public class VerdaderoFalsoTest {
         respuestas.add(mockRespuesta);
         respuestas.add(mockRespuesta2);
 
-        verdaderoFalso.evaluarRespuestas(respuestas);
+        verdaderoFalso.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
-        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioVerdaderoFalso.class));
     }
 
     @Test
-    public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
+    public void test02responderPreguntaConTresRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
         String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
         List<String> opcion= new ArrayList<String>();
@@ -52,9 +52,9 @@ public class VerdaderoFalsoTest {
 
         verdaderoFalso.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).responder();
-        verify(mockRespuesta2, times(1)).responder();
-        verify(mockRespuesta3, times(1)).responder();
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioVerdaderoFalso.class));
+        verify(mockRespuesta3, times(1)).responderConCriterio(any(CriterioVerdaderoFalso.class));
     }
 
 

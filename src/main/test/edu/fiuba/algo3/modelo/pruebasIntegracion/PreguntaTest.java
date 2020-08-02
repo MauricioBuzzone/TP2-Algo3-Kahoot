@@ -53,7 +53,6 @@ public class PreguntaTest {
         respuestas.add(respuestaDiego);
         respuestas.add(respuestaTomas);
 
-        verdaderoFalso.evaluarRespuestas(respuestas);
         verdaderoFalso.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 0);
@@ -88,7 +87,6 @@ public class PreguntaTest {
         respuestasUno.add(primeraRespuestaDiego);
         respuestasUno.add(primeraRespuestaTomas);
 
-        preguntaUno.evaluarRespuestas(respuestasUno);
         preguntaUno.responderPregunta(respuestasUno);
 
         String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
@@ -114,7 +112,6 @@ public class PreguntaTest {
         respuestasDos.add(segundaRespuestaDiego);
         respuestasDos.add(segundaRespuestaTomas);
 
-        preguntaDos.evaluarRespuestas(respuestasDos);
         preguntaUno.responderPregunta(respuestasDos);
 
         assert (tomas.puntosTotales() > diego.puntosTotales());
@@ -211,7 +208,6 @@ public class PreguntaTest {
         respuestas.add(respuestaDiego);
         respuestas.add(respuestaTomas);
 
-        pregunta.evaluarRespuestas(respuestas);
         pregunta.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 9);
@@ -276,7 +272,6 @@ public class PreguntaTest {
         respuestas.add(respuestaTomas);
         respuestas.add(respuestaPablo);
 
-        pregunta.evaluarRespuestas(respuestas);
         pregunta.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 4);
@@ -339,7 +334,6 @@ public class PreguntaTest {
         respuestas.add(respuestaPablo);
         respuestas.add(respuestaEdson);
 
-        multipleChoice.evaluarRespuestas(respuestas);
         multipleChoice.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 2);

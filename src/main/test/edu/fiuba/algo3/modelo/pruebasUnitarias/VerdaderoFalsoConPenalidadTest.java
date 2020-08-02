@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VerdaderoFalsoConPenalidadTest {
 
     @Test
-    public void test01evaluarRespuestasAplicaEvaluarConCriterioACadaRespuestaEnviada(){
+    public void test01responderPreguntaConDosRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
 
         String solucion = "Falso";
         String enunciado = "En FIUBA hay 11 carreras";
@@ -27,14 +27,14 @@ public class VerdaderoFalsoConPenalidadTest {
         respuestas.add(mockRespuesta);
         respuestas.add(mockRespuesta2);
 
-        verdaderoFalsoConPenalidad.evaluarRespuestas(respuestas);
+        verdaderoFalsoConPenalidad.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
-        verify(mockRespuesta2, times(1)).evaluarConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
     }
 
     @Test
-    public void test02responderPreguntaAplicaResponderACadaRespuestaEnviada(){
+    public void test02responderPreguntaConTresRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
         String solucion = "Verdadero";
         String enunciado = "En caballo blanco de San Martin es blanco";
         List<String> opcion= new ArrayList<String>();
@@ -52,9 +52,9 @@ public class VerdaderoFalsoConPenalidadTest {
 
         verdaderoFalsoConPenalidad.responderPregunta(respuestas);
 
-        verify(mockRespuesta, times(1)).responder();
-        verify(mockRespuesta2, times(1)).responder();
-        verify(mockRespuesta3, times(1)).responder();
+        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
+        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
+        verify(mockRespuesta3, times(1)).responderConCriterio(any(CriterioVerdaderoFalsoConPenalidad.class));
     }
 
     @Test
