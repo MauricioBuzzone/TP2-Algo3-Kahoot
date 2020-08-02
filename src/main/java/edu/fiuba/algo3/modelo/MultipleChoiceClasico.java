@@ -6,10 +6,10 @@ public class MultipleChoiceClasico extends Pregunta {
 
     public MultipleChoiceClasico(String enunciado, Eleccion eleccion) {
 
-        if(eleccion.cantidadDeOpciones() <= 0 || eleccion.cantidadDeOpciones() > 5){
+        this.criterio = new CriterioMultipleChoiceClasico(eleccion);
+        if(!(eleccion.esValidaParaElCriterio(criterio))){
             throw new SolucionInvalidaException();
         }
-        this.criterio = new CriterioMultipleChoiceClasico(eleccion);
         this.enunciado = enunciado;
     }
 }

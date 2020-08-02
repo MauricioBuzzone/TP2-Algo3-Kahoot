@@ -17,10 +17,11 @@ public class EleccionTest {
         List<String> jugada = new ArrayList<String>();
         jugada.add(texto);
         Eleccion eleccion = new Eleccion(jugada);
-        assert(eleccion.igualA(eleccion));
+        assert (eleccion.igualA(eleccion));
     }
+
     @Test
-    public void test02DosEleccionesDelMismoTextoSonIguales(){
+    public void test02DosEleccionesDelMismoTextoSonIguales() {
 
         String texto = new String("El cabildo de Buenos Aires");
 
@@ -32,8 +33,9 @@ public class EleccionTest {
         jugadaDos.add(texto);
         Eleccion otraEleccion = new Eleccion(jugadaDos);
 
-        assert(eleccion.igualA(otraEleccion));
+        assert (eleccion.igualA(otraEleccion));
     }
+
     @Test
     public void test03DosEleccionesConDistintoTextoNoSonIguales() {
 
@@ -55,7 +57,7 @@ public class EleccionTest {
     }
 
     @Test
-    public void test04UnaEleccionDeMasDeUnaOpcionEsIgualASiMisma(){
+    public void test04UnaEleccionDeMasDeUnaOpcionEsIgualASiMisma() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -67,11 +69,11 @@ public class EleccionTest {
         jugada.add(texto3);
         jugada.add(texto4);
         Eleccion eleccion = new Eleccion(jugada);
-        assert(eleccion.igualA(eleccion));
+        assert (eleccion.igualA(eleccion));
     }
 
     @Test
-    public void test05UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesSonIguales(){
+    public void test05UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesSonIguales() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -92,11 +94,11 @@ public class EleccionTest {
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
-        assert(eleccion1.igualA(eleccion2));
+        assert (eleccion1.igualA(eleccion2));
     }
 
     @Test
-    public void test06UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesDesordenadasSonIguales(){
+    public void test06UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesDesordenadasSonIguales() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -117,11 +119,11 @@ public class EleccionTest {
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
-        assert(eleccion1.igualA(eleccion2));
+        assert (eleccion1.igualA(eleccion2));
     }
 
     @Test
-    public void test07UnaEleccionDeMasDeUnaOpcionYOtraEleccionConDistintasOpcionesNoSonIguales(){
+    public void test07UnaEleccionDeMasDeUnaOpcionYOtraEleccionConDistintasOpcionesNoSonIguales() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -143,8 +145,9 @@ public class EleccionTest {
         Eleccion eleccion2 = new Eleccion(jugada2);
         assertFalse(eleccion1.igualA(eleccion2));
     }
+
     @Test
-    public void test08EleccionRecibeOtraEleccionYDevuelveLaCantidadDeCoincidencias(){
+    public void test08EleccionRecibeOtraEleccionYDevuelveLaCantidadDeCoincidencias() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -165,11 +168,12 @@ public class EleccionTest {
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
-        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 1);
+        assertEquals(eleccion1.cantidadCoincidencias(eleccion2), 1);
 
     }
+
     @Test
-    public void test09EleccionRecibeOtraEleccionSinCoincidenciasYDevuelveCero(){
+    public void test09EleccionRecibeOtraEleccionSinCoincidenciasYDevuelveCero() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -189,10 +193,11 @@ public class EleccionTest {
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
-        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 0);
+        assertEquals(eleccion1.cantidadCoincidencias(eleccion2), 0);
     }
+
     @Test
-    public void test10EleccionRecibeOtraEleccionConTresCoincidenciasYDevuelveTresCoincidencias(){
+    public void test10EleccionRecibeOtraEleccionConTresCoincidenciasYDevuelveTresCoincidencias() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -214,10 +219,11 @@ public class EleccionTest {
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
-        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 3);
+        assertEquals(eleccion1.cantidadCoincidencias(eleccion2), 3);
     }
+
     @Test
-    public void test11EleccionRecibeOtraEleccionConLasMismasOpcionesYDevuelveLaCantidadDeOpciones(){
+    public void test11EleccionRecibeOtraEleccionConLasMismasOpcionesYDevuelveLaCantidadDeOpciones() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -238,10 +244,11 @@ public class EleccionTest {
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
-        assertEquals (eleccion1.cantidadCoincidencias(eleccion2), 3);
+        assertEquals(eleccion1.cantidadCoincidencias(eleccion2), 3);
     }
+
     @Test
-    public void test12EleccionRecibeOtraEleccionQueEstaContenidaYDevuelveQueEstaContenida(){
+    public void test12EleccionRecibeOtraEleccionQueEstaContenidaYDevuelveQueEstaContenida() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -263,8 +270,9 @@ public class EleccionTest {
 
         assert (eleccion1.contieneA(eleccion2));
     }
+
     @Test
-    public void test13EleccionRecibeOtraEleccionQueNoEstaContenidaYDevuelveQueNoEstaContenida(){
+    public void test13EleccionRecibeOtraEleccionQueNoEstaContenidaYDevuelveQueNoEstaContenida() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -284,10 +292,11 @@ public class EleccionTest {
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
-        assertFalse (eleccion1.contieneA(eleccion2));
+        assertFalse(eleccion1.contieneA(eleccion2));
     }
+
     @Test
-    public void test14EleccionRecibeOtraEleccionQueEsIgualYDevuelveQueEstaContenido(){
+    public void test14EleccionRecibeOtraEleccionQueEsIgualYDevuelveQueEstaContenido() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -310,8 +319,9 @@ public class EleccionTest {
 
         assert (eleccion1.contieneA(eleccion2));
     }
+
     @Test
-    public void test15EleccionRecibeOtraEleccionQueEsMayorYDevuelveQueNoEstaContenido(){
+    public void test15EleccionRecibeOtraEleccionQueEsMayorYDevuelveQueNoEstaContenido() {
         String texto1 = new String("El cabildo de Buenos Aires");
         String texto2 = new String("La casa rosada");
         String texto3 = new String("El gran Rex");
@@ -330,6 +340,56 @@ public class EleccionTest {
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
-        assertFalse (eleccion1.contieneA(eleccion2));
+        assertFalse(eleccion1.contieneA(eleccion2));
     }
+    @Test
+    public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnCriterioVFYDevuelveQueSusOpcionesSonValidasParaElCriterio(){
+
+        // Creación de elementos necesarios para hacer la prueba
+        String opcionCorrecta = new String("Falso");
+        List<String> opcionesCorrectas = new ArrayList<String>();
+        opcionesCorrectas.add(opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
+        Criterio criterioVF = new CriterioVerdaderoFalso(eleccionCorrecta);
+
+        // Creo la opción a evalúar
+        String opcion = new String("Verdadero");
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion);
+        Eleccion eleccion = new Eleccion(opciones);
+
+        assert(eleccion.esValidaParaElCriterio(criterioVF));
+    }
+
+    @Test
+    public void test17UnaEleccionDe6OpcionesRecibeUnCriterioMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElCriterio(){
+
+        // Creación de elementos necesarios para hacer la prueba
+        String opcionCorrecta = new String("Jaime Lannister");
+        List<String> opcionesCorrectas = new ArrayList<String>();
+        opcionesCorrectas.add(opcionCorrecta);
+        Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
+        Criterio criterioMultipleChoiceClasico = new CriterioMultipleChoiceClasico(eleccionCorrecta);
+
+        // Creo la opción a evalúar
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+        String opcion5 = new String("Lancel Lannister");
+        String opcion6 = new String("Joffrey Lannister");
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+        opciones.add(opcion6);
+        Eleccion eleccion = new Eleccion(opciones);
+
+        assertFalse(eleccion.esValidaParaElCriterio(criterioMultipleChoiceClasico));
+    }
+
+
 }

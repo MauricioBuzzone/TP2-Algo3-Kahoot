@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class CriterioMultipleChoiceParcialTest{
@@ -172,5 +173,46 @@ public class CriterioMultipleChoiceParcialTest{
         certificado.responder(mockedJugador);
 
         verify(mockedJugador, times(1)).responderMal(0);
+    }
+    @Test
+    public void test06UnCriterioMCPRecibeUnaListaCon3OpcionesYDevuelveQueEsasOpcionesSonValidas(){
+        Eleccion eleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioMultipleChoiceParcial(eleccion);
+        String opcion1 = "Mike Wazowski";
+        String opcion2 = "James P. Sullivan";
+        String opcion3 = "Randall Boggs";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        assert(criterio.sonOpcionesValidas(opciones));
+    }
+
+    @Test
+    public void test07UnCriterioMCPRecibeUnaListaCon6OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+        Eleccion eleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioMultipleChoiceParcial(eleccion);
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+        opciones.add(opcion6);
+        assertFalse(criterio.sonOpcionesValidas(opciones));
+    }
+    @Test
+    public void test08UnCriterioMCPRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+        Eleccion eleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioMultipleChoiceParcial(eleccion);
+        List<String> opciones = new ArrayList<String>();
+        assertFalse(criterio.sonOpcionesValidas(opciones));
     }
 }

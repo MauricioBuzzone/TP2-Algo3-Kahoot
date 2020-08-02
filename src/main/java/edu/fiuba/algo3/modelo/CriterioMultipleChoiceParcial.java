@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.List;
+
 public class CriterioMultipleChoiceParcial implements Criterio {
 
     private Eleccion eleccionCorrecta;
@@ -17,5 +19,9 @@ public class CriterioMultipleChoiceParcial implements Criterio {
         }
         Certificado incorrecta = new Incorrecta(0);
         return incorrecta;
+    }
+    @Override
+    public boolean sonOpcionesValidas(List<String> opciones){
+        return(opciones.size() >= 1 && opciones.size() <= 5);
     }
 }

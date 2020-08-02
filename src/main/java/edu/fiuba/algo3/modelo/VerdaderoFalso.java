@@ -6,10 +6,11 @@ public class VerdaderoFalso extends Pregunta {
 
 
     public VerdaderoFalso(String enunciado, Eleccion eleccion) {
-        if(eleccion.cantidadDeOpciones() != 1){
+
+        this.criterio = new CriterioVerdaderoFalso(eleccion);
+        if(!(eleccion.esValidaParaElCriterio(criterio))){
             throw new SolucionInvalidaException();
         }
-        this.criterio = new CriterioVerdaderoFalso(eleccion);
         this.enunciado = enunciado;
     }
 }

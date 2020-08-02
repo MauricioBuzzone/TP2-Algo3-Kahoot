@@ -39,17 +39,25 @@ public class Eleccion {
         }
         return coincidencias;
     }
+
     private boolean contenidoEn(List<String> opciones){
 
         return opciones.containsAll(this.opciones);
     }
+
     public boolean contieneA(Eleccion otraEleccion){
 
         return otraEleccion.contenidoEn(opciones);
     }
 
     public int cantidadDeOpciones(){
+
         return this.opciones.size();
+    }
+
+    public boolean esValidaParaElCriterio(Criterio criterio){
+
+        return(criterio.sonOpcionesValidas(opciones));
     }
 
 }

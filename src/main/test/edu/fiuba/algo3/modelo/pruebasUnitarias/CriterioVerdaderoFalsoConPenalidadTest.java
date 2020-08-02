@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CriterioVerdaderoFalsoConPenalidadTest {
 
@@ -67,4 +67,38 @@ public class CriterioVerdaderoFalsoConPenalidadTest {
                 });
 
     }
+
+    @Test
+    public void test04UnCriterioVFPRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidas(){
+        Eleccion mockedEleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioVerdaderoFalsoConPenalidad(mockedEleccion);
+
+        String opcion = "Verdadero";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion);
+
+        assert(criterio.sonOpcionesValidas(opciones));
+    }
+    @Test
+    public void test05UnCriterioVFPRecibeUnaListaDeOpcionesConDosElementosYDevuelveQueLasOpcionesNoSonValidas(){
+        Eleccion mockedEleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioVerdaderoFalsoConPenalidad(mockedEleccion);
+
+        String opcion1 = "Falso";
+        String opcion2 = "Verdadero";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+
+        assertFalse(criterio.sonOpcionesValidas(opciones));
+    }
+    @Test
+    public void test06UnCriterioVFPRecibeUnaListaDeOpcionesConCeroElementosYDevuelveQueLasOpcionesNoSonValidas(){
+        Eleccion mockedEleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioVerdaderoFalsoConPenalidad(mockedEleccion);
+        List<String> opciones = new ArrayList<String>();
+        assertFalse(criterio.sonOpcionesValidas(opciones));
+    }
+
+
 }

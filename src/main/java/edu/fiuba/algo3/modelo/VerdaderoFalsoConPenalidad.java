@@ -5,10 +5,11 @@ import java.util.List;
 public class VerdaderoFalsoConPenalidad extends Pregunta{
 
     public VerdaderoFalsoConPenalidad(String enunciado, Eleccion eleccion) {
-        if(eleccion.cantidadDeOpciones() != 1){
+
+        this.criterio = new CriterioVerdaderoFalsoConPenalidad(eleccion);
+        if(!(eleccion.esValidaParaElCriterio(criterio))){
             throw new SolucionInvalidaException();
         }
-        this.criterio = new CriterioVerdaderoFalsoConPenalidad(eleccion);
         this.enunciado = enunciado;
     }
 }

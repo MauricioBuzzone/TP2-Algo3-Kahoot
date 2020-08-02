@@ -6,10 +6,10 @@ public class MultipleChoicePuntajeParcial extends Pregunta {
 
     public MultipleChoicePuntajeParcial(String enunciado, Eleccion eleccion) {
 
-        if(eleccion.cantidadDeOpciones() <= 0 || eleccion.cantidadDeOpciones() > 5){
+        this.criterio = new CriterioMultipleChoiceParcial(eleccion);
+        if(!(eleccion.esValidaParaElCriterio(criterio))){
             throw new SolucionInvalidaException();
         }
-        this.criterio = new CriterioMultipleChoiceParcial(eleccion);
         this.enunciado = enunciado;
     }
 }
