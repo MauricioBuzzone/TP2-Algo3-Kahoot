@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.List;
+
 public class CriterioVerdaderoFalsoConPenalidad implements Criterio {
 
     private Eleccion eleccionCorrecta;
@@ -18,5 +20,9 @@ public class CriterioVerdaderoFalsoConPenalidad implements Criterio {
         }
         Certificado incorrecta = new Incorrecta(1);
         return incorrecta;
+    }
+    @Override
+    public boolean sonOpcionesValidas(List<String> opciones){
+        return(opciones.size() == 1);
     }
 }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CriterioVerdaderoFalsoTest {
 
@@ -65,5 +66,36 @@ public class CriterioVerdaderoFalsoTest {
                     Certificado certificado = criterioVerdaderoFalso.validarCriterio(eleccion);
                 });
 
+    }
+    @Test
+    public void test04UnCriterioVFRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidas(){
+        Eleccion mockedEleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioVerdaderoFalso(mockedEleccion);
+
+        String opcion = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion);
+
+        assert(criterio.sonOpcionesValidas(opciones));
+    }
+    @Test
+    public void test05UnCriterioVFRecibeUnaListaDeOpcionesConDosElementosYDevuelveQueLasOpcionesNoSonValidas(){
+        Eleccion mockedEleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioVerdaderoFalso(mockedEleccion);
+
+        String opcion1 = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
+        String opcion2 = "Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+
+        assertFalse(criterio.sonOpcionesValidas(opciones));
+    }
+    @Test
+    public void test06UnCriterioVFRecibeUnaListaDeOpcionesConCeroElementosYDevuelveQueLasOpcionesNoSonValidas(){
+        Eleccion mockedEleccion = mock(Eleccion.class);
+        Criterio criterio = new CriterioVerdaderoFalso(mockedEleccion);
+        List<String> opciones = new ArrayList<String>();
+        assertFalse(criterio.sonOpcionesValidas(opciones));
     }
 }
