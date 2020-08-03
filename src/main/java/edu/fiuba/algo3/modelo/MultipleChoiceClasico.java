@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MultipleChoiceClasico extends TipoDePregunta{
     public MultipleChoiceClasico(Eleccion eleccion){
-        if(!(eleccion.esValida(this))){
+        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
         eleccionCorrecta = eleccion;
@@ -20,7 +20,7 @@ public class MultipleChoiceClasico extends TipoDePregunta{
         return incorrecta;
     }
     @Override
-    public Boolean sonOpcionesValidas(List<String> opciones){
+    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return(opciones.size() >= 1 && opciones.size() <= 5);
     }
 

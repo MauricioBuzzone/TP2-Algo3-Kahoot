@@ -55,7 +55,7 @@ public class Eleccion {
         return this.opciones.size();
     }
 
-    public Boolean esValida(Evaluador unEvaluador){
-        return (unEvaluador.sonOpcionesValidas(opciones));
+    public Boolean esUnaEleccionValidaComoSolucion(Evaluador unEvaluador){
+        return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 }

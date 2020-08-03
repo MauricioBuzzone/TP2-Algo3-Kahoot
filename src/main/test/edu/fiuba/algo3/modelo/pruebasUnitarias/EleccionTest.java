@@ -342,7 +342,7 @@ public class EleccionTest {
         assertFalse(eleccion1.contieneA(eleccion2));
     }
     @Test
-    public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnCriterioVFYDevuelveQueSusOpcionesSonValidasParaElCriterio(){
+    public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnEvaluadorVFYDevuelveQueSusOpcionesSonValidasParaElEvaluadorVF(){
 
         // Creación de elementos necesarios para hacer la prueba
         String opcionCorrecta = new String("Falso");
@@ -357,11 +357,11 @@ public class EleccionTest {
         opciones.add(opcion);
         Eleccion eleccion = new Eleccion(opciones);
 
-        assert(eleccion.esValida(evaluadorVF));
+        assert(eleccion.esUnaEleccionValidaComoSolucion(evaluadorVF));
     }
 
     @Test
-    public void test17UnaEleccionDe6OpcionesRecibeUnCriterioMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElCriterio(){
+    public void test17UnaEleccionDe6OpcionesRecibeUnEvaluadorMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElEvaluador(){
 
         // Creación de elementos necesarios para hacer la prueba
         String opcionCorrecta = new String("Jaime Lannister");
@@ -370,7 +370,7 @@ public class EleccionTest {
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
         Evaluador evaluadorMCC = new MultipleChoiceClasico(eleccionCorrecta);
 
-        // Creo la opción a evalúar
+        // Creo la opción a evaluar
         String opcion1 = new String("Jaime Lannister");
         String opcion2 = new String("Tyrion Lannister");
         String opcion3 = new String("Cersei Lannister");
@@ -387,7 +387,7 @@ public class EleccionTest {
         opciones.add(opcion6);
         Eleccion eleccion = new Eleccion(opciones);
 
-        assertFalse(eleccion.esValida(evaluadorMCC));
+        assertFalse(eleccion.esUnaEleccionValidaComoSolucion(evaluadorMCC));
     }
 
 

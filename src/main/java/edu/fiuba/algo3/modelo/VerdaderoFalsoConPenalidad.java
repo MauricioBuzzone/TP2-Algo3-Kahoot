@@ -4,7 +4,7 @@ import java.util.List;
 
 public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
     public VerdaderoFalsoConPenalidad(Eleccion eleccion){
-        if(!eleccion.esValida(this)){
+        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
         eleccionCorrecta = eleccion;
@@ -12,9 +12,6 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
 
     @Override
     public Certificado evaluarEleccion(Eleccion eleccion){
-        if(eleccion.cantidadDeOpciones() > 1){
-            throw new EleccionInvalidaException();
-        }
         if(eleccion.igualA(this.eleccionCorrecta)){
             Certificado correcta = new Correcta(1);
             return correcta;
@@ -24,9 +21,10 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
     }
 
     @Override
-    public Boolean sonOpcionesValidas(List<String> opciones){
+    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return (opciones.size() == 1);
     }
+
 
     @Override
     public void mostrar(){}
