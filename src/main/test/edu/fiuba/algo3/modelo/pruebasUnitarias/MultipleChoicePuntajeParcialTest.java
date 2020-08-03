@@ -281,7 +281,7 @@ public class MultipleChoicePuntajeParcialTest {
     }
 
     @Test
-    public void test11MultipleChoicePuntajeParcialRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
+    public void test11MultipleChoicePuntajeParcialRecibeUnaListaConCeroOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
