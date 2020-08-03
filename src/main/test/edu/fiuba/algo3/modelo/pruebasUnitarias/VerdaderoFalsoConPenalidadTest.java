@@ -14,7 +14,7 @@ import static org.mockito.Mockito.times;
 
 public class VerdaderoFalsoConPenalidadTest {
     @Test
-    public void test01responderPreguntaConDosRespuestasAplicaResponderConEvaluadorACadaRespuestaEnviada(){
+    public void test01responderPreguntaConDosRespuestasAplicaResponderSegunEvaluadorACadaRespuestaEnviada(){
 
         String solucion = "Falso";
         String enunciado = "En FIUBA hay 11 carreras";
@@ -27,7 +27,7 @@ public class VerdaderoFalsoConPenalidadTest {
 
         verdaderoFalsoConPenalidad.responderPregunta(mockRespuesta);
 
-        verify(mockRespuesta, times(1)).responderConEvaluador(any(Evaluador.class));
+        verify(mockRespuesta, times(1)).responderSegunEvaluador(any(Evaluador.class));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class VerdaderoFalsoConPenalidadTest {
     }
 
     @Test
-    public void test03VerdaderoFalsoConPenalidadRecibeUnaOpcionCorrectaYDevuelveUnCertificadoCorrecto(){
+    public void test03VerdaderoFalsoConPenalidadRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto(){
 
         String texto = "Vamos a aprobar la entrega 0";
         List<String> opcion= new ArrayList<String>();
@@ -65,7 +65,7 @@ public class VerdaderoFalsoConPenalidadTest {
     }
 
     @Test
-    public void test04VerdaderoFalsoConPenalidadRecibeUnaOpcionIncorrectaYDevuelveUnCertificadoIncorrecto(){
+    public void test04VerdaderoFalsoConPenalidadRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto(){
 
         String texto = "2+2 = Pez";
         List<String> opcion= new ArrayList<String>();
@@ -82,44 +82,23 @@ public class VerdaderoFalsoConPenalidadTest {
 
         verify(mockedJugador, times(1)).responderMal(1);
     }
-    @Test
-    public void test05VerdaderoFalsoConPenalidadAlRecibirUnaEleccionConMasDeUnaOpcionYLanzaUnaExcepcion(){
-
-        String texto = " 2+2 = 4 ";
-        List<String> opcion= new ArrayList<String>();
-        opcion.add(texto);
-        Eleccion eleccionCorrecta = new Eleccion(opcion);
-        Evaluador verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
-
-        Jugador mockedJugador = mock(Jugador.class);
-        Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.cantidadDeOpciones()).thenReturn(3);
-        when(eleccion.igualA(eleccionCorrecta)).thenReturn(false);
-
-
-        assertThrows(EleccionInvalidaException.class,
-                ()->{
-                    Certificado certificado = verdaderoFalsoConPenalidad.evaluarEleccion(eleccion);
-                });
-
-    }
 
     @Test
-    public void test06VerdaderoFalsoConPenalidadRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidas(){
+    public void test05VerdaderoFalsoConPenalidadRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidasComoSolucion(){
         Eleccion mockedEleccion = mock(Eleccion.class);
-        when(mockedEleccion.esValida(any(Evaluador.class))).thenReturn(true);
+        when(mockedEleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(mockedEleccion);
 
         String opcion = "Verdadero";
         List<String> opciones = new ArrayList<String>();
         opciones.add(opcion);
 
-        assert(verdaderoFalsoConPenalidad.sonOpcionesValidas(opciones));
+        assert(verdaderoFalsoConPenalidad.sonOpcionesValidasComoSolucion(opciones));
     }
     @Test
-    public void test07VerdaderoFalsoConPenalidadRecibeUnaListaDeOpcionesConDosElementosYDevuelveQueLasOpcionesNoSonValidas(){
+    public void test06VerdaderoFalsoConPenalidadRecibeUnaListaDeOpcionesConDosElementosYDevuelveQueLasOpcionesNoSonValidasComoSolucion(){
         Eleccion mockedEleccion = mock(Eleccion.class);
-        when(mockedEleccion.esValida(any(Evaluador.class))).thenReturn(true);
+        when(mockedEleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(mockedEleccion);
 
         String opcion1 = "Falso";
@@ -128,14 +107,14 @@ public class VerdaderoFalsoConPenalidadTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        assertFalse(verdaderoFalsoConPenalidad.sonOpcionesValidas(opciones));
+        assertFalse(verdaderoFalsoConPenalidad.sonOpcionesValidasComoSolucion(opciones));
     }
     @Test
-    public void test08VerdaderoFalsoConPenalidadRecibeUnaListaDeOpcionesConCeroElementosYDevuelveQueLasOpcionesNoSonValidas(){
+    public void test07VerdaderoFalsoConPenalidadRecibeUnaListaDeOpcionesConCeroElementosYDevuelveQueLasOpcionesNoSonValidasComoSolucion(){
         Eleccion mockedEleccion = mock(Eleccion.class);
-        when(mockedEleccion.esValida(any(Evaluador.class))).thenReturn(true);
+        when(mockedEleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(mockedEleccion);
         List<String> opciones = new ArrayList<String>();
-        assertFalse(verdaderoFalsoConPenalidad.sonOpcionesValidas(opciones));
+        assertFalse(verdaderoFalsoConPenalidad.sonOpcionesValidasComoSolucion(opciones));
     }
 }

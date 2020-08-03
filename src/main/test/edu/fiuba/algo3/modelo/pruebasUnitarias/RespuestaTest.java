@@ -7,7 +7,7 @@ import static org.mockito.Mockito.*;
 public class RespuestaTest {
 
     @Test
-    public void test01UnaRespuestaSeEvaluaConUnCriterioYLePideAlCriterioQueEvalueSuOpcion(){
+    public void test01UnaRespuestaSeRespondeSegunUnEvaluadorVFYLePideAlEvaluadorQueEvalueSuOpcion(){
         // public Respuesta(Jugador jugador, Opcion opcion) {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
@@ -18,13 +18,13 @@ public class RespuestaTest {
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
 
-        respuesta.responderConEvaluador(mockedEvaluadorVerdaderoFalso);
+        respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
 
         verify(mockedEvaluadorVerdaderoFalso, times(1)).evaluarEleccion(any(Eleccion.class));
     }
 
     @Test
-    public void test02UnaRespuestaConValidezCuandoSePideQueRespondaAValidezSeLePideResponderAUnJugador(){
+    public void test02UnaRespuestaSeRespondeSegunUnEvaluadorVFSeLePideResponderAUnJugador(){
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
@@ -33,7 +33,7 @@ public class RespuestaTest {
         when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
-        respuesta.responderConEvaluador(mockedEvaluadorVerdaderoFalso);
+        respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
 
         verify(mockedCertificado, times(1)).responder(mockedJugador);
     }

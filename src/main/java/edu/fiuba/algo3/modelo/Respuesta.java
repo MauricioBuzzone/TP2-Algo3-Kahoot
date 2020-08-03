@@ -11,7 +11,8 @@ public class Respuesta {
         this.jugador = jugador;
     }
 
-    public void responderConEvaluador(Evaluador unEvaluador){
+    public void responderSegunEvaluador(Evaluador unEvaluador){
+
         Certificado certificado = unEvaluador.evaluarEleccion(eleccion);
         certificado.responder(jugador);
     }

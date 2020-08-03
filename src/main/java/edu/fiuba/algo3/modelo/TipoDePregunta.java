@@ -4,6 +4,6 @@ public abstract class TipoDePregunta implements Evaluador,Mostrable{
     protected Eleccion eleccionCorrecta;
 
     public void responderPregunta(Respuesta respuesta) {
-        respuesta.responderConEvaluador(this);
+        respuesta.responderSegunEvaluador(this);
     }
 }

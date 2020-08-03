@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MultipleChoicePuntajeParcial extends TipoDePregunta{
     public MultipleChoicePuntajeParcial(Eleccion eleccion){
-        if(!eleccion.esValida(this)){
+        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
         eleccionCorrecta = eleccion;
@@ -23,7 +23,7 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
     }
 
     @Override
-    public Boolean sonOpcionesValidas(List<String> opciones){
+    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return(opciones.size() >= 1 && opciones.size() <= 5);
     }
 

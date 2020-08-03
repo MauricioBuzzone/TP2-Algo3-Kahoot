@@ -36,7 +36,7 @@ public class MultipleChoicePuntajeParcialTest {
 
         multipleChoicePuntajeParcial.responderPregunta(mockRespuesta);
 
-        verify(mockRespuesta, times(1)).responderConEvaluador(any(Evaluador.class));
+        verify(mockRespuesta, times(1)).responderSegunEvaluador(any(Evaluador.class));
 
     }
 
@@ -90,7 +90,7 @@ public class MultipleChoicePuntajeParcialTest {
                 });
     }
     @Test
-    public void test04MultipleChoicePuntajeParcialRecibeUnaEleccionBienContestadaDevuelveUnCertifiadoCorrecto() {
+    public void test04MultipleChoicePuntajeParcialRecibeUnaEleccionAcertadaYDevuelveUnCertifiadoCorrecto() {
 
         //Enunciado: Tema de Fisica II
 
@@ -118,7 +118,7 @@ public class MultipleChoicePuntajeParcialTest {
     }
 
     @Test
-    public void test05MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteCorrectaDevuelveValidezCorrecta() {
+    public void test05MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteAcertadaDevuelveUnCertificadoCorrecto() {
 
         //Enunciado: Tema de Fisica II
 
@@ -148,7 +148,7 @@ public class MultipleChoicePuntajeParcialTest {
         verify(mockedJugador, times(1)).responderBien(1);
     }
     @Test
-    public void test06MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteIncorrectaDevuelveValidezIncorrecta() {
+    public void test06MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteDesacertadaDevuelveUnCertificadoIncorrecto() {
 
         //Enunciado: Tema de Fisica II
 
@@ -179,7 +179,7 @@ public class MultipleChoicePuntajeParcialTest {
         verify(mockedJugador, times(1)).responderMal(0);
     }
     @Test
-    public void test07MultipleChoicePuntajeParcialRecibeUnaEleccionIncorrectaDevuelveUnCertificadoIncorrecto() {
+    public void test07MultipleChoicePuntajeParcialRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto() {
 
         //Enunciado: Tema de Fisica II
 
@@ -211,7 +211,7 @@ public class MultipleChoicePuntajeParcialTest {
     }
 
     @Test
-    public void test08MultipleChoicePuntajeParcialRecibeUnaEleccionConMasOpcionesDevuelveUnCertificadoIncorrecto(){
+    public void test08MultipleChoicePuntajeParcialRecibeUnaEleccionConMasOpcionesQueLasCorrectasDevuelveUnCertificadoIncorrecto(){
 
         //Enunciado: Tema de Fisica II
 
@@ -244,9 +244,9 @@ public class MultipleChoicePuntajeParcialTest {
         verify(mockedJugador, times(1)).responderMal(0);
     }
     @Test
-    public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidas(){
+    public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
         Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
         String opcion1 = "Mike Wazowski";
         String opcion2 = "James P. Sullivan";
@@ -255,13 +255,13 @@ public class MultipleChoicePuntajeParcialTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
-        assert(multipleChoicePuntajeParcial.sonOpcionesValidas(opciones));
+        assert(multipleChoicePuntajeParcial.sonOpcionesValidasComoSolucion(opciones));
     }
 
     @Test
-    public void test10MultipleChoicePuntajeParcialecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+    public void test10MultipleChoicePuntajeParcialecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
         Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
         String opcion1 = "Mulán";
         String opcion2 = "Pocahontas";
@@ -277,15 +277,15 @@ public class MultipleChoicePuntajeParcialTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
         opciones.add(opcion6);
-        assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidas(opciones));
+        assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidasComoSolucion(opciones));
     }
 
     @Test
-    public void test11MultipleChoicePuntajeParcialRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
+    public void test11MultipleChoicePuntajeParcialRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
         Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
         List<String> opciones = new ArrayList<String>();
-        assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidas(opciones));
+        assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidasComoSolucion(opciones));
     }
 }
