@@ -60,4 +60,7 @@ public class Eleccion {
         return(criterio.sonOpcionesValidas(opciones));
     }
 
+    public Boolean esValida(Evaluador unEvaluador){
+        return (unEvaluador.sonOpcionesValidas(opciones));
+    }
 }

@@ -16,4 +16,9 @@ public class Respuesta {
         Certificado certificado = unCriterio.validarCriterio(eleccion);
         certificado.responder(jugador);
     }
+
+    public void responderConEvaluador(Evaluador unEvaluador){
+        Certificado certificado = unEvaluador.evaluarEleccion(eleccion);
+        certificado.responder(jugador);
+    }
 }
