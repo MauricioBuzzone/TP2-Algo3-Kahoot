@@ -480,4 +480,55 @@ public class EleccionTest {
 
         assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 0);
     }
+
+    @Test
+    public void test21AEleccionSeLePideVerficiarOtraEleccionIdenticaEstaEnOrdenDevuelveTrue(){
+
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+
+
+        List<String> opciones1 = new ArrayList<String>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        opciones1.add(opcion3);
+        opciones1.add(opcion4);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        List<String> opciones2 = new ArrayList<String>();
+        opciones2.add(opcion1);
+        opciones2.add(opcion2);
+        opciones2.add(opcion3);
+        opciones2.add(opcion4);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertTrue(eleccion1.estaEnOrden(eleccion2));
+    }
+    @Test
+    public void test21AEleccionSeLePideVerficiarOtraEleccionDistintaEstaEnOrdenDevuelveFalse(){
+
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+
+
+        List<String> opciones1 = new ArrayList<String>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        opciones1.add(opcion3);
+        opciones1.add(opcion4);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        List<String> opciones2 = new ArrayList<String>();
+        opciones2.add(opcion1);
+        opciones2.add(opcion2);
+        opciones2.add(opcion4);
+        opciones2.add(opcion3);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertFalse(eleccion1.estaEnOrden(eleccion2));
+    }
 }
