@@ -389,6 +389,95 @@ public class EleccionTest {
 
         assertFalse(eleccion.esUnaEleccionValidaComoSolucion(evaluadorMCC));
     }
+    @Test
+    public void test18UnaEleccionDeCuatroOpcionesYOtraOpcionDeTresOpcionesSePideLaCantidadDeNoCoincidenciasYDevuelveLaCantidadDeDiferenciasCorrecta(){
 
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+        String opcion5 = new String("Lancel Lannister");
+        String opcion6 = new String("Joffrey Lannister");
 
+        List<String> opciones1 = new ArrayList<String>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        opciones1.add(opcion3);
+        opciones1.add(opcion4);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        List<String> opciones2 = new ArrayList<String>();
+        opciones2.add(opcion1);
+        opciones2.add(opcion5);
+        opciones2.add(opcion6);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 2);
+    }
+    @Test
+    public void test18UnaEleccionDeDosOpcionesYOtraOpcionDeCuatroOpcionesSePideLaCantidadDeNoCoincidenciasYDevuelveLaCantidadDeDiferenciasCorrecta(){
+
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+        String opcion5 = new String("Lancel Lannister");
+        String opcion6 = new String("Joffrey Lannister");
+
+        List<String> opciones1 = new ArrayList<String>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        List<String> opciones2 = new ArrayList<String>();
+        opciones2.add(opcion1);
+        opciones2.add(opcion2);
+        opciones2.add(opcion3);
+        opciones2.add(opcion4);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 2);
+    }
+    @Test
+    public void test19UnaEleccionSePideLaCantidadDeNoCoincidenciasConOtraEleccionIgualYDevuelveCero(){
+
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+        String opcion5 = new String("Lancel Lannister");
+        String opcion6 = new String("Joffrey Lannister");
+
+        List<String> opciones1 = new ArrayList<String>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion1), 0);
+    }
+
+    @Test
+    public void test20UnaEleccionSeLePideLaCantidadDeNoCoincidenciasConOtraEleccionContenidaEnEllaYDevuelveCero(){
+
+        String opcion1 = new String("Jaime Lannister");
+        String opcion2 = new String("Tyrion Lannister");
+        String opcion3 = new String("Cersei Lannister");
+        String opcion4 = new String("Tywin Lannister");
+        String opcion5 = new String("Lancel Lannister");
+        String opcion6 = new String("Joffrey Lannister");
+
+        List<String> opciones1 = new ArrayList<String>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        opciones1.add(opcion3);
+        opciones1.add(opcion4);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        List<String> opciones2 = new ArrayList<String>();
+        opciones2.add(opcion1);
+        opciones2.add(opcion2);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 0);
+    }
 }

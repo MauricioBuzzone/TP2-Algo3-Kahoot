@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import static java.lang.Math.abs;
 import java.util.*;
 
 public class Eleccion {
@@ -26,7 +27,6 @@ public class Eleccion {
     public int cantidadCoincidencias(Eleccion otraEleccion){
 
        return otraEleccion.cantidadMismasOpciones(opciones);
-
     }
 
     private int cantidadMismasOpciones(List<String> otrasOpciones){
@@ -38,6 +38,28 @@ public class Eleccion {
             }
         }
         return coincidencias;
+    }
+
+    /*
+      Devuelve la cantidad de SUS opciones que no coincidan respecto a las MIAS.
+     */
+    public int cantidadDeNoCoincidentes(Eleccion otraEleccion){
+
+        return otraEleccion.cantidadDeOpcionesQueNoEstanContenidas(opciones);
+    }
+
+    /*
+        Devuelve la cantidad de opciones MIAS que no pertenecen a la lista de opciones recibida
+     */
+    private int cantidadDeOpcionesQueNoEstanContenidas(List<String> otrasOpciones){
+
+        int cantidadOpcionesNoCoincidentes = 0;
+        for(String miOpcion : opciones){
+            if(!otrasOpciones.contains(miOpcion)){
+                cantidadOpcionesNoCoincidentes++;
+            }
+        }
+        return cantidadOpcionesNoCoincidentes;
     }
 
     private boolean contenidoEn(List<String> opciones){
@@ -53,4 +75,5 @@ public class Eleccion {
     public Boolean esUnaEleccionValidaComoSolucion(Evaluador unEvaluador){
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
+
 }
