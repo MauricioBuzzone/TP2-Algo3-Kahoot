@@ -2,14 +2,28 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class MultipleChoiceClasico extends Pregunta {
-
-    public MultipleChoiceClasico(String enunciado, Eleccion eleccion) {
-
-        this.criterio = new CriterioMultipleChoiceClasico(eleccion);
-        if(!(eleccion.esValidaParaElCriterio(criterio))){
+public class MultipleChoiceClasico extends TipoDePregunta{
+    public MultipleChoiceClasico(Eleccion eleccion){
+        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
-        this.enunciado = enunciado;
+        eleccionCorrecta = eleccion;
     }
+
+    @Override
+    public Certificado evaluarEleccion(Eleccion eleccion){
+        if(eleccion.igualA(this.eleccionCorrecta)){
+            Certificado correcta = new Correcta(1);
+            return correcta;
+        }
+        Certificado incorrecta = new Incorrecta(0);
+        return incorrecta;
+    }
+    @Override
+    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
+        return(opciones.size() >= 1 && opciones.size() <= 5);
+    }
+
+    @Override
+    public void mostrar(){}
 }

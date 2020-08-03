@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -343,14 +342,14 @@ public class EleccionTest {
         assertFalse(eleccion1.contieneA(eleccion2));
     }
     @Test
-    public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnCriterioVFYDevuelveQueSusOpcionesSonValidasParaElCriterio(){
+    public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnEvaluadorVFYDevuelveQueSusOpcionesSonValidasParaElEvaluadorVF(){
 
         // Creación de elementos necesarios para hacer la prueba
         String opcionCorrecta = new String("Falso");
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Criterio criterioVF = new CriterioVerdaderoFalso(eleccionCorrecta);
+        Evaluador evaluadorVF = new VerdaderoFalso(eleccionCorrecta);
 
         // Creo la opción a evalúar
         String opcion = new String("Verdadero");
@@ -358,20 +357,20 @@ public class EleccionTest {
         opciones.add(opcion);
         Eleccion eleccion = new Eleccion(opciones);
 
-        assert(eleccion.esValidaParaElCriterio(criterioVF));
+        assert(eleccion.esUnaEleccionValidaComoSolucion(evaluadorVF));
     }
 
     @Test
-    public void test17UnaEleccionDe6OpcionesRecibeUnCriterioMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElCriterio(){
+    public void test17UnaEleccionDe6OpcionesRecibeUnEvaluadorMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElEvaluador(){
 
         // Creación de elementos necesarios para hacer la prueba
         String opcionCorrecta = new String("Jaime Lannister");
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Criterio criterioMultipleChoiceClasico = new CriterioMultipleChoiceClasico(eleccionCorrecta);
+        Evaluador evaluadorMCC = new MultipleChoiceClasico(eleccionCorrecta);
 
-        // Creo la opción a evalúar
+        // Creo la opción a evaluar
         String opcion1 = new String("Jaime Lannister");
         String opcion2 = new String("Tyrion Lannister");
         String opcion3 = new String("Cersei Lannister");
@@ -388,7 +387,7 @@ public class EleccionTest {
         opciones.add(opcion6);
         Eleccion eleccion = new Eleccion(opciones);
 
-        assertFalse(eleccion.esValidaParaElCriterio(criterioMultipleChoiceClasico));
+        assertFalse(eleccion.esUnaEleccionValidaComoSolucion(evaluadorMCC));
     }
 
 

@@ -1,20 +1,20 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
 import edu.fiuba.algo3.modelo.*;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class MultipleChoiceClasicoTest {
-
     @Test
-    public void test01ResponderPreguntaConDosRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
+    public void test01ResponderPreguntaConDosRespuestasAplicaResponderConEvaluadorACadaRespuestaEnviada() {
 
         String enunciado = "¿Quien creo el patron Poxi?";
 
@@ -30,57 +30,17 @@ public class MultipleChoiceClasicoTest {
 
 
         Eleccion eleccionCorrecta = new Eleccion(correctas);
-        MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
+        MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
-        Respuesta mockRespuesta2 = mock(Respuesta.class);
 
-        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(mockRespuesta);
-        respuestas.add(mockRespuesta2);
+        multipleChoice.responderPregunta(mockRespuesta);
 
-        multipleChoice.responderPregunta(respuestas);
-
-        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
-        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
+        verify(mockRespuesta, times(1)).responderSegunEvaluador(any(Evaluador.class));
     }
 
     @Test
-    public void test02ResponderPreguntaConTresRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
-
-        String enunciado = "¿Cuales no son principios SOLID";
-
-        String opcion1 = "Liskov";
-        String opcion2 = "Close-Open";
-        String opcion3 = "Single Responsability";
-        String opcion4 = "Herencia de Markov";
-        String opcion5 = "Design driven development";
-
-        List<String> correctas = new ArrayList<String>();
-        correctas.add(opcion2);
-        correctas.add(opcion4);
-        correctas.add(opcion5);
-
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
-        MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
-
-        Respuesta mockRespuesta = mock(Respuesta.class);
-        Respuesta mockRespuesta2 = mock(Respuesta.class);
-        Respuesta mockRespuesta3 = mock(Respuesta.class);
-        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(mockRespuesta);
-        respuestas.add(mockRespuesta2);
-        respuestas.add(mockRespuesta3);
-
-        multipleChoice.responderPregunta(respuestas);
-
-        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
-        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
-        verify(mockRespuesta3, times(1)).responderConCriterio(any(CriterioMultipleChoiceClasico.class));
-    }
-
-    @Test
-    public void test03UnMultipleChoiceClasicolLanzaUnaExcepcionCuandoSeIntentaInicializarConMasDe5pcionesCorrectas(){
+    public void test02UnMultipleChoiceClasicolLanzaUnaExcepcionCuandoSeIntentaInicializarConMasDe5pcionesCorrectas(){
 
         String enunciado = "p -> q";
 
@@ -103,12 +63,12 @@ public class MultipleChoiceClasicoTest {
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
+                    MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(eleccionCorrecta);
                 });
     }
 
     @Test
-    public void test04UnMultipleChoiceClasicoLanzaUnaExcepcionCuandoSeIntentaInicializarConCeroOcionesCorrectas(){
+    public void test03UnMultipleChoiceClasicoLanzaUnaExcepcionCuandoSeIntentaInicializarConCeroOcionesCorrectas(){
 
         String enunciado = "P = NP";
 
@@ -124,8 +84,101 @@ public class MultipleChoiceClasicoTest {
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(enunciado, eleccionCorrecta);
+                    MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(eleccionCorrecta);
                 });
     }
 
+    @Test
+    public void test04MultipleChoiceClasicoRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto() {
+
+
+        String enunciado = "¿Cuales son los Pilares de POO?";
+        String opcion1 = "Polimorfismo";
+        String opcion2 = "Bajo acoplamiento";
+        String opcion3 = "Alta cohesion";
+        String opcion4 = "Herencia";
+        String opcion5 = "Abstraccion";
+
+        List<String> correctas = new ArrayList<String>();
+        correctas.add(opcion1);
+        correctas.add(opcion4);
+        correctas.add(opcion5);
+
+        Eleccion eleccionCorrecta = new Eleccion(correctas);
+
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+
+        Jugador mockedJugador = mock(Jugador.class);
+        Eleccion eleccion = mock(Eleccion.class);
+
+        when(eleccion.igualA(eleccionCorrecta)).thenReturn(true);
+
+        (multipleChoiceClasico.evaluarEleccion(eleccion)).responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderBien(1);
+    }
+
+    @Test
+    public void test05MultipleChoiceClasicoRecibeUnaEleccionDesacertadaYDevuelvaUnCertificadoIncorrecto(){
+
+        String texto = " 2+2 = 4 ";
+        List<String> opcion= new ArrayList<String>();
+        opcion.add(texto);
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+
+        Jugador mockedJugador = mock(Jugador.class);
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.igualA(eleccionCorrecta)).thenReturn(false);
+
+        Certificado certificado = multipleChoiceClasico.evaluarEleccion(eleccion);
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderMal(0);
+    }
+
+    @Test
+    public void test06MultipleChoiceClasicoRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccion);
+        String opcion1 = "Mike Wazowski";
+        String opcion2 = "James P. Sullivan";
+        String opcion3 = "Randall Boggs";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        assert(multipleChoiceClasico.sonOpcionesValidasComoSolucion(opciones));
+    }
+
+    @Test
+    public void test07MultipleChoiceClasicoecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccion);
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+        opciones.add(opcion6);
+        assertFalse(multipleChoiceClasico.sonOpcionesValidasComoSolucion(opciones));
+    }
+    @Test
+    public void test08multipleChoiceClasicoRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccion);
+        List<String> opciones = new ArrayList<String>();
+        assertFalse(multipleChoiceClasico.sonOpcionesValidasComoSolucion(opciones));
+    }
 }

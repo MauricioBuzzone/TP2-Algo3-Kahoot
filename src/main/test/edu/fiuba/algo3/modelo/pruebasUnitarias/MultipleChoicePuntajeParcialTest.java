@@ -1,19 +1,20 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
 import edu.fiuba.algo3.modelo.*;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
-public class MultipleChoicePuntajeParcialTest{
+public class MultipleChoicePuntajeParcialTest {
     @Test
-    public void test01MCPPAlResponderPreguntaConUnaRespuestaAEstaLePasaElCriterioCorrespondiente(){
+    public void test01MCPPAlResponderPreguntaConUnaRespuestaAEstaLePasaElEvaluadorCorrespondiente(){
         String enunciado = "¿Quiénes son profesores de AMII?";
 
         String opcion1 = "Sirne";
@@ -29,54 +30,19 @@ public class MultipleChoicePuntajeParcialTest{
 
         Eleccion eleccionCorrecta = new Eleccion(correctas);
 
-        MultipleChoicePuntajeParcial multipleChoicePuntajeParcial=new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
+        MultipleChoicePuntajeParcial multipleChoicePuntajeParcial=new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
-        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(mockRespuesta);
 
-        multipleChoicePuntajeParcial.responderPregunta(respuestas);
+        multipleChoicePuntajeParcial.responderPregunta(mockRespuesta);
 
-        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
+        verify(mockRespuesta, times(1)).responderSegunEvaluador(any(Evaluador.class));
 
     }
 
-    @Test
-    public void test02responderPreguntaConTresRespuestasAplicaResponderConCriterioACadaRespuestaEnviada(){
-
-        String enunciado = "¿Cuales no son principios SOLID";
-
-        String opcion1 = "Liskov";
-        String opcion2 = "Close-Open";
-        String opcion3 = "Single Responsability";
-        String opcion4 = "Herencia de Markov";
-        String opcion5 = "Design driven development";
-
-        List<String> correctas = new ArrayList<String>();
-        correctas.add(opcion2);
-        correctas.add(opcion4);
-        correctas.add(opcion5);
-
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
-        MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
-
-        Respuesta mockRespuesta = mock(Respuesta.class);
-        Respuesta mockRespuesta2 = mock(Respuesta.class);
-        Respuesta mockRespuesta3 = mock(Respuesta.class);
-        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(mockRespuesta);
-        respuestas.add(mockRespuesta2);
-        respuestas.add(mockRespuesta3);
-
-        multipleChoice.responderPregunta(respuestas);
-
-        verify(mockRespuesta, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
-        verify(mockRespuesta2, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
-        verify(mockRespuesta3, times(1)).responderConCriterio(any(CriterioMultipleChoiceParcial.class));
-    }
 
     @Test
-    public void test03UnMultipleChoiceConPuntajeParcialLanzaUnaExcepcionCuandoSeIntentaInicializarConMasDe5pcionesCorrectas(){
+    public void test02UnMultipleChoiceConPuntajeParcialLanzaUnaExcepcionCuandoSeIntentaInicializarConMasDe5pcionesCorrectas(){
 
         String enunciado = "p -> q";
 
@@ -99,12 +65,12 @@ public class MultipleChoicePuntajeParcialTest{
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
+                    MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(eleccionCorrecta);
                 });
     }
 
     @Test
-    public void test04UnMultipleChoiceConPuntajeParcialLanzaUnaExcepcionCuandoSeIntentaInicializarConCeroOcionesCorrectas(){
+    public void test03UnMultipleChoiceConPuntajeParcialLanzaUnaExcepcionCuandoSeIntentaInicializarConCeroOcionesCorrectas(){
 
         String enunciado = "P = NP";
 
@@ -120,8 +86,206 @@ public class MultipleChoicePuntajeParcialTest{
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(enunciado, eleccionCorrecta);
+                    MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(eleccionCorrecta);
                 });
     }
+    @Test
+    public void test04MultipleChoicePuntajeParcialRecibeUnaEleccionAcertadaYDevuelveUnCertifiadoCorrecto() {
 
+        //Enunciado: Tema de Fisica II
+
+        String texto1 = new String("Induccion magnetica");
+        String texto2 = new String("Fuerza De Lorenz");
+        String texto3 = new String("Diferenciacion");
+        String texto4 = new String("Cuerpo Rigido");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(texto1);
+        solucion.add(texto2);
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        Eleccion eleccionJugador = new Eleccion(solucion);
+
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+
+        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderBien(2);
+    }
+
+    @Test
+    public void test05MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteAcertadaDevuelveUnCertificadoCorrecto() {
+
+        //Enunciado: Tema de Fisica II
+
+        String texto1 = new String("Induccion magnetica");
+        String texto2 = new String("Fuerza De Lorenz");
+        String texto3 = new String("Diferenciacion");
+        String texto4 = new String("Cuerpo Rigido");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(texto1);
+        solucion.add(texto2);
+
+        List<String> solucionJugador = new ArrayList<String>();
+        solucionJugador.add(texto1);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        Eleccion eleccionJugador = new Eleccion(solucionJugador);
+
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderBien(1);
+    }
+    @Test
+    public void test06MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteDesacertadaDevuelveUnCertificadoIncorrecto() {
+
+        //Enunciado: Tema de Fisica II
+
+        String texto1 = new String("Induccion magnetica");
+        String texto2 = new String("Fuerza De Lorenz");
+        String texto3 = new String("Diferenciacion");
+        String texto4 = new String("Cuerpo Rigido");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(texto1);
+        solucion.add(texto2);
+
+        List<String> solucionJugador = new ArrayList<String>();
+        solucionJugador.add(texto3);
+        solucionJugador.add(texto2);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        Eleccion eleccionJugador = new Eleccion(solucionJugador);
+
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderMal(0);
+    }
+    @Test
+    public void test07MultipleChoicePuntajeParcialRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto() {
+
+        //Enunciado: Tema de Fisica II
+
+        String texto1 = new String("Induccion magnetica");
+        String texto2 = new String("Fuerza De Lorenz");
+        String texto3 = new String("Diferenciacion");
+        String texto4 = new String("Cuerpo Rigido");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(texto1);
+        solucion.add(texto2);
+
+        List<String> solucionJugador = new ArrayList<String>();
+        solucionJugador.add(texto3);
+        solucionJugador.add(texto4);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        Eleccion eleccionJugador = new Eleccion(solucionJugador);
+
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderMal(0);
+    }
+
+    @Test
+    public void test08MultipleChoicePuntajeParcialRecibeUnaEleccionConMasOpcionesQueLasCorrectasDevuelveUnCertificadoIncorrecto(){
+
+        //Enunciado: Tema de Fisica II
+
+        String texto1 = new String("Induccion magnetica");
+        String texto2 = new String("Fuerza De Lorenz");
+        String texto3 = new String("Diferenciacion");
+        String texto4 = new String("Cuerpo Rigido");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(texto1);
+        solucion.add(texto2);
+
+        List<String> solucionJugador = new ArrayList<String>();
+        solucionJugador.add(texto3);
+        solucionJugador.add(texto4);
+        solucionJugador.add(texto1);
+        solucionJugador.add(texto2);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        Eleccion eleccionJugador = new Eleccion(solucionJugador);
+
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderMal(0);
+    }
+    @Test
+    public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
+        String opcion1 = "Mike Wazowski";
+        String opcion2 = "James P. Sullivan";
+        String opcion3 = "Randall Boggs";
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        assert(multipleChoicePuntajeParcial.sonOpcionesValidasComoSolucion(opciones));
+    }
+
+    @Test
+    public void test10MultipleChoicePuntajeParcialecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+        opciones.add(opcion6);
+        assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidasComoSolucion(opciones));
+    }
+
+    @Test
+    public void test11MultipleChoicePuntajeParcialRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
+        Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
+        List<String> opciones = new ArrayList<String>();
+        assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidasComoSolucion(opciones));
+    }
 }
