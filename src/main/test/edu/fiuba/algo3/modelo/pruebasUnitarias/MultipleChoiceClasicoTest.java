@@ -12,7 +12,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
-public class MultipleChoiceClasico2Test {
+public class MultipleChoiceClasicoTest {
     @Test
     public void test01ResponderPreguntaConDosRespuestasAplicaResponderConEvaluadorACadaRespuestaEnviada() {
 
@@ -30,7 +30,7 @@ public class MultipleChoiceClasico2Test {
 
 
         Eleccion eleccionCorrecta = new Eleccion(correctas);
-        MultipleChoiceClasico2 multipleChoice = new MultipleChoiceClasico2(eleccionCorrecta);
+        MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
 
@@ -63,7 +63,7 @@ public class MultipleChoiceClasico2Test {
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceClasico2 multipleChoice = new MultipleChoiceClasico2(eleccionCorrecta);
+                    MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(eleccionCorrecta);
                 });
     }
 
@@ -84,7 +84,7 @@ public class MultipleChoiceClasico2Test {
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceClasico2 multipleChoice = new MultipleChoiceClasico2(eleccionCorrecta);
+                    MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(eleccionCorrecta);
                 });
     }
 
@@ -106,7 +106,7 @@ public class MultipleChoiceClasico2Test {
 
         Eleccion eleccionCorrecta = new Eleccion(correctas);
 
-        Evaluador multipleChoiceClasico = new MultipleChoiceClasico2(eleccionCorrecta);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
@@ -125,7 +125,7 @@ public class MultipleChoiceClasico2Test {
         List<String> opcion= new ArrayList<String>();
         opcion.add(texto);
         Eleccion eleccionCorrecta = new Eleccion(opcion);
-        Evaluador multipleChoiceClasico = new MultipleChoiceClasico2(eleccionCorrecta);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
@@ -141,7 +141,7 @@ public class MultipleChoiceClasico2Test {
     public void test06MultipleChoiceClasicoRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceClasico = new MultipleChoiceClasico2(eleccion);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccion);
         String opcion1 = "Mike Wazowski";
         String opcion2 = "James P. Sullivan";
         String opcion3 = "Randall Boggs";
@@ -156,7 +156,7 @@ public class MultipleChoiceClasico2Test {
     public void test07MultipleChoiceClasicoecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceClasico = new MultipleChoiceClasico2(eleccion);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccion);
         String opcion1 = "Mulán";
         String opcion2 = "Pocahontas";
         String opcion3 = "Blancanieves";
@@ -177,7 +177,7 @@ public class MultipleChoiceClasico2Test {
     public void test08multipleChoiceClasicoRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceClasico = new MultipleChoiceClasico2(eleccion);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(eleccion);
         List<String> opciones = new ArrayList<String>();
         assertFalse(multipleChoiceClasico.sonOpcionesValidas(opciones));
     }

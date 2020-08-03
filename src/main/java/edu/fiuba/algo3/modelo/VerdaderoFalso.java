@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import java.security.spec.ECField;
 import java.util.List;
 
-public class VerdaderoFalsoConPenalidad2 extends TipoDePregunta{
-    public VerdaderoFalsoConPenalidad2(Eleccion eleccion){
+public class VerdaderoFalso extends TipoDePregunta{
+    public VerdaderoFalso(Eleccion eleccion){
         if(!eleccion.esValida(this)){
             throw new SolucionInvalidaException();
         }
@@ -11,15 +12,16 @@ public class VerdaderoFalsoConPenalidad2 extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
-        if(eleccion.cantidadDeOpciones() > 1){
+    public Certificado evaluarEleccion(Eleccion otraEleccion){
+        if(otraEleccion.cantidadDeOpciones() > 1){
             throw new EleccionInvalidaException();
         }
-        if(eleccion.igualA(this.eleccionCorrecta)){
+
+        if(otraEleccion.igualA(this.eleccionCorrecta)){
             Certificado correcta = new Correcta(1);
             return correcta;
         }
-        Certificado incorrecta = new Incorrecta(1);
+        Certificado incorrecta = new Incorrecta(0);
         return incorrecta;
     }
 

@@ -2,12 +2,12 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class Pregunta2 {
+public class Pregunta {
     private TipoDePregunta tipo;
     private String enunciado;
     private List<String> opciones;
 
-    public Pregunta2(String enunciado, List<String> opciones, TipoDePregunta tipo){
+    public Pregunta(String enunciado, List<String> opciones, TipoDePregunta tipo){
         this.enunciado = enunciado;
         this.opciones = opciones;
         this.tipo = tipo;

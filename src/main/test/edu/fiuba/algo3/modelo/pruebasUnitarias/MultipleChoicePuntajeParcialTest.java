@@ -12,7 +12,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
-public class MutilpleChoicePuntajeParcial2Test {
+public class MultipleChoicePuntajeParcialTest {
     @Test
     public void test01MCPPAlResponderPreguntaConUnaRespuestaAEstaLePasaElEvaluadorCorrespondiente(){
         String enunciado = "¿Quiénes son profesores de AMII?";
@@ -30,7 +30,7 @@ public class MutilpleChoicePuntajeParcial2Test {
 
         Eleccion eleccionCorrecta = new Eleccion(correctas);
 
-        MultipleChoicePuntajeParcial2 multipleChoicePuntajeParcial=new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+        MultipleChoicePuntajeParcial multipleChoicePuntajeParcial=new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
 
@@ -65,7 +65,7 @@ public class MutilpleChoicePuntajeParcial2Test {
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoicePuntajeParcial2 multipleChoice = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+                    MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(eleccionCorrecta);
                 });
     }
 
@@ -86,7 +86,7 @@ public class MutilpleChoicePuntajeParcial2Test {
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoicePuntajeParcial2 multipleChoice = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+                    MultipleChoicePuntajeParcial multipleChoice = new MultipleChoicePuntajeParcial(eleccionCorrecta);
                 });
     }
     @Test
@@ -105,7 +105,7 @@ public class MutilpleChoicePuntajeParcial2Test {
         Eleccion eleccionCorrecta = new Eleccion(solucion);
         Eleccion eleccionJugador = new Eleccion(solucion);
 
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
 
         Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
@@ -137,7 +137,7 @@ public class MutilpleChoicePuntajeParcial2Test {
         Eleccion eleccionCorrecta = new Eleccion(solucion);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
 
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
         Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
@@ -168,7 +168,7 @@ public class MutilpleChoicePuntajeParcial2Test {
         Eleccion eleccionCorrecta = new Eleccion(solucion);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
 
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
         Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
@@ -199,7 +199,7 @@ public class MutilpleChoicePuntajeParcial2Test {
         Eleccion eleccionCorrecta = new Eleccion(solucion);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
 
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
         Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
@@ -233,7 +233,7 @@ public class MutilpleChoicePuntajeParcial2Test {
         Eleccion eleccionCorrecta = new Eleccion(solucion);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
 
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
 
         Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
@@ -247,7 +247,7 @@ public class MutilpleChoicePuntajeParcial2Test {
     public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccion);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
         String opcion1 = "Mike Wazowski";
         String opcion2 = "James P. Sullivan";
         String opcion3 = "Randall Boggs";
@@ -262,7 +262,7 @@ public class MutilpleChoicePuntajeParcial2Test {
     public void test10MultipleChoicePuntajeParcialecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccion);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
         String opcion1 = "Mulán";
         String opcion2 = "Pocahontas";
         String opcion3 = "Blancanieves";
@@ -284,7 +284,7 @@ public class MutilpleChoicePuntajeParcial2Test {
     public void test11MultipleChoicePuntajeParcialRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidas(){
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.esValida(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccion);
+        Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccion);
         List<String> opciones = new ArrayList<String>();
         assertFalse(multipleChoicePuntajeParcial.sonOpcionesValidas(opciones));
     }

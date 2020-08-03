@@ -11,7 +11,7 @@ public class RespuestaTest {
         // public Respuesta(Jugador jugador, Opcion opcion) {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
-        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso2.class);
+        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
         Certificado mockedCertificado = mock(Correcta.class);
 
         when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);
@@ -27,7 +27,7 @@ public class RespuestaTest {
     public void test02UnaRespuestaConValidezCuandoSePideQueRespondaAValidezSeLePideResponderAUnJugador(){
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
-        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso2.class);
+        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
         Certificado mockedCertificado = mock(Correcta.class);
 
         when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);

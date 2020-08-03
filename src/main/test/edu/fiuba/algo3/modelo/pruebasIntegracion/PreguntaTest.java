@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Pregunta2Test {
+public class PreguntaTest {
     @Test
     public void test0_1UnaPreguntaDeVFCPuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
 
@@ -22,8 +22,8 @@ public class Pregunta2Test {
         opciones.add(opcionIncorrecta);
         opciones.add(solucion);
         Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoVerdaderoFalso);
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
 
     }
 
@@ -41,8 +41,8 @@ public class Pregunta2Test {
         opciones.add(solucion);
 
         Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoVerdaderoFalso);
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomas");
@@ -88,8 +88,8 @@ public class Pregunta2Test {
         opcionesUno.add(solucionUno);
 
         Eleccion eleccionCorrectaUno = new Eleccion(opcionCorrectaUno);
-        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso2(eleccionCorrectaUno);
-        Pregunta2 preguntaUno = new Pregunta2(enunciadoUno, opcionesUno, tipoVerdaderoFalsoUno);
+        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(eleccionCorrectaUno);
+        Pregunta preguntaUno = new Pregunta(enunciadoUno, opcionesUno, tipoVerdaderoFalsoUno);
 
         List<String> opcionDiegoUno = new ArrayList<String>();
         opcionDiegoUno.add(opcionIncorrectaUno);
@@ -118,8 +118,8 @@ public class Pregunta2Test {
         opcionesDos.add(solucionDos);
 
         Eleccion eleccionCorrectaDos = new Eleccion(opcionCorrectaDos);
-        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso2(eleccionCorrectaDos);
-        Pregunta2 preguntaDos = new Pregunta2(enunciadoDos, opcionesDos, tipoVerdaderoFalsoDos);
+        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(eleccionCorrectaDos);
+        Pregunta preguntaDos = new Pregunta(enunciadoDos, opcionesDos, tipoVerdaderoFalsoDos);
 
 
         List<String> opcionDiegoDos = new ArrayList<String>();
@@ -155,8 +155,8 @@ public class Pregunta2Test {
         opciones.add(opcion2);
 
         Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
     }
 
     @Test
@@ -183,8 +183,8 @@ public class Pregunta2Test {
         opciones.add(opcion5);
 
         Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoMultipleChoiceClasico);
+        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceClasico);
     }
 
     @Test
@@ -211,8 +211,8 @@ public class Pregunta2Test {
         opciones.add(opcion5);
 
         Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
+        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
     }
 
     @Test
@@ -240,8 +240,8 @@ public class Pregunta2Test {
         opciones.add(opcion2);
 
         Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
 
 
         List<String> opcionDiego = new ArrayList<String>();
@@ -298,8 +298,8 @@ public class Pregunta2Test {
         opciones.add(opcion5);
 
         Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoMultipleChoiceClasico);
+        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceClasico);
 
         //todas correcta   --> 1 diego
         //parcialmente mal --> 0 tomas
@@ -360,8 +360,8 @@ public class Pregunta2Test {
 
         Eleccion eleccionCorrecta = new Eleccion(solucion);
 
-        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial2(eleccionCorrecta);
-        Pregunta2 pregunta = new Pregunta2(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
+        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
 
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomas");

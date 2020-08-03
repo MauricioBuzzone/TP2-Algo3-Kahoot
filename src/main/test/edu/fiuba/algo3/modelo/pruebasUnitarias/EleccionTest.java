@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -350,7 +349,7 @@ public class EleccionTest {
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Evaluador evaluadorVF = new VerdaderoFalso2(eleccionCorrecta);
+        Evaluador evaluadorVF = new VerdaderoFalso(eleccionCorrecta);
 
         // Creo la opción a evalúar
         String opcion = new String("Verdadero");
@@ -369,7 +368,7 @@ public class EleccionTest {
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Evaluador evaluadorMCC = new MultipleChoiceClasico2(eleccionCorrecta);
+        Evaluador evaluadorMCC = new MultipleChoiceClasico(eleccionCorrecta);
 
         // Creo la opción a evalúar
         String opcion1 = new String("Jaime Lannister");
