@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-abstract class Pregunta {
+public abstract class Pregunta {
 
     protected Criterio criterio;
     protected String enunciado;
