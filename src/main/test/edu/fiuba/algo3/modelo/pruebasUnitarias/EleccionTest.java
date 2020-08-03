@@ -350,7 +350,7 @@ public class EleccionTest {
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Criterio criterioVF = new CriterioVerdaderoFalso(eleccionCorrecta);
+        Evaluador evaluadorVF = new VerdaderoFalso2(eleccionCorrecta);
 
         // Creo la opción a evalúar
         String opcion = new String("Verdadero");
@@ -358,7 +358,7 @@ public class EleccionTest {
         opciones.add(opcion);
         Eleccion eleccion = new Eleccion(opciones);
 
-        assert(eleccion.esValidaParaElCriterio(criterioVF));
+        assert(eleccion.esValida(evaluadorVF));
     }
 
     @Test
@@ -369,7 +369,7 @@ public class EleccionTest {
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
         Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Criterio criterioMultipleChoiceClasico = new CriterioMultipleChoiceClasico(eleccionCorrecta);
+        Evaluador evaluadorMCC = new MultipleChoiceClasico2(eleccionCorrecta);
 
         // Creo la opción a evalúar
         String opcion1 = new String("Jaime Lannister");
@@ -388,7 +388,7 @@ public class EleccionTest {
         opciones.add(opcion6);
         Eleccion eleccion = new Eleccion(opciones);
 
-        assertFalse(eleccion.esValidaParaElCriterio(criterioMultipleChoiceClasico));
+        assertFalse(eleccion.esValida(evaluadorMCC));
     }
 
 

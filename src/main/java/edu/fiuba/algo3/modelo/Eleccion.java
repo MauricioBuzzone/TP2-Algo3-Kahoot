@@ -55,11 +55,6 @@ public class Eleccion {
         return this.opciones.size();
     }
 
-    public boolean esValidaParaElCriterio(Criterio criterio){
-
-        return(criterio.sonOpcionesValidas(opciones));
-    }
-
     public Boolean esValida(Evaluador unEvaluador){
         return (unEvaluador.sonOpcionesValidas(opciones));
     }

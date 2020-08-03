@@ -11,29 +11,29 @@ public class RespuestaTest {
         // public Respuesta(Jugador jugador, Opcion opcion) {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
-        Criterio mockedCriterioVerdaderoFalso = mock(CriterioVerdaderoFalso.class);
+        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso2.class);
         Certificado mockedCertificado = mock(Correcta.class);
 
-        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
+        when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
 
-        respuesta.responderConCriterio(mockedCriterioVerdaderoFalso);
+        respuesta.responderConEvaluador(mockedEvaluadorVerdaderoFalso);
 
-        verify(mockedCriterioVerdaderoFalso, times(1)).validarCriterio(any(Eleccion.class));
+        verify(mockedEvaluadorVerdaderoFalso, times(1)).evaluarEleccion(any(Eleccion.class));
     }
 
     @Test
     public void test02UnaRespuestaConValidezCuandoSePideQueRespondaAValidezSeLePideResponderAUnJugador(){
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
-        Criterio mockedCriterioVerdaderoFalso = mock(CriterioVerdaderoFalso.class);
+        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso2.class);
         Certificado mockedCertificado = mock(Correcta.class);
 
-        when(mockedCriterioVerdaderoFalso.validarCriterio(any(Eleccion.class))).thenReturn(mockedCertificado);
+        when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
-        respuesta.responderConCriterio(mockedCriterioVerdaderoFalso);
+        respuesta.responderConEvaluador(mockedEvaluadorVerdaderoFalso);
 
         verify(mockedCertificado, times(1)).responder(mockedJugador);
     }
