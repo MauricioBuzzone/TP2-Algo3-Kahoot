@@ -23,4 +23,7 @@ public class MultipleChoiceClasico extends TipoDePregunta{
     public Boolean sonOpcionesValidas(List<String> opciones){
         return(opciones.size() >= 1 && opciones.size() <= 5);
     }
+
+    @Override
+    public void mostrar(){}
 }

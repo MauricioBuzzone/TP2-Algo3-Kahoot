@@ -23,7 +23,11 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
         return incorrecta;
     }
 
+    @Override
     public Boolean sonOpcionesValidas(List<String> opciones){
         return (opciones.size() == 1);
     }
+
+    @Override
+    public void mostrar(){}
 }

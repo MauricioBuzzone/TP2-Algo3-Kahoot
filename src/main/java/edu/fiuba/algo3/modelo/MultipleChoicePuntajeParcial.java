@@ -27,4 +27,6 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
         return(opciones.size() >= 1 && opciones.size() <= 5);
     }
 
+    @Override
+    public void mostrar(){}
 }
