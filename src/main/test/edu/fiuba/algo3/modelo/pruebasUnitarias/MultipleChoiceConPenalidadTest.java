@@ -233,5 +233,46 @@ public class MultipleChoiceConPenalidadTest{
         List<String> opciones = new ArrayList<String>();
         assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opciones));
     }
+    @Test
+    public void test12UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConSeisEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
+
+
+        String enunciado = "Princesas de Disney";
+
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> correctas = new ArrayList<String>();
+        correctas.add(opcion1);
+        correctas.add(opcion2);
+        correctas.add(opcion3);
+        correctas.add(opcion4);
+        correctas.add(opcion5);
+        correctas.add(opcion6);
+
+        Eleccion eleccionCorrecta = new Eleccion(correctas);
+
+        assertThrows(SolucionInvalidaException.class,
+                ()->{
+                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(eleccionCorrecta);
+                });
+
+    }
+    @Test
+    public void test13UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConCeroEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
+        List<String> correctas = new ArrayList<String>();
+        Eleccion eleccionCorrecta = new Eleccion(correctas);
+
+        assertThrows(SolucionInvalidaException.class,
+                ()->{
+                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(eleccionCorrecta);
+                });
+
+    }
+
 
 }

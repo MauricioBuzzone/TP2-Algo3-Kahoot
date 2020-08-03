@@ -480,5 +480,4 @@ public class EleccionTest {
 
         assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 0);
     }
-
 }

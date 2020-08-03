@@ -76,7 +76,4 @@ public class Eleccion {
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 
-    public int cantidadOpciones(){
-        return opciones.size();
-    }
 }
