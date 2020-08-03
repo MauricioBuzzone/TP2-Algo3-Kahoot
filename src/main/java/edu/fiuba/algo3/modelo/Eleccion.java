@@ -50,11 +50,6 @@ public class Eleccion {
         return otraEleccion.contenidoEn(opciones);
     }
 
-    public int cantidadDeOpciones(){
-
-        return this.opciones.size();
-    }
-
     public Boolean esUnaEleccionValidaComoSolucion(Evaluador unEvaluador){
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
