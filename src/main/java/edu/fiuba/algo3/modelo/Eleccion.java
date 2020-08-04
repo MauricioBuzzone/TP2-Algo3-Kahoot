@@ -41,7 +41,7 @@ public class Eleccion {
     }
 
     /*
-      Devuelve la cantidad de SUS opciones que no coincidan respecto a las MIAS.
+      Devuelve la cantidad de SUS opciones que no coincidan respecto de las MIAS.
      */
     public int cantidadDeNoCoincidentes(Eleccion otraEleccion){
 
