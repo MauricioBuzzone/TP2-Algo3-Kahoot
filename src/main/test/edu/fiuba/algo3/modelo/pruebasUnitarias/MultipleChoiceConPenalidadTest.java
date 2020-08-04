@@ -274,5 +274,33 @@ public class MultipleChoiceConPenalidadTest{
 
     }
 
+    @Test
+    public void test14MultipleChoiceConPenalidadPuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+
+        String enunciado = new String("Provincias de Argentina");
+        String opcion1 = new String("Entre Rios");
+        String opcion2 = new String("Rosario");
+        String opcion3 = new String("La Pampa");
+        String opcion4 = new String("Bariloche");
+        String opcion5 = new String("Jujuy");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion3);
+        solucion.add(opcion5);
+
+
+        TipoDePregunta multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
+
+        Eleccion eleccionJugador = multipleChoiceConPenalidad.crearEleccion(solucion);
+
+        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderBien(3);
+    }
 
 }

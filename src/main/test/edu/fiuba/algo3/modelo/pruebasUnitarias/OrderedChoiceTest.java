@@ -208,4 +208,33 @@ public class OrderedChoiceTest {
 
         verify(mockedJugador, times(1)).responderMal(0);
     }
+
+    @Test
+    public void test7OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+
+        String enunciado = new String("Pasos de TDD");
+        String opcion1 = new String("Test");
+        String opcion2 = new String("Code");
+        String opcion3 = new String("Refactor");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+
+
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
+
+        Eleccion eleccionJugador = orderedChoice.crearEleccion(solucion);
+
+        Certificado certificado = orderedChoice.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderBien(1);
+    }
+
+
 }

@@ -117,4 +117,30 @@ public class VerdaderoFalsoConPenalidadTest {
         List<String> opciones = new ArrayList<String>();
         assertFalse(verdaderoFalsoConPenalidad.sonOpcionesValidasComoSolucion(opciones));
     }
+
+
+    @Test
+    public void test8VerdaderoFalsoConPenalidadConPuntajeParcialPuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+
+        String enunciado = new String("La Pampa es una provincia de Argentina");
+        String opcion1 = new String("Verdadero");
+        String opcion2 = new String("Falso");
+
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+
+
+        TipoDePregunta verdaderoFalso = new VerdaderoFalsoConPenalidad(solucion);
+
+        Eleccion eleccionJugador = verdaderoFalso.crearEleccion(solucion);
+
+        Certificado certificado = verdaderoFalso.evaluarEleccion(eleccionJugador);
+
+        Jugador mockedJugador = mock(Jugador.class);
+
+        certificado.responder(mockedJugador);
+
+        verify(mockedJugador, times(1)).responderBien(1);
+    }
 }

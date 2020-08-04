@@ -3,6 +3,17 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class MultipleChoiceClasico extends TipoDePregunta{
+    public MultipleChoiceClasico(List<String> opcionesCorrectas){
+        Eleccion eleccion = this.crearEleccion(opcionesCorrectas);
+
+        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
+            throw new SolucionInvalidaException();
+        }
+        eleccionCorrecta = eleccion;
+    }
+
+
+
     public MultipleChoiceClasico(Eleccion eleccion){
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();

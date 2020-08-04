@@ -3,6 +3,14 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class MultipleChoiceConPenalidad extends TipoDePregunta{
+    public MultipleChoiceConPenalidad(List<String> solucion){
+        Eleccion eleccion = this.crearEleccion(solucion);
+        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
+            throw new SolucionInvalidaException();
+        }
+        eleccionCorrecta = eleccion;
+    }
+
     public MultipleChoiceConPenalidad(Eleccion eleccion){
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();

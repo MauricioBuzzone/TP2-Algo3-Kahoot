@@ -4,7 +4,16 @@ import java.util.List;
 
 public class MultipleChoicePuntajeParcial extends TipoDePregunta{
 
+    public MultipleChoicePuntajeParcial(List<String> solucion){
+        Eleccion eleccion = this.crearEleccion(solucion);
+        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
+            throw new SolucionInvalidaException();
+        }
+        eleccionCorrecta = eleccion;
+    }
+
     public MultipleChoicePuntajeParcial(Eleccion eleccion){
+
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }

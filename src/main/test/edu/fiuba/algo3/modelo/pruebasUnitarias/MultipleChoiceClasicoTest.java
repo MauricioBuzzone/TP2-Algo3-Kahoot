@@ -181,4 +181,30 @@ public class MultipleChoiceClasicoTest {
         List<String> opciones = new ArrayList<String>();
         assertFalse(multipleChoiceClasico.sonOpcionesValidasComoSolucion(opciones));
     }
+    @Test
+    public void test09multipleChoiceClasicoPuedeInstanciarseConUnaListaDeOpcionesCorrectas() {
+
+        String enunciado = "¿Quien creo el patron Poxi?";
+
+        String opcion1 = "Diego";
+        String opcion2 = "Tomas";
+        String opcion3 = "Pablo S";
+        String opcion4 = "Pablo M";
+        String opcion5 = "Eugenio";
+
+        List<String> correctas = new ArrayList<String>();
+        correctas.add(opcion3);
+        correctas.add(opcion4);
+
+
+        MultipleChoiceClasico multipleChoice = new MultipleChoiceClasico(correctas);
+
+        Respuesta mockRespuesta = mock(Respuesta.class);
+
+        multipleChoice.responderPregunta(mockRespuesta);
+
+        verify(mockRespuesta, times(1)).responderSegunEvaluador(any(Evaluador.class));
+
+    }
+
 }
