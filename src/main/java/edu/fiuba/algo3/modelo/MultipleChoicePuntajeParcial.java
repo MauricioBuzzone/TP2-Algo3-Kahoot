@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class MultipleChoicePuntajeParcial extends TipoDePregunta{
+
     public MultipleChoicePuntajeParcial(Eleccion eleccion){
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();

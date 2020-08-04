@@ -538,4 +538,87 @@ public class PreguntaTest {
         assertEquals(edson.puntosTotales(), 7);
         assertEquals(martin.puntosTotales(), 2);
     }
+
+    @Test
+    public void test2_3UnaPreguntaDeOrderedChoicePuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
+
+        String enunciado = "Ordenar alfabeticamente";
+        String opcion1 = "a";
+        String opcion2 = "b";
+        String opcion3 = "c";
+        String opcion4 = "d";
+        String opcion5 = "e";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+        solucion.add(opcion4);
+        solucion.add(opcion5);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        TipoDePregunta orderedChoice = new OrderedChoice(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
+
+    }
+    @Test
+    public void test2_4UnaPreguntaDeOrderedChoiceRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente(){
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        diego.responderBien(4);
+        tomas.responderBien(3);
+
+        String enunciado = "Situar cronologicamente";
+
+        String opcion1 = "Huevo";
+        String opcion2 = "Gallina";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+
+        Eleccion eleccionCorrecta = new Eleccion(solucion);
+        TipoDePregunta orderedChoice = new OrderedChoice(eleccionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
+
+        //Jugador contesta correctamente
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(opcion1);
+        opcionDiego.add(opcion2);
+
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego);
+
+        //Jugador contesta incorrectamente
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(opcion2);
+        opcionTomas.add(opcion1);
+
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 5);
+        assertEquals(tomas.puntosTotales(), 3);
+    }
 }

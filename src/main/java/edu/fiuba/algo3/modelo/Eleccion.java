@@ -76,4 +76,11 @@ public class Eleccion {
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 
+    public boolean estaEnOrden(Eleccion eleccion){
+        return eleccion.tienenMismoOrden(this.opciones);
+    }
+
+    private  boolean tienenMismoOrden(List<String> opciones){
+        return this.opciones.equals(opciones);
+    }
 }
