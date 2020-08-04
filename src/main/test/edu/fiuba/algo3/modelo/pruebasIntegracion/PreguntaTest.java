@@ -559,8 +559,7 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta orderedChoice = new OrderedChoice(eleccionCorrecta);
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
 
     }
@@ -588,8 +587,8 @@ public class PreguntaTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta orderedChoice = new OrderedChoice(eleccionCorrecta);
+
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
 
         //Jugador contesta correctamente
