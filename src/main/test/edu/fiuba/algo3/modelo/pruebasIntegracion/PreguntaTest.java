@@ -21,8 +21,7 @@ public class PreguntaTest {
         List<String> opciones = new ArrayList<String>();
         opciones.add(opcionIncorrecta);
         opciones.add(solucion);
-        Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(opcionCorrecta);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
 
     }
@@ -40,8 +39,7 @@ public class PreguntaTest {
         opciones.add(opcionIncorrecta);
         opciones.add(solucion);
 
-        Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(opcionCorrecta);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
 
         Jugador diego = new Jugador("Diego");
@@ -87,8 +85,7 @@ public class PreguntaTest {
         opcionesUno.add(opcionIncorrectaUno);
         opcionesUno.add(solucionUno);
 
-        Eleccion eleccionCorrectaUno = new Eleccion(opcionCorrectaUno);
-        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(eleccionCorrectaUno);
+        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(opcionCorrectaUno);
         Pregunta preguntaUno = new Pregunta(enunciadoUno, opcionesUno, tipoVerdaderoFalsoUno);
 
         List<String> opcionDiegoUno = new ArrayList<String>();
@@ -117,8 +114,8 @@ public class PreguntaTest {
         opcionesDos.add(opcionIncorrectaDos);
         opcionesDos.add(solucionDos);
 
-        Eleccion eleccionCorrectaDos = new Eleccion(opcionCorrectaDos);
-        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(eleccionCorrectaDos);
+
+        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(opcionCorrectaDos);
         Pregunta preguntaDos = new Pregunta(enunciadoDos, opcionesDos, tipoVerdaderoFalsoDos);
 
 

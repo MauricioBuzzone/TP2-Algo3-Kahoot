@@ -16,8 +16,8 @@ public class VerdaderoFalsoTest {
         String enunciado = "Se aprueba la entrega 0?";
         List<String> opcion= new ArrayList<String>();
         opcion.add(solucion);
-        Eleccion eleccionCorrecta = new Eleccion(opcion);
-        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(opcion);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
 
@@ -35,10 +35,10 @@ public class VerdaderoFalsoTest {
         List<String> opcion= new ArrayList<String>();
         opcion.add(solucion1);
         opcion.add(solucion2);
-        Eleccion eleccionCorrecta = new Eleccion(opcion);
+
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    VerdaderoFalso pregunta = new VerdaderoFalso(eleccionCorrecta);
+                    VerdaderoFalso pregunta = new VerdaderoFalso(opcion);
                 });
     }
 
@@ -48,12 +48,12 @@ public class VerdaderoFalsoTest {
         String texto = "Vamos a aprobar la entrega 0";
         List<String> opcion= new ArrayList<String>();
         opcion.add(texto);
-        Eleccion eleccionCorrecta = new Eleccion(opcion);
-        Evaluador verdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        Evaluador verdaderoFalso = new VerdaderoFalso(opcion);
 
+        Eleccion eleccionCorrecta = new Eleccion(opcion);
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.igualA(eleccionCorrecta)).thenReturn(true);
+        when(eleccion.igualA(any(Eleccion.class))).thenReturn(true);
 
         (verdaderoFalso.evaluarEleccion(eleccion)).responder(mockedJugador);
 
@@ -66,8 +66,8 @@ public class VerdaderoFalsoTest {
         String texto = " 2+2 = 4 ";
         List<String> opcion= new ArrayList<String>();
         opcion.add(texto);
+        Evaluador verdaderoFalso = new VerdaderoFalso(opcion);
         Eleccion eleccionCorrecta = new Eleccion(opcion);
-        Evaluador verdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
 
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
@@ -80,36 +80,41 @@ public class VerdaderoFalsoTest {
     }
     @Test
     public void test05VerdaderoFalsoRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidasComoSolucion(){
-        Eleccion mockedEleccion = mock(Eleccion.class);
-        when(mockedEleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador verdaderoFalso = new VerdaderoFalso(mockedEleccion);
 
         String opcion = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
         List<String> opciones = new ArrayList<String>();
         opciones.add(opcion);
 
+        Evaluador verdaderoFalso = new VerdaderoFalso(opciones);
+
         assert(verdaderoFalso.sonOpcionesValidasComoSolucion(opciones));
     }
     @Test
     public void test06VerdaderoFalsoRecibeUnaListaDeOpcionesConDosElementosYDevuelveQueLasOpcionesNoSonValidasComoSolucion(){
-        Eleccion mockedEleccion = mock(Eleccion.class);
-        when(mockedEleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador verdaderoFalso = new VerdaderoFalso(mockedEleccion);
 
         String opcion1 = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
         String opcion2 = "Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|";
-        List<String> opciones = new ArrayList<String>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
+        List<String> opcionesCorrectas = new ArrayList<String>();
+        opcionesCorrectas.add(opcion1);
 
-        assertFalse(verdaderoFalso.sonOpcionesValidasComoSolucion(opciones));
+        Evaluador verdaderoFalso = new VerdaderoFalso(opcionesCorrectas);
+
+        List<String> opcionesInvalidas = new ArrayList<String>();
+        opcionesInvalidas.add(opcion1);
+        opcionesInvalidas.add(opcion2);
+        assertFalse(verdaderoFalso.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
     @Test
     public void test07VerdaderoFalsoRecibeUnaListaDeOpcionesConCeroElementosYDevuelveQueLasOpcionesNoSonValidasComoSolucion(){
-        Eleccion mockedEleccion = mock(Eleccion.class);
-        when(mockedEleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador verdaderoFalso = new VerdaderoFalso(mockedEleccion);
+
+        String opcion1 = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
+        String opcion2 = "Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|";
+        List<String> opcionesCorrectas = new ArrayList<String>();
+        opcionesCorrectas.add(opcion1);
+
+
         List<String> opciones = new ArrayList<String>();
+        Evaluador verdaderoFalso = new VerdaderoFalso(opcionesCorrectas);
         assertFalse(verdaderoFalso.sonOpcionesValidasComoSolucion(opciones));
     }
 

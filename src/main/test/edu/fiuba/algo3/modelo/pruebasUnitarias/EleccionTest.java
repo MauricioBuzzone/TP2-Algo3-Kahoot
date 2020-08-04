@@ -348,8 +348,8 @@ public class EleccionTest {
         String opcionCorrecta = new String("Falso");
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
-        Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Evaluador evaluadorVF = new VerdaderoFalso(eleccionCorrecta);
+
+        Evaluador evaluadorVF = new VerdaderoFalso(opcionesCorrectas);
 
         // Creo la opción a evalúar
         String opcion = new String("Verdadero");
