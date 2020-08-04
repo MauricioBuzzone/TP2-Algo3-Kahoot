@@ -8,8 +8,4 @@ public abstract class TipoDePregunta implements Evaluador,Mostrable{
     public void responderPregunta(Respuesta respuesta) {
         respuesta.responderSegunEvaluador(this);
     }
-
-    public Eleccion crearEleccion(List<String> opciones) {
-        return new Eleccion(opciones);
-    }
 }

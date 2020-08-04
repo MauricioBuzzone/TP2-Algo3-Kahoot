@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-import java.security.spec.ECField;
 import java.util.List;
 
 public class VerdaderoFalso extends TipoDePregunta{
     public VerdaderoFalso(List<String> solucion){
-        Eleccion eleccion = this.crearEleccion(solucion);
+        Eleccion eleccion = new Eleccion(solucion);
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }

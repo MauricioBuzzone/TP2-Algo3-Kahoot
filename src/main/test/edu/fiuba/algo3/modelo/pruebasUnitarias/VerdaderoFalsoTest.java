@@ -127,7 +127,7 @@ public class VerdaderoFalsoTest {
 
         TipoDePregunta verdaderoFalso = new VerdaderoFalso(solucion);
 
-        Eleccion eleccionJugador = verdaderoFalso.crearEleccion(solucion);
+        Eleccion eleccionJugador = new Eleccion(solucion);
 
         Certificado certificado = verdaderoFalso.evaluarEleccion(eleccionJugador);
 

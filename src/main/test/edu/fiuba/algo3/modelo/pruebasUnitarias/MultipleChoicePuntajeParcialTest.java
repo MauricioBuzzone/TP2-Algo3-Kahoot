@@ -307,8 +307,7 @@ public class MultipleChoicePuntajeParcialTest {
 
         TipoDePregunta multipleChoiceConPuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
-        Eleccion eleccionJugador = multipleChoiceConPuntajeParcial.crearEleccion(solucion);
-
+        Eleccion eleccionJugador = new Eleccion(solucion);
         Certificado certificado = multipleChoiceConPuntajeParcial.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);

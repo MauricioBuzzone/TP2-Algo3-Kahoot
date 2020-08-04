@@ -133,8 +133,7 @@ public class VerdaderoFalsoConPenalidadTest {
 
         TipoDePregunta verdaderoFalso = new VerdaderoFalsoConPenalidad(solucion);
 
-        Eleccion eleccionJugador = verdaderoFalso.crearEleccion(solucion);
-
+        Eleccion eleccionJugador = new Eleccion(solucion);
         Certificado certificado = verdaderoFalso.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);

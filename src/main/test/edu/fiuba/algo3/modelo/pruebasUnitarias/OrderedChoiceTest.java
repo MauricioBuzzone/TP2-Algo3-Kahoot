@@ -225,8 +225,7 @@ public class OrderedChoiceTest {
 
         TipoDePregunta orderedChoice = new OrderedChoice(solucion);
 
-        Eleccion eleccionJugador = orderedChoice.crearEleccion(solucion);
-
+        Eleccion eleccionJugador = new Eleccion(solucion);
         Certificado certificado = orderedChoice.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);

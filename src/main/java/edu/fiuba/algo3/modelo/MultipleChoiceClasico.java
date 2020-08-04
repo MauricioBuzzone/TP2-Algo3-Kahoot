@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MultipleChoiceClasico extends TipoDePregunta{
     public MultipleChoiceClasico(List<String> opcionesCorrectas){
-        Eleccion eleccion = this.crearEleccion(opcionesCorrectas);
+        Eleccion eleccion = new Eleccion(opcionesCorrectas);
 
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();

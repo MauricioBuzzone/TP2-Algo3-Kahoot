@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MultipleChoiceConPenalidad extends TipoDePregunta{
     public MultipleChoiceConPenalidad(List<String> solucion){
-        Eleccion eleccion = this.crearEleccion(solucion);
+        Eleccion eleccion = new Eleccion(solucion);
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }

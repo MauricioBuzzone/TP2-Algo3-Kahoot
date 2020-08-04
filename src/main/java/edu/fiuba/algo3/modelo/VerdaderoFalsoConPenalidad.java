@@ -5,7 +5,7 @@ import java.util.List;
 public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
 
     public VerdaderoFalsoConPenalidad(List<String> solucion){
-        Eleccion eleccion = this.crearEleccion(solucion);
+        Eleccion eleccion = new Eleccion(solucion);
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }

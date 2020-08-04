@@ -292,8 +292,7 @@ public class MultipleChoiceConPenalidadTest{
 
         TipoDePregunta multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Eleccion eleccionJugador = multipleChoiceConPenalidad.crearEleccion(solucion);
-
+        Eleccion eleccionJugador = new Eleccion(solucion);
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
