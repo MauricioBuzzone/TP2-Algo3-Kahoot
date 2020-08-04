@@ -20,14 +20,16 @@ public class GroupChoiceTest {
         String opcion4 = new String("Damon Hill");
         String opcion5 = new String("Fernando Alonso");
 
-        List<String> solucionGrupoA = new ArrayList<String>();
-        solucionGrupoA.add(opcion1);
-        solucionGrupoA.add(opcion3);
-        solucionGrupoA.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucionGrupoA);
-        Eleccion eleccionJugador = new Eleccion(solucionGrupoA);
+        List<String> solucion = new ArrayList<String>();
+        solucion.add("A:" + opcion1);
+        solucion.add("B:" + opcion2);
+        solucion.add("A:" + opcion3);
+        solucion.add("B:" + opcion4);
+        solucion.add("A:" + opcion5);
 
-        Evaluador groupChoice = new GroupChoice(eleccionCorrecta);
+        Eleccion eleccionJugador = new Eleccion(solucion);
+
+        Evaluador groupChoice = new GroupChoice(solucion);
 
         Certificado certificado = groupChoice.evaluarEleccion(eleccionJugador);
 
@@ -49,20 +51,21 @@ public class GroupChoiceTest {
         String opcion5 = new String("Fernando Alonso");
 
 
-        List<String> solucionGrupoA = new ArrayList<String>();
-        solucionGrupoA.add(opcion1);
-        solucionGrupoA.add(opcion3);
-        solucionGrupoA.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucionGrupoA);
+        List<String> solucion = new ArrayList<String>();
+        solucion.add("A:" + opcion1);
+        solucion.add("B:" + opcion2);
+        solucion.add("A:" + opcion3);
+        solucion.add("B:" + opcion4);
+        solucion.add("A:" + opcion5);
+        Evaluador groupChoice = new GroupChoice(solucion);
 
         List<String> solucionJugador = new ArrayList<String>();
-        solucionJugador.add(opcion2);
-        solucionJugador.add(opcion3);
-        solucionJugador.add(opcion5);
+        solucionJugador.add("B:" + opcion1);
+        solucionJugador.add("A:" + opcion2);
+        solucionJugador.add("A:" + opcion3);
+        solucionJugador.add("B:" + opcion4);
+        solucionJugador.add("A:" + opcion5);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
-
-
-        Evaluador groupChoice = new GroupChoice(eleccionCorrecta);
 
         Certificado certificado = groupChoice.evaluarEleccion(eleccionJugador);
 
@@ -72,6 +75,7 @@ public class GroupChoiceTest {
 
         verify(mockedJugador, times(1)).responderMal(0);
     }
+
 
 
 
