@@ -98,7 +98,7 @@ public class OrderedChoiceTest {
 
         (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderMal(1);
+        verify(mockedJugador, times(1)).responderMal(0);
     }
 
     @Test
@@ -171,7 +171,7 @@ public class OrderedChoiceTest {
 
         (orderedChoice.evaluarEleccion(eleccionJugador)).responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderMal(1);
+        verify(mockedJugador, times(1)).responderMal(0);
     }
     @Test
     public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMayorYDevuelveUnCertificadoIncorrecto(){
@@ -206,6 +206,6 @@ public class OrderedChoiceTest {
 
         (orderedChoice.evaluarEleccion(eleccionJugador)).responder(mockedJugador);
 
-        verify(mockedJugador, times(1)).responderMal(1);
+        verify(mockedJugador, times(1)).responderMal(0);
     }
 }

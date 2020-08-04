@@ -18,7 +18,7 @@ public class OrderedChoice extends TipoDePregunta{
             Certificado correcta = new Correcta(1);
             return correcta;
         }
-        Certificado incorrecta = new Incorrecta(1);
+        Certificado incorrecta = new Incorrecta(0);
         return incorrecta;
     }
 
