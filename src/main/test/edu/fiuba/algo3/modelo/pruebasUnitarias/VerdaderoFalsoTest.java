@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.pruebasUnitarias;
+
+import edu.fiuba.algo3.modelo.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
@@ -71,7 +73,7 @@ public class VerdaderoFalsoTest {
 
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.igualA(eleccionCorrecta)).thenReturn(false);
+        when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
 
         Certificado certificado = verdaderoFalso.evaluarEleccion(eleccion);
         certificado.responder(mockedJugador);

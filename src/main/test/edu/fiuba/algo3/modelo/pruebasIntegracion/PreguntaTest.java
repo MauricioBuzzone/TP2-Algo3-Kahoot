@@ -151,8 +151,7 @@ public class PreguntaTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
     }
 
@@ -236,8 +235,8 @@ public class PreguntaTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
+
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
 
 
