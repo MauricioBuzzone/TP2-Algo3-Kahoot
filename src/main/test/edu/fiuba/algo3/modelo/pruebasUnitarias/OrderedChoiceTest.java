@@ -33,8 +33,7 @@ public class OrderedChoiceTest {
         correctas.add(opcion5);
 
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
 
@@ -58,14 +57,13 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
 
-        when(eleccion.estaEnOrden(eleccionCorrecta)).thenReturn(true);
+        when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(true);
 
         (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
 
@@ -87,14 +85,13 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
 
-        when(eleccion.estaEnOrden(eleccionCorrecta)).thenReturn(false);
+        when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(false);
 
         (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
 
@@ -111,11 +108,10 @@ public class OrderedChoiceTest {
         List<String> correctas = new ArrayList<String>();
         correctas.add(opcion1);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+                    OrderedChoice orderedChoice = new OrderedChoice(correctas);
                 });
     }
     @Test
@@ -133,11 +129,10 @@ public class OrderedChoiceTest {
         correctas.add(opcion1);
         correctas.add(opcion1);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+                    OrderedChoice orderedChoice = new OrderedChoice(correctas);
                 });
     }
     @Test
@@ -155,8 +150,6 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
-
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
@@ -165,7 +158,7 @@ public class OrderedChoiceTest {
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Jugador mockedJugador = mock(Jugador.class);
 
@@ -188,7 +181,6 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
@@ -200,7 +192,7 @@ public class OrderedChoiceTest {
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Jugador mockedJugador = mock(Jugador.class);
 
@@ -210,12 +202,12 @@ public class OrderedChoiceTest {
     }
 
     @Test
-    public void test7OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+    public void test07OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
 
-        String enunciado = new String("Pasos de TDD");
-        String opcion1 = new String("Test");
-        String opcion2 = new String("Code");
-        String opcion3 = new String("Refactor");
+        String enunciado = "Pasos de TDD";
+        String opcion1 = "Test";
+        String opcion2 = "Code";
+        String opcion3 = "Refactor";
 
         List<String> solucion = new ArrayList<String>();
         solucion.add(opcion1);

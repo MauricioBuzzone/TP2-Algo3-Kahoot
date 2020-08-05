@@ -21,8 +21,7 @@ public class PreguntaTest {
         List<String> opciones = new ArrayList<String>();
         opciones.add(opcionIncorrecta);
         opciones.add(solucion);
-        Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(opcionCorrecta);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
 
     }
@@ -40,8 +39,7 @@ public class PreguntaTest {
         opciones.add(opcionIncorrecta);
         opciones.add(solucion);
 
-        Eleccion eleccionCorrecta = new Eleccion(opcionCorrecta);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(eleccionCorrecta);
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(opcionCorrecta);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
 
         Jugador diego = new Jugador("Diego");
@@ -87,8 +85,7 @@ public class PreguntaTest {
         opcionesUno.add(opcionIncorrectaUno);
         opcionesUno.add(solucionUno);
 
-        Eleccion eleccionCorrectaUno = new Eleccion(opcionCorrectaUno);
-        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(eleccionCorrectaUno);
+        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(opcionCorrectaUno);
         Pregunta preguntaUno = new Pregunta(enunciadoUno, opcionesUno, tipoVerdaderoFalsoUno);
 
         List<String> opcionDiegoUno = new ArrayList<String>();
@@ -117,8 +114,8 @@ public class PreguntaTest {
         opcionesDos.add(opcionIncorrectaDos);
         opcionesDos.add(solucionDos);
 
-        Eleccion eleccionCorrectaDos = new Eleccion(opcionCorrectaDos);
-        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(eleccionCorrectaDos);
+
+        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(opcionCorrectaDos);
         Pregunta preguntaDos = new Pregunta(enunciadoDos, opcionesDos, tipoVerdaderoFalsoDos);
 
 
@@ -154,8 +151,7 @@ public class PreguntaTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
     }
 
@@ -182,8 +178,8 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceClasico);
     }
 
@@ -210,8 +206,8 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
     }
 
@@ -239,8 +235,8 @@ public class PreguntaTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(eleccionCorrecta);
+
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
 
 
@@ -297,8 +293,8 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceClasico);
 
         //todas correcta   --> 1 diego
@@ -358,9 +354,9 @@ public class PreguntaTest {
         opciones.add(opcion3);
         opciones.add(opcion4);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
 
-        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
 
         Jugador diego = new Jugador("Diego");
@@ -432,8 +428,7 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceConPenalidad);
     }
 
@@ -468,8 +463,8 @@ public class PreguntaTest {
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion4);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         // Crea opciones de la pregunta.
         List<String> opciones = new ArrayList<String>();
@@ -563,8 +558,7 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta orderedChoice = new OrderedChoice(eleccionCorrecta);
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
 
     }
@@ -592,8 +586,8 @@ public class PreguntaTest {
         opciones.add(opcion1);
         opciones.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta orderedChoice = new OrderedChoice(eleccionCorrecta);
+
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
 
         //Jugador contesta correctamente

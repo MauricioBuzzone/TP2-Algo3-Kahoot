@@ -12,13 +12,6 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
         eleccionCorrecta = eleccion;
     }
 
-    public VerdaderoFalsoConPenalidad(Eleccion eleccion){
-        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         if(eleccion.igualA(this.eleccionCorrecta)){

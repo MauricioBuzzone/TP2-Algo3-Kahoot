@@ -11,13 +11,6 @@ public class VerdaderoFalso extends TipoDePregunta{
         eleccionCorrecta = eleccion;
     }
 
-    public VerdaderoFalso(Eleccion eleccion){
-        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Puntaje evaluarEleccion(Eleccion otraEleccion){
 

@@ -12,13 +12,6 @@ public class OrderedChoice extends TipoDePregunta{
         eleccionCorrecta = eleccion;
     }
 
-    public OrderedChoice(Eleccion eleccion){
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
 

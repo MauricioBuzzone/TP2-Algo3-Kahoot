@@ -28,10 +28,10 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
         Eleccion eleccionJugador = new Eleccion(solucion);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
@@ -55,7 +55,6 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
 
 
         List<String> opcionesJugador = new ArrayList<String>();
@@ -63,7 +62,7 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion3);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
@@ -87,7 +86,6 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
 
 
         List<String> opcionesJugador = new ArrayList<String>();
@@ -96,7 +94,7 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion3);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
@@ -120,7 +118,7 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
@@ -128,7 +126,7 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
@@ -152,14 +150,14 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
@@ -183,7 +181,7 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
@@ -192,7 +190,7 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
@@ -205,9 +203,7 @@ public class MultipleChoiceConPenalidadTest{
 
     @Test
     public void test07MultipleChoiceConPenalidadRecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
-        Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccion);
+
         String opcion1 = "Mulán";
         String opcion2 = "Pocahontas";
         String opcion3 = "Blancanieves";
@@ -215,23 +211,46 @@ public class MultipleChoiceConPenalidadTest{
         String opcion5 = "Mérida";
         String opcion6 = "Moana";
 
-        List<String> opciones = new ArrayList<String>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
-        opciones.add(opcion3);
-        opciones.add(opcion4);
-        opciones.add(opcion5);
-        opciones.add(opcion6);
-        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opciones));
+        List<String> opcionesValidas = new ArrayList<String>();
+        opcionesValidas.add(opcion1);
+        opcionesValidas.add(opcion2);
+        opcionesValidas.add(opcion3);
+        opcionesValidas.add(opcion4);
+
+
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opcionesValidas);
+
+        List<String> opcionesInvalidas = new ArrayList<String>();
+        opcionesInvalidas.add(opcion1);
+        opcionesInvalidas.add(opcion2);
+        opcionesInvalidas.add(opcion3);
+        opcionesInvalidas.add(opcion4);
+        opcionesInvalidas.add(opcion5);
+        opcionesInvalidas.add(opcion6);
+
+        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
 
     @Test
     public void test11MultipleChoiceConPenalidadRecibeUnaListaConCeroOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
-        Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccion);
-        List<String> opciones = new ArrayList<String>();
-        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opciones));
+
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> opcionesValidas = new ArrayList<String>();
+        opcionesValidas.add(opcion1);
+        opcionesValidas.add(opcion2);
+        opcionesValidas.add(opcion3);
+        opcionesValidas.add(opcion4);
+
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opcionesValidas);
+
+        List<String> opcionesInvalidas = new ArrayList<String>();
+        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
     @Test
     public void test12UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConSeisEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
@@ -254,28 +273,27 @@ public class MultipleChoiceConPenalidadTest{
         correctas.add(opcion5);
         correctas.add(opcion6);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(eleccionCorrecta);
+                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(correctas);
                 });
 
     }
     @Test
     public void test13UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConCeroEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
         List<String> correctas = new ArrayList<String>();
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
+
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(eleccionCorrecta);
+                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(correctas);
                 });
 
     }
 
     @Test
-    public void test14MultipleChoiceConPenalidadPuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+    public void test14MultipleChoiceConPenalidadPuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
 
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
