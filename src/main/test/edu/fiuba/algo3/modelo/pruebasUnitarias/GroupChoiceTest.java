@@ -68,8 +68,4 @@ public class GroupChoiceTest {
 
         assertEquals(puntaje.calcularPuntaje(), 0);
     }
-
-
-
-
 }

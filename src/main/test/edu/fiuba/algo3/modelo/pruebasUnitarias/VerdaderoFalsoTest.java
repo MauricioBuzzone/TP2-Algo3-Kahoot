@@ -58,7 +58,11 @@ public class VerdaderoFalsoTest {
 
         Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccion);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+
+        Bonificador bonificador = new Bonificador();
+
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 
     @Test
@@ -75,7 +79,9 @@ public class VerdaderoFalsoTest {
 
         Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccion);
 
-        assertEquals(puntaje.calcularPuntaje(), 0);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
     @Test
     public void test05VerdaderoFalsoRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidasComoSolucion(){
@@ -135,6 +141,8 @@ public class VerdaderoFalsoTest {
 
         Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 }

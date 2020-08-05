@@ -87,7 +87,7 @@ public class MultipleChoicePuntajeParcialTest {
                 });
     }
     @Test
-    public void test04MultipleChoicePuntajeParcialRecibeUnaEleccionAcertadaYDevuelveUnCertifiadoCorrecto() {
+    public void test04MultipleChoicePuntajeParcialRecibeUnaEleccionAcertadaYDevuelveUnPuntajeDeValorDos() {
 
         //Enunciado: Tema de Fisica II
 
@@ -107,15 +107,13 @@ public class MultipleChoicePuntajeParcialTest {
 
         Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        mockedJugador.responder(puntaje);
-
-        verify(mockedJugador, times(1)).responder(puntaje);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 2);
     }
 
     @Test
-    public void test05MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteAcertadaDevuelveUnCertificadoCorrecto() {
+    public void test05MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteAcertadaDevuelveUnPuntajeDeValorUno() {
 
         //Enunciado: Tema de Fisica II
 
@@ -138,14 +136,12 @@ public class MultipleChoicePuntajeParcialTest {
 
         Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        mockedJugador.responder(puntaje);
-
-        verify(mockedJugador, times(1)).responder(puntaje);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
     @Test
-    public void test06MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteDesacertadaDevuelveUnCertificadoIncorrecto() {
+    public void test06MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteDesacertadaDevuelveUnPuntajeDeValorCero() {
 
         //Enunciado: Tema de Fisica II
 
@@ -169,14 +165,12 @@ public class MultipleChoicePuntajeParcialTest {
 
         Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        mockedJugador.responder(puntaje);
-
-        verify(mockedJugador, times(1)).responder(puntaje);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
     @Test
-    public void test07MultipleChoicePuntajeParcialRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto() {
+    public void test07MultipleChoicePuntajeParcialRecibeUnaEleccionDesacertadaYDevuelveUnPuntajeDeValorCero() {
 
         //Enunciado: Tema de Fisica II
 
@@ -200,11 +194,10 @@ public class MultipleChoicePuntajeParcialTest {
 
         Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        mockedJugador.responder(puntaje);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
 
-        verify(mockedJugador, times(1)).responder(puntaje);
     }
 
     @Test
@@ -234,8 +227,9 @@ public class MultipleChoicePuntajeParcialTest {
 
         Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
+        Bonificador bonificador = new Bonificador();
 
-        assertEquals(puntaje.calcularPuntaje(), 0);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
     @Test
     public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
@@ -325,10 +319,8 @@ public class MultipleChoicePuntajeParcialTest {
         Eleccion eleccionJugador = new Eleccion(solucion);
         Puntaje puntaje = multipleChoiceConPuntajeParcial.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        mockedJugador.responder(puntaje);
-
-        verify(mockedJugador, times(1)).responder(puntaje);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 3);
     }
 }

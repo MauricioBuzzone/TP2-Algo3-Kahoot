@@ -61,7 +61,9 @@ public class VerdaderoFalsoConPenalidadTest {
 
         Puntaje puntaje = verdaderoFalsoConPenalidad.evaluarEleccion(eleccion);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 
     @Test
@@ -79,7 +81,9 @@ public class VerdaderoFalsoConPenalidadTest {
 
         Puntaje puntaje = verdaderoFalsoConPenalidad.evaluarEleccion(eleccion);
 
-        assertEquals(puntaje.calcularPuntaje(), -1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), -1);
     }
 
     @Test
@@ -142,6 +146,8 @@ public class VerdaderoFalsoConPenalidadTest {
         Eleccion eleccionJugador = new Eleccion(solucion);
         Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 }

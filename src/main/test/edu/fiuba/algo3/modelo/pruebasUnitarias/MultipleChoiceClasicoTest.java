@@ -110,7 +110,9 @@ public class MultipleChoiceClasicoTest {
 
         Puntaje puntaje = multipleChoiceClasico.evaluarEleccion(eleccion);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 
     @Test
@@ -126,7 +128,9 @@ public class MultipleChoiceClasicoTest {
 
         Puntaje puntaje = multipleChoiceClasico.evaluarEleccion(eleccion);
 
-        assertEquals(puntaje.calcularPuntaje(), 0);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
 
     @Test
