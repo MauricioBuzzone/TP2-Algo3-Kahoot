@@ -293,7 +293,7 @@ public class MultipleChoiceConPenalidadTest{
     }
 
     @Test
-    public void test14MultipleChoiceConPenalidadPuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+    public void test14MultipleChoiceConPenalidadPuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
 
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");

@@ -12,14 +12,6 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
         eleccionCorrecta = eleccion;
     }
 
-    public MultipleChoicePuntajeParcial(Eleccion eleccion){
-
-        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Certificado evaluarEleccion(Eleccion eleccion){
         if( eleccionCorrecta.contieneA(eleccion) ){

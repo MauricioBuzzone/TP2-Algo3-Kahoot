@@ -206,8 +206,8 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
     }
 
@@ -354,9 +354,9 @@ public class PreguntaTest {
         opciones.add(opcion3);
         opciones.add(opcion4);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
 
-        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePuntajeParcial);
 
         Jugador diego = new Jugador("Diego");

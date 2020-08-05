@@ -127,7 +127,7 @@ public class VerdaderoFalsoConPenalidadTest {
 
 
     @Test
-    public void test8VerdaderoFalsoConPenalidadConPuntajeParcialPuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+    public void test8VerdaderoFalsoConPenalidadConPuntajeParcialPuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
 
         String enunciado = new String("La Pampa es una provincia de Argentina");
         String opcion1 = new String("Verdadero");

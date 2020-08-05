@@ -202,7 +202,7 @@ public class OrderedChoiceTest {
     }
 
     @Test
-    public void test07OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
+    public void test07OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
 
         String enunciado = "Pasos de TDD";
         String opcion1 = "Test";
