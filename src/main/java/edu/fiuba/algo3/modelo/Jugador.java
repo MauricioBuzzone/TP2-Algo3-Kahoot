@@ -12,15 +12,8 @@ public class Jugador {
         this.puntosPorRespuesta = new ArrayList<Integer>();
     }
 
-    public void responder(Puntaje puntaje){
-        puntosPorRespuesta.add(puntaje.calcularPuntaje());
-    }
-    public void responderBien(int puntos){
-        puntosPorRespuesta.add(puntos);
-    }
-
-    public void responderMal(int puntos){
-        puntosPorRespuesta.add(-puntos);
+    public void responder(Puntaje puntaje,Bonificador bonificador){
+        puntosPorRespuesta.add(puntaje.aplicarBonificador(bonificador));
     }
 
     public int puntosTotales(){
@@ -33,5 +26,10 @@ public class Jugador {
         if(puntosTotales < 0)
             return 0;
         return puntosTotales;
+    }
+
+    //TestOnly
+    public void asignarPuntos(int puntos){
+        puntosPorRespuesta.add(puntos);
     }
 }

@@ -12,7 +12,8 @@ public class JugadorTest {
 
         Puntaje puntaje = Puntaje.crearPuntajeFavorable(4);
 
-        jugador.responder(puntaje);
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje, bonificador);
 
         assertEquals(jugador.puntosTotales(), 4);
     }
@@ -24,7 +25,8 @@ public class JugadorTest {
 
         Puntaje puntaje = Puntaje.crearPuntajeFavorable(0);
 
-        jugador.responder(puntaje);
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje, bonificador);
 
         assertEquals(jugador.puntosTotales(),0);
 
@@ -39,11 +41,11 @@ public class JugadorTest {
         Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
         Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(5);
 
-        jugadorUno.responder(puntaje1);
-        JugadorDos.responder(puntaje2);
+        Bonificador bonificador = new Bonificador();
+        jugadorUno.responder(puntaje1, bonificador);
+        JugadorDos.responder(puntaje2, bonificador);
 
         assert(jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
-
     }
 
     @Test
@@ -54,8 +56,9 @@ public class JugadorTest {
         Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
         Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(2);
 
-        jugador.responder(puntaje1);
-        jugador.responder(puntaje2);
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje1, bonificador);
+        jugador.responder(puntaje2, bonificador);
 
         assertEquals(jugador.puntosTotales(),3);
 
@@ -69,13 +72,11 @@ public class JugadorTest {
         Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
         Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(0);
 
-        jugador.responder(puntaje1);
-        jugador.responder(puntaje2);
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje1, bonificador);
+        jugador.responder(puntaje2, bonificador);
 
         assertEquals(jugador.puntosTotales(),5);
 
     }
-
-
-
 }

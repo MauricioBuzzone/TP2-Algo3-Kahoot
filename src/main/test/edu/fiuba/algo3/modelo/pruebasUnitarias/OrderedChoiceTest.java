@@ -220,7 +220,9 @@ public class OrderedChoiceTest {
 
         Puntaje puntaje = orderedChoice.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 
 

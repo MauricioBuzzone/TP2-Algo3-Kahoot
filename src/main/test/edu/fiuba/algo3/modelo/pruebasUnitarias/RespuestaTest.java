@@ -13,10 +13,11 @@ public class RespuestaTest {
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
         Puntaje mockedPuntaje = mock(Puntaje.class);
+        Bonificador mockedBonificador = mock(Bonificador.class);
 
         when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedPuntaje);
 
-        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
+        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta, mockedBonificador);
 
         respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
 
@@ -29,12 +30,13 @@ public class RespuestaTest {
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
         Puntaje mockedPuntaje = mock(Puntaje.class);
+        Bonificador mockedBonificador = mock(Bonificador.class);
 
         when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedPuntaje);
 
-        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
+        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta, mockedBonificador);
         respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
 
-        verify(mockedJugador, times(1)).responder(mockedPuntaje);
+        verify(mockedJugador, times(1)).responder(mockedPuntaje, mockedBonificador);
     }
 }

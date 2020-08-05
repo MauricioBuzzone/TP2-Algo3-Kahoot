@@ -12,13 +12,15 @@ public class PuntajeTest{
     public void test01PuntajeSeCreaConAciertoYSeCalculaCorrectamente(){
         int unosPuntos=15;
         Puntaje puntaje= Puntaje.crearPuntajeFavorable(unosPuntos);
-        assertEquals(puntaje.calcularPuntaje(), 15);
+        Bonificador bonificador = new Bonificador();
+        assertEquals(puntaje.aplicarBonificador(bonificador), 15);
     }
     @Test
     public void test02PuntajeSeCreaConDesaciertoYSecalculaCorrectamente(){
         int unosPuntos=15;
         Puntaje puntaje= Puntaje.crearPuntajeDesfavorable(unosPuntos);
-        assertEquals(puntaje.calcularPuntaje(), -15);
+        Bonificador bonificador = new Bonificador();
+        assertEquals(puntaje.aplicarBonificador(bonificador), -15);
     }
     @Test
     public void test03PuntajeRecibeUnBonificadorX2YDevuelveLosPuntosASumar(){
