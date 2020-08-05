@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaTest {
+
     @Test
     public void test0_1UnaPreguntaDeVFCPuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
 
@@ -614,6 +615,7 @@ public class PreguntaTest {
         Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
 
     }
+
     @Test
     public void test2_4UnaPreguntaDeOrderedChoiceRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente(){
 
@@ -672,5 +674,111 @@ public class PreguntaTest {
 
         assertEquals(diego.puntosTotales(), 5);
         assertEquals(tomas.puntosTotales(), 3);
+    }
+
+    @Test
+    public void test2_5UnaPreguntaDeGroupChoicePuedeCrearseIndicandoleCualesSonLasRespuestasCorrectas(){
+
+        String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
+        String opcion1 = new String("Niki Lauda");
+        String opcion2 = new String("Nico Rosberg");
+        String opcion3 = new String("Lewis Hamilton");
+        String opcion4 = new String("Damon Hill");
+        String opcion5 = new String("Fernando Alonso");
+
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add("A:" + opcion1);
+        solucion.add("B:" + opcion2);
+        solucion.add("A:" + opcion3);
+        solucion.add("B:" + opcion4);
+        solucion.add("A:" + opcion5);
+        TipoDePregunta groupChoice = new GroupChoice(solucion);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+
+        Pregunta pregunta = new Pregunta(enunciado, opciones, groupChoice);
+    }
+
+    @Test
+    public void test2_6UnaPreguntaDeGroupChoiceRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente(){
+
+        /*
+        Creo los jugadores
+        Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        De manera tal que, se pueda corroborar el comportamiento deseado
+        */
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+        diego.asignarPuntos(3);
+        tomas.asignarPuntos(6);
+
+        //Creo la pregunta
+        String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
+        String opcion1 = new String("Niki Lauda");
+        String opcion2 = new String("Nico Rosberg");
+        String opcion3 = new String("Lewis Hamilton");
+        String opcion4 = new String("Damon Hill");
+        String opcion5 = new String("Fernando Alonso");
+
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add("A:" + opcion1);
+        solucion.add("B:" + opcion2);
+        solucion.add("A:" + opcion3);
+        solucion.add("B:" + opcion4);
+        solucion.add("A:" + opcion5);
+        TipoDePregunta groupChoice = new GroupChoice(solucion);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+
+        Pregunta pregunta = new Pregunta(enunciado, opciones, groupChoice);
+
+        //Caso correcta:
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add("A:" + opcion1);
+        opcionDiego.add("B:" + opcion2);
+        opcionDiego.add("A:" + opcion3);
+        opcionDiego.add("B:" + opcion4);
+        opcionDiego.add("A:" + opcion5);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Bonificador bonificadorDiego =new Bonificador();
+
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
+
+        //Caso Incorrecta:
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add("A:" + opcion1);
+        opcionTomas.add("A:" + opcion2);
+        opcionTomas.add("B:" + opcion3);
+        opcionTomas.add("B:" + opcion4);
+        opcionTomas.add("A:" + opcion5);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Bonificador bonificadorTomas =new Bonificador();
+
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
+
+
+        //Se crea la lista de respuestas:
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+
+        //Pregunta asinga  los puntos correspondientes:
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 4);
+        assertEquals(tomas.puntosTotales(), 6);
     }
 }
