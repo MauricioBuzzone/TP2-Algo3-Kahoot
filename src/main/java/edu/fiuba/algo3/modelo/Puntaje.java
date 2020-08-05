@@ -6,6 +6,7 @@ public class Puntaje{
     private Puntaje(int unosPuntos){
         puntos=unosPuntos;
     }
+
     public static Puntaje crearPuntajeFavorable(int unosPuntos){
         Puntaje puntaje=new Puntaje(unosPuntos);
         return puntaje;
@@ -18,5 +19,9 @@ public class Puntaje{
 
     public int calcularPuntaje(){
         return this.puntos;
+    }
+
+    public int aplicarBonificador(Bonificador bonificador){
+        return bonificador.bonificarPuntos(this.puntos);
     }
 }
