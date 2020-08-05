@@ -16,7 +16,7 @@ import static org.mockito.Mockito.times;
 
 public class MultipleChoiceConPenalidadTest{
     @Test
-    public void test01MultipleChoiceConPenalidadRecibeUnaEleccionCompletamenteAcertadaYDevuelveUnCertifiadoCorrecto(){
+    public void test01MultipleChoiceConPenalidadRecibeUnaEleccionCompletamenteAcertadaYDevuelveUnPuntajeDeValorTres(){
 
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
@@ -36,7 +36,9 @@ public class MultipleChoiceConPenalidadTest{
 
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 3);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 3);
     }
 
     @Test
@@ -63,7 +65,9 @@ public class MultipleChoiceConPenalidadTest{
 
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 2);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 2);
     }
 
     @Test
@@ -91,7 +95,10 @@ public class MultipleChoiceConPenalidadTest{
 
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
+
     }
 
     @Test
@@ -119,7 +126,9 @@ public class MultipleChoiceConPenalidadTest{
 
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), -1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), -1);
     }
 
     @Test
@@ -146,7 +155,9 @@ public class MultipleChoiceConPenalidadTest{
 
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), -2);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), -2);
     }
 
     @Test
@@ -175,7 +186,9 @@ public class MultipleChoiceConPenalidadTest{
 
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 0);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
 
     @Test
@@ -290,7 +303,9 @@ public class MultipleChoiceConPenalidadTest{
         Eleccion eleccionJugador = new Eleccion(solucion);
         Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 3);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 3);
     }
 
 }

@@ -17,10 +17,6 @@ public class Puntaje{
         return puntaje;
     }
 
-    public int calcularPuntaje(){
-        return this.puntos;
-    }
-
     public int aplicarBonificador(Bonificador bonificador){
         return bonificador.bonificarPuntos(this.puntos);
     }

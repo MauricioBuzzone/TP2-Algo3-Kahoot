@@ -34,7 +34,9 @@ public class GroupChoiceTest {
 
         Puntaje puntaje = groupChoice.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 1);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 
     @Test
@@ -66,10 +68,8 @@ public class GroupChoiceTest {
 
         Puntaje puntaje = groupChoice.evaluarEleccion(eleccionJugador);
 
-        assertEquals(puntaje.calcularPuntaje(), 0);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
-
-
-
-
 }
