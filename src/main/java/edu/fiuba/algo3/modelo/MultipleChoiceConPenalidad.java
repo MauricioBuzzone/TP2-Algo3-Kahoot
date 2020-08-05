@@ -3,6 +3,10 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class MultipleChoiceConPenalidad extends TipoDePregunta{
+
+    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
+    private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
+
     public MultipleChoiceConPenalidad(List<String> solucion){
         Eleccion eleccion = new Eleccion(solucion);
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
@@ -25,7 +29,7 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
 
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= 1 && opciones.size() <= 5);
+        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override
