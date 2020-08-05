@@ -4,7 +4,12 @@ import java.util.List;
 
 public class MultipleChoicePuntajeParcial extends TipoDePregunta{
 
-    public MultipleChoicePuntajeParcial(Eleccion eleccion){
+    private static final int PUNTAJE_DESFAVORABLE = 0;
+    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
+    private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
+
+    public MultipleChoicePuntajeParcial(List<String> solucion){
+        Eleccion eleccion = new Eleccion(solucion);
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
@@ -12,20 +17,20 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
         if( eleccionCorrecta.contieneA(eleccion) ){
             //Totalmente correcta o Parcialmente correcta
             int cantidadCoincidencias = eleccionCorrecta.cantidadCoincidencias(eleccion);
-            Certificado correcta = new Correcta(cantidadCoincidencias);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCoincidencias);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(0);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(PUNTAJE_DESFAVORABLE);
+        return puntaje;
     }
 
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= 1 && opciones.size() <= 5);
+        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override

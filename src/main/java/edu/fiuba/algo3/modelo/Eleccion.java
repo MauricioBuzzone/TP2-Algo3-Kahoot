@@ -41,7 +41,7 @@ public class Eleccion {
     }
 
     /*
-      Devuelve la cantidad de SUS opciones que no coincidan respecto a las MIAS.
+      Devuelve la cantidad de SUS opciones que no coincidan respecto de las MIAS.
      */
     public int cantidadDeNoCoincidentes(Eleccion otraEleccion){
 
@@ -74,6 +74,10 @@ public class Eleccion {
 
     public Boolean esUnaEleccionValidaComoSolucion(Evaluador unEvaluador){
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
+    }
+
+    public Boolean esEleccionCorrecta(Evaluador unEvaluador){
+        return unEvaluador.sonOpcionesCorrectas(this.opciones);
     }
 
     public boolean estaEnOrden(Eleccion eleccion){

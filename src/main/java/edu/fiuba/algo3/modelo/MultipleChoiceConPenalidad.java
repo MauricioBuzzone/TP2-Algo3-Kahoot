@@ -3,7 +3,12 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class MultipleChoiceConPenalidad extends TipoDePregunta{
-    public MultipleChoiceConPenalidad(Eleccion eleccion){
+
+    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
+    private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
+
+    public MultipleChoiceConPenalidad(List<String> solucion){
+        Eleccion eleccion = new Eleccion(solucion);
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
@@ -11,20 +16,20 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
         int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
         int cantidadIncorrectas = eleccionCorrecta.cantidadDeNoCoincidentes(eleccion);
         if(cantidadCorrectas > cantidadIncorrectas){
-            Certificado correcta = new Correcta(cantidadCorrectas - cantidadIncorrectas);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCorrectas - cantidadIncorrectas);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(cantidadIncorrectas - cantidadCorrectas);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(cantidadIncorrectas - cantidadCorrectas);
+        return puntaje;
     }
 
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= 1 && opciones.size() <= 5);
+        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override

@@ -3,25 +3,34 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class MultipleChoiceClasico extends TipoDePregunta{
-    public MultipleChoiceClasico(Eleccion eleccion){
+
+    private static final int PUNTAJE_FAVORABLE= 1;
+    private static final int PUNTAJE_DESFAVORABLE = 0;
+    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
+    private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
+
+    public MultipleChoiceClasico(List<String> opcionesCorrectas){
+        Eleccion eleccion = new Eleccion(opcionesCorrectas);
+
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
         eleccionCorrecta = eleccion;
     }
 
+
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
         if(eleccion.igualA(this.eleccionCorrecta)){
-            Certificado correcta = new Correcta(1);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_FAVORABLE);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(0);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(PUNTAJE_DESFAVORABLE);
+        return puntaje;
     }
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= 1 && opciones.size() <= 5);
+        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override

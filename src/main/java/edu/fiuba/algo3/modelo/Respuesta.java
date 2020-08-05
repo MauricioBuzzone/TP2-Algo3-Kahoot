@@ -4,16 +4,18 @@ public class Respuesta {
 
     private Jugador jugador;
     private Eleccion eleccion;
+    private Bonificador bonificador;
 
-    public Respuesta(Jugador jugador, Eleccion eleccion) {
+    public Respuesta(Jugador jugador, Eleccion eleccion, Bonificador bonificador) {
 
         this.eleccion = eleccion;
         this.jugador = jugador;
+        this.bonificador = bonificador;
     }
 
     public void responderSegunEvaluador(Evaluador unEvaluador){
 
-        Certificado certificado = unEvaluador.evaluarEleccion(eleccion);
-        certificado.responder(jugador);
+        Puntaje puntaje = unEvaluador.evaluarEleccion(eleccion);
+        jugador.responder(puntaje, bonificador);
     }
 }

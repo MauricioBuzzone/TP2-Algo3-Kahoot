@@ -4,7 +4,13 @@ import java.util.List;
 
 public class OrderedChoice extends TipoDePregunta{
 
-    public OrderedChoice(Eleccion eleccion){
+    private static final int PUNTAJE_FAVORABLE= 1;
+    private static final int PUNTAJE_DESFAVORABLE = 0;
+    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
+    private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
+
+    public OrderedChoice(List<String> solucion){
+        Eleccion eleccion = new Eleccion(solucion);
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
@@ -12,19 +18,19 @@ public class OrderedChoice extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
 
         if(eleccion.estaEnOrden(eleccionCorrecta)){
-            Certificado correcta = new Correcta(1);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_FAVORABLE);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(0);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(PUNTAJE_DESFAVORABLE);
+        return puntaje;
     }
 
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() > 1 && opciones.size() <= 5);
+        return(opciones.size() > CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <=   CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
     @Override
     public void mostrar(){}

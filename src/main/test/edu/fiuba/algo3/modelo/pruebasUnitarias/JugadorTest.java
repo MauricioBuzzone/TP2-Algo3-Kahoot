@@ -10,7 +10,10 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderBien(4);
+        Puntaje puntaje = Puntaje.crearPuntajeFavorable(4);
+
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje, bonificador);
 
         assertEquals(jugador.puntosTotales(), 4);
     }
@@ -20,7 +23,10 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderMal(2);
+        Puntaje puntaje = Puntaje.crearPuntajeFavorable(0);
+
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje, bonificador);
 
         assertEquals(jugador.puntosTotales(),0);
 
@@ -32,11 +38,14 @@ public class JugadorTest {
         Jugador jugadorUno = new Jugador("Tomas");
         Jugador JugadorDos = new Jugador("Pablo");
 
-        jugadorUno.responderBien(5);
-        JugadorDos.responderMal(5);
+        Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
+        Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(5);
+
+        Bonificador bonificador = new Bonificador();
+        jugadorUno.responder(puntaje1, bonificador);
+        JugadorDos.responder(puntaje2, bonificador);
 
         assert(jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
-
     }
 
     @Test
@@ -44,8 +53,12 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderBien(5);
-        jugador.responderMal(2);
+        Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
+        Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(2);
+
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje1, bonificador);
+        jugador.responder(puntaje2, bonificador);
 
         assertEquals(jugador.puntosTotales(),3);
 
@@ -56,13 +69,14 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderBien(5);
-        jugador.responderMal(0);
+        Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
+        Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(0);
+
+        Bonificador bonificador = new Bonificador();
+        jugador.responder(puntaje1, bonificador);
+        jugador.responder(puntaje2, bonificador);
 
         assertEquals(jugador.puntosTotales(),5);
 
     }
-
-
-
 }

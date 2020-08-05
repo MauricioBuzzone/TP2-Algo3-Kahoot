@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -33,8 +34,7 @@ public class OrderedChoiceTest {
         correctas.add(opcion5);
 
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
         Respuesta mockRespuesta = mock(Respuesta.class);
 
@@ -44,7 +44,7 @@ public class OrderedChoiceTest {
     }
 
     @Test
-    public void  test02OrderedChoiceRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto(){
+    public void  test02OrderedChoiceRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -58,22 +58,20 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
+        TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
-
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
+        when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(true);
 
-        when(eleccion.estaEnOrden(eleccionCorrecta)).thenReturn(true);
+        Puntaje puntaje =orderedChoice.evaluarEleccion(eleccion);
 
-        (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
+        Bonificador bonificador = new Bonificador();
 
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
     }
 
     @Test
-    public void  test03OrderedChoiceRecibeUnaEleccionIncorrectaYDevuelveUnCertificadoIncorrecto(){
+    public void  test03OrderedChoiceRecibeUnaEleccionIncorrectaYDevuelvePuntajeDeValorCero(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -87,18 +85,18 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
 
-        when(eleccion.estaEnOrden(eleccionCorrecta)).thenReturn(false);
+        when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(false);
 
-        (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
+        Puntaje puntaje =orderedChoice.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
 
     @Test
@@ -111,11 +109,10 @@ public class OrderedChoiceTest {
         List<String> correctas = new ArrayList<String>();
         correctas.add(opcion1);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+                    TipoDePregunta orderedChoice = new OrderedChoice(correctas);
                 });
     }
     @Test
@@ -133,15 +130,14 @@ public class OrderedChoiceTest {
         correctas.add(opcion1);
         correctas.add(opcion1);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+                    TipoDePregunta orderedChoice = new OrderedChoice(correctas);
                 });
     }
     @Test
-    public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMenorYDevuelveUnCertificadoIncorrecto(){
+    public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMenorYDevuelvePuntajeDeValorCero(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -155,8 +151,6 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
-
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
@@ -164,17 +158,16 @@ public class OrderedChoiceTest {
 
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
+        TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        Puntaje puntaje =orderedChoice.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        (orderedChoice.evaluarEleccion(eleccionJugador)).responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
     @Test
-    public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMayorYDevuelveUnCertificadoIncorrecto(){
+    public void  test07OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMayorYDevuelveUnPuntajeDeValorCero(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -188,7 +181,6 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
@@ -199,13 +191,39 @@ public class OrderedChoiceTest {
 
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
+        TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
-        OrderedChoice orderedChoice = new OrderedChoice(eleccionCorrecta);
+        Puntaje puntaje =orderedChoice.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        (orderedChoice.evaluarEleccion(eleccionJugador)).responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
+
+    @Test
+    public void test08OrderedChoiceEvaluaRespuestaCorrectaYDevuelvePuntajeDeValorUno(){
+
+        String enunciado = "Pasos de TDD";
+        String opcion1 = "Test";
+        String opcion2 = "Code";
+        String opcion3 = "Refactor";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+
+
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
+
+        Eleccion eleccionJugador = new Eleccion(solucion);
+
+        Puntaje puntaje = orderedChoice.evaluarEleccion(eleccionJugador);
+
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
+    }
+
+
 }

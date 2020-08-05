@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -15,7 +16,7 @@ import static org.mockito.Mockito.times;
 
 public class MultipleChoiceConPenalidadTest{
     @Test
-    public void test01MultipleChoiceConPenalidadRecibeUnaEleccionCompletamenteAcertadaYDevuelveUnCertifiadoCorrecto(){
+    public void test01MultipleChoiceConPenalidadRecibeUnaEleccionCompletamenteAcertadaYDevuelveUnPuntajeDeValorTres(){
 
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
@@ -28,22 +29,20 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
         Eleccion eleccionJugador = new Eleccion(solucion);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderBien(3);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 3);
     }
 
     @Test
-    public void test02MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteAcertadaConDosAciertosDevuelveUnCertificadoCorrectoDeValorDos(){
+    public void test02MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteAcertadaConDosAciertosDevuelveValorDos(){
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
         String opcion2 = new String("Rosario");
@@ -55,7 +54,6 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
 
 
         List<String> opcionesJugador = new ArrayList<String>();
@@ -63,19 +61,17 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion3);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderBien(2);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 2);
     }
 
     @Test
-    public void test03MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteDesacertadaConMasCorrectasQueIncorrectasDevuelveUnCertificadoCorrecto(){
+    public void test03MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteDesacertadaConMasCorrectasQueIncorrectasDevuelveValorUno(){
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
         String opcion2 = new String("Rosario");
@@ -87,7 +83,6 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
 
 
         List<String> opcionesJugador = new ArrayList<String>();
@@ -96,19 +91,18 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion3);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        certificado.responder(mockedJugador);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 1);
 
-        verify(mockedJugador, times(1)).responderBien(1);
     }
 
     @Test
-    public void test04MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteDesacertadaConMasIncorrectasQueCorrectasDevuelveUnCertificadoIncorrecto() {
+    public void test04MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteDesacertadaConMasIncorrectasQueCorrectasDevuelveMenosUno() {
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
         String opcion2 = new String("Rosario");
@@ -120,7 +114,7 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
@@ -128,15 +122,13 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(1);
+        assertEquals(puntaje.aplicarBonificador(bonificador), -1);
     }
 
     @Test
@@ -152,26 +144,24 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(2);
+        assertEquals(puntaje.aplicarBonificador(bonificador), -2);
     }
 
     @Test
-    public void test06MultipleChoiceConPenalidadRecibeUnaEleccionConTantosAciertosComoDesaciertosYDevuelveUnCertificadoIncorrectoDeValorCero(){
+    public void test06MultipleChoiceConPenalidadRecibeUnaEleccionConTantosAciertosComoDesaciertosYDevuevePuntajeCero(){
         String enunciado = new String("Provincias de Argentina");
         String opcion1 = new String("Entre Rios");
         String opcion2 = new String("Rosario");
@@ -183,7 +173,7 @@ public class MultipleChoiceConPenalidadTest{
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
+
 
         List<String> opcionesJugador = new ArrayList<String>();
         opcionesJugador.add(opcion1);
@@ -192,22 +182,18 @@ public class MultipleChoiceConPenalidadTest{
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
-        Certificado certificado = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
+        Bonificador bonificador = new Bonificador();
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.aplicarBonificador(bonificador), 0);
     }
 
     @Test
     public void test07MultipleChoiceConPenalidadRecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
-        Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccion);
+
         String opcion1 = "Mulán";
         String opcion2 = "Pocahontas";
         String opcion3 = "Blancanieves";
@@ -215,23 +201,46 @@ public class MultipleChoiceConPenalidadTest{
         String opcion5 = "Mérida";
         String opcion6 = "Moana";
 
-        List<String> opciones = new ArrayList<String>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
-        opciones.add(opcion3);
-        opciones.add(opcion4);
-        opciones.add(opcion5);
-        opciones.add(opcion6);
-        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opciones));
+        List<String> opcionesValidas = new ArrayList<String>();
+        opcionesValidas.add(opcion1);
+        opcionesValidas.add(opcion2);
+        opcionesValidas.add(opcion3);
+        opcionesValidas.add(opcion4);
+
+
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opcionesValidas);
+
+        List<String> opcionesInvalidas = new ArrayList<String>();
+        opcionesInvalidas.add(opcion1);
+        opcionesInvalidas.add(opcion2);
+        opcionesInvalidas.add(opcion3);
+        opcionesInvalidas.add(opcion4);
+        opcionesInvalidas.add(opcion5);
+        opcionesInvalidas.add(opcion6);
+
+        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
 
     @Test
     public void test11MultipleChoiceConPenalidadRecibeUnaListaConCeroOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
-        Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.esUnaEleccionValidaComoSolucion(any(Evaluador.class))).thenReturn(true);
-        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccion);
-        List<String> opciones = new ArrayList<String>();
-        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opciones));
+
+        String opcion1 = "Mulán";
+        String opcion2 = "Pocahontas";
+        String opcion3 = "Blancanieves";
+        String opcion4 = "Elsa";
+        String opcion5 = "Mérida";
+        String opcion6 = "Moana";
+
+        List<String> opcionesValidas = new ArrayList<String>();
+        opcionesValidas.add(opcion1);
+        opcionesValidas.add(opcion2);
+        opcionesValidas.add(opcion3);
+        opcionesValidas.add(opcion4);
+
+        Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opcionesValidas);
+
+        List<String> opcionesInvalidas = new ArrayList<String>();
+        assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
     @Test
     public void test12UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConSeisEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
@@ -254,25 +263,49 @@ public class MultipleChoiceConPenalidadTest{
         correctas.add(opcion5);
         correctas.add(opcion6);
 
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(eleccionCorrecta);
+                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(correctas);
                 });
 
     }
     @Test
     public void test13UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConCeroEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
         List<String> correctas = new ArrayList<String>();
-        Eleccion eleccionCorrecta = new Eleccion(correctas);
+
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
-                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(eleccionCorrecta);
+                    MultipleChoiceConPenalidad multipleChoice = new MultipleChoiceConPenalidad(correctas);
                 });
 
     }
 
+    @Test
+    public void test14MultipleChoiceConPenalidadEvaluaUnaListaCorrectaDevuelvePuntajeDeValorTres(){
+
+        String enunciado = new String("Provincias de Argentina");
+        String opcion1 = new String("Entre Rios");
+        String opcion2 = new String("Rosario");
+        String opcion3 = new String("La Pampa");
+        String opcion4 = new String("Bariloche");
+        String opcion5 = new String("Jujuy");
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion3);
+        solucion.add(opcion5);
+
+
+        TipoDePregunta multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
+
+        Eleccion eleccionJugador = new Eleccion(solucion);
+        Puntaje puntaje = multipleChoiceConPenalidad.evaluarEleccion(eleccionJugador);
+
+        Bonificador bonificador = new Bonificador();
+
+        assertEquals(puntaje.aplicarBonificador(bonificador), 3);
+    }
 
 }
