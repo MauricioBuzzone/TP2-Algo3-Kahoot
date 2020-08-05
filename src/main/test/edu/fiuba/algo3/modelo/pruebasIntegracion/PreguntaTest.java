@@ -428,8 +428,7 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceConPenalidad);
     }
 
@@ -464,8 +463,8 @@ public class PreguntaTest {
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion4);
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         // Crea opciones de la pregunta.
         List<String> opciones = new ArrayList<String>();

@@ -11,13 +11,6 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
         eleccionCorrecta = eleccion;
     }
 
-    public MultipleChoiceConPenalidad(Eleccion eleccion){
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Certificado evaluarEleccion(Eleccion eleccion){
         int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
