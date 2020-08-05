@@ -204,10 +204,10 @@ public class OrderedChoiceTest {
     @Test
     public void test07OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectasEInstanciarUna(){
 
-        String enunciado = new String("Pasos de TDD");
-        String opcion1 = new String("Test");
-        String opcion2 = new String("Code");
-        String opcion3 = new String("Refactor");
+        String enunciado = "Pasos de TDD";
+        String opcion1 = "Test";
+        String opcion2 = "Code";
+        String opcion3 = "Refactor";
 
         List<String> solucion = new ArrayList<String>();
         solucion.add(opcion1);

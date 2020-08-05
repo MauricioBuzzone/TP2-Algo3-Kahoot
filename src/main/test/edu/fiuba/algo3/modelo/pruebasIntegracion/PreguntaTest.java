@@ -178,8 +178,8 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceClasico);
     }
 
@@ -293,8 +293,8 @@ public class PreguntaTest {
         opciones.add(opcion4);
         opciones.add(opcion5);
 
-        Eleccion eleccionCorrecta = new Eleccion(solucion);
-        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(eleccionCorrecta);
+
+        TipoDePregunta tipoMultipleChoiceClasico = new MultipleChoiceClasico(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceClasico);
 
         //todas correcta   --> 1 diego

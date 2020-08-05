@@ -13,14 +13,6 @@ public class MultipleChoiceClasico extends TipoDePregunta{
     }
 
 
-
-    public MultipleChoiceClasico(Eleccion eleccion){
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Certificado evaluarEleccion(Eleccion eleccion){
         if(eleccion.igualA(this.eleccionCorrecta)){

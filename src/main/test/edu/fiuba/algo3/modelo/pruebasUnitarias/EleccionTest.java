@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -367,8 +368,8 @@ public class EleccionTest {
         String opcionCorrecta = new String("Jaime Lannister");
         List<String> opcionesCorrectas = new ArrayList<String>();
         opcionesCorrectas.add(opcionCorrecta);
-        Eleccion eleccionCorrecta = new Eleccion(opcionesCorrectas);
-        Evaluador evaluadorMCC = new MultipleChoiceClasico(eleccionCorrecta);
+
+        Evaluador evaluadorMCC = new MultipleChoiceClasico(opcionesCorrectas);
 
         // Creo la opción a evaluar
         String opcion1 = new String("Jaime Lannister");
