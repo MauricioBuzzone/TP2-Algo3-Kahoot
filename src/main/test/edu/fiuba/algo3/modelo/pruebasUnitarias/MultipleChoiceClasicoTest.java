@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -86,7 +87,7 @@ public class MultipleChoiceClasicoTest {
     }
 
     @Test
-    public void test04MultipleChoiceClasicoRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto() {
+    public void test04MultipleChoiceClasicoRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno() {
 
 
         String enunciado = "¿Cuales son los Pilares de POO?";
@@ -103,32 +104,29 @@ public class MultipleChoiceClasicoTest {
 
         Evaluador multipleChoiceClasico = new MultipleChoiceClasico(correctas);
 
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
 
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(true);
 
-        (multipleChoiceClasico.evaluarEleccion(eleccion)).responder(mockedJugador);
+        Puntaje puntaje = multipleChoiceClasico.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 
     @Test
-    public void test05MultipleChoiceClasicoRecibeUnaEleccionDesacertadaYDevuelvaUnCertificadoIncorrecto(){
+    public void test05MultipleChoiceClasicoRecibeUnaEleccionDesacertadaYDevuelvaPuntajeDeValorCero(){
 
         String texto = " 2+2 = 4 ";
         List<String> opcion= new ArrayList<String>();
         opcion.add(texto);
         Evaluador multipleChoiceClasico = new MultipleChoiceClasico(opcion);
 
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
 
-        Certificado certificado = multipleChoiceClasico.evaluarEleccion(eleccion);
-        certificado.responder(mockedJugador);
+        Puntaje puntaje = multipleChoiceClasico.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.calcularPuntaje(), 0);
     }
 
     @Test

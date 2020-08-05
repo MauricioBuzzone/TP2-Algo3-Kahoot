@@ -35,6 +35,6 @@ public class RespuestaTest {
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
         respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
 
-        verify(mockedCertificado, times(1)).responder(mockedJugador);
+        verify(mockedJugador, times(1)).responder(mockedPuntaje);
     }
 }

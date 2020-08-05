@@ -45,7 +45,7 @@ public class VerdaderoFalsoTest {
     }
 
     @Test
-    public void test03VerdaderoFalsoRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto(){
+    public void test03VerdaderoFalsoRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
         String texto = "Vamos a aprobar la entrega 0";
         List<String> opcion= new ArrayList<String>();
@@ -53,17 +53,16 @@ public class VerdaderoFalsoTest {
         Evaluador verdaderoFalso = new VerdaderoFalso(opcion);
 
         Eleccion eleccionCorrecta = new Eleccion(opcion);
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(true);
 
-        (verdaderoFalso.evaluarEleccion(eleccion)).responder(mockedJugador);
+        Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 
     @Test
-    public void test04VerdaderoFalsoRecibeUnaEleccioDesacertadaYDevuelveUnCertificadoIncorrecto(){
+    public void test04VerdaderoFalsoRecibeUnaEleccioDesacertadaYDevuelvePuntajeDeValorCero(){
 
         String texto = " 2+2 = 4 ";
         List<String> opcion= new ArrayList<String>();
@@ -71,14 +70,12 @@ public class VerdaderoFalsoTest {
         Evaluador verdaderoFalso = new VerdaderoFalso(opcion);
         Eleccion eleccionCorrecta = new Eleccion(opcion);
 
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
 
-        Certificado certificado = verdaderoFalso.evaluarEleccion(eleccion);
-        certificado.responder(mockedJugador);
+        Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.calcularPuntaje(), 0);
     }
     @Test
     public void test05VerdaderoFalsoRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidasComoSolucion(){
@@ -121,7 +118,7 @@ public class VerdaderoFalsoTest {
     }
 
     @Test
-    public void test8VerdaderoFalsoConPuntajeParcialPuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
+    public void test8VerdaderoFalsoEvaluaEleccionCorrectaDevuelvePuntajeDevalorUno(){
 
         String enunciado = new String("La Pampa es una provincia de Argentina");
         String opcion1 = new String("Verdadero");
@@ -136,12 +133,8 @@ public class VerdaderoFalsoTest {
 
         Eleccion eleccionJugador = new Eleccion(solucion);
 
-        Certificado certificado = verdaderoFalso.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
-
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 }

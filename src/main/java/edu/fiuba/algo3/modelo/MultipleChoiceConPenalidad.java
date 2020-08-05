@@ -19,7 +19,7 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
             Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCorrectas - cantidadIncorrectas);
             return puntaje;
         }
-        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(cantidadCorrectas - cantidadIncorrectas);
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(cantidadIncorrectas - cantidadCorrectas);
         return puntaje;
     }
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -104,13 +105,13 @@ public class MultipleChoicePuntajeParcialTest {
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
 
-        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
+        mockedJugador.responder(puntaje);
 
-        verify(mockedJugador, times(1)).responderBien(2);
+        verify(mockedJugador, times(1)).responder(puntaje);
     }
 
     @Test
@@ -135,13 +136,13 @@ public class MultipleChoicePuntajeParcialTest {
 
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
-        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
+        mockedJugador.responder(puntaje);
 
-        verify(mockedJugador, times(1)).responderBien(1);
+        verify(mockedJugador, times(1)).responder(puntaje);
     }
     @Test
     public void test06MultipleChoicePuntajeParcialRecibeUnaEleccionParcialmenteDesacertadaDevuelveUnCertificadoIncorrecto() {
@@ -166,13 +167,13 @@ public class MultipleChoicePuntajeParcialTest {
 
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
-        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
+        mockedJugador.responder(puntaje);
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        verify(mockedJugador, times(1)).responder(puntaje);
     }
     @Test
     public void test07MultipleChoicePuntajeParcialRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto() {
@@ -197,17 +198,17 @@ public class MultipleChoicePuntajeParcialTest {
 
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
-        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
+        mockedJugador.responder(puntaje);
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        verify(mockedJugador, times(1)).responder(puntaje);
     }
 
     @Test
-    public void test08MultipleChoicePuntajeParcialRecibeUnaEleccionConMasOpcionesQueLasCorrectasDevuelveUnCertificadoIncorrecto(){
+    public void test08MultipleChoicePuntajeParcialRecibeUnaEleccionConMasOpcionesQueLasCorrectasDevuelvePuntajeCero(){
 
         //Enunciado: Tema de Fisica II
 
@@ -231,13 +232,10 @@ public class MultipleChoicePuntajeParcialTest {
 
         Evaluador multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
-        Certificado certificado = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoicePuntajeParcial.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.calcularPuntaje(), 0);
     }
     @Test
     public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
@@ -325,12 +323,12 @@ public class MultipleChoicePuntajeParcialTest {
         TipoDePregunta multipleChoiceConPuntajeParcial = new MultipleChoicePuntajeParcial(solucion);
 
         Eleccion eleccionJugador = new Eleccion(solucion);
-        Certificado certificado = multipleChoiceConPuntajeParcial.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = multipleChoiceConPuntajeParcial.evaluarEleccion(eleccionJugador);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
+        mockedJugador.responder(puntaje);
 
-        verify(mockedJugador, times(1)).responderBien(3);
+        verify(mockedJugador, times(1)).responder(puntaje);
     }
 }

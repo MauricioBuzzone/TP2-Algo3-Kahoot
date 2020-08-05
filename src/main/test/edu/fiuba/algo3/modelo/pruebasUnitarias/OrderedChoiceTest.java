@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class OrderedChoiceTest {
     }
 
     @Test
-    public void  test02OrderedChoiceRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto(){
+    public void  test02OrderedChoiceRecibeUnaEleccionAcertadaYDevuelvePuntaje(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -57,7 +58,6 @@ public class OrderedChoiceTest {
         correctas.add(opcion4);
         correctas.add(opcion2);
 
-
         OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Jugador mockedJugador = mock(Jugador.class);
@@ -65,13 +65,13 @@ public class OrderedChoiceTest {
 
         when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(true);
 
-        (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
+        (mockedJugador).responder(orderedChoice.evaluarEleccion(eleccion));
 
-        verify(mockedJugador, times(1)).responderBien(1);
+        verify(mockedJugador, times(1)).responder(any(Puntaje.class));
     }
 
     @Test
-    public void  test03OrderedChoiceRecibeUnaEleccionIncorrectaYDevuelveUnCertificadoIncorrecto(){
+    public void  test03OrderedChoiceRecibeUnaEleccionIncorrectaYDevuelvePuntaje(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -93,9 +93,9 @@ public class OrderedChoiceTest {
 
         when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(false);
 
-        (orderedChoice.evaluarEleccion(eleccion)).responder(mockedJugador);
+        (mockedJugador).responder(orderedChoice.evaluarEleccion(eleccion));
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        verify(mockedJugador, times(1)).responder(any(Puntaje.class));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class OrderedChoiceTest {
                 });
     }
     @Test
-    public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMenorYDevuelveUnCertificadoIncorrecto(){
+    public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMenorYDevuelvePuntaje(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -157,17 +157,16 @@ public class OrderedChoiceTest {
 
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
 
-
         OrderedChoice orderedChoice = new OrderedChoice(correctas);
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        (orderedChoice.evaluarEleccion(eleccionJugador)).responder(mockedJugador);
+        (mockedJugador).responder(orderedChoice.evaluarEleccion(eleccionJugador));
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        verify(mockedJugador, times(1)).responder(any(Puntaje.class));
     }
     @Test
-    public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMayorYDevuelveUnCertificadoIncorrecto(){
+    public void  test07OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMayorYDevuelveUnPuntaje(){
 
         String enunciado = "Ordenar segun orden cronologico ";
         String opcion1 = " 6/Enero/1929";
@@ -196,13 +195,13 @@ public class OrderedChoiceTest {
 
         Jugador mockedJugador = mock(Jugador.class);
 
-        (orderedChoice.evaluarEleccion(eleccionJugador)).responder(mockedJugador);
+        (mockedJugador).responder(orderedChoice.evaluarEleccion(eleccionJugador));
 
-        verify(mockedJugador, times(1)).responderMal(0);
+        verify(mockedJugador, times(1)).responder(any(Puntaje.class));
     }
 
     @Test
-    public void test07OrderedChoicePuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
+    public void test08OrderedChoiceEvaluaRespuestaCorrectaYDevuelvePuntajeDeValorUno(){
 
         String enunciado = "Pasos de TDD";
         String opcion1 = "Test";
@@ -218,13 +217,10 @@ public class OrderedChoiceTest {
         TipoDePregunta orderedChoice = new OrderedChoice(solucion);
 
         Eleccion eleccionJugador = new Eleccion(solucion);
-        Certificado certificado = orderedChoice.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = orderedChoice.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
 
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 
 

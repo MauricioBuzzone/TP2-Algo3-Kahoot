@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -47,7 +48,7 @@ public class VerdaderoFalsoConPenalidadTest {
     }
 
     @Test
-    public void test03VerdaderoFalsoConPenalidadRecibeUnaEleccionAcertadaYDevuelveUnCertificadoCorrecto(){
+    public void test03VerdaderoFalsoConPenalidadRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
         String texto = "Vamos a aprobar la entrega 0";
         List<String> opcion = new ArrayList<String>();
@@ -55,17 +56,16 @@ public class VerdaderoFalsoConPenalidadTest {
         Evaluador verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(opcion);
 
         Eleccion eleccionCorrecta = new Eleccion(opcion);
-        Jugador mockedJugador = mock(Jugador.class);
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(true);
 
-        (verdaderoFalsoConPenalidad.evaluarEleccion(eleccion)).responder(mockedJugador);
+        Puntaje puntaje = verdaderoFalsoConPenalidad.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 
     @Test
-    public void test04VerdaderoFalsoConPenalidadRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto(){
+    public void test04VerdaderoFalsoConPenalidadRecibeUnaEleccionDesacertadaYDevuelveUnPuntajeDeValorMenosUno(){
 
         String texto = "2+2 = Pez";
         List<String> opcion= new ArrayList<String>();
@@ -77,10 +77,9 @@ public class VerdaderoFalsoConPenalidadTest {
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
 
-        Certificado certificado = verdaderoFalsoConPenalidad.evaluarEleccion(eleccion);
-        certificado.responder(mockedJugador);
+        Puntaje puntaje = verdaderoFalsoConPenalidad.evaluarEleccion(eleccion);
 
-        verify(mockedJugador, times(1)).responderMal(1);
+        assertEquals(puntaje.calcularPuntaje(), -1);
     }
 
     @Test
@@ -127,7 +126,7 @@ public class VerdaderoFalsoConPenalidadTest {
 
 
     @Test
-    public void test8VerdaderoFalsoConPenalidadConPuntajeParcialPuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
+    public void test8VerdaderoFalsoConPenalidadEvaluaEleccionYDevuelvePuntajeDeValorUno(){
 
         String enunciado = new String("La Pampa es una provincia de Argentina");
         String opcion1 = new String("Verdadero");
@@ -141,12 +140,8 @@ public class VerdaderoFalsoConPenalidadTest {
         TipoDePregunta verdaderoFalso = new VerdaderoFalsoConPenalidad(solucion);
 
         Eleccion eleccionJugador = new Eleccion(solucion);
-        Certificado certificado = verdaderoFalso.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = verdaderoFalso.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
-
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 }

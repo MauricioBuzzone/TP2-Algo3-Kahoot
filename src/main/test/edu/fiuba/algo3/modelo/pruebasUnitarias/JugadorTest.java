@@ -10,7 +10,7 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        Puntaje puntaje = crearPuntajeFavorable(4);
+        Puntaje puntaje = Puntaje.crearPuntajeFavorable(4);
 
         jugador.responder(puntaje);
 
@@ -22,7 +22,7 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        Puntaje puntaje = crearPuntajeFavorable(0);
+        Puntaje puntaje = Puntaje.crearPuntajeFavorable(0);
 
         jugador.responder(puntaje);
 
@@ -36,11 +36,11 @@ public class JugadorTest {
         Jugador jugadorUno = new Jugador("Tomas");
         Jugador JugadorDos = new Jugador("Pablo");
 
-        Puntaje puntaje1 = crearPuntajeFavorable(5);
-        Puntaje puntaje2 = crearPuntajeDesfavorable(5);
+        Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
+        Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(5);
 
-        jugadorUno.responderBien(puntaje1);
-        JugadorDos.responderMal(puntaje2);
+        jugadorUno.responder(puntaje1);
+        JugadorDos.responder(puntaje2);
 
         assert(jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
 
@@ -51,11 +51,11 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        Puntaje puntaje1 = crearPuntajeFavorable(5);
-        Puntaje puntaje2 = crearPuntajeDesfavorable(2);
+        Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
+        Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(2);
 
-        jugador.responderBien(puntaje1);
-        jugador.responderMal(puntaje2);
+        jugador.responder(puntaje1);
+        jugador.responder(puntaje2);
 
         assertEquals(jugador.puntosTotales(),3);
 
@@ -66,11 +66,11 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        Puntaje puntaje = crearPuntajeFavorable(5);
-        Puntaje puntaje = crearPuntajeDesfavorable(0);
+        Puntaje puntaje1 = Puntaje.crearPuntajeFavorable(5);
+        Puntaje puntaje2 = Puntaje.crearPuntajeDesfavorable(0);
 
-        jugador.responderBien(5);
-        jugador.responderMal(0);
+        jugador.responder(puntaje1);
+        jugador.responder(puntaje2);
 
         assertEquals(jugador.puntosTotales(),5);
 

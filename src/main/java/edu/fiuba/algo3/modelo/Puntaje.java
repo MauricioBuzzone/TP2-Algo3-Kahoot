@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 public class Puntaje{
+
     private int puntos;
+
     private Puntaje(int unosPuntos){
         puntos=unosPuntos;
     }
@@ -8,10 +10,12 @@ public class Puntaje{
         Puntaje puntaje=new Puntaje(unosPuntos);
         return puntaje;
     }
+
     public static Puntaje crearPuntajeDesfavorable(int unosPuntos){
         Puntaje puntaje=new Puntaje(unosPuntos*(-1));
         return puntaje;
     }
+
     public int calcularPuntaje(){
         return this.puntos;
     }

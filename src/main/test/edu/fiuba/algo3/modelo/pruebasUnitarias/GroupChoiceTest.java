@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GroupChoiceTest {
 
     @Test
-    public void test01GroupChoiceRecibeUnaEleccionAcertadaYDevuelveUnCertifiadoCorrecto(){
+    public void test01GroupChoiceRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
         String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
         String opcion1 = new String("Niki Lauda");
@@ -31,17 +32,13 @@ public class GroupChoiceTest {
 
         Evaluador groupChoice = new GroupChoice(solucion);
 
-        Certificado certificado = groupChoice.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = groupChoice.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
-
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderBien(1);
+        assertEquals(puntaje.calcularPuntaje(), 1);
     }
 
     @Test
-    public void test02GroupChoiceRecibeUnaEleccionDesacertadaYDevuelveUnCertificadoIncorrecto(){
+    public void test02GroupChoiceRecibeUnaEleccionDesacertadaYDevuelvePuntajeDeValorCero(){
 
         String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
         String opcion1 = new String("Niki Lauda");
@@ -67,13 +64,9 @@ public class GroupChoiceTest {
         solucionJugador.add("A:" + opcion5);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
 
-        Certificado certificado = groupChoice.evaluarEleccion(eleccionJugador);
+        Puntaje puntaje = groupChoice.evaluarEleccion(eleccionJugador);
 
-        Jugador mockedJugador = mock(Jugador.class);
-
-        certificado.responder(mockedJugador);
-
-        verify(mockedJugador, times(1)).responderMal(0);
+        assertEquals(puntaje.calcularPuntaje(), 0);
     }
 
 
