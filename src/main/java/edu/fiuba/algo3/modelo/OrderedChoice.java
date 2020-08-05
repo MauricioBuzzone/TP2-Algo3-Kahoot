@@ -20,14 +20,14 @@ public class OrderedChoice extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
 
         if(eleccion.estaEnOrden(eleccionCorrecta)){
-            Certificado correcta = new Correcta(1);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(1);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(0);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(0);
+        return puntaje;
     }
 
     @Override

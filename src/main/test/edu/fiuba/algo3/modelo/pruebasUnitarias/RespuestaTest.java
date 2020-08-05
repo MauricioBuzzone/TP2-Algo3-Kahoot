@@ -12,9 +12,9 @@ public class RespuestaTest {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
-        Certificado mockedCertificado = mock(Correcta.class);
+        Puntaje mockedPuntaje = mock(Puntaje.class);
 
-        when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);
+        when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedPuntaje);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
 
@@ -28,9 +28,9 @@ public class RespuestaTest {
         Jugador mockedJugador = mock(Jugador.class);
         Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
         Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
-        Certificado mockedCertificado = mock(Correcta.class);
+        Puntaje mockedPuntaje = mock(Puntaje.class);
 
-        when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedCertificado);
+        when(mockedEvaluadorVerdaderoFalso.evaluarEleccion(any(Eleccion.class))).thenReturn(mockedPuntaje);
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta);
         respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);

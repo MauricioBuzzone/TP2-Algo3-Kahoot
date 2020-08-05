@@ -12,6 +12,9 @@ public class Jugador {
         this.puntosPorRespuesta = new ArrayList<Integer>();
     }
 
+    public void responder(Puntaje puntaje){
+        puntosPorRespuesta.add(puntaje.calcularPuntaje());
+    }
     public void responderBien(int puntos){
         puntosPorRespuesta.add(puntos);
     }

@@ -19,15 +19,15 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
         int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
         int cantidadIncorrectas = eleccionCorrecta.cantidadDeNoCoincidentes(eleccion);
         if(cantidadCorrectas > cantidadIncorrectas){
-            Certificado correcta = new Correcta(cantidadCorrectas - cantidadIncorrectas);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCorrectas - cantidadIncorrectas);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(cantidadIncorrectas - cantidadCorrectas);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(cantidadCorrectas - cantidadIncorrectas);
+        return puntaje;
     }
 
     @Override

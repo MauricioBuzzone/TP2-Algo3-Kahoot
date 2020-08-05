@@ -13,7 +13,7 @@ public class Respuesta {
 
     public void responderSegunEvaluador(Evaluador unEvaluador){
 
-        Certificado certificado = unEvaluador.evaluarEleccion(eleccion);
-        certificado.responder(jugador);
+        Puntaje puntaje = unEvaluador.evaluarEleccion(eleccion);
+        jugador.responder(puntaje);
     }
 }

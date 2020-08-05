@@ -10,7 +10,9 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderBien(4);
+        Puntaje puntaje = crearPuntajeFavorable(4);
+
+        jugador.responder(puntaje);
 
         assertEquals(jugador.puntosTotales(), 4);
     }
@@ -20,7 +22,9 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderMal(2);
+        Puntaje puntaje = crearPuntajeFavorable(0);
+
+        jugador.responder(puntaje);
 
         assertEquals(jugador.puntosTotales(),0);
 
@@ -32,8 +36,11 @@ public class JugadorTest {
         Jugador jugadorUno = new Jugador("Tomas");
         Jugador JugadorDos = new Jugador("Pablo");
 
-        jugadorUno.responderBien(5);
-        JugadorDos.responderMal(5);
+        Puntaje puntaje1 = crearPuntajeFavorable(5);
+        Puntaje puntaje2 = crearPuntajeDesfavorable(5);
+
+        jugadorUno.responderBien(puntaje1);
+        JugadorDos.responderMal(puntaje2);
 
         assert(jugadorUno.puntosTotales() > JugadorDos.puntosTotales());
 
@@ -44,8 +51,11 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador("Tomas");
 
-        jugador.responderBien(5);
-        jugador.responderMal(2);
+        Puntaje puntaje1 = crearPuntajeFavorable(5);
+        Puntaje puntaje2 = crearPuntajeDesfavorable(2);
+
+        jugador.responderBien(puntaje1);
+        jugador.responderMal(puntaje2);
 
         assertEquals(jugador.puntosTotales(),3);
 
@@ -55,6 +65,9 @@ public class JugadorTest {
     public void test05UnJugadorRespondeMalSinPenalizacionNoLeRestanPuntos(){
 
         Jugador jugador = new Jugador("Tomas");
+
+        Puntaje puntaje = crearPuntajeFavorable(5);
+        Puntaje puntaje = crearPuntajeDesfavorable(0);
 
         jugador.responderBien(5);
         jugador.responderMal(0);

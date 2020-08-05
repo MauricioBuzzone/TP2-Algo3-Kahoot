@@ -21,15 +21,15 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
     }
 
     @Override
-    public Certificado evaluarEleccion(Eleccion eleccion){
+    public Puntaje evaluarEleccion(Eleccion eleccion){
         if( eleccionCorrecta.contieneA(eleccion) ){
             //Totalmente correcta o Parcialmente correcta
             int cantidadCoincidencias = eleccionCorrecta.cantidadCoincidencias(eleccion);
-            Certificado correcta = new Correcta(cantidadCoincidencias);
-            return correcta;
+            Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCoincidencias);
+            return puntaje;
         }
-        Certificado incorrecta = new Incorrecta(0);
-        return incorrecta;
+        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(0);
+        return puntaje;
     }
 
     @Override
