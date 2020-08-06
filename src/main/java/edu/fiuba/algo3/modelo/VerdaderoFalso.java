@@ -20,14 +20,8 @@ public class VerdaderoFalso extends TipoDePregunta{
     }
 
     @Override
-    public Puntaje evaluarEleccion(Eleccion otraEleccion){
-
-        if(otraEleccion.igualA(this.eleccionCorrecta)){
-            Puntaje puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_FAVORABLE);
-            return puntaje;
-        }
-        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(PUNTAJE_DESFAVORABLE);
-        return puntaje;
+    public Puntaje evaluarEleccion(Eleccion eleccion){
+        return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
     @Override

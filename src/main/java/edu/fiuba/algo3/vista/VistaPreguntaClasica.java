@@ -38,7 +38,7 @@ public class VistaPreguntaClasica {
 
         VBox contenedorPrincipal = this.crearContenedorConOpciones();
 
-        Scene scene = new Scene(contenedorPrincipal, 300, 250);
+        Scene scene = new Scene(contenedorPrincipal, 500, 250);
 
         App.stage.setScene(scene);
         App.stage.show();

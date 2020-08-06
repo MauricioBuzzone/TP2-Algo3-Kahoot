@@ -19,15 +19,13 @@ public class OrderedChoice extends TipoDePregunta{
 
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
-
-        if(eleccion.estaEnOrden(eleccionCorrecta)){
-            Puntaje puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_FAVORABLE);
-            return puntaje;
-        }
-        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(PUNTAJE_DESFAVORABLE);
-        return puntaje;
+        return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
+    @Override
+    public boolean esUnaEleccionCorrecta(Eleccion eleccion) {
+        return eleccion.estaEnOrden(eleccionCorrecta);
+    }
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return(opciones.size() > CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <=   CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);

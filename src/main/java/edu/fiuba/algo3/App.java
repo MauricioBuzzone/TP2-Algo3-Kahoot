@@ -1,10 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.MultipleChoiceConPenalidad;
-import edu.fiuba.algo3.modelo.MultipleChoicePuntajeParcial;
-import edu.fiuba.algo3.modelo.Pregunta;
-import edu.fiuba.algo3.modelo.TipoDePregunta;
-import edu.fiuba.algo3.vista.VistaPreguntaClasica;
+import edu.fiuba.algo3.modelo.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -22,19 +18,17 @@ public class App extends Application {
     public void start(Stage stage) {
         this.stage = stage;
 
-        //Test de integracion 1-3
-        String enunciado = "¿Quién está toooodo de ooooro?";
 
-        String opcion1 = "El Chino";
-        String opcion2 = "Duko";
-        String opcion3 = "El Truenito pai";
-        String opcion4 = "Aczino";
-        String opcion5 = "Ysy A";
+        String enunciado = "¿Aprobamos la entrega2?";
+
+        String opcion1 = "Re sí";
+        String opcion2 = "Se... ponele";
+        String opcion3 = "Mmm vs dsis";
+        String opcion4 = "Desaproba2 lince";
+        String opcion5 = "Recursan gente, los esperan en Derecho";
 
         List<String> solucion = new ArrayList<String>();
-        solucion.add(opcion1);
-        solucion.add(opcion2);
-        solucion.add(opcion5);
+        solucion.add(opcion4);
 
         List<String> opciones = new ArrayList<String>();
         opciones.add(opcion1);
@@ -44,8 +38,8 @@ public class App extends Application {
         opciones.add(opcion5);
 
 
-        TipoDePregunta tipoMultipleChoicePenalidad = new MultipleChoiceConPenalidad(solucion);
-        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoicePenalidad);
+        TipoDePregunta tipoDePregunta = new MultipleChoiceClasico(solucion);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoDePregunta);
         pregunta.mostrar();
 
 

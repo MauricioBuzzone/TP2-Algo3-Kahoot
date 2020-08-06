@@ -21,13 +21,16 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
     public Puntaje evaluarEleccion(Eleccion eleccion){
         int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
         int cantidadIncorrectas = eleccionCorrecta.cantidadDeNoCoincidentes(eleccion);
-        if(cantidadCorrectas > cantidadIncorrectas){
-            Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCorrectas - cantidadIncorrectas);
-            return puntaje;
-        }
-        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(cantidadIncorrectas - cantidadCorrectas);
-        return puntaje;
+        return this.evaluarEleccion(eleccion, cantidadCorrectas - cantidadIncorrectas, cantidadIncorrectas - cantidadCorrectas);
     }
+
+    @Override
+    public boolean esUnaEleccionCorrecta(Eleccion eleccion){
+        int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
+        int cantidadIncorrectas = eleccionCorrecta.cantidadDeNoCoincidentes(eleccion);
+        return(cantidadCorrectas > cantidadIncorrectas);
+    }
+
 
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){

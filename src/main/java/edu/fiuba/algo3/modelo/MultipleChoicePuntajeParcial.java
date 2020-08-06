@@ -18,15 +18,15 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
 
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
-        if( eleccionCorrecta.contieneA(eleccion) ){
-            //Totalmente correcta o Parcialmente correcta
-            int cantidadCoincidencias = eleccionCorrecta.cantidadCoincidencias(eleccion);
-            Puntaje puntaje = Puntaje.crearPuntajeFavorable(cantidadCoincidencias);
-            return puntaje;
-        }
-        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(PUNTAJE_DESFAVORABLE);
-        return puntaje;
+        int cantidadCoincidencias = eleccionCorrecta.cantidadCoincidencias(eleccion);
+        return this.evaluarEleccion(eleccion, cantidadCoincidencias, PUNTAJE_DESFAVORABLE);
     }
+
+    @Override
+    public boolean esUnaEleccionCorrecta(Eleccion eleccion){
+        return(eleccionCorrecta.contieneA(eleccion));
+    }
+
 
     @Override
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
