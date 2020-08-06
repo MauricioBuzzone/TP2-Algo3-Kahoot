@@ -76,10 +76,6 @@ public class Eleccion {
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 
-    public Boolean esEleccionCorrecta(Evaluador unEvaluador){
-        return unEvaluador.sonOpcionesCorrectas(this.opciones);
-    }
-
     public boolean estaEnOrden(Eleccion eleccion){
         return eleccion.tienenMismoOrden(this.opciones);
     }

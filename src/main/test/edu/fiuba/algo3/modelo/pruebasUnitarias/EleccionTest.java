@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class EleccionTest {
 
@@ -505,7 +507,7 @@ public class EleccionTest {
         opciones2.add(opcion4);
         Eleccion eleccion2 = new Eleccion(opciones2);
 
-        assertTrue(eleccion1.estaEnOrden(eleccion2));
+        assert(eleccion1.estaEnOrden(eleccion2));
     }
     @Test
     public void test21AEleccionSeLePideVerficiarOtraEleccionDistintaEstaEnOrdenDevuelveFalse(){

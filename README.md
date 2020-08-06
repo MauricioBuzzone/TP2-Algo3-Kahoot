@@ -37,9 +37,9 @@ cd TP2-Algo3-Kahoot/
 mvn test
 ```
 ## Ejecutando la aplicación
-
-Explicación de como ejecutar la aplicación
-
+```
+mvn compile && mvn exec:java -Dexec.mainClass="edu.fiuba.algo3.App"
+```
 ## Licencia
 
 Este repositorio está bajo la Licencia MIT
