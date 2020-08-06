@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class Pregunta {
+public class Pregunta implements Mostrable{
     private TipoDePregunta tipo;
     private String enunciado;
     private List<String> opciones;
@@ -18,4 +18,9 @@ public class Pregunta {
             tipo.responderPregunta(respuesta);
         }
     }
+    @Override
+    public void mostrar(){
+        tipo.mostrar(this.enunciado, this.opciones);
+    }
+
 }

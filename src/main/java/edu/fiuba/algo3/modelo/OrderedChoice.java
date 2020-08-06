@@ -32,6 +32,6 @@ public class OrderedChoice extends TipoDePregunta{
     public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return(opciones.size() > CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <=   CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
-    @Override
+
     public void mostrar(){}
 }

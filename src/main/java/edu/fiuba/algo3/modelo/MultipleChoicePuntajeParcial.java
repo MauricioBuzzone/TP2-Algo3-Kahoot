@@ -33,6 +33,6 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
         return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
-    @Override
+
     public void mostrar(){}
 }
