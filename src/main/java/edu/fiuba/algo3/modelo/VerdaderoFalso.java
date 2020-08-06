@@ -35,6 +35,5 @@ public class VerdaderoFalso extends TipoDePregunta{
         return (opciones.size() == CANTIDAD_DE_SOLUCIONES_VALIDAS);
     }
 
-    @Override
-    public void mostrar(){}
+
 }

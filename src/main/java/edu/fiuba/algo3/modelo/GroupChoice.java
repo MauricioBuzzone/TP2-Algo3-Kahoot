@@ -23,13 +23,6 @@ public class GroupChoice extends TipoDePregunta {
         this.eleccionGrupoB = this.parsearListaGrupo(solucion, "B", ":");
     }
 
-    public GroupChoice(Eleccion eleccion){
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         if(eleccion.esEleccionCorrecta(this)){
@@ -44,8 +37,6 @@ public class GroupChoice extends TipoDePregunta {
         return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
-    @Override
-    public void mostrar(){}
 
     public boolean sonOpcionesCorrectas(List<String> unasOpciones){
         Eleccion grupoA = this.parsearListaGrupo(unasOpciones, "A", ":");

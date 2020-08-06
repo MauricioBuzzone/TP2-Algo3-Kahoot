@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.vista.VistaPreguntaClasica;
+
 import java.util.List;
 
 public class MultipleChoiceConPenalidad extends TipoDePregunta{
@@ -33,5 +35,9 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
     }
 
     @Override
-    public void mostrar(){}
+    public void mostrar(String enunciado, List<String> opciones){
+        VistaPreguntaClasica vista = new VistaPreguntaClasica(enunciado, opciones);
+        vista.setBonificadores();
+        vista.mostrar();
+    }
 }
