@@ -18,7 +18,6 @@ public class MultipleChoiceClasico extends TipoDePregunta{
         eleccionCorrecta = eleccion;
     }
 
-
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         if(eleccion.igualA(this.eleccionCorrecta)){
@@ -33,5 +32,5 @@ public class MultipleChoiceClasico extends TipoDePregunta{
         return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
-    public void mostrar(){}
+
 }

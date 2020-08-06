@@ -36,5 +36,4 @@ public class VerdaderoFalso extends TipoDePregunta{
     }
 
 
-    public void mostrar(){}
 }

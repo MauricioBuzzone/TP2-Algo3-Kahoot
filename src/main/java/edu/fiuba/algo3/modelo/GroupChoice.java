@@ -45,8 +45,6 @@ public class GroupChoice extends TipoDePregunta {
     }
 
 
-    public void mostrar(){}
-
     public boolean sonOpcionesCorrectas(List<String> unasOpciones){
         Eleccion grupoA = this.parsearListaGrupo(unasOpciones, "A", ":");
         Eleccion grupoB = this.parsearListaGrupo(unasOpciones, "B", ":");
