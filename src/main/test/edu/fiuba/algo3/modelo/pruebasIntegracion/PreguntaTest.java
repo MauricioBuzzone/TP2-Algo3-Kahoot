@@ -781,4 +781,105 @@ public class PreguntaTest {
         assertEquals(diego.puntosTotales(), 4);
         assertEquals(tomas.puntosTotales(), 6);
     }
+
+    @Test
+    public void test2_7UnaPreguntaDeMultipleChoiceConPenalidadRecibeUnaRespuestasConBonificadorYAsignaLosPuntosAlJugadorCorrectamente(){
+
+        Jugador diego = new Jugador("Diego");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        diego.asignarPuntos(3);
+
+
+        String enunciado = "¿Cuáles son personajes de Disney?";
+
+        String opcion1 = "Mulán";
+        String opcion2 = "Katara";
+        String opcion3 = "Ariel";
+        String opcion4 = "Mérida";
+        String opcion5 = "Chihiro";
+
+
+        // Crea el tipo de pregunta y su elección correcta.
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion3);
+        solucion.add(opcion4);
+
+        TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
+
+        // Crea opciones de la pregunta.
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceConPenalidad);
+
+        // Caso Correctas: 3 Incorrectas: 0 -> suma 3
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(opcion1);
+        opcionDiego.add(opcion3);
+        opcionDiego.add(opcion4);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+
+        Bonificador bonificadorDiego =new Bonificador();
+        bonificadorDiego.cambiarFactorX2();
+
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 9);
+    }
+
+    @Test
+    public void test2_8UnaPreguntaDeMultipleChoiceClasicoRecibeUnaRespuestasConBonificadorYAsignLosPuntosAlJugadorCorrectamente(){
+
+        Jugador tomas = new Jugador("Tomas");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        tomas.asignarPuntos(7);
+
+
+        String enunciado = "No es cierto que nunca hay que testear métodos privados";
+
+        String opcion1 = "Verdadero";
+        String opcion2 = "Falso";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion2);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+
+
+        TipoDePregunta tipoVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(solucion);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
+
+
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(opcion2);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+
+        Bonificador bonificadorTomas =new Bonificador();
+        bonificadorTomas.cambiarFactorX3();
+
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaTomas);
+
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(tomas.puntosTotales(), 10);
+    }
 }
