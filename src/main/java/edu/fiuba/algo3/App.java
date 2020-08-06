@@ -31,11 +31,11 @@ public class App extends Application {
         solucion.add(opcion4);
 
         List<String> opciones = new ArrayList<String>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
-        opciones.add(opcion3);
-        opciones.add(opcion4);
         opciones.add(opcion5);
+        opciones.add(opcion4);
+        opciones.add(opcion3);
+        opciones.add(opcion2);
+        opciones.add(opcion1);
 
 
         TipoDePregunta tipoDePregunta = new MultipleChoiceClasico(solucion);

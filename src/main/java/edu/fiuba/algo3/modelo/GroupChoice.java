@@ -30,13 +30,13 @@ public class GroupChoice extends TipoDePregunta {
     }
 
     @Override
-    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
+    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
 
         return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override
-    public boolean esUnaEleccionCorrecta(Eleccion eleccion){
+    protected boolean esUnaEleccionCorrecta(Eleccion eleccion){
 
         return(eleccion.contieneA(eleccionGrupoA) && eleccion.contieneA(eleccionGrupoB));
     }

@@ -24,7 +24,7 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
     }
 
     @Override
-    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
+    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return (opciones.size() == CANTIDAD_DE_SOLUCIONES_VALIDAS);
     }
 

@@ -25,7 +25,7 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
     }
 
     @Override
-    public boolean esUnaEleccionCorrecta(Eleccion eleccion){
+    protected boolean esUnaEleccionCorrecta(Eleccion eleccion){
         int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
         int cantidadIncorrectas = eleccionCorrecta.cantidadDeNoCoincidentes(eleccion);
         return(cantidadCorrectas > cantidadIncorrectas);
@@ -33,7 +33,7 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
 
 
     @Override
-    public Boolean sonOpcionesValidasComoSolucion(List<String> opciones){
+    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
         return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 

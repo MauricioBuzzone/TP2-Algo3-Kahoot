@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.pruebasUnitarias;
+package edu.fiuba.algo3.modelo.pruebasUnitarias;
 import edu.fiuba.algo3.modelo.*;
 
 

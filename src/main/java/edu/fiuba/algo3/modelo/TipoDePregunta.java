@@ -12,8 +12,7 @@ public abstract class TipoDePregunta implements Evaluador{
         respuesta.responderSegunEvaluador(this);
     }
 
-    @Override
-    public boolean esUnaEleccionCorrecta(Eleccion eleccion){
+    protected boolean esUnaEleccionCorrecta(Eleccion eleccion){
 
         return eleccion.igualA(this.eleccionCorrecta);
     }
