@@ -2,16 +2,15 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class MultipleChoiceClasico extends TipoDePregunta{
+public class OrderedChoice extends TipoDePregunta{
 
     private static final int PUNTAJE_FAVORABLE= 1;
     private static final int PUNTAJE_DESFAVORABLE = 0;
     private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
     private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
 
-    public MultipleChoiceClasico(List<String> opcionesCorrectas){
-        Eleccion eleccion = new Eleccion(opcionesCorrectas);
-
+    public OrderedChoice(List<String> solucion){
+        Eleccion eleccion = new Eleccion(solucion);
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
@@ -22,9 +21,16 @@ public class MultipleChoiceClasico extends TipoDePregunta{
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
+
+    @Override
+    protected boolean esUnaEleccionCorrecta(Eleccion eleccion) {
+
+        return eleccion.estaEnOrden(eleccionCorrecta);
+    }
+
     @Override
     public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+        return(opciones.size() > CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <=   CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
 }

@@ -1,25 +1,48 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.*;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
+    public static Stage stage;
+
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+        this.stage = stage;
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+
+        String enunciado = "¿Aprobamos la entrega2?";
+
+        String opcion1 = "Re sí";
+        String opcion2 = "Se... ponele";
+        String opcion3 = "Mmm vs dsis";
+        String opcion4 = "Desaproba2 lince";
+        String opcion5 = "Recursan gente, los esperan en Derecho";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion4);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion5);
+        opciones.add(opcion4);
+        opciones.add(opcion3);
+        opciones.add(opcion2);
+        opciones.add(opcion1);
+
+
+        TipoDePregunta tipoDePregunta = new MultipleChoiceClasico(solucion);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoDePregunta);
+        pregunta.mostrar();
+
+
     }
 
     public static void main(String[] args) {

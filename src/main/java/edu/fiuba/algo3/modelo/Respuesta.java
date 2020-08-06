@@ -3,24 +3,19 @@ package edu.fiuba.algo3.modelo;
 public class Respuesta {
 
     private Jugador jugador;
-    private Certificado certificado;
     private Eleccion eleccion;
+    private Bonificador bonificador;
 
-    public Respuesta(Jugador jugador, Eleccion eleccion) {
+    public Respuesta(Jugador jugador, Eleccion eleccion, Bonificador bonificador) {
 
         this.eleccion = eleccion;
         this.jugador = jugador;
-        this.certificado = null; //Por ahora queda así, pero estaría bien refactorizar
+        this.bonificador = bonificador;
     }
 
-    public void evaluarConCriterio(Criterio unCriterio) {
+    public void responderSegunEvaluador(Evaluador unEvaluador){
 
-        certificado = unCriterio.validarCriterio(eleccion);
+        Puntaje puntaje = unEvaluador.evaluarEleccion(eleccion);
+        jugador.responder(puntaje, bonificador);
     }
-
-    public void responder() {
-
-        certificado.responder(jugador);
-    }
-
 }

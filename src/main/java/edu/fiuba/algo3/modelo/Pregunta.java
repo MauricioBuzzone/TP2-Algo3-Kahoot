@@ -2,21 +2,25 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-abstract class Pregunta {
+public class Pregunta implements Mostrable{
+    private TipoDePregunta tipo;
+    private String enunciado;
+    private List<String> opciones;
 
-    protected Criterio criterio;
-    protected String enunciado;
-
-
-    public void evaluarRespuestas(List<Respuesta> respuestas) {
-        for (Respuesta respuesta : respuestas) {
-            respuesta.evaluarConCriterio(criterio);
-        }
+    public Pregunta(String enunciado, List<String> opciones, TipoDePregunta tipo){
+        this.enunciado = enunciado;
+        this.opciones = opciones;
+        this.tipo = tipo;
     }
 
     public void responderPregunta(List<Respuesta> respuestas) {
         for (Respuesta respuesta : respuestas) {
-            respuesta.responder();
+            tipo.responderPregunta(respuesta);
         }
     }
+    @Override
+    public void mostrar(){
+        tipo.mostrar(this.enunciado, this.opciones);
+    }
+
 }
