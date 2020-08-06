@@ -23,13 +23,6 @@ public class GroupChoice extends TipoDePregunta {
         this.eleccionGrupoB = this.parsearListaGrupo(solucion, "B", ":");
     }
 
-    public GroupChoice(Eleccion eleccion){
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
-            throw new SolucionInvalidaException();
-        }
-        eleccionCorrecta = eleccion;
-    }
-
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         if(eleccion.esEleccionCorrecta(this)){
