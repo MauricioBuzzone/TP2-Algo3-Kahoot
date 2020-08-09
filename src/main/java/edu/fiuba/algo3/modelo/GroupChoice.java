@@ -10,12 +10,15 @@ public class GroupChoice extends TipoDePregunta {
     private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
     private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
 
+
     public Eleccion eleccionGrupoA;
     public Eleccion eleccionGrupoB;
 
     public GroupChoice(List<String> solucion){
 
         Eleccion eleccion = new Eleccion(solucion);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
@@ -27,12 +30,6 @@ public class GroupChoice extends TipoDePregunta {
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
-    }
-
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override

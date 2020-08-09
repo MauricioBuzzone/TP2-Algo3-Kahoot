@@ -11,6 +11,8 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
 
     public MultipleChoiceConPenalidad(List<String> solucion){
         Eleccion eleccion = new Eleccion(solucion);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
         }
@@ -29,12 +31,6 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
         int cantidadCorrectas = eleccionCorrecta.cantidadCoincidencias(eleccion);
         int cantidadIncorrectas = eleccionCorrecta.cantidadDeNoCoincidentes(eleccion);
         return(cantidadCorrectas > cantidadIncorrectas);
-    }
-
-
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
     @Override

@@ -10,6 +10,8 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
 
     public MultipleChoicePuntajeParcial(List<String> solucion){
         Eleccion eleccion = new Eleccion(solucion);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
@@ -25,12 +27,6 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
     @Override
     protected boolean esUnaEleccionCorrecta(Eleccion eleccion){
         return(eleccionCorrecta.contieneA(eleccion));
-    }
-
-
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class TipoDePregunta implements Evaluador{
     protected Eleccion eleccionCorrecta;
+    protected ValidadorDeOpciones validador;
 
     public void responderPregunta(Respuesta respuesta) {
 
@@ -25,6 +26,11 @@ public abstract class TipoDePregunta implements Evaluador{
         }
         Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(puntosCasoDesfavorable);
         return puntaje;
+    }
+
+    @Override
+    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
+        return validador.opcionesValidasComoSolucion(opciones);
     }
 
     public void mostrar(String enunciado, List<String> opciones){
