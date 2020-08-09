@@ -1,2 +1,4 @@
 codecov:
   token: ca9707e6-d97b-46a3-b329-777c1c00015b
+ignore:
+  - "src/main/java/edu/fiuba/algo3/vista"

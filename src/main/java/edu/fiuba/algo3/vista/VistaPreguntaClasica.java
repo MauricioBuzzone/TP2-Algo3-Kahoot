@@ -16,7 +16,7 @@ public class VistaPreguntaClasica {
 
     String enunciado;
     List<Button> botones;
-    Stage stage;
+
 
     public VistaPreguntaClasica(String enunciado, List<String> opciones){
 

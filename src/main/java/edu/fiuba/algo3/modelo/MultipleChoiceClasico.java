@@ -11,6 +11,7 @@ public class MultipleChoiceClasico extends TipoDePregunta{
 
     public MultipleChoiceClasico(List<String> opcionesCorrectas){
         Eleccion eleccion = new Eleccion(opcionesCorrectas);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
         if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
             throw new SolucionInvalidaException();
@@ -22,9 +23,4 @@ public class MultipleChoiceClasico extends TipoDePregunta{
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
-    }
-
 }
