@@ -1,26 +1,27 @@
 package edu.fiuba.algo3.modelo;
 
-import static java.lang.Math.abs;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Eleccion {
 
-    private List<String> opciones;
+    private List<Opcion> opciones;
 
-    public Eleccion(List<String> unasOpciones){
+    public Eleccion(List<Opcion> unasOpciones){
 
         this.opciones = unasOpciones;
     }
 
     public boolean igualA(Eleccion otraEleccion){
 
-        Set<String> misOpciones = new HashSet<>(this.opciones);
+        Set<Opcion> misOpciones = new HashSet<>(this.opciones);
         return (otraEleccion.mismasOpciones(misOpciones));
     }
 
-    private boolean mismasOpciones(Set<String> otrasOpciones){
+    private boolean mismasOpciones(Set<Opcion> otrasOpciones){
 
-        Set<String> misOpciones = new HashSet<>(this.opciones);
+        Set<Opcion> misOpciones = new HashSet<>(this.opciones);
         return (misOpciones.equals(otrasOpciones));
     }
 
@@ -29,10 +30,10 @@ public class Eleccion {
        return otraEleccion.cantidadMismasOpciones(opciones);
     }
 
-    private int cantidadMismasOpciones(List<String> otrasOpciones){
+    private int cantidadMismasOpciones(List<Opcion> otrasOpciones){
 
         int coincidencias = 0;
-        for (String opcion : otrasOpciones ){
+        for (Opcion opcion : otrasOpciones ){
             if (this.opciones.contains(opcion)){
                 coincidencias++;
             }
@@ -41,7 +42,7 @@ public class Eleccion {
     }
 
     /*
-      Devuelve la cantidad de SUS opciones que no coincidan respecto de las MIAS.
+     *   Devuelve la cantidad de SUS opciones que no coincidan respecto de las MIAS.
      */
     public int cantidadDeNoCoincidentes(Eleccion otraEleccion){
 
@@ -49,22 +50,17 @@ public class Eleccion {
     }
 
     /*
-        Devuelve la cantidad de opciones MIAS que no pertenecen a la lista de opciones recibida
+     *   Devuelve la cantidad de opciones MIAS que no pertenecen a la lista de opciones recibida
      */
-    private int cantidadDeOpcionesQueNoEstanContenidas(List<String> otrasOpciones){
+    private int cantidadDeOpcionesQueNoEstanContenidas(List<Opcion> otrasOpciones){
 
         int cantidadOpcionesNoCoincidentes = 0;
-        for(String miOpcion : opciones){
+        for(Opcion miOpcion : opciones){
             if(!otrasOpciones.contains(miOpcion)){
                 cantidadOpcionesNoCoincidentes++;
             }
         }
         return cantidadOpcionesNoCoincidentes;
-    }
-
-    private boolean contenidoEn(List<String> opciones){
-
-        return opciones.containsAll(this.opciones);
     }
 
     public boolean contieneA(Eleccion otraEleccion){
@@ -76,11 +72,9 @@ public class Eleccion {
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 
-    public boolean estaEnOrden(Eleccion eleccion){
-        return eleccion.tienenMismoOrden(this.opciones);
+    private boolean contenidoEn(List<Opcion> opciones){
+
+        return opciones.containsAll(this.opciones);
     }
 
-    private  boolean tienenMismoOrden(List<String> opciones){
-        return this.opciones.equals(opciones);
-    }
 }

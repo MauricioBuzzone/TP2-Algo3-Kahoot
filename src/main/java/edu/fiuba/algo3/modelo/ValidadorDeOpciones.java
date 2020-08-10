@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ValidadorDeOpciones{
 
-    public boolean opcionesValidasComoSolucion(List<String> opciones);
+    public boolean opcionesValidasComoSolucion(List<Opcion> opciones);
 
 }

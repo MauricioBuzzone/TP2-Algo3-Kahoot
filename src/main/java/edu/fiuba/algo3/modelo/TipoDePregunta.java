@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.vista.VistaPreguntaClasica;
 
 import java.util.List;
 
-public abstract class TipoDePregunta implements Evaluador{
+public abstract class TipoDePregunta implements Evaluador {
     protected Eleccion eleccionCorrecta;
     protected ValidadorDeOpciones validador;
+
 
     public void responderPregunta(Respuesta respuesta) {
 
@@ -29,13 +29,11 @@ public abstract class TipoDePregunta implements Evaluador{
     }
 
     @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
+    public boolean sonOpcionesValidasComoSolucion(List<Opcion> opciones){
         return validador.opcionesValidasComoSolucion(opciones);
     }
 
-    public void mostrar(String enunciado, List<String> opciones){
+    public void mostrar(String enunciado, List<Opcion> opciones){
 
-        VistaPreguntaClasica vista = new VistaPreguntaClasica(enunciado, opciones);
-        vista.mostrar();
     }
 }

@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.OpcionComun;
+import edu.fiuba.algo3.modelo.OpcionDeGrupo;
+import edu.fiuba.algo3.modelo.OpcionOrdenada;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -1,13 +1,11 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
-
-
+import edu.fiuba.algo3.modelo.Bonificador;
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Puntaje;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JugadorTest {
 

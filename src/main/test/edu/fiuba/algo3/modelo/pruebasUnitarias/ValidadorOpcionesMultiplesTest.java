@@ -1,26 +1,30 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
-import edu.fiuba.algo3.modelo.*;
-
+import edu.fiuba.algo3.modelo.Opcion;
+import edu.fiuba.algo3.modelo.OpcionComun;
+import edu.fiuba.algo3.modelo.ValidadorDeOpciones;
+import edu.fiuba.algo3.modelo.ValidadorOpcionesMultiples;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ValidadorOpcionesMultiplesTest {
 
     @Test
     public void test01UnValidadorOpcionesMultiplesRecibeUnasCantidadDeOpcionesValidaYDevuelveTrue(){
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -33,14 +37,14 @@ public class ValidadorOpcionesMultiplesTest {
 
     @Test
     public void test02UnValidadorOpcionesMultiplesRecibeUnasCantidadDeOpcionesInvalidaYDevuelveFalse(){
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);

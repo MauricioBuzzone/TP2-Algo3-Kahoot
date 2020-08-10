@@ -1,19 +1,18 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.vista.VistaPreguntaClasica;
 
 import java.util.List;
 
-public class MultipleChoiceConPenalidad extends TipoDePregunta{
+public class MultipleChoiceConPenalidad extends TipoDePregunta {
 
     private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
     private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
 
-    public MultipleChoiceConPenalidad(List<String> solucion){
+    public MultipleChoiceConPenalidad(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
         validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
+        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
         eleccionCorrecta = eleccion;
@@ -33,10 +32,4 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
         return(cantidadCorrectas > cantidadIncorrectas);
     }
 
-    @Override
-    public void mostrar(String enunciado, List<String> opciones){
-        VistaPreguntaClasica vista = new VistaPreguntaClasica(enunciado, opciones);
-        vista.setBonificadores();
-        vista.mostrar();
-    }
 }
