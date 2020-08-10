@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 public class Respuesta {
 
+    private static final int PUNTAJE_NULO = 0;
     private Jugador jugador;
     private Eleccion eleccion;
     private Bonificador bonificador;
@@ -12,10 +13,10 @@ public class Respuesta {
         this.eleccion = eleccion;
         this.jugador = jugador;
         this.bonificador = bonificador;
+        this.puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_NULO);
     }
 
     public void responderSegunEvaluador(Evaluador unEvaluador){
-
         this.puntaje = unEvaluador.evaluarEleccion(eleccion);
     }
 
@@ -23,7 +24,7 @@ public class Respuesta {
         jugador.responder(puntaje, bonificador);
     }
 
-    public void aplicarBonificador(int factor){
+    public void cambiarBonificador(int factor){
         bonificador.cambiarFactor(factor);
     }
 

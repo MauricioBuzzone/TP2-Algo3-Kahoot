@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExclusividadActiva implements EstadoExclusividad{
+
+    private static final int BONIFICADOR_NULO = 0;
     private int factor;
 
     public ExclusividadActiva(int factor){
@@ -11,21 +13,49 @@ public class ExclusividadActiva implements EstadoExclusividad{
     }
 
     @Override
-    public void aplicar(List<Respuesta> respuestas){
-        List<Respuesta> respuestasCorrectas = new ArrayList<Respuesta>();
+    public void asignarPuntos(List<Respuesta> respuestas){
+
+        this.anularBonificadores(respuestas);
+
+        List<Respuesta> respuestasCorrectas = this.buscarRespuestasCorrectas(respuestas);
+
+        if(respuestasCorrectas.size() == 1 ){
+            this.cambiarBonificador(respuestasCorrectas);
+        }
+
+        this.actualizarPuntaje(respuestas);
+    }
+
+    private void anularBonificadores(List<Respuesta> respuestas){
+        for(Respuesta respuesta : respuestas){
+            respuesta.cambiarBonificador(BONIFICADOR_NULO);
+        }
+    }
+
+    private void cambiarBonificador(List<Respuesta> respuestasCorrectas){
+        respuestasCorrectas.get(0).cambiarBonificador(factor);
+    }
+
+    private List<Respuesta> buscarRespuestasCorrectas(List<Respuesta> respuestas){
+
+        List<Respuesta> respuestasCorrectas =  new ArrayList<Respuesta>();
+
         for(Respuesta respuesta : respuestas){
             if(respuesta.respuestaCorrecta()){
                 respuestasCorrectas.add(respuesta);
             }
         }
-        if(respuestasCorrectas.size() == 1){
-            respuestasCorrectas.get(0).aplicarBonificador(factor);
-            respuestasCorrectas.get(0).actualizarPuntaje();
+        return respuestasCorrectas;
+    }
+
+    private void actualizarPuntaje(List<Respuesta> respuestas){
+        for(Respuesta respuesta : respuestas){
+            respuesta.actualizarPuntaje();
         }
     }
 
     @Override
-    public EstadoExclusividad upgrade(){
+    public EstadoExclusividad actualizarEstado(){
 
         return new ExclusividadActiva(this.factor*2);
     }

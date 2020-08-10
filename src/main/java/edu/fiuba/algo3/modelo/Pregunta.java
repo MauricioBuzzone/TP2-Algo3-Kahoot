@@ -21,11 +21,13 @@ public class Pregunta implements Mostrable{
         }
         this.repartirPuntos(respuestas);
     }
+
     public void repartirPuntos(List<Respuesta> respuestas){
-        exclusividad.aplicar(respuestas);
+        exclusividad.asignarPuntos(respuestas);
     }
-    public void aplicarExclusividad(){
-        exclusividad.upgrade();
+
+    public void activarExclusividad(){
+        exclusividad.mejorarExclusividad();
     }
 
     @Override

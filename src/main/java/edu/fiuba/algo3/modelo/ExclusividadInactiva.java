@@ -10,15 +10,16 @@ public class ExclusividadInactiva implements EstadoExclusividad{
         this.factor = 1;
     }
 
+
     @Override
-    public void aplicar(List<Respuesta> respuestas){
+    public void asignarPuntos(List<Respuesta> respuestas){
         for (Respuesta respuesta : respuestas) {
             respuesta.actualizarPuntaje();
         }
     }
 
     @Override
-    public EstadoExclusividad upgrade(){
+    public EstadoExclusividad actualizarEstado(){
         return new ExclusividadActiva(this.factor*2);
     }
 }

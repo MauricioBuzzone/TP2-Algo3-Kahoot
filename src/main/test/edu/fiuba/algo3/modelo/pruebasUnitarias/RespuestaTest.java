@@ -60,4 +60,16 @@ public class RespuestaTest {
         verify(mockedEvaluadorVerdaderoFalso, times(1)).evaluarEleccion(mockedEleccionCorrecta);
 
     }
+
+    @Test
+    public void test04EjemploDeComoRompeLaRespuesta(){
+        Jugador mockedJugador = mock(Jugador.class);
+        Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
+        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
+        Puntaje mockedPuntaje = mock(Puntaje.class);
+        Bonificador mockedBonificador = mock(Bonificador.class);
+
+        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta, mockedBonificador);
+        respuesta.respuestaCorrecta();
+    }
 }

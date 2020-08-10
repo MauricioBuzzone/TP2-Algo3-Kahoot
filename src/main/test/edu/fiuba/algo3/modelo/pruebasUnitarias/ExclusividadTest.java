@@ -16,7 +16,9 @@ public class ExclusividadTest {
 
     @Test
     public void test01ExclusividadRecibeUnaListaDeRespuestaYActualizaSusPuntajes(){
+
         Exclusividad exclusividad = new Exclusividad();
+
         List<Respuesta> respuestas = new ArrayList<Respuesta>();
         Respuesta mockRespuesta1 = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
@@ -25,7 +27,7 @@ public class ExclusividadTest {
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.aplicar(respuestas);
+        exclusividad.asignarPuntos(respuestas);
 
         verify(mockRespuesta1, times(1)).actualizarPuntaje();
         verify(mockRespuesta2, times(1)).actualizarPuntaje();
@@ -34,90 +36,97 @@ public class ExclusividadTest {
 
     @Test
     public void test02ExclusividadUpgradeadaRecibeUnaListaDeRespuestasConUnaCorrectaYLeActualizaSusPuntos(){
+
         Exclusividad exclusividad = new Exclusividad();
-        exclusividad.upgrade();
+        exclusividad.mejorarExclusividad();
+
         List<Respuesta> respuestas = new ArrayList<Respuesta>();
         Respuesta mockRespuesta1 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
+        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
         when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.aplicar(respuestas);
+        exclusividad.asignarPuntos(respuestas);
 
-        verify(mockRespuesta1, times(0)).actualizarPuntaje();
-        verify(mockRespuesta2, times(1)).actualizarPuntaje();
-        verify(mockRespuesta3, times(0)).actualizarPuntaje();
+        verify(mockRespuesta1, times(1)).cambiarBonificador(0);
+        verify(mockRespuesta2, times(2)).cambiarBonificador(any(Integer.class));
+        verify(mockRespuesta3, times(1)).cambiarBonificador(0);
     }
 
     @Test
     public void test03ExclusividadUpgradeadaRecibeUnaListaDeRespuestasConDosCorrectaYNoLesActualizaSusPuntos(){
+
         Exclusividad exclusividad = new Exclusividad();
-        exclusividad.upgrade();
+        exclusividad.mejorarExclusividad();
+
         List<Respuesta> respuestas = new ArrayList<Respuesta>();
         Respuesta mockRespuesta1 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(true);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
+        when(mockRespuesta1.respuestaCorrecta()).thenReturn(true);
+        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
         when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.aplicar(respuestas);
+        exclusividad.asignarPuntos(respuestas);
 
-        verify(mockRespuesta1, times(0)).actualizarPuntaje();
-        verify(mockRespuesta2, times(0)).actualizarPuntaje();
-        verify(mockRespuesta3, times(0)).actualizarPuntaje();
+        verify(mockRespuesta1, times(1)).cambiarBonificador(0);
+        verify(mockRespuesta2, times(1)).cambiarBonificador(0);
+        verify(mockRespuesta3, times(1)).cambiarBonificador(0);
     }
 
     @Test
     public void test04ExclusividadUpgradeadaRecibeUnaListaDeRespuestasConCeroCorrectaYNoLesActualizaSusPuntos(){
+
         Exclusividad exclusividad = new Exclusividad();
-        exclusividad.upgrade();
+        exclusividad.mejorarExclusividad();
+
         List<Respuesta> respuestas = new ArrayList<Respuesta>();
         Respuesta mockRespuesta1 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(false);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
+        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta2.respuestaCorrecta()).thenReturn(false);
         when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.aplicar(respuestas);
+        exclusividad.asignarPuntos(respuestas);
 
-        verify(mockRespuesta1, times(0)).actualizarPuntaje();
-        verify(mockRespuesta2, times(0)).actualizarPuntaje();
-        verify(mockRespuesta3, times(0)).actualizarPuntaje();
+        verify(mockRespuesta1, times(1)).cambiarBonificador(0);
+        verify(mockRespuesta2, times(1)).cambiarBonificador(0);
+        verify(mockRespuesta3, times(1)).cambiarBonificador(0);
     }
 
     @Test
     public void test05ExclusividadUpgradeadaDosVecesRecibeUnaListaDeRespuestasConUnaCorrectaYLeActualizaSusPuntos(){
         Exclusividad exclusividad = new Exclusividad();
-        exclusividad.upgrade();
-        exclusividad.upgrade();
+        exclusividad.mejorarExclusividad();
+        exclusividad.mejorarExclusividad();
+
         List<Respuesta> respuestas = new ArrayList<Respuesta>();
         Respuesta mockRespuesta1 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
+        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
         when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.aplicar(respuestas);
+        exclusividad.asignarPuntos(respuestas);
 
-        verify(mockRespuesta1, times(0)).actualizarPuntaje();
-        verify(mockRespuesta2, times(1)).actualizarPuntaje();
-        verify(mockRespuesta3, times(0)).actualizarPuntaje();
+        verify(mockRespuesta1, times(1)).cambiarBonificador(0);
+        verify(mockRespuesta2, times(2)).cambiarBonificador(any(Integer.class));
+        verify(mockRespuesta3, times(1)).cambiarBonificador(0);
     }
 }
