@@ -7,6 +7,8 @@ public class Pregunta implements Mostrable{
     private String enunciado;
     private List<String> opciones;
 
+    private Exclusividad exclusividad = new Exclusividad();
+
     public Pregunta(String enunciado, List<String> opciones, TipoDePregunta tipo){
         this.enunciado = enunciado;
         this.opciones = opciones;
@@ -17,7 +19,15 @@ public class Pregunta implements Mostrable{
         for (Respuesta respuesta : respuestas) {
             tipo.responderPregunta(respuesta);
         }
+        this.repartirPuntos(respuestas);
     }
+    public void repartirPuntos(List<Respuesta> respuestas){
+        exclusividad.aplicar(respuestas);
+    }
+    public void aplicarExclusividad(){
+        exclusividad.upgrade();
+    }
+
     @Override
     public void mostrar(){
         tipo.mostrar(this.enunciado, this.opciones);

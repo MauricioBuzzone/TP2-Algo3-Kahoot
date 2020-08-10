@@ -41,7 +41,23 @@ public class RespuestaTest {
 
         Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta, mockedBonificador);
         respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
+        respuesta.actualizarPuntaje();
 
-        verify(mockedJugador, times(1)).responder(mockedPuntaje, mockedBonificador);
+        verify(mockedJugador, times(1)).responder(any(Puntaje.class), any(Bonificador.class));
+    }
+
+    @Test
+    public void test03UnaRespuestaSeRespondeYSeEvaluaLaEleccion(){
+        Jugador mockedJugador = mock(Jugador.class);
+        Eleccion mockedEleccionCorrecta = mock(Eleccion.class);
+        Evaluador mockedEvaluadorVerdaderoFalso = mock(VerdaderoFalso.class);
+        Puntaje mockedPuntaje = mock(Puntaje.class);
+        Bonificador mockedBonificador = mock(Bonificador.class);
+
+        Respuesta respuesta = new Respuesta(mockedJugador, mockedEleccionCorrecta, mockedBonificador);
+        respuesta.responderSegunEvaluador(mockedEvaluadorVerdaderoFalso);
+
+        verify(mockedEvaluadorVerdaderoFalso, times(1)).evaluarEleccion(mockedEleccionCorrecta);
+
     }
 }

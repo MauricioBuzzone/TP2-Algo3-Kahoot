@@ -16,6 +16,8 @@ public class Bonificador{
         this.factor=3;
     }
 
+    public void cambiarFactor(int factor){ this.factor=factor; }
+
     public int bonificarPuntos(int puntos){
         return puntos * factor;
     }
