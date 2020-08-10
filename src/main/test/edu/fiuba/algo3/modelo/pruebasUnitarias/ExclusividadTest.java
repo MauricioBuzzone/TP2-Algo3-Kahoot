@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
 import edu.fiuba.algo3.modelo.*;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,7 +26,8 @@ public class ExclusividadTest {
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.asignarPuntos(respuestas);
+        Evaluador mockEvaluador = mock(Evaluador.class);
+        exclusividad.asignarPuntos(respuestas, mockEvaluador);
 
         verify(mockRespuesta1, times(1)).actualizarPuntaje();
         verify(mockRespuesta2, times(1)).actualizarPuntaje();
@@ -44,14 +44,15 @@ public class ExclusividadTest {
         Respuesta mockRespuesta1 = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
-        when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta1.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
+        when(mockRespuesta2.respuestaCorrecta(any(Evaluador.class))).thenReturn(true);
+        when(mockRespuesta3.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.asignarPuntos(respuestas);
+        Evaluador mockEvaluador = mock(Evaluador.class);
+        exclusividad.asignarPuntos(respuestas, mockEvaluador);
 
         verify(mockRespuesta1, times(1)).cambiarBonificador(0);
         verify(mockRespuesta2, times(2)).cambiarBonificador(any(Integer.class));
@@ -68,14 +69,15 @@ public class ExclusividadTest {
         Respuesta mockRespuesta1 = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(true);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
-        when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta1.respuestaCorrecta(any(Evaluador.class))).thenReturn(true);
+        when(mockRespuesta2.respuestaCorrecta(any(Evaluador.class))).thenReturn(true);
+        when(mockRespuesta3.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.asignarPuntos(respuestas);
+        Evaluador mockEvaluador = mock(Evaluador.class);
+        exclusividad.asignarPuntos(respuestas, mockEvaluador);
 
         verify(mockRespuesta1, times(1)).cambiarBonificador(0);
         verify(mockRespuesta2, times(1)).cambiarBonificador(0);
@@ -92,14 +94,15 @@ public class ExclusividadTest {
         Respuesta mockRespuesta1 = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(false);
-        when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta1.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
+        when(mockRespuesta2.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
+        when(mockRespuesta3.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.asignarPuntos(respuestas);
+        Evaluador mockEvaluador = mock(Evaluador.class);
+        exclusividad.asignarPuntos(respuestas, mockEvaluador);
 
         verify(mockRespuesta1, times(1)).cambiarBonificador(0);
         verify(mockRespuesta2, times(1)).cambiarBonificador(0);
@@ -116,14 +119,15 @@ public class ExclusividadTest {
         Respuesta mockRespuesta1 = mock(Respuesta.class);
         Respuesta mockRespuesta2 = mock(Respuesta.class);
         Respuesta mockRespuesta3 = mock(Respuesta.class);
-        when(mockRespuesta1.respuestaCorrecta()).thenReturn(false);
-        when(mockRespuesta2.respuestaCorrecta()).thenReturn(true);
-        when(mockRespuesta3.respuestaCorrecta()).thenReturn(false);
+        when(mockRespuesta1.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
+        when(mockRespuesta2.respuestaCorrecta(any(Evaluador.class))).thenReturn(true);
+        when(mockRespuesta3.respuestaCorrecta(any(Evaluador.class))).thenReturn(false);
         respuestas.add(mockRespuesta1);
         respuestas.add(mockRespuesta2);
         respuestas.add(mockRespuesta3);
 
-        exclusividad.asignarPuntos(respuestas);
+        Evaluador mockEvaluador = mock(Evaluador.class);
+        exclusividad.asignarPuntos(respuestas, mockEvaluador);
 
         verify(mockRespuesta1, times(1)).cambiarBonificador(0);
         verify(mockRespuesta2, times(2)).cambiarBonificador(any(Integer.class));

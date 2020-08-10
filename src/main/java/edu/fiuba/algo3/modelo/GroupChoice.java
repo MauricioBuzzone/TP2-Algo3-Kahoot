@@ -49,4 +49,7 @@ public class GroupChoice extends TipoDePregunta {
         }
         return(new Eleccion(opcionesGrupo));
     }
+
+    @Override
+    public boolean esCorrecta(Eleccion eleccion){return this.esUnaEleccionCorrecta(eleccion);}
 }

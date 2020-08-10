@@ -5,6 +5,7 @@ import edu.fiuba.algo3.vista.VistaPreguntaClasica;
 import java.util.List;
 
 public abstract class TipoDePregunta implements Evaluador{
+
     protected Eleccion eleccionCorrecta;
     protected ValidadorDeOpciones validador;
 
@@ -37,5 +38,9 @@ public abstract class TipoDePregunta implements Evaluador{
 
         VistaPreguntaClasica vista = new VistaPreguntaClasica(enunciado, opciones);
         vista.mostrar();
+    }
+
+    public boolean esCorrecta(Eleccion eleccion){
+        return eleccion.igualA(eleccionCorrecta);
     }
 }

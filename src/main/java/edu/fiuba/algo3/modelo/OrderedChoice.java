@@ -30,4 +30,9 @@ public class OrderedChoice extends TipoDePregunta{
 
         return eleccion.estaEnOrden(eleccionCorrecta);
     }
+
+    @Override
+    public boolean esCorrecta(Eleccion eleccion){
+        return eleccion.estaEnOrden(eleccionCorrecta);
+    }
 }

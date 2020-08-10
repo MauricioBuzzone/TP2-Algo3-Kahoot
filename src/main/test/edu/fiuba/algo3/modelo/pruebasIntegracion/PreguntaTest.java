@@ -1009,9 +1009,148 @@ public class PreguntaTest {
         pregunta.activarExclusividad();
         pregunta.responderPregunta(respuestas);
 
-        assertEquals(diego.puntosTotales(), 0);
+        assertEquals(diego.puntosTotales(), 8);
         assertEquals(tomas.puntosTotales(), 0);
         assertEquals(pablo.puntosTotales(), 0);
         assertEquals(edson.puntosTotales(), 0);
+    }
+
+    @Test
+    public void test3_3UnaPreguntaDeOrderedChoiceConExclusividadRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente() {
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+
+        //Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        //De manera tal que, se pueda corroborar el comportamiento deseado
+        diego.asignarPuntos(4);
+        tomas.asignarPuntos(3);
+
+        String enunciado = "Situar cronologicamente";
+
+        String opcion1 = "Huevo";
+        String opcion2 = "Gallina";
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+
+
+        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
+
+        //Jugador contesta correctamente
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add(opcion1);
+        opcionDiego.add(opcion2);
+
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+
+        Bonificador bonificadorDiego = new Bonificador();
+
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
+
+        //Jugador contesta incorrectamente
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add(opcion2);
+        opcionTomas.add(opcion1);
+
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+
+        Bonificador bonificadorTomas = new Bonificador();
+
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
+
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+
+        pregunta.activarExclusividad();
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 6);
+        assertEquals(tomas.puntosTotales(), 3);
+    }
+
+    @Test
+    public void test3_4UnaPreguntaDeGroupChoiceConExclusividadRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente() {
+
+        /*
+        Creo los jugadores
+        Se asume que venían jugando de antes y que los puntos que tiene son los siguientes
+        De manera tal que, se pueda corroborar el comportamiento deseado
+        */
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+        diego.asignarPuntos(3);
+        tomas.asignarPuntos(6);
+
+        //Creo la pregunta
+        String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
+        String opcion1 = new String("Niki Lauda");
+        String opcion2 = new String("Nico Rosberg");
+        String opcion3 = new String("Lewis Hamilton");
+        String opcion4 = new String("Damon Hill");
+        String opcion5 = new String("Fernando Alonso");
+
+
+        List<String> solucion = new ArrayList<String>();
+        solucion.add("A:" + opcion1);
+        solucion.add("B:" + opcion2);
+        solucion.add("A:" + opcion3);
+        solucion.add("B:" + opcion4);
+        solucion.add("A:" + opcion5);
+        TipoDePregunta groupChoice = new GroupChoice(solucion);
+
+        List<String> opciones = new ArrayList<String>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        opciones.add(opcion5);
+
+        Pregunta pregunta = new Pregunta(enunciado, opciones, groupChoice);
+
+        //Caso correcta:
+        List<String> opcionDiego = new ArrayList<String>();
+        opcionDiego.add("A:" + opcion1);
+        opcionDiego.add("B:" + opcion2);
+        opcionDiego.add("A:" + opcion3);
+        opcionDiego.add("B:" + opcion4);
+        opcionDiego.add("A:" + opcion5);
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        Bonificador bonificadorDiego = new Bonificador();
+
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
+
+        //Caso Incorrecta:
+        List<String> opcionTomas = new ArrayList<String>();
+        opcionTomas.add("A:" + opcion1);
+        opcionTomas.add("A:" + opcion2);
+        opcionTomas.add("B:" + opcion3);
+        opcionTomas.add("B:" + opcion4);
+        opcionTomas.add("A:" + opcion5);
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+        Bonificador bonificadorTomas = new Bonificador();
+
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
+
+
+        //Se crea la lista de respuestas:
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuestaDiego);
+        respuestas.add(respuestaTomas);
+
+        //Pregunta asinga  los puntos correspondientes:
+        pregunta.activarExclusividad();
+        pregunta.responderPregunta(respuestas);
+
+        assertEquals(diego.puntosTotales(), 5);
+        assertEquals(tomas.puntosTotales(), 6);
     }
 }

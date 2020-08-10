@@ -6,13 +6,13 @@ public class Pregunta implements Mostrable{
     private TipoDePregunta tipo;
     private String enunciado;
     private List<String> opciones;
-
-    private Exclusividad exclusividad = new Exclusividad();
+    private Exclusividad exclusividad;
 
     public Pregunta(String enunciado, List<String> opciones, TipoDePregunta tipo){
         this.enunciado = enunciado;
         this.opciones = opciones;
         this.tipo = tipo;
+        exclusividad = new Exclusividad();
     }
 
     public void responderPregunta(List<Respuesta> respuestas) {
@@ -23,7 +23,7 @@ public class Pregunta implements Mostrable{
     }
 
     public void repartirPuntos(List<Respuesta> respuestas){
-        exclusividad.asignarPuntos(respuestas);
+        exclusividad.asignarPuntos(respuestas, tipo);
     }
 
     public void activarExclusividad(){

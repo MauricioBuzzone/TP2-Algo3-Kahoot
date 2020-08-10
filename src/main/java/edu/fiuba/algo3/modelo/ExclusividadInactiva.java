@@ -12,7 +12,7 @@ public class ExclusividadInactiva implements EstadoExclusividad{
 
 
     @Override
-    public void asignarPuntos(List<Respuesta> respuestas){
+    public void asignarPuntos(List<Respuesta> respuestas, Evaluador evaluador){
         for (Respuesta respuesta : respuestas) {
             respuesta.actualizarPuntaje();
         }

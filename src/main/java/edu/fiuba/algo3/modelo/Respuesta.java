@@ -28,7 +28,7 @@ public class Respuesta {
         bonificador.cambiarFactor(factor);
     }
 
-    public boolean respuestaCorrecta(){
-        return puntaje.esPositivo();
+    public boolean respuestaCorrecta(Evaluador evaluador){
+        return evaluador.esCorrecta(eleccion);
     }
 }

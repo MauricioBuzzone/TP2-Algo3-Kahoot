@@ -13,11 +13,11 @@ public class ExclusividadActiva implements EstadoExclusividad{
     }
 
     @Override
-    public void asignarPuntos(List<Respuesta> respuestas){
+    public void asignarPuntos(List<Respuesta> respuestas, Evaluador evaluador){
 
         this.anularBonificadores(respuestas);
 
-        List<Respuesta> respuestasCorrectas = this.buscarRespuestasCorrectas(respuestas);
+        List<Respuesta> respuestasCorrectas = this.buscarRespuestasCorrectas(respuestas, evaluador);
 
         if(respuestasCorrectas.size() == 1 ){
             this.cambiarBonificador(respuestasCorrectas);
@@ -36,12 +36,12 @@ public class ExclusividadActiva implements EstadoExclusividad{
         respuestasCorrectas.get(0).cambiarBonificador(factor);
     }
 
-    private List<Respuesta> buscarRespuestasCorrectas(List<Respuesta> respuestas){
+    private List<Respuesta> buscarRespuestasCorrectas(List<Respuesta> respuestas, Evaluador evaluador){
 
         List<Respuesta> respuestasCorrectas =  new ArrayList<Respuesta>();
 
         for(Respuesta respuesta : respuestas){
-            if(respuesta.respuestaCorrecta()){
+            if(respuesta.respuestaCorrecta(evaluador)){
                 respuestasCorrectas.add(respuesta);
             }
         }

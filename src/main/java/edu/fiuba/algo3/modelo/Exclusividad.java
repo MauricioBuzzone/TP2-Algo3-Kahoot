@@ -10,8 +10,8 @@ public class Exclusividad {
         this.estado = new ExclusividadInactiva();
     }
 
-    public void asignarPuntos(List<Respuesta> respuestas){
-        estado.asignarPuntos(respuestas);
+    public void asignarPuntos(List<Respuesta> respuestas, Evaluador evaluador){
+        estado.asignarPuntos(respuestas, evaluador);
     }
 
     public void mejorarExclusividad(){
