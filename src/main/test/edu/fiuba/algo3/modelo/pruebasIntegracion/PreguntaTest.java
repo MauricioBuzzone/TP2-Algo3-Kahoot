@@ -1130,7 +1130,7 @@ public class PreguntaTest {
 
         //Caso Incorrecta:
         List<Opcion> opcionTomas = new ArrayList<Opcion>();
-        opcionTomas.add(new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");                  // Bien
+        opcionTomas.add(new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC"));                 // Bien
         opcionTomas.add(new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con mas de 1 DWC"));               // Mal
         opcionTomas.add(new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con 1 DWC"));                    // Mal
         opcionTomas.add(new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC"));                        // Bien
