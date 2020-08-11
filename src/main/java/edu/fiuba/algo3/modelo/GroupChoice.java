@@ -23,7 +23,7 @@ public class GroupChoice extends TipoDePregunta {
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
-
+  
+    @Override
+    public boolean esCorrecta(Eleccion eleccion){return this.esUnaEleccionCorrecta(eleccion);}
 }
-
-

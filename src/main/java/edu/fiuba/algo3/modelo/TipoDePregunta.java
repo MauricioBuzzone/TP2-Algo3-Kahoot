@@ -36,4 +36,8 @@ public abstract class TipoDePregunta implements Evaluador {
     public void mostrar(String enunciado, List<Opcion> opciones){
 
     }
+
+    public boolean esCorrecta(Eleccion eleccion){
+        return eleccion.igualA(eleccionCorrecta);
+    }
 }

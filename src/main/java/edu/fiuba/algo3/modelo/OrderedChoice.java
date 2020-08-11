@@ -24,5 +24,4 @@ public class OrderedChoice extends TipoDePregunta {
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
-
 }
