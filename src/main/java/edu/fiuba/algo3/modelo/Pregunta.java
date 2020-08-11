@@ -26,6 +26,10 @@ public class Pregunta implements Mostrable {
         exclusividad.asignarPuntos(respuestas, tipo);
     }
 
+    public void responderPregunta(Respuestas respuestas) {
+        respuestas.responder(tipo);
+    }
+
     public void activarExclusividad(){
         exclusividad.mejorarExclusividad();
     }

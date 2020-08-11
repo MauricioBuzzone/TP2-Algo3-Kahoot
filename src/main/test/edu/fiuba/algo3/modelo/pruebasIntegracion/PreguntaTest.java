@@ -62,9 +62,9 @@ public class PreguntaTest {
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
-        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
 
         pregunta.responderPregunta(respuestas);
 
@@ -107,9 +107,9 @@ public class PreguntaTest {
         Respuesta primeraRespuestaDiego = new Respuesta(diego, primeraEleccionDiego, bonificadorDiego);
         Respuesta primeraRespuestaTomas = new Respuesta(tomas, primeraEleccionTomas, bonificadorTomas);
 
-        ArrayList<Respuesta> respuestasUno = new ArrayList<Respuesta>();
-        respuestasUno.add(primeraRespuestaDiego);
-        respuestasUno.add(primeraRespuestaTomas);
+        Respuestas respuestasUno = new Respuestas();
+        respuestasUno.agregarRespuesta(primeraRespuestaDiego);
+        respuestasUno.agregarRespuesta(primeraRespuestaTomas);
 
         preguntaUno.responderPregunta(respuestasUno);
 
@@ -141,14 +141,15 @@ public class PreguntaTest {
 
         Respuesta segundaRespuestaDiego = new Respuesta(diego, segundaEleccionDiego, segundoBonificadorDiego);
         Respuesta segundaRespuestaTomas = new Respuesta(tomas, segundaEleccionTomas, segundoBonificadorTomas);
-        ArrayList<Respuesta> respuestasDos = new ArrayList<Respuesta>();
-        respuestasDos.add(segundaRespuestaDiego);
-        respuestasDos.add(segundaRespuestaTomas);
+        Respuestas respuestasDos = new Respuestas();
+        respuestasDos.agregarRespuesta(segundaRespuestaDiego);
+        respuestasDos.agregarRespuesta(segundaRespuestaTomas);
 
         preguntaUno.responderPregunta(respuestasDos);
 
         assert (tomas.puntosTotales() > diego.puntosTotales());
     }
+
     @Test
     public void test1_1UnaPreguntaDeVerdaderoFalsoConPenalidadSePuedeCrearIndicandoleCualEsLaRespuestaCorrecta() {
 
@@ -267,9 +268,9 @@ public class PreguntaTest {
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
 
         pregunta.responderPregunta(respuestas);
 
@@ -349,10 +350,10 @@ public class PreguntaTest {
 
         Respuesta respuestaPablo = new Respuesta(pablo, eleccionPablo, bonificadorPablo);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
-        respuestas.add(respuestaPablo);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
+        respuestas.agregarRespuesta(respuestaPablo);
 
         pregunta.responderPregunta(respuestas);
 
@@ -429,11 +430,11 @@ public class PreguntaTest {
 
         Respuesta respuestaEdson = new Respuesta(edson, eleccionEdson, bonificadorEdson);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
-        respuestas.add(respuestaPablo);
-        respuestas.add(respuestaEdson);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
+        respuestas.agregarRespuesta(respuestaPablo);
+        respuestas.agregarRespuesta(respuestaEdson);
 
         pregunta.responderPregunta(respuestas);
 
@@ -571,12 +572,12 @@ public class PreguntaTest {
 
         Respuesta respuestaMartin = new Respuesta(martin, eleccionMartin, bonificadorMartin);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
-        respuestas.add(respuestaPablo);
-        respuestas.add(respuestaEdson);
-        respuestas.add(respuestaMartin);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
+        respuestas.agregarRespuesta(respuestaPablo);
+        respuestas.agregarRespuesta(respuestaEdson);
+        respuestas.agregarRespuesta(respuestaMartin);
 
         pregunta.responderPregunta(respuestas);
 
@@ -669,9 +670,9 @@ public class PreguntaTest {
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
 
         pregunta.responderPregunta(respuestas);
 
@@ -790,9 +791,9 @@ public class PreguntaTest {
 
 
         //Se crea la lista de respuestas:
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
 
         //Pregunta asinga  los puntos correspondientes:
         pregunta.responderPregunta(respuestas);
@@ -850,8 +851,8 @@ public class PreguntaTest {
 
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
 
         pregunta.responderPregunta(respuestas);
 
@@ -894,8 +895,8 @@ public class PreguntaTest {
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaTomas);
 
         pregunta.responderPregunta(respuestas);
 
@@ -938,11 +939,11 @@ public class PreguntaTest {
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
-        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.activarExclusividad();                       // Diego activa la exclusividad.
+        respuestas.agregarRespuesta(respuestaTomas);
 
-        pregunta.activarExclusividad();
         pregunta.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 3);
@@ -1018,14 +1019,14 @@ public class PreguntaTest {
 
         Respuesta respuestaEdson = new Respuesta(edson, eleccionEdson, bonificadorEdson);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
-        respuestas.add(respuestaPablo);
-        respuestas.add(respuestaEdson);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.activarExclusividad();           // Diego activa la exclusividad
+        respuestas.agregarRespuesta(respuestaTomas);
+        respuestas.agregarRespuesta(respuestaPablo);
+        respuestas.activarExclusividad();           // Pablo activa la exclusividad
+        respuestas.agregarRespuesta(respuestaEdson);
 
-        pregunta.activarExclusividad();
-        pregunta.activarExclusividad();
         pregunta.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 8);
@@ -1084,11 +1085,11 @@ public class PreguntaTest {
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
+        respuestas.activarExclusividad();               // Tomás activa la exclusividad
 
-        pregunta.activarExclusividad();
         pregunta.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 6);
@@ -1161,12 +1162,12 @@ public class PreguntaTest {
 
 
         //Se crea la lista de respuestas:
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
-        respuestas.add(respuestaDiego);
-        respuestas.add(respuestaTomas);
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
+        respuestas.activarExclusividad();                   // Tomás activa la exclusividad.
 
         //Pregunta asinga  los puntos correspondientes:
-        pregunta.activarExclusividad();
         pregunta.responderPregunta(respuestas);
 
         assertEquals(diego.puntosTotales(), 5);
