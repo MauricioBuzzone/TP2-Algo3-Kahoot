@@ -20,8 +20,4 @@ public class Puntaje {
     public int aplicarBonificador(Bonificador bonificador){
         return bonificador.bonificarPuntos(this.puntos);
     }
-
-    public boolean esPositivo(){
-        return  puntos>0;
-    }
 }
