@@ -321,20 +321,20 @@ public class EleccionTest {
 
         assertFalse(eleccion1.contieneA(eleccion2));
     }
- /*
+
     @Test
     public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnEvaluadorVFYDevuelveQueSusOpcionesSonValidasParaElEvaluadorVF(){
 
         // Creación de elementos necesarios para hacer la prueba
-        String opcionCorrecta = new String("Falso");
-        List<String> opcionesCorrectas = new ArrayList<String>();
+        Opcion opcionCorrecta = new OpcionComun("Falso");
+        List<Opcion> opcionesCorrectas = new ArrayList<Opcion>();
         opcionesCorrectas.add(opcionCorrecta);
 
         Evaluador evaluadorVF = new VerdaderoFalso(opcionesCorrectas);
 
         // Creo la opción a evalúar
-        String opcion = new String("Verdadero");
-        List<String> opciones = new ArrayList<String>();
+        Opcion opcion = new OpcionComun("Verdadero");
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion);
         Eleccion eleccion = new Eleccion(opciones);
 
@@ -345,21 +345,21 @@ public class EleccionTest {
     public void test17UnaEleccionDe6OpcionesRecibeUnEvaluadorMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElEvaluador(){
 
         // Creación de elementos necesarios para hacer la prueba
-        String opcionCorrecta = new String("Jaime Lannister");
-        List<String> opcionesCorrectas = new ArrayList<String>();
+        Opcion opcionCorrecta = new OpcionComun("Jaime Lannister");
+        List<Opcion> opcionesCorrectas = new ArrayList<Opcion>();
         opcionesCorrectas.add(opcionCorrecta);
 
         Evaluador evaluadorMCC = new MultipleChoiceClasico(opcionesCorrectas);
 
         // Creo la opción a evaluar
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
-        String opcion5 = new String("Lancel Lannister");
-        String opcion6 = new String("Joffrey Lannister");
+        Opcion opcion1 = new OpcionComun("Jaime Lannister");
+        Opcion opcion2 = new OpcionComun("Tyrion Lannister");
+        Opcion opcion3 = new OpcionComun("Cersei Lannister");
+        Opcion opcion4 = new OpcionComun("Tywin Lannister");
+        Opcion opcion5 = new OpcionComun("Lancel Lannister");
+        Opcion opcion6 = new OpcionComun("Joffrey Lannister");
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -371,7 +371,7 @@ public class EleccionTest {
         assertFalse(eleccion.esUnaEleccionValidaComoSolucion(evaluadorMCC));
     }
 
- */
+
 
     @Test
     public void test18UnaEleccionDeCuatroOpcionesYOtraOpcionDeTresOpcionesSePideLaCantidadDeNoCoincidenciasYDevuelveLaCantidadDeDiferenciasCorrecta(){
