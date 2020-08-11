@@ -1,31 +1,27 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 public class MultipleChoicePuntajeParcialTest {
     @Test
     public void test01MCPPAlResponderPreguntaConUnaRespuestaAEstaLePasaElEvaluadorCorrespondiente(){
         String enunciado = "¿Quiénes son profesores de AMII?";
 
-        String opcion1 = "Sirne";
-        String opcion2 = "Acero";
-        String opcion3 = "Unger";
-        String opcion4 = "Vargas";
-        String opcion5 = "Piva";
+        Opcion opcion1 = new OpcionComun("Sirne");
+        Opcion opcion2 = new OpcionComun("Acero");
+        Opcion opcion3 = new OpcionComun("Unger");
+        Opcion opcion4 = new OpcionComun("Vargas");
+        Opcion opcion5 = new OpcionComun("Piva");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion2);
         correctas.add(opcion3);
@@ -47,14 +43,14 @@ public class MultipleChoicePuntajeParcialTest {
 
         String enunciado = "p -> q";
 
-        String opcion1 = "p'.q";
-        String opcion2 = "q'-> p'";
-        String opcion3 = "(p + q')'";
-        String opcion4 = "p'.q + p.p'";
-        String opcion5 = "p'.(q + p)";
-        String opcion6 = "(p + (q'.p'))'";
+        Opcion opcion1 = new OpcionComun("p'.q");
+        Opcion opcion2 = new OpcionComun("q'-> p'");
+        Opcion opcion3 = new OpcionComun("(p + q')'");
+        Opcion opcion4 = new OpcionComun("p'.q + p.p'");
+        Opcion opcion5 = new OpcionComun("p'.(q + p)");
+        Opcion opcion6 = new OpcionComun("(p + (q'.p'))'");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion2);
         correctas.add(opcion3);
@@ -74,13 +70,13 @@ public class MultipleChoicePuntajeParcialTest {
 
         String enunciado = "P = NP";
 
-        String opcion1 = "Si";
-        String opcion2 = "Claramente no";
-        String opcion3 = "Un poquito";
-        String opcion4 = "Pablo = NicoPaez (?";
-        String opcion5 = ":SonLoMismo:";
+        Opcion opcion1 = new OpcionComun("Si");
+        Opcion opcion2 = new OpcionComun("Claramente no");
+        Opcion opcion3 = new OpcionComun("Un poquito");
+        Opcion opcion4 = new OpcionComun("Pablo = NicoPaez (?");
+        Opcion opcion5 = new OpcionComun(":SonLoMismo:");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
 
         assertThrows(SolucionInvalidaException.class,
                 ()->{
@@ -92,14 +88,14 @@ public class MultipleChoicePuntajeParcialTest {
 
         //Enunciado: Tema de Fisica II
 
-        String texto1 = new String("Induccion magnetica");
-        String texto2 = new String("Fuerza De Lorenz");
-        String texto3 = new String("Diferenciacion");
-        String texto4 = new String("Cuerpo Rigido");
+        Opcion opcion1 = new OpcionComun("Induccion magnetica");
+        Opcion opcion2 = new OpcionComun("Fuerza De Lorenz");
+        Opcion opcion3 = new OpcionComun("Diferenciacion");
+        Opcion opcion4 = new OpcionComun("Cuerpo Rigido");
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(texto1);
-        solucion.add(texto2);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
 
         Eleccion eleccionJugador = new Eleccion(solucion);
 
@@ -118,17 +114,17 @@ public class MultipleChoicePuntajeParcialTest {
 
         //Enunciado: Tema de Fisica II
 
-        String texto1 = new String("Induccion magnetica");
-        String texto2 = new String("Fuerza De Lorenz");
-        String texto3 = new String("Diferenciacion");
-        String texto4 = new String("Cuerpo Rigido");
+        Opcion opcion1 = new OpcionComun("Induccion magnetica");
+        Opcion opcion2 = new OpcionComun("Fuerza De Lorenz");
+        Opcion opcion3 = new OpcionComun("Diferenciacion");
+        Opcion opcion4 = new OpcionComun("Cuerpo Rigido");
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(texto1);
-        solucion.add(texto2);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
 
-        List<String> solucionJugador = new ArrayList<String>();
-        solucionJugador.add(texto1);
+        List<Opcion> solucionJugador = new ArrayList<Opcion>();
+        solucionJugador.add(opcion1);
 
 
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
@@ -146,18 +142,18 @@ public class MultipleChoicePuntajeParcialTest {
 
         //Enunciado: Tema de Fisica II
 
-        String texto1 = new String("Induccion magnetica");
-        String texto2 = new String("Fuerza De Lorenz");
-        String texto3 = new String("Diferenciacion");
-        String texto4 = new String("Cuerpo Rigido");
+        Opcion opcion1 = new OpcionComun("Induccion magnetica");
+        Opcion opcion2 = new OpcionComun("Fuerza De Lorenz");
+        Opcion opcion3 = new OpcionComun("Diferenciacion");
+        Opcion opcion4 = new OpcionComun("Cuerpo Rigido");
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(texto1);
-        solucion.add(texto2);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
 
-        List<String> solucionJugador = new ArrayList<String>();
-        solucionJugador.add(texto3);
-        solucionJugador.add(texto2);
+        List<Opcion> solucionJugador = new ArrayList<Opcion>();
+        solucionJugador.add(opcion3);
+        solucionJugador.add(opcion2);
 
 
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
@@ -175,18 +171,18 @@ public class MultipleChoicePuntajeParcialTest {
 
         //Enunciado: Tema de Fisica II
 
-        String texto1 = new String("Induccion magnetica");
-        String texto2 = new String("Fuerza De Lorenz");
-        String texto3 = new String("Diferenciacion");
-        String texto4 = new String("Cuerpo Rigido");
+        Opcion opcion1 = new OpcionComun("Induccion magnetica");
+        Opcion opcion2 = new OpcionComun("Fuerza De Lorenz");
+        Opcion opcion3 = new OpcionComun("Diferenciacion");
+        Opcion opcion4 = new OpcionComun("Cuerpo Rigido");
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(texto1);
-        solucion.add(texto2);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
 
-        List<String> solucionJugador = new ArrayList<String>();
-        solucionJugador.add(texto3);
-        solucionJugador.add(texto4);
+        List<Opcion> solucionJugador = new ArrayList<Opcion>();
+        solucionJugador.add(opcion3);
+        solucionJugador.add(opcion4);
 
 
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
@@ -206,20 +202,20 @@ public class MultipleChoicePuntajeParcialTest {
 
         //Enunciado: Tema de Fisica II
 
-        String texto1 = new String("Induccion magnetica");
-        String texto2 = new String("Fuerza De Lorenz");
-        String texto3 = new String("Diferenciacion");
-        String texto4 = new String("Cuerpo Rigido");
+        Opcion opcion1 = new OpcionComun("Induccion magnetica");
+        Opcion opcion2 = new OpcionComun("Fuerza De Lorenz");
+        Opcion opcion3 = new OpcionComun("Diferenciacion");
+        Opcion opcion4 = new OpcionComun("Cuerpo Rigido");
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(texto1);
-        solucion.add(texto2);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
 
-        List<String> solucionJugador = new ArrayList<String>();
-        solucionJugador.add(texto3);
-        solucionJugador.add(texto4);
-        solucionJugador.add(texto1);
-        solucionJugador.add(texto2);
+        List<Opcion> solucionJugador = new ArrayList<Opcion>();
+        solucionJugador.add(opcion3);
+        solucionJugador.add(opcion4);
+        solucionJugador.add(opcion1);
+        solucionJugador.add(opcion2);
 
 
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
@@ -235,11 +231,11 @@ public class MultipleChoicePuntajeParcialTest {
     @Test
     public void test09MultipleChoicePuntajeParcialRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
 
-        String opcion1 = "Mike Wazowski";
-        String opcion2 = "James P. Sullivan";
-        String opcion3 = "Randall Boggs";
+        Opcion opcion1 = new OpcionComun("Mike Wazowski");
+        Opcion opcion2 = new OpcionComun("James P. Sullivan");
+        Opcion opcion3 = new OpcionComun("Randall Boggs");
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -250,14 +246,14 @@ public class MultipleChoicePuntajeParcialTest {
     @Test
     public void test10MultipleChoicePuntajeParcialecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opcionesValidas = new ArrayList<String>();
+        List<Opcion> opcionesValidas = new ArrayList<Opcion>();
         opcionesValidas.add(opcion1);
         opcionesValidas.add(opcion2);
         opcionesValidas.add(opcion3);
@@ -266,7 +262,7 @@ public class MultipleChoicePuntajeParcialTest {
 
         Evaluador multipleChoiceConPuntajeParcial = new MultipleChoicePuntajeParcial(opcionesValidas);
 
-        List<String> opcionesInvalidas = new ArrayList<String>();
+        List<Opcion> opcionesInvalidas = new ArrayList<Opcion>();
         opcionesInvalidas.add(opcion1);
         opcionesInvalidas.add(opcion2);
         opcionesInvalidas.add(opcion3);
@@ -280,36 +276,37 @@ public class MultipleChoicePuntajeParcialTest {
     @Test
     public void test11MultipleChoicePuntajeParcialRecibeUnaListaConCeroOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opcionesValidas = new ArrayList<String>();
+        List<Opcion> opcionesValidas = new ArrayList<Opcion>();
         opcionesValidas.add(opcion1);
         opcionesValidas.add(opcion2);
         opcionesValidas.add(opcion3);
         opcionesValidas.add(opcion4);
 
+
         Evaluador multipleChoiceConPuntajeParcial = new MultipleChoicePuntajeParcial(opcionesValidas);
 
-        List<String> opcionesInvalidas = new ArrayList<String>();
+        List<Opcion> opcionesInvalidas = new ArrayList<Opcion>();
         assertFalse(multipleChoiceConPuntajeParcial.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
 
     @Test
     public void test12MultipleChoiceConPuntajeParcialPuedeInstanciarseConUnaListaDeOpcionesCorrectas(){
 
-        String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion enunciado = new OpcionComun("Provincias de Argentina");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 = new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);

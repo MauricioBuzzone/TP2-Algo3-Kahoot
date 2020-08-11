@@ -1,25 +1,21 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
+
 import edu.fiuba.algo3.modelo.*;
-
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class VerdaderoFalsoTest {
     @Test
     public void test01responderPreguntaConDosRespuestasAplicaResponderSegunEvaluadorACadaRespuestaEnviada(){
 
-        String solucion = "Seeee";
         String enunciado = "Se aprueba la entrega 0?";
-        List<String> opcion= new ArrayList<String>();
+        Opcion solucion = new OpcionComun("Seeee");
+        List<Opcion> opcion= new ArrayList<Opcion>();
         opcion.add(solucion);
 
         VerdaderoFalso verdaderoFalso = new VerdaderoFalso(opcion);
@@ -35,9 +31,9 @@ public class VerdaderoFalsoTest {
     public void test02UnaPreguntaVerdaderoFalsoCuandoSeLaCreaConMasDeDosRespuestasCorrectasLanzaExcepcion(){
 
         String enunciado = "El gato de Schrodinger esta muerto";
-        String solucion1 = "Verdadero";
-        String solucion2 = "Falso";
-        List<String> opcion= new ArrayList<String>();
+        Opcion solucion1 = new OpcionComun("Verdadero");
+        Opcion solucion2 = new OpcionComun("Falso");
+        List<Opcion> opcion= new ArrayList<Opcion>();
         opcion.add(solucion1);
         opcion.add(solucion2);
 
@@ -50,9 +46,10 @@ public class VerdaderoFalsoTest {
     @Test
     public void test03VerdaderoFalsoRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
-        String texto = "Vamos a aprobar la entrega 0";
-        List<String> opcion= new ArrayList<String>();
-        opcion.add(texto);
+        String enunciado = "Se aprueba la entrega 0?";
+        Opcion solucion = new OpcionComun("Seeee");
+        List<Opcion> opcion= new ArrayList<Opcion>();
+        opcion.add(solucion);
         Evaluador verdaderoFalso = new VerdaderoFalso(opcion);
 
         Eleccion eleccionCorrecta = new Eleccion(opcion);
@@ -71,11 +68,12 @@ public class VerdaderoFalsoTest {
     @Test
     public void test04VerdaderoFalsoRecibeUnaEleccioDesacertadaYDevuelvePuntajeDeValorCero(){
 
-        String texto = " 2+2 = 4 ";
-        List<String> opcion= new ArrayList<String>();
-        opcion.add(texto);
-        Evaluador verdaderoFalso = new VerdaderoFalso(opcion);
-        Eleccion eleccionCorrecta = new Eleccion(opcion);
+        Opcion opcion = new OpcionComun(" 2+2 = 4 ");
+        List<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcion);
+
+        Evaluador verdaderoFalso = new VerdaderoFalso(opciones);
+        Eleccion eleccionCorrecta = new Eleccion(opciones);
 
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
@@ -89,8 +87,8 @@ public class VerdaderoFalsoTest {
     @Test
     public void test05VerdaderoFalsoRecibeUnaListaDeOpcionesConUnUnicoElementoYDevuelveQueLasOpcionesSonValidasComoSolucion(){
 
-        String opcion = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
-        List<String> opciones = new ArrayList<String>();
+        Opcion opcion = new OpcionComun("Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero");
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion);
 
         Evaluador verdaderoFalso = new VerdaderoFalso(opciones);
@@ -100,14 +98,14 @@ public class VerdaderoFalsoTest {
     @Test
     public void test06VerdaderoFalsoRecibeUnaListaDeOpcionesConDosElementosYDevuelveQueLasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
-        String opcion2 = "Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|";
-        List<String> opcionesCorrectas = new ArrayList<String>();
+        Opcion opcion1 = new OpcionComun("Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero");
+        Opcion opcion2 = new OpcionComun("Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|");
+        List<Opcion> opcionesCorrectas = new ArrayList<Opcion>();
         opcionesCorrectas.add(opcion1);
 
         Evaluador verdaderoFalso = new VerdaderoFalso(opcionesCorrectas);
 
-        List<String> opcionesInvalidas = new ArrayList<String>();
+        List<Opcion> opcionesInvalidas = new ArrayList<Opcion>();
         opcionesInvalidas.add(opcion1);
         opcionesInvalidas.add(opcion2);
         assertFalse(verdaderoFalso.sonOpcionesValidasComoSolucion(opcionesInvalidas));
@@ -115,13 +113,13 @@ public class VerdaderoFalsoTest {
     @Test
     public void test07VerdaderoFalsoRecibeUnaListaDeOpcionesConCeroElementosYDevuelveQueLasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero";
-        String opcion2 = "Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|";
-        List<String> opcionesCorrectas = new ArrayList<String>();
+        Opcion opcion1 = new OpcionComun("Para cualquier campo conservativo la circulación sobre una curva cerrada resulta en cero");
+        Opcion opcion2 = new OpcionComun("Para cualquier grafo se cumple la relación Suma[d(v_i)] = 2|E(G)|");
+        List<Opcion> opcionesCorrectas = new ArrayList<Opcion>();
         opcionesCorrectas.add(opcion1);
 
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         Evaluador verdaderoFalso = new VerdaderoFalso(opcionesCorrectas);
         assertFalse(verdaderoFalso.sonOpcionesValidasComoSolucion(opciones));
     }
@@ -130,11 +128,11 @@ public class VerdaderoFalsoTest {
     public void test8VerdaderoFalsoEvaluaEleccionCorrectaDevuelvePuntajeDevalorUno(){
 
         String enunciado = new String("La Pampa es una provincia de Argentina");
-        String opcion1 = new String("Verdadero");
-        String opcion2 = new String("Falso");
+        Opcion opcion1 = new OpcionComun("Verdadero");
+        Opcion opcion2 = new OpcionComun("Falso");
 
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
 
 

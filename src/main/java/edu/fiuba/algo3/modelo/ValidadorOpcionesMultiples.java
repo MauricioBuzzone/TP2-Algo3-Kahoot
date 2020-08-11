@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.List;
 
-public class ValidadorOpcionesMultiples implements ValidadorDeOpciones{
+public class ValidadorOpcionesMultiples implements ValidadorDeOpciones {
 
     private int cantidadSolucionesMinima;
     private int cantidadSolucionesMaxima;
@@ -13,7 +13,7 @@ public class ValidadorOpcionesMultiples implements ValidadorDeOpciones{
 
     }
     @Override
-    public boolean opcionesValidasComoSolucion(List<String> opciones){
+    public boolean opcionesValidasComoSolucion(List<Opcion> opciones){
         return(opciones.size() >= cantidadSolucionesMinima && opciones.size() <= cantidadSolucionesMaxima);
     }
 }

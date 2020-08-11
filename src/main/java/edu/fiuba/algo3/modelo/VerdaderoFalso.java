@@ -8,7 +8,7 @@ public class VerdaderoFalso extends TipoDePregunta {
     private static final int PUNTAJE_FAVORABLE= 1;
     private static final int PUNTAJE_DESFAVORABLE = 0;
 
-    public VerdaderoFalso(List<String> solucion){
+    public VerdaderoFalso(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
         validador = new ValidadorOpcionUnica();
 

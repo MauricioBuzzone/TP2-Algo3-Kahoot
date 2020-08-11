@@ -1,32 +1,26 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-public class MultipleChoiceConPenalidadTest{
+public class MultipleChoiceConPenalidadTest {
     @Test
     public void test01MultipleChoiceConPenalidadRecibeUnaEleccionCompletamenteAcertadaYDevuelveUnPuntajeDeValorTres(){
 
         String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 =new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
@@ -45,19 +39,19 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test02MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteAcertadaConDosAciertosDevuelveValorDos(){
         String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 =new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
 
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion3);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
@@ -74,19 +68,19 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test03MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteDesacertadaConMasCorrectasQueIncorrectasDevuelveValorUno(){
         String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 =new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
 
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion3);
@@ -105,19 +99,19 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test04MultipleChoiceConPenalidadRecibeUnaEleccionParcialmenteDesacertadaConMasIncorrectasQueCorrectasDevuelveMenosUno() {
         String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 =new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
 
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion4);
@@ -135,19 +129,19 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test05MultipleChoiceConPenalidadRecibeUnaEleccionDesacertadaDevuelveUnCertificadoIncorrectoDeValorDos(){
         String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 =new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
 
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion4);
         Eleccion eleccionJugador = new Eleccion(opcionesJugador);
@@ -164,19 +158,19 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test06MultipleChoiceConPenalidadRecibeUnaEleccionConTantosAciertosComoDesaciertosYDevuevePuntajeCero(){
         String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 =new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);
 
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion3);
@@ -195,14 +189,14 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test07MultipleChoiceConPenalidadRecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opcionesValidas = new ArrayList<String>();
+        List<Opcion> opcionesValidas = new ArrayList<Opcion>();
         opcionesValidas.add(opcion1);
         opcionesValidas.add(opcion2);
         opcionesValidas.add(opcion3);
@@ -211,7 +205,8 @@ public class MultipleChoiceConPenalidadTest{
 
         Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opcionesValidas);
 
-        List<String> opcionesInvalidas = new ArrayList<String>();
+
+        List<Opcion> opcionesInvalidas = new ArrayList<Opcion>();
         opcionesInvalidas.add(opcion1);
         opcionesInvalidas.add(opcion2);
         opcionesInvalidas.add(opcion3);
@@ -225,14 +220,14 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test11MultipleChoiceConPenalidadRecibeUnaListaConCeroOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opcionesValidas = new ArrayList<String>();
+        List<Opcion> opcionesValidas = new ArrayList<Opcion>();
         opcionesValidas.add(opcion1);
         opcionesValidas.add(opcion2);
         opcionesValidas.add(opcion3);
@@ -240,7 +235,7 @@ public class MultipleChoiceConPenalidadTest{
 
         Evaluador multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opcionesValidas);
 
-        List<String> opcionesInvalidas = new ArrayList<String>();
+        List<Opcion> opcionesInvalidas = new ArrayList<Opcion>();
         assertFalse(multipleChoiceConPenalidad.sonOpcionesValidasComoSolucion(opcionesInvalidas));
     }
     @Test
@@ -249,14 +244,14 @@ public class MultipleChoiceConPenalidadTest{
 
         String enunciado = "Princesas de Disney";
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion2);
         correctas.add(opcion3);
@@ -273,7 +268,7 @@ public class MultipleChoiceConPenalidadTest{
     }
     @Test
     public void test13UnTipoDePreguntaMultipleChoiceConPenalidadAlTratarDeInstanciarseConCeroEleccionesComoSolucionLevantaLaExcepcionSolucionInvalida(){
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
 
 
         assertThrows(SolucionInvalidaException.class,
@@ -286,14 +281,14 @@ public class MultipleChoiceConPenalidadTest{
     @Test
     public void test14MultipleChoiceConPenalidadEvaluaUnaListaCorrectaDevuelvePuntajeDeValorTres(){
 
-        String enunciado = new String("Provincias de Argentina");
-        String opcion1 = new String("Entre Rios");
-        String opcion2 = new String("Rosario");
-        String opcion3 = new String("La Pampa");
-        String opcion4 = new String("Bariloche");
-        String opcion5 = new String("Jujuy");
+        Opcion enunciado = new OpcionComun("Provincias de Argentina");
+        Opcion opcion1 = new OpcionComun("Entre Rios");
+        Opcion opcion2 = new OpcionComun("Rosario");
+        Opcion opcion3 = new OpcionComun("La Pampa");
+        Opcion opcion4 = new OpcionComun("Bariloche");
+        Opcion opcion5 = new OpcionComun("Jujuy");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion5);

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Bonificador{
+public class Bonificador {
 
     private int factor;
 
