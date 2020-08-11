@@ -5,15 +5,16 @@ import java.util.ArrayList;
 public class TipoDeRespuestasConExclusividad implements TipoDeRespuestas {
 
     private List<Respuesta> misRespuestas;
-    private int factor;
+    private Bonificador miBonificador;
 
     public TipoDeRespuestasConExclusividad(List<Respuesta> respuestas){
         misRespuestas = respuestas;
-        factor = 2;
+        miBonificador = new Bonificador();
+        miBonificador.cambiarFactorX2();
     }
 
     public TipoDeRespuestas mejorarExclusividad(){
-        factor = factor * 2;
+        miBonificador.cambiarFactorX4();
         return this;
     }
 
@@ -30,7 +31,7 @@ public class TipoDeRespuestasConExclusividad implements TipoDeRespuestas {
         List<Respuesta> respuestasCorrectas = this.respuestasCorrectas(evaluador);
         if(respuestasCorrectas.size() == 1){
             Respuesta respuestaCorrecta = respuestasCorrectas.get(0);
-            respuestaCorrecta.cambiarBonificador(factor);
+            respuestaCorrecta.cambiarBonificador(miBonificador);
         }
         this.actualizarPuntaje();
     }
@@ -42,7 +43,9 @@ public class TipoDeRespuestasConExclusividad implements TipoDeRespuestas {
     }
     private void reestablecerBonificadores(){
         for(Respuesta respuesta : misRespuestas){
-            respuesta.cambiarBonificador(0);
+            Bonificador bonificadorNulo = new Bonificador();
+            bonificadorNulo.anular();
+            respuesta.cambiarBonificador(bonificadorNulo);
         }
     }
     private List<Respuesta> respuestasCorrectas(Evaluador evaluador){

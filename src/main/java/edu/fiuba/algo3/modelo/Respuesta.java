@@ -24,8 +24,8 @@ public class Respuesta {
         jugador.responder(puntaje, bonificador);
     }
 
-    public void cambiarBonificador(int factor){
-        bonificador.cambiarFactor(factor);
+    public void cambiarBonificador(Bonificador bonificador){
+        this.bonificador = bonificador;
     }
 
     public boolean respuestaCorrecta(Evaluador evaluador){

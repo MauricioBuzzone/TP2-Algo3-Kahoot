@@ -18,5 +18,4 @@ public class Respuestas{
     public void activarExclusividad(){
         tipoDeRespuestas = tipoDeRespuestas.mejorarExclusividad();
     }
-
 }
