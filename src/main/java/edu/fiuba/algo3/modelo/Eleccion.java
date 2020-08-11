@@ -15,14 +15,26 @@ public class Eleccion {
 
     public boolean igualA(Eleccion otraEleccion){
 
-        Set<Opcion> misOpciones = new HashSet<>(this.opciones);
-        return (otraEleccion.mismasOpciones(misOpciones));
+        return(this.mismasOpciones(otraEleccion) && otraEleccion.mismasOpciones(this));
     }
 
-    private boolean mismasOpciones(Set<Opcion> otrasOpciones){
+    private boolean mismasOpciones(Eleccion otraEleccion){
+        return otraEleccion.mismasOpciones(this.opciones);
+    }
 
-        Set<Opcion> misOpciones = new HashSet<>(this.opciones);
-        return (misOpciones.equals(otrasOpciones));
+    private boolean mismasOpciones(List<Opcion> otrasOpciones) {
+        for(Opcion miOpcion : this.opciones){
+            int contador = 0;
+            for(Opcion otraOpcion : otrasOpciones){
+                if(miOpcion.igualA(otraOpcion)){
+                    contador++;
+                }
+            }
+            if(contador != 1){
+                return false;
+            }
+        }
+        return true;
     }
 
     public int cantidadCoincidencias(Eleccion otraEleccion){
@@ -34,7 +46,7 @@ public class Eleccion {
 
         int coincidencias = 0;
         for (Opcion opcion : otrasOpciones ){
-            if (this.opciones.contains(opcion)){
+            if (opcion.estaContenidoEn(this.opciones)){
                 coincidencias++;
             }
         }
@@ -56,7 +68,7 @@ public class Eleccion {
 
         int cantidadOpcionesNoCoincidentes = 0;
         for(Opcion miOpcion : opciones){
-            if(!otrasOpciones.contains(miOpcion)){
+            if(!miOpcion.estaContenidoEn(otrasOpciones)){
                 cantidadOpcionesNoCoincidentes++;
             }
         }
@@ -72,9 +84,13 @@ public class Eleccion {
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 
-    private boolean contenidoEn(List<Opcion> opciones){
+    private boolean contenidoEn(List<Opcion> otrasOpciones){
 
-        return opciones.containsAll(this.opciones);
+        for(Opcion miOpcion : this.opciones){
+            if(!miOpcion.estaContenidoEn(otrasOpciones)){
+                return false;
+            }
+        }
+        return true;
     }
-
 }

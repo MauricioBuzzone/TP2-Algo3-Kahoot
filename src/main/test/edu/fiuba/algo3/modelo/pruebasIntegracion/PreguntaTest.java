@@ -470,7 +470,7 @@ public class PreguntaTest {
         TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceConPenalidad);
     }
-
+*/
     @Test
     public void test2_2UnaPreguntaDeMultipleChoiceConPenalidadRecibeUnaListaDeRespuestasYAsignaLosPuntosALosJugadoresCorrectamente(){
         Jugador diego = new Jugador("Diego");
@@ -490,15 +490,15 @@ public class PreguntaTest {
 
         String enunciado = "¿Cuáles son personajes de Disney?";
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Katara";
-        String opcion3 = "Ariel";
-        String opcion4 = "Mérida";
-        String opcion5 = "Chihiro";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Katara");
+        Opcion opcion3 = new OpcionComun("Ariel");
+        Opcion opcion4 = new OpcionComun("Mérida");
+        Opcion opcion5 = new OpcionComun("Chihiro");
 
 
         // Crea el tipo de pregunta y su elección correcta.
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion4);
@@ -506,7 +506,7 @@ public class PreguntaTest {
         TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         // Crea opciones de la pregunta.
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -517,22 +517,22 @@ public class PreguntaTest {
 
 
         // Caso Correctas: 3 Incorrectas: 0 -> suma 3
-        List<String> opcionDiego = new ArrayList<String>();
-        opcionDiego.add(opcion1);
-        opcionDiego.add(opcion3);
-        opcionDiego.add(opcion4);
+        List<Opcion> opcionDiego = new ArrayList<Opcion>();
+        opcionDiego.add(new OpcionComun("Mulán"));
+        opcionDiego.add(new OpcionComun("Ariel"));
+        opcionDiego.add(new OpcionComun("Mérida"));
         Eleccion eleccionDiego = new Eleccion(opcionDiego);
 
-        Bonificador bonificadorDiego =new Bonificador();
+        Bonificador bonificadorDiego = new Bonificador();
 
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
 
         // Caso Correctas: 3 Incorrectas: 1 -> suma 2
-        List<String> opcionTomas = new ArrayList<String>();
-        opcionTomas.add(opcion1);
-        opcionTomas.add(opcion3);
-        opcionTomas.add(opcion4);
-        opcionTomas.add(opcion5);
+        List<Opcion> opcionTomas = new ArrayList<Opcion>();
+        opcionTomas.add(new OpcionComun("Mulán"));
+        opcionTomas.add(new OpcionComun("Ariel"));
+        opcionTomas.add(new OpcionComun("Mérida"));
+        opcionTomas.add(new OpcionComun("Chihiro"));
         Eleccion eleccionTomas = new Eleccion(opcionTomas);
 
         Bonificador bonificadorTomas =new Bonificador();
@@ -540,10 +540,10 @@ public class PreguntaTest {
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
         // Caso Correctas: 1 Incorrectas: 2 -> resta 1
-        List<String> opcionPablo = new ArrayList<String>();
-        opcionPablo.add(opcion1);
-        opcionPablo.add(opcion2);
-        opcionPablo.add(opcion5);
+        List<Opcion> opcionPablo = new ArrayList<Opcion>();
+        opcionPablo.add(new OpcionComun("Mulán"));
+        opcionPablo.add(new OpcionComun("Katara"));
+        opcionPablo.add(new OpcionComun("Chihiro"));
         Eleccion eleccionPablo = new Eleccion(opcionPablo);
 
         Bonificador bonificadorPablo =new Bonificador();
@@ -551,24 +551,24 @@ public class PreguntaTest {
         Respuesta respuestaPablo = new Respuesta(pablo, eleccionPablo, bonificadorPablo);
 
         // Caso Correctas: 0 Incorrectas: 2 -> resta 2
-        List<String> opcionEdson = new ArrayList<String>();
-        opcionEdson.add(opcion2);
-        opcionEdson.add(opcion5);
+        List<Opcion> opcionEdson = new ArrayList<Opcion>();
+        opcionEdson.add(new OpcionComun("Katara"));
+        opcionEdson.add(new OpcionComun("Chihiro"));
         Eleccion eleccionEdson = new Eleccion(opcionEdson);
 
-        Bonificador bonificadorEdson =new Bonificador();
+        Bonificador bonificadorEdson = new Bonificador();
 
         Respuesta respuestaEdson = new Respuesta(edson, eleccionEdson, bonificadorEdson);
 
         // Caso Correctas: 2 Incorrectas: 2 -> no suma ni resta nada.
-        List<String> opcionMartin = new ArrayList<String>();
-        opcionMartin.add(opcion2);
-        opcionMartin.add(opcion5);
-        opcionMartin.add(opcion1);
-        opcionMartin.add(opcion3);
+        List<Opcion> opcionMartin = new ArrayList<Opcion>();
+        opcionMartin.add(new OpcionComun("Katara"));
+        opcionMartin.add(new OpcionComun("Chihiro"));
+        opcionMartin.add(new OpcionComun("Mulán"));
+        opcionMartin.add(new OpcionComun("Ariel"));
         Eleccion eleccionMartin = new Eleccion(opcionMartin);
 
-        Bonificador bonificadorMartin =new Bonificador();
+        Bonificador bonificadorMartin = new Bonificador();
 
         Respuesta respuestaMartin = new Respuesta(martin, eleccionMartin, bonificadorMartin);
 
@@ -590,22 +590,21 @@ public class PreguntaTest {
 
     @Test
     public void test2_3UnaPreguntaDeOrderedChoicePuedeCrearseIndicandoleCualEsLaRespuestaCorrecta() {
-
         String enunciado = "Ordenar alfabeticamente";
-        String opcion1 = "a";
-        String opcion2 = "b";
-        String opcion3 = "c";
-        String opcion4 = "d";
-        String opcion5 = "e";
+        Opcion opcion1 = new OpcionOrdenada("a", 1);
+        Opcion opcion2 = new OpcionOrdenada("b", 2);
+        Opcion opcion3 = new OpcionOrdenada("c", 3);
+        Opcion opcion4 = new OpcionOrdenada("d", 4);
+        Opcion opcion5 = new OpcionOrdenada("e", 5);
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion2);
         solucion.add(opcion3);
         solucion.add(opcion4);
         solucion.add(opcion5);
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -630,14 +629,14 @@ public class PreguntaTest {
 
         String enunciado = "Situar cronologicamente";
 
-        String opcion1 = "Huevo";
-        String opcion2 = "Gallina";
+        Opcion opcion1 = new OpcionOrdenada("Huevo", 1);
+        Opcion opcion2 = new OpcionOrdenada("Gallina", 2);
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion2);
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
 
@@ -646,24 +645,28 @@ public class PreguntaTest {
         Pregunta pregunta = new Pregunta(enunciado, opciones, orderedChoice);
 
         //Jugador contesta correctamente
-        List<String> opcionDiego = new ArrayList<String>();
-        opcionDiego.add(opcion1);
-        opcionDiego.add(opcion2);
+        List<Opcion> opcionDiego = new ArrayList<Opcion>();
+        Opcion opcionDiego1 = new OpcionOrdenada("Huevo", 1);
+        Opcion opcionDiego2 = new OpcionOrdenada("Gallina", 2);
+        opcionDiego.add(opcionDiego1);
+        opcionDiego.add(opcionDiego2);
 
         Eleccion eleccionDiego = new Eleccion(opcionDiego);
 
-        Bonificador bonificadorDiego =new Bonificador();
+        Bonificador bonificadorDiego = new Bonificador();
 
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
 
         //Jugador contesta incorrectamente
-        List<String> opcionTomas = new ArrayList<String>();
-        opcionTomas.add(opcion2);
-        opcionTomas.add(opcion1);
+        List<Opcion> opcionTomas = new ArrayList<Opcion>();
+        Opcion opcionTomas1 =  new OpcionOrdenada("Gallina", 1);
+        Opcion opcionTomas2 = new OpcionOrdenada("Huevo", 2);
+        opcionTomas.add(opcionTomas1);
+        opcionTomas.add(opcionTomas2);
 
         Eleccion eleccionTomas = new Eleccion(opcionTomas);
 
-        Bonificador bonificadorTomas =new Bonificador();
+        Bonificador bonificadorTomas = new Bonificador();
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
@@ -681,22 +684,23 @@ public class PreguntaTest {
     public void test2_5UnaPreguntaDeGroupChoicePuedeCrearseIndicandoleCualesSonLasRespuestasCorrectas(){
 
         String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
-        String opcion1 = new String("Niki Lauda");
-        String opcion2 = new String("Nico Rosberg");
-        String opcion3 = new String("Lewis Hamilton");
-        String opcion4 = new String("Damon Hill");
-        String opcion5 = new String("Fernando Alonso");
+
+        Opcion opcion1 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion2 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con 1 DWC");
+        Opcion opcion3 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion4 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC");
+        Opcion opcion5 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");
 
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add("A:" + opcion1);
-        solucion.add("B:" + opcion2);
-        solucion.add("A:" + opcion3);
-        solucion.add("B:" + opcion4);
-        solucion.add("A:" + opcion5);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+        solucion.add(opcion4);
+        solucion.add(opcion5);
         TipoDePregunta groupChoice = new GroupChoice(solucion);
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -722,22 +726,23 @@ public class PreguntaTest {
 
         //Creo la pregunta
         String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
-        String opcion1 = new String("Niki Lauda");
-        String opcion2 = new String("Nico Rosberg");
-        String opcion3 = new String("Lewis Hamilton");
-        String opcion4 = new String("Damon Hill");
-        String opcion5 = new String("Fernando Alonso");
+        Opcion opcion1 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion2 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con 1 DWC");
+        Opcion opcion3 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion4 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC");
+        Opcion opcion5 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");
 
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add("A:" + opcion1);
-        solucion.add("B:" + opcion2);
-        solucion.add("A:" + opcion3);
-        solucion.add("B:" + opcion4);
-        solucion.add("A:" + opcion5);
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+        solucion.add(opcion4);
+        solucion.add(opcion5);
+
         TipoDePregunta groupChoice = new GroupChoice(solucion);
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -747,26 +752,39 @@ public class PreguntaTest {
         Pregunta pregunta = new Pregunta(enunciado, opciones, groupChoice);
 
         //Caso correcta:
-        List<String> opcionDiego = new ArrayList<String>();
-        opcionDiego.add("A:" + opcion1);
-        opcionDiego.add("B:" + opcion2);
-        opcionDiego.add("A:" + opcion3);
-        opcionDiego.add("B:" + opcion4);
-        opcionDiego.add("A:" + opcion5);
-        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+        List<Opcion> opcionesDiego = new ArrayList<Opcion>();
+        Opcion opcionDiego1 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");        // Bien
+        Opcion opcionDiego2 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con 1 DWC");             // Bien
+        Opcion opcionDiego3 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con mas de 1 DWC");    // Bien
+        Opcion opcionDiego4 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC");               // Bien
+        Opcion opcionDiego5 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");   // Bien
+        opcionesDiego.add(opcionDiego1);
+        opcionesDiego.add(opcionDiego2);
+        opcionesDiego.add(opcionDiego3);
+        opcionesDiego.add(opcionDiego4);
+        opcionesDiego.add(opcionDiego5);
+
+        Eleccion eleccionDiego = new Eleccion(opcionesDiego);
         Bonificador bonificadorDiego =new Bonificador();
 
         Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
 
         //Caso Incorrecta:
-        List<String> opcionTomas = new ArrayList<String>();
-        opcionTomas.add("A:" + opcion1);
-        opcionTomas.add("A:" + opcion2);
-        opcionTomas.add("B:" + opcion3);
-        opcionTomas.add("B:" + opcion4);
-        opcionTomas.add("A:" + opcion5);
-        Eleccion eleccionTomas = new Eleccion(opcionTomas);
-        Bonificador bonificadorTomas =new Bonificador();
+        List<Opcion> opcionesTomas = new ArrayList<Opcion>();
+        Opcion opcionTomas1 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");        // Bien
+        Opcion opcionTomas2 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con mas de 1 DWC");      // Mal
+        Opcion opcionTomas3 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con 1 DWC");           // Mal
+        Opcion opcionTomas4 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC");               // Bien
+        Opcion opcionTomas5 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");   // Bien
+        opcionesTomas.add(opcionTomas1);
+        opcionesTomas.add(opcionTomas2);
+        opcionesTomas.add(opcionTomas3);
+        opcionesTomas.add(opcionTomas4);
+        opcionesTomas.add(opcionTomas5);
+
+
+        Eleccion eleccionTomas = new Eleccion(opcionesTomas);
+        Bonificador bonificadorTomas = new Bonificador();
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
 
@@ -795,15 +813,15 @@ public class PreguntaTest {
 
         String enunciado = "¿Cuáles son personajes de Disney?";
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Katara";
-        String opcion3 = "Ariel";
-        String opcion4 = "Mérida";
-        String opcion5 = "Chihiro";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Katara");
+        Opcion opcion3 = new OpcionComun("Ariel");
+        Opcion opcion4 = new OpcionComun("Mérida");
+        Opcion opcion5 = new OpcionComun("Chihiro");
 
 
         // Crea el tipo de pregunta y su elección correcta.
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion3);
         solucion.add(opcion4);
@@ -811,7 +829,7 @@ public class PreguntaTest {
         TipoDePregunta tipoMultipleChoiceConPenalidad = new MultipleChoiceConPenalidad(solucion);
 
         // Crea opciones de la pregunta.
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -821,10 +839,10 @@ public class PreguntaTest {
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoMultipleChoiceConPenalidad);
 
         // Caso Correctas: 3 Incorrectas: 0 -> suma 3
-        List<String> opcionDiego = new ArrayList<String>();
-        opcionDiego.add(opcion1);
-        opcionDiego.add(opcion3);
-        opcionDiego.add(opcion4);
+        List<Opcion> opcionDiego = new ArrayList<Opcion>();
+        opcionDiego.add(new OpcionComun("Mulán"));
+        opcionDiego.add(new OpcionComun("Ariel"));
+        opcionDiego.add(new OpcionComun("Mérida"));
         Eleccion eleccionDiego = new Eleccion(opcionDiego);
 
         Bonificador bonificadorDiego =new Bonificador();
@@ -841,7 +859,7 @@ public class PreguntaTest {
     }
 
     @Test
-    public void test2_8UnaPreguntaDeMultipleChoiceClasicoRecibeUnaRespuestasConBonificadorYAsignLosPuntosAlJugadorCorrectamente(){
+    public void test2_8UnaPreguntaDeMultipleChoiceClasicoRecibeUnaRespuestasConBonificadorYAsignLosPuntosAlJugadorCorrectamente() {
 
         Jugador tomas = new Jugador("Tomas");
 
@@ -852,13 +870,13 @@ public class PreguntaTest {
 
         String enunciado = "No es cierto que nunca hay que testear métodos privados";
 
-        String opcion1 = "Verdadero";
-        String opcion2 = "Falso";
+        Opcion opcion1 = new OpcionComun("Verdadero");
+        Opcion opcion2 = new OpcionComun("Falso");
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion2);
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
 
@@ -867,11 +885,11 @@ public class PreguntaTest {
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalsoConPenalidad);
 
 
-        List<String> opcionTomas = new ArrayList<String>();
-        opcionTomas.add(opcion2);
+        List<Opcion> opcionTomas = new ArrayList<Opcion>();
+        opcionTomas.add(new OpcionComun("Falso"));
         Eleccion eleccionTomas = new Eleccion(opcionTomas);
 
-        Bonificador bonificadorTomas =new Bonificador();
+        Bonificador bonificadorTomas = new Bonificador();
         bonificadorTomas.cambiarFactorX3();
 
         Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
@@ -883,5 +901,4 @@ public class PreguntaTest {
 
         assertEquals(tomas.puntosTotales(), 10);
     }
-    */
 }
