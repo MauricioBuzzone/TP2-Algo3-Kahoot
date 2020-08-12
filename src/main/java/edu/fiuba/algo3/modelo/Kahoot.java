@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Observer;
 
 public class Kahoot extends Observable {
-    //private final int POSICION_RONDA_INICIAL = 0;
     private final int POSICION_SIGUIENTE_RONDA = 1;
-    //private Ronda rondaActiva;
-    //private List<Ronda> rondas;
+    private Ronda rondaActiva;
+    private List<Ronda> rondas;
     private int posicionSiguienteRonda;
     private Tabla jugadores;
 
@@ -25,9 +24,9 @@ public class Kahoot extends Observable {
     }
 
     public void jugarRonda(){
-        //this.rondaActiva.jugarConSiguienteJugador();
+        this.rondaActiva.siguienteJugador();
     }
-/*
+
     public void siguienteRonda(){
         if(this.haySiguienteRonda()){
             rondaActiva = rondas.get(posicionSiguienteRonda);
@@ -36,12 +35,12 @@ public class Kahoot extends Observable {
         }
     }
 
-    public void haySiguienteRonda(){
+    public boolean haySiguienteRonda(){
         return rondas.size() > posicionSiguienteRonda;
     }
 
     public Ronda rondaActiva(){
-        return rondaActica;
+        return rondaActiva;
     }
- */
+
 }
