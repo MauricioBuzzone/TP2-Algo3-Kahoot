@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Tabla {
     private final int USOS_DISPONIBLES_NULOS = 0;
+    private final int USOS_MAX_EXCLUSIVIDAD = 2;
     private List<Jugador> jugadores;
     private Hashtable<Jugador, Integer> usosDisponiblesExclusividad = new Hashtable<Jugador, Integer>() {
     };
@@ -13,7 +14,7 @@ public class Tabla {
     public Tabla(ArrayList<Jugador> jugadores){
         this.jugadores = jugadores;
         for(Jugador jugador:jugadores)
-            usosDisponiblesExclusividad.put(jugador, 2);
+            usosDisponiblesExclusividad.put(jugador, USOS_MAX_EXCLUSIVIDAD);
     }
 
     public void activarExclusividad(Jugador jugador){
