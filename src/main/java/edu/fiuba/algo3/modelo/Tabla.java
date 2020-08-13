@@ -11,7 +11,11 @@ public class Tabla {
     private Hashtable<Jugador, Integer> usosDisponiblesExclusividad = new Hashtable<Jugador, Integer>() {
     };
 
-    public Tabla(ArrayList<Jugador> jugadores){
+    public List<Jugador> jugadores(){
+        return jugadores;
+    }
+
+    public Tabla(List<Jugador> jugadores){
         this.jugadores = jugadores;
         for(Jugador jugador:jugadores)
             usosDisponiblesExclusividad.put(jugador, USOS_MAX_EXCLUSIVIDAD);

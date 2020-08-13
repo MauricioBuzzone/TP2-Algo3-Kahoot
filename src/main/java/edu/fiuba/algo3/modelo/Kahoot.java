@@ -1,50 +1,63 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Observable;
-import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Observer;
 
-public class Kahoot extends Observable {
-    private final int POSICION_SIGUIENTE_RONDA = 1;
+public class Kahoot {
+
+    public static final int VERDADERO_FALSO = 1;
+
     private Ronda rondaActiva;
-    private List<Ronda> rondas = new ArrayList<Ronda>();
-    private int posicionSiguienteRonda;
+    private Queue<Ronda> rondas = new LinkedList<Ronda>();
     private Tabla tablaJugadores;
-    private List<Jugador> jugadores;
 
-
-    public Kahoot(ArrayList<Jugador> jugadores){
-        this.jugadores = jugadores;
-        this.tablaJugadores = new Tabla(jugadores);
-        posicionSiguienteRonda = POSICION_SIGUIENTE_RONDA;
-    }
-
-    public void agregarRondas(){
-
-    }
-
-    public void jugarRonda(){
-        this.rondaActiva.siguienteJugador();
-    }
-
-    public void siguienteRonda(){
-        if(this.haySiguienteRonda()){
-            rondaActiva = rondas.get(posicionSiguienteRonda);
-            posicionSiguienteRonda++;
-        }
-        this.notifyObservers();
-    }
-
-    private boolean haySiguienteRonda(){
-        return rondas.size() > posicionSiguienteRonda;
-    }
-
-    public Ronda rondaActiva(){
-        return rondaActiva;
+    public Kahoot(List<Jugador> jugadores){
+        tablaJugadores = new Tabla(jugadores);
     }
 
     public void agregarPregunta(Pregunta pregunta){
-        rondas.add(new Ronda(pregunta, jugadores));
+        Ronda ronda = new Ronda(pregunta, tablaJugadores.jugadores());
+        rondas.add(ronda);
+    }
+
+    public boolean haySiguienteRonda(){
+        return(!rondas.isEmpty());
+    }
+
+    public void siguienteRonda(){
+        rondaActiva = rondas.poll();
+    }
+
+    public String getEnunciado(){
+        return rondaActiva.getEnunciado();
+    }
+
+    public List<String> getOpciones(){
+        return rondaActiva.getOpciones();
+    }
+
+    public int tipoDePregunta(){
+        return 1; // cambiar lógica
+    }
+
+    public boolean haySiguienteJugador(){
+        return rondaActiva.haySiguienteJugador();
+    }
+
+    public Jugador getSiguienteJugador(){
+        return rondaActiva.getSiguienteJugador();
+    }
+
+    public void agregarRespuesta(Respuesta respuesta){
+        rondaActiva.agregarRespuesta(respuesta);
+    }
+
+    public void responder(){
+        rondaActiva.responder();
+    }
+
+    public Tabla terminarJuego(){
+        return tablaJugadores;
     }
 }

@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo.pruebasIntegracion;
 
 import edu.fiuba.algo3.modelo.*;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RondaTest{
-
     @Test
     public void test01UnaRondaSeCreaConPreguntaVerdaderoFalsoYListaDeDosJugadoresYSeJuegaCorrectamente(){
         String enunciado = "Diego es pintorRodillo (?";
@@ -161,4 +161,6 @@ public class RondaTest{
         assertEquals(diego.puntosTotales(), 0);
         assertEquals (tomas.puntosTotales() , 1);
     }
+
 }
+ */
