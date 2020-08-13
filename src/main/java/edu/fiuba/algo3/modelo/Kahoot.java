@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Kahoot {
 
@@ -18,10 +15,15 @@ public class Kahoot {
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
     private Tabla tablaJugadores;
+    private CuentaAtras cuentaAtras;
 
     public Kahoot(List<Jugador> jugadores){
         tablaJugadores = new Tabla(jugadores);
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(this);
+        this.cuentaAtras = new CuentaAtras(respondedor);
+
         this.agregarPreguntas();
+
     }
 
     //TestOnly
@@ -67,6 +69,15 @@ public class Kahoot {
     public void agregarPregunta(Pregunta pregunta){
         Ronda ronda = new Ronda(pregunta, tablaJugadores.jugadores());
         rondas.add(ronda);
+    }
+
+    public void jugadorVaAResponder(){
+        Timer timer = new Timer();
+        timer.schedule(cuentaAtras, 15000);
+    }
+
+    public void jugadorYaRespondio(){
+        cuentaAtras.cancel();
     }
 
     public boolean haySiguienteRonda(){

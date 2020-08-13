@@ -25,18 +25,20 @@ public class VistaTurnoJugador {
 
     private Scene crearEscena() {
         if(kahoot.haySiguienteJugador()){
-            System.out.println("Entré al if");
+
             kahoot.siguienteJugador();
             Jugador jugador = kahoot.getJugador();
             return crearEscenaVistaLobbyJugador(kahoot, jugador);
-        }else{// if (kahoot.haySiguienteRonda()){
-            System.out.println("Entré al else");
+        }else if (kahoot.haySiguienteRonda()){
+            kahoot.responder();
             kahoot.siguienteRonda();
             return this.crearEscena();
-        }/*else{
-            VistaFinalizacion vista = new VistaFinalizacion(stage, kahoot);
+        }else{
+            kahoot.responder();
+            Tabla tabla = kahoot.terminarJuego();
+            VistaFinalizacion vista = new VistaFinalizacion(tabla);
             return vista.crearEscena();
-        }*/
+        }
     }
     private Scene crearEscenaVistaLobbyJugador(Kahoot kahoot, Jugador jugador){
         Label titulo = new Label("Turno de " + jugador.getNombre());
@@ -51,7 +53,7 @@ public class VistaTurnoJugador {
 
 
     public void mostrar() {
-        System.out.println(stage == null);
+
         stage.setScene(scene);
     }
 }
