@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class PreguntaTest {
@@ -1217,8 +1218,8 @@ public class PreguntaTest {
         Kahoot kahoot = new Kahoot(jugadores);
 
         //TestOnly ya se creo en el constructor
-        kahoot.agregarPreguntas(preguntaUno);
-        kahoot.agregarPreguntas(preguntaDos);
+        kahoot.agregarPregunta(preguntaUno);
+        kahoot.agregarPregunta(preguntaDos);
 
 
         assert(kahoot.haySiguienteRonda());
@@ -1267,16 +1268,16 @@ public class PreguntaTest {
 
         kahoot.siguienteRonda();
 
-        String enunciado = kahoot.getEnunciado();
-        List<String> opciones = kahoot.getOpciones();
-        int tipoDePregunta = kahoot.tipoDePregunta();
+        String enunciado2 = kahoot.getEnunciado();
+        List<String> opciones2 = kahoot.getOpciones();
+        int tipoDePregunta2 = kahoot.tipoDePregunta();
 
         assert(tipoDePregunta == Kahoot.VERDADERO_FALSO);
 
         assert(kahoot.haySiguienteJugador());
 
         //Timer
-        Jugador jugador1 = kahoot.getSiguienteJugador();
+        jugador1 = kahoot.getSiguienteJugador();
 
         List<Opcion> opcionDiegoDos = new ArrayList<Opcion>();
         opcionDiegoDos.add(new OpcionComun("Falso"));
@@ -1289,7 +1290,7 @@ public class PreguntaTest {
 
         assert(kahoot.haySiguienteJugador());
 
-        Jugador jugador2 = kahoot.getSiguienteJugador();
+        jugador2 = kahoot.getSiguienteJugador();
 
         List<Opcion> opcionTomasDos = new ArrayList<Opcion>();
         opcionTomasDos.add(new OpcionComun("Falso"));
@@ -1298,7 +1299,7 @@ public class PreguntaTest {
 
         Respuesta segundaRespuestaTomas = new Respuesta(jugador2, segundaEleccionTomas, segundoBonificadorTomas);
 
-        assertFalse(kahoot.hayJugadorSiguiente());
+        assertFalse(kahoot.haySiguienteJugador());
 
         kahoot.responder();
 

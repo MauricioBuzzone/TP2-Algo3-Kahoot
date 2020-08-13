@@ -1,53 +1,47 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Queue;
+import java.util.LinkedList;
 
-public class Ronda extends Observable{
+public class Ronda {
     private Pregunta pregunta;
-    private List<Jugador> jugadores;
+    private Queue<Jugador> jugadores;
     private Respuestas respuestas;
     private Jugador jugadorActivo;
-    private int posicionJugadorSiguiente;
-    private static final int POSICION_JUGADOR_INICIAL=0;
-    private static final int POSICION_SIGUIENTE_JUGADOR=1;
 
-    public Ronda(Pregunta unaPregunta, List<Jugador> listaJugadores){
-        this.respuestas = new Respuestas();
-        this.pregunta = unaPregunta;
-        this.jugadores = listaJugadores;
-        this.jugadorActivo = jugadores.get(POSICION_JUGADOR_INICIAL);
-        this.posicionJugadorSiguiente = POSICION_SIGUIENTE_JUGADOR;
+    public Ronda(Pregunta unaPregunta, List<Jugador> listaJugadores) {
+        respuestas = new Respuestas();
+        pregunta = unaPregunta;
+        jugadores = new LinkedList<Jugador>(listaJugadores);
     }
 
-    public Pregunta getPregunta(){
-       return pregunta;
+    public String getEnunciado() {
+        return pregunta.getEnunciado();
     }
 
-    private boolean haySiguienteJugador(){
-        return jugadores.size()>posicionJugadorSiguiente;
+    public List<String> getOpciones() {
+        return pregunta.getOpciones();
     }
 
-    public void siguienteJugador(){
-        if(this.haySiguienteJugador()){
-            jugadorActivo = jugadores.get(posicionJugadorSiguiente);
-            posicionJugadorSiguiente ++;
-        }
-        this.notifyObservers();
+    public boolean haySiguienteJugador(){
+        return(!jugadores.isEmpty());
     }
 
+    public Jugador getSiguienteJugador(){
+        return jugadores.poll();
+    }
+
+    public void agregarRespuesta(Respuesta respuesta){
+        respuestas.agregarRespuesta(respuesta);
+    }
+    public void responder(){
+        pregunta.responderPregunta(respuestas);
+    }
 
     public void activarExclusividad(){
         respuestas.activarExclusividad();
     }
 
-    public void agregarRespuesta(Eleccion eleccion, Bonificador bonificador){
-        this.respuestas.agregarRespuesta(new Respuesta(jugadorActivo, eleccion, bonificador));
-        this.siguienteJugador();
-    }
 
-    public void evaluarRespuestas(){
-        this.pregunta.responderPregunta(this.respuestas);
-    }
 }

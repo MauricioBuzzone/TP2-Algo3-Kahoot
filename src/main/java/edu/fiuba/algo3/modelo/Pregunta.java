@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
 
-public class Pregunta implements Mostrable {
+public class Pregunta {
     private TipoDePregunta tipo;
     private String enunciado;
     private List<Opcion> opciones;
@@ -17,9 +18,17 @@ public class Pregunta implements Mostrable {
         respuestas.responder(tipo);
     }
 
-    @Override
-    public void mostrar(){
-        tipo.mostrar(this.enunciado, this.opciones);
+    public String getEnunciado() {
+        return enunciado;
     }
+
+    public List<String> getOpciones() {
+        List<String> descripciones = new ArrayList<String>();
+        for(Opcion opcion : opciones){
+            descripciones.add(opcion.getDescripcion());
+        }
+        return descripciones;
+    }
+
 
 }
