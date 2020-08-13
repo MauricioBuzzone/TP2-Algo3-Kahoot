@@ -1178,36 +1178,6 @@ public class PreguntaTest {
     @Test
     public void test4_1SeCreaUnKahootConDosRondasHayDosJugadoresRespondenATiempoAmbosPoseenLosPuntajesAdecuados(){
 
-        //Se crean las preguntas esto se levantaria en un archivo JSON
-        String enunciadoUno = "Diego es pintorRodillo";
-        Opcion solucionUno = new OpcionComun("Verdadero");
-        Opcion opcionIncorrectaUno = new OpcionComun("Falso");
-
-        List<Opcion> opcionCorrectaUno = new ArrayList<Opcion>();
-        opcionCorrectaUno.add(solucionUno);
-
-        List<Opcion> opcionesUno = new ArrayList<Opcion>();
-        opcionesUno.add(solucionUno);
-        opcionesUno.add(opcionIncorrectaUno);
-
-        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(opcionCorrectaUno);
-        Pregunta preguntaUno = new Pregunta(enunciadoUno, opcionesUno, tipoVerdaderoFalsoUno);
-
-        String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
-        Opcion solucionDos = new OpcionComun("Falso");
-        Opcion opcionIncorrectaDos = new OpcionComun("Verdadero");
-        List<Opcion> opcionCorrectaDos = new ArrayList<Opcion>();
-        opcionCorrectaDos.add(solucionDos);
-
-        List<Opcion> opcionesDos = new ArrayList<Opcion>();
-        opcionesDos.add(opcionIncorrectaDos);
-        opcionesDos.add(solucionDos);
-
-
-        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(opcionCorrectaDos);
-        Pregunta preguntaDos = new Pregunta(enunciadoDos, opcionesDos, tipoVerdaderoFalsoDos);
-        //Fin de preguntas
-
         Jugador diego = new Jugador("Diego");
         Jugador tomas = new Jugador("Tomas");
         List<Jugador> jugadores = new ArrayList<Jugador>();
@@ -1216,11 +1186,6 @@ public class PreguntaTest {
 
 
         Kahoot kahoot = new Kahoot(jugadores);
-
-        //TestOnly ya se creo en el constructor
-        kahoot.agregarPregunta(preguntaUno);
-        kahoot.agregarPregunta(preguntaDos);
-
 
         assert(kahoot.haySiguienteRonda());
 
@@ -1235,7 +1200,9 @@ public class PreguntaTest {
         assert(kahoot.haySiguienteJugador());
 
         //Timer
-        Jugador jugador1 = kahoot.getSiguienteJugador();
+        kahoot.siguienteJugador();
+        Jugador jugador1 = kahoot.getJugador();
+
 
         List<Opcion> opcionDiegoUno = new ArrayList<Opcion>();
         opcionDiegoUno.add(new OpcionComun("Falso"));
@@ -1248,7 +1215,8 @@ public class PreguntaTest {
 
         assert(kahoot.haySiguienteJugador());
 
-        Jugador jugador2 = kahoot.getSiguienteJugador();
+        kahoot.siguienteJugador();
+        Jugador jugador2 = kahoot.getJugador();
 
         List<Opcion> opcionTomasUno = new ArrayList<Opcion>();
         opcionTomasUno.add(new OpcionComun("Verdadero"));
@@ -1277,7 +1245,8 @@ public class PreguntaTest {
         assert(kahoot.haySiguienteJugador());
 
         //Timer
-        jugador1 = kahoot.getSiguienteJugador();
+        kahoot.siguienteJugador();
+        jugador1 = kahoot.getJugador();
 
         List<Opcion> opcionDiegoDos = new ArrayList<Opcion>();
         opcionDiegoDos.add(new OpcionComun("Falso"));
@@ -1290,7 +1259,8 @@ public class PreguntaTest {
 
         assert(kahoot.haySiguienteJugador());
 
-        jugador2 = kahoot.getSiguienteJugador();
+        kahoot.siguienteJugador();
+        jugador2 = kahoot.getJugador();
 
         List<Opcion> opcionTomasDos = new ArrayList<Opcion>();
         opcionTomasDos.add(new OpcionComun("Falso"));

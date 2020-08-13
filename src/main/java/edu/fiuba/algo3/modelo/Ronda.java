@@ -28,8 +28,8 @@ public class Ronda {
         return(!jugadores.isEmpty());
     }
 
-    public Jugador getSiguienteJugador(){
-        return jugadores.poll();
+    public void siguienteJugador(){
+        jugadorActivo = jugadores.poll();
     }
 
     public Jugador getJugador(){

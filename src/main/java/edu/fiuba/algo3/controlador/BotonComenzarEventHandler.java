@@ -1,9 +1,7 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.controlador.ControladorPrincipal;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Kahoot;
-import edu.fiuba.algo3.vista.VistaPreguntaVF;
 import edu.fiuba.algo3.vista.VistaTurnoJugador;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -29,11 +27,9 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
         List<Jugador> jugadores = this.obtenerJugadores();
 
         Kahoot kahoot = new Kahoot(jugadores);
-
-        if(kahoot.haySiguienteRonda()){
-            VistaTurnoJugador vistaTurno = new VistaTurnoJugador(kahoot, stage);
-            vistaTurno.mostrar();
-        }
+        kahoot.siguienteRonda();
+        VistaTurnoJugador vistaTurno = new VistaTurnoJugador(kahoot, stage);
+        vistaTurno.mostrar();
     }
 
 

@@ -48,6 +48,7 @@ public class App extends Application {
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 300, 250);
     }
+
     private Scene crearEscenaElegirJugadores(){
 
         ListView jugadoresInscriptos = new ListView();
@@ -61,7 +62,7 @@ public class App extends Application {
 
         Button botonComenzar = new Button();
         botonComenzar.setText("Comenzar");
-        botonComenzar.setOnAction(new BotonComenzarEventHandler());
+        botonComenzar.setOnAction(new BotonComenzarEventHandler(jugadoresInscriptos, stage));
 
         HBox contenedorHorizontal = new HBox(botonSiguienteJugador, botonComenzar);
         contenedorHorizontal.setSpacing(10);
