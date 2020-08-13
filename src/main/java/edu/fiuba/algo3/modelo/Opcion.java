@@ -28,5 +28,7 @@ public abstract class Opcion {
         }
         return false;
     }
-
+    public String getDescripcion(){
+        return this.descripcion;
+    }
 }

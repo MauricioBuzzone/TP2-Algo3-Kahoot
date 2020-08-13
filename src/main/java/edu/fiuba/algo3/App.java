@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.*;
+import edu.fiuba.algo3.modelo.*;
 
 
 import javafx.application.Application;
@@ -37,19 +38,19 @@ import java.util.List;
 |===================================================================================================|
 |   TODO: Hacer la bienvenida al kahoot.                              [Check] Tomados de la mano    |
 |===================================================================================================|
-|   TODO: Asociar controlador de inicio al botón de comenzar.         [     ] Tomados de la mano    |
+|   TODO: Asociar controlador de inicio al botón de comenzar.         [Check] Tomados de la mano    |
 |===================================================================================================|
-|   TODO: Crear la vistaKahoot Mockeando el Kahoot                            Tomados de la mano    |
-|   TODO: Crear la vistaTabla  Mockeando la Tabla                             Lukas // Santi        |
-|   TODO: Crear la vistaRonda  Mockeando la Ronda                             Lukas // Santi        |
+|   TODO: Crear la vistaKahoot Mockeando el Kahoot                    [Check] Tomados de la mano    |
+|   TODO: Crear la vistaTabla  Mockeando la Tabla                     [Check] Lukas // Santi        |
+|   TODO: Crear la vistaRonda  Mockeando la Ronda                     [Check] Lukas // Santi        |
 |===================================================================================================|
-|   TODO: Crear controlador del timer                                         Santi                 |
+|   TODO: Crear controlador del timer                                 [Check] Santi                 |
 |===================================================================================================|
-|   TODO: Crear escena de pregunta común.                                     Tomados de la mano    |
-|   TODO: Crear escena de pregunta ordered.                                   Lukas // Santi        |
-|   TODO: Crear escena de pregunta choice.                                    Lukas // Santi        |
+|   TODO: Crear escena de pregunta común.                             [Check] Tomados de la mano    |
+|   TODO: Crear escena de pregunta ordered.                           [Check] Lukas // Santi        |
+|   TODO: Crear escena de pregunta choice.                            [Check] Lukas // Santi        |
 |===================================================================================================|
-|   TODO: Relax                                                               Con el duko           |
+|   TODO: Relax                                                       [Check] Con el duko           |
 |===================================================================================================|
 */
 public class App extends Application {
@@ -62,8 +63,22 @@ public class App extends Application {
         stage.setTitle("Kajú kajú na na na naaa...");
 
 
-        Scene escenaDeElegirJugadores = crearEscenaElegirJugadores();
-        stage.setScene(crearEscenaDeBienvenida(escenaDeElegirJugadores));
+        String enunciado = "Situar cronologicamente";
+
+        Opcion opcion1 = new OpcionOrdenada("Gallina", 2);
+        Opcion opcion2 = new OpcionOrdenada("Huevo", 1);
+        Opcion opcion3 = new OpcionOrdenada("El Trex papá", 3);
+
+        List<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+
+        VistaPreguntaOrderedChoice vistaOC = new VistaPreguntaOrderedChoice(enunciado, opciones);
+        stage.setScene(vistaOC.crearEscena());
+        //Scene escenaDeElegirJugadores = crearEscenaElegirJugadores(escenaDePreguntaOrderedChoice);
+        //stage.setScene(crearEscenaDeBienvenida(escenaDeElegirJugadores));
+        //stage.setScene(escenaDePreguntaOrderedChoice);
         stage.show();
     }
 
