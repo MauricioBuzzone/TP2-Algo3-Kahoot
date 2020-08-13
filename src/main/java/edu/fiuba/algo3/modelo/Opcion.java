@@ -34,8 +34,4 @@ public abstract class Opcion {
     }
 
 
-    //wip Json
-    public void mostrar (){
-        System.out.println(descripcion);
-    }
 }
