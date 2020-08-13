@@ -1,7 +1,9 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controlador.ControladorTurno;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Kahoot;
+import edu.fiuba.algo3.modelo.RespondedorPorDefecto;
 import edu.fiuba.algo3.vista.VistaPreguntaVF;
 import edu.fiuba.algo3.vista.VistaPreguntaOrderedChoice;
 import javafx.event.EventHandler;
@@ -28,7 +30,9 @@ public class BotonAvanzarAResponderPreguntaEventHandler implements EventHandler<
         String enunciado = kahoot.getEnunciado();
         List<String> opciones = kahoot.getOpciones();
 
-        kahoot.jugadorVaAResponder();
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(this.kahoot);
+        respondedor.addObserver(new ControladorTurno(kahoot, stage));
+        kahoot.jugadorVaAResponder(respondedor);
 
         if(kahoot.tipoDePregunta() == Kahoot.VERDADERO_FALSO){
             VistaPreguntaVF vistaPregunta = new VistaPreguntaVF(stage, kahoot, enunciado, opciones);
