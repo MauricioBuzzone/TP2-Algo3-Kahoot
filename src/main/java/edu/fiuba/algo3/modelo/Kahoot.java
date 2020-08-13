@@ -19,9 +19,6 @@ public class Kahoot {
 
     public Kahoot(List<Jugador> jugadores){
         tablaJugadores = new Tabla(jugadores);
-        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(this);
-        this.cuentaAtras = new CuentaAtras(respondedor);
-
         this.agregarPreguntas();
 
     }
@@ -73,7 +70,9 @@ public class Kahoot {
 
     public void jugadorVaAResponder(){
         Timer timer = new Timer();
-        timer.schedule(cuentaAtras, 15000);
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(this);
+        this.cuentaAtras = new CuentaAtras(respondedor);
+        timer.schedule(this.cuentaAtras, 15000);
     }
 
     public void jugadorYaRespondio(){
