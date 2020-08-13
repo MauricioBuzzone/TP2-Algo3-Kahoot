@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import javafx.application.Platform;
+
 import java.util.TimerTask;
 
 public class CuentaAtras extends TimerTask {
@@ -12,6 +14,8 @@ public class CuentaAtras extends TimerTask {
 
     @Override
     public void run() {
-        respondedor.responder();
+        Platform.runLater(() -> {
+            respondedor.responder();
+        });
     }
 }

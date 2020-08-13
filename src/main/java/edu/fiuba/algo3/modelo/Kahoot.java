@@ -68,9 +68,8 @@ public class Kahoot {
         rondas.add(ronda);
     }
 
-    public void jugadorVaAResponder(){
+    public void jugadorVaAResponder(RespondedorPorDefecto respondedor){
         Timer timer = new Timer();
-        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(this);
         this.cuentaAtras = new CuentaAtras(respondedor);
         timer.schedule(this.cuentaAtras, 15000);
     }

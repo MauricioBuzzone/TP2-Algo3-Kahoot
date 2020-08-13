@@ -2,8 +2,9 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class RespondedorPorDefecto {
+public class RespondedorPorDefecto extends Observable {
 
     private Kahoot kahoot;
     public RespondedorPorDefecto(Kahoot kahoot){
@@ -13,6 +14,8 @@ public class RespondedorPorDefecto {
     public void responder() {
 
         this.kahoot.agregarRespuesta(this.respuestaPorDefecto());
+        this.setChanged();
+        this.notifyObservers();
     }
 
 
