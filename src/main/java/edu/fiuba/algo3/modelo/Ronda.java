@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 import java.util.Queue;
 import java.util.LinkedList;
+import com.google.gson.*;
 
 public class Ronda {
     private Pregunta pregunta;
@@ -51,6 +52,4 @@ public class Ronda {
     public int tipoDePregunta(){
         return pregunta.tipoDePregunta();
     }
-
-
 }

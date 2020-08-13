@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import com.google.gson.*;
+
 public class OpcionDeGrupo extends Opcion {
 
     protected String grupo;
@@ -20,5 +22,10 @@ public class OpcionDeGrupo extends Opcion {
         return this.grupo.equals(unGrupo);
     }
 
-
+    public static OpcionDeGrupo recuperar(JsonObject jsonObjectOpcion){
+        String descripcion = jsonObjectOpcion.get("descripcion").getAsString();
+        String grupo = jsonObjectOpcion.get("grupo").getAsString();
+        OpcionDeGrupo opcionDeGrupo = new OpcionDeGrupo(descripcion, grupo);
+        return opcionDeGrupo;
+    }
 }

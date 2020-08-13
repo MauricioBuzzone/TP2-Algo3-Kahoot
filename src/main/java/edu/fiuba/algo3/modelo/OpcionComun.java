@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import com.google.gson.*;
+
 public class OpcionComun extends Opcion {
 
     public OpcionComun(String descripcion){
@@ -11,4 +13,9 @@ public class OpcionComun extends Opcion {
         return unaOpcion.mismaDescripcion(this.descripcion);
     }
 
+    public static OpcionComun recuperar(JsonObject jsonObjectOpcion){
+        String descripcion = jsonObjectOpcion.get("descripcion").getAsString();
+        OpcionComun opcionComun = new OpcionComun(descripcion);
+        return opcionComun;
+    }
 }

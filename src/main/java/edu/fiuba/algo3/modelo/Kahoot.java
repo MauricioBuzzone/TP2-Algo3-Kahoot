@@ -1,6 +1,15 @@
 package edu.fiuba.algo3.modelo;
 
+
 import java.util.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 
 public class Kahoot {
 
@@ -12,6 +21,9 @@ public class Kahoot {
     public static final int ORDERED_CHOICE = Pregunta.ORDERED_CHOICE;
     public static final int GROUP_CHOICE = Pregunta.GROUP_CHOICE;
 
+    public static final String RUTA_ARCHIVO_DEFAULT = "Rondas.json";
+
+
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
     private Tabla tablaJugadores;
@@ -19,16 +31,16 @@ public class Kahoot {
 
     public Kahoot(List<Jugador> jugadores){
         tablaJugadores = new Tabla(jugadores);
-        this.agregarPreguntas();
-
+        //this.agregarPreguntas();
     }
 
-    //TestOnly
+    //TestOnly. A borrar
     public Kahoot(List<Jugador> jugadores, Pregunta pregunta){
         tablaJugadores = new Tabla(jugadores);
         this.agregarPregunta(pregunta);
     }
 
+    //A borrar.
     private void agregarPreguntas(){
 
         String enunciado = "Situar cronologicamente [de pasado a futuro]";
@@ -127,5 +139,25 @@ public class Kahoot {
 
     public Tabla terminarJuego(){
         return tablaJugadores;
+    }
+
+    //Json
+    public void agregarRonda(String archivo) throws IOException{
+
+        String texto = Files.readString(Path.of(archivo));
+
+        JsonObject jsonObject = JsonParser.parseString(texto).getAsJsonObject();
+
+        this.agregarRonda(jsonObject);
+
+    }
+
+    private void agregarRonda(JsonObject jsonObject){
+        JsonArray ArrayRondas = jsonObject.get("Rondas").getAsJsonArray();
+
+        for (JsonElement jsonRonda : ArrayRondas){
+            Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
+            this.agregarPregunta(pregunta);
+        }
     }
 }

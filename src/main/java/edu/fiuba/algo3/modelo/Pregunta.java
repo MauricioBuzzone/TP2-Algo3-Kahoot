@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.google.gson.*;
+
 public class Pregunta {
 
     public static final int VERDADERO_FALSO = 1;
@@ -53,5 +55,20 @@ public class Pregunta {
         }else{
             return ORDERED_CHOICE;
         }
+    }
+    public static Pregunta recuperar(JsonObject jsonObjectPregunta){
+
+        String enunciado = jsonObjectPregunta.get("enunciado").getAsString();
+        String tipoDePregunta = jsonObjectPregunta.get("tipo").getAsString();
+
+        TipoDePregunta tipo = Factory.crearTipoDePregunta(tipoDePregunta, jsonObjectPregunta);
+
+        JsonArray arrayOpciones = jsonObjectPregunta.getAsJsonArray("opciones");
+        List<Opcion> opciones = Factory.crearOpciones(tipoDePregunta ,arrayOpciones);
+
+
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipo);
+
+        return pregunta;
     }
 }

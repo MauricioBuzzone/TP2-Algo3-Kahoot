@@ -1,5 +1,4 @@
 package edu.fiuba.algo3;
-
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Kahoot;
 import edu.fiuba.algo3.vista.VistaTurnoJugador;

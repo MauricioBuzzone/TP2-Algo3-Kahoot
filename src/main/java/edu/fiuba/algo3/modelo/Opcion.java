@@ -28,7 +28,14 @@ public abstract class Opcion {
         }
         return false;
     }
+
     public String getDescripcion(){
         return this.descripcion;
+    }
+
+
+    //wip Json
+    public void mostrar (){
+        System.out.println(descripcion);
     }
 }

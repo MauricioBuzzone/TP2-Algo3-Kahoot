@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
 public class MultipleChoiceConPenalidad extends TipoDePregunta {
 
@@ -32,4 +33,10 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta {
         return(cantidadCorrectas > cantidadIncorrectas);
     }
 
+    public static MultipleChoiceConPenalidad recuperar(JsonArray jsonArraySolucion){
+
+        List<Opcion> opciones = Factory.crearOpciones("MultipleChoiceClasico", jsonArraySolucion);
+        MultipleChoiceConPenalidad multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opciones);
+        return multipleChoiceConPenalidad;
+    }
 }
