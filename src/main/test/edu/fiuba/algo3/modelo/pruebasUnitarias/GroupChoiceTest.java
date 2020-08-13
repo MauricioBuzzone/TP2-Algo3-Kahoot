@@ -1,35 +1,33 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class GroupChoiceTest {
 
     @Test
     public void test01GroupChoiceRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
-        String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
-        String opcion1 = new String("Niki Lauda");
-        String opcion2 = new String("Nico Rosberg");
-        String opcion3 = new String("Lewis Hamilton");
-        String opcion4 = new String("Damon Hill");
-        String opcion5 = new String("Fernando Alonso");
+        String enunciado = "A grupar los siguientes pilotos";
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add("A:" + opcion1);
-        solucion.add("B:" + opcion2);
-        solucion.add("A:" + opcion3);
-        solucion.add("B:" + opcion4);
-        solucion.add("A:" + opcion5);
+
+        Opcion opcion1 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion2 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con 1 DWC");
+        Opcion opcion3 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion4 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC");
+        Opcion opcion5 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");
+
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+        solucion.add(opcion4);
+        solucion.add(opcion5);
 
         Eleccion eleccionJugador = new Eleccion(solucion);
 
@@ -45,28 +43,36 @@ public class GroupChoiceTest {
     @Test
     public void test02GroupChoiceRecibeUnaEleccionDesacertadaYDevuelvePuntajeDeValorCero(){
 
-        String enunciado = new String(" Grupo A: Pilotos de F1 con mas de 1 DWC | Grupo B: Pilotos de F1 con 1 DWC");
-        String opcion1 = new String("Niki Lauda");
-        String opcion2 = new String("Nico Rosberg");
-        String opcion3 = new String("Lewis Hamilton");
-        String opcion4 = new String("Damon Hill");
-        String opcion5 = new String("Fernando Alonso");
+        String enunciado = "A grupar los siguientes pilotos";
 
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add("A:" + opcion1);
-        solucion.add("B:" + opcion2);
-        solucion.add("A:" + opcion3);
-        solucion.add("B:" + opcion4);
-        solucion.add("A:" + opcion5);
+        Opcion opcion1 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion2 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con 1 DWC");
+        Opcion opcion3 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion4 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con 1 DWC");
+        Opcion opcion5 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");
+
+        List<Opcion> solucion = new ArrayList<Opcion>();
+        solucion.add(opcion1);
+        solucion.add(opcion2);
+        solucion.add(opcion3);
+        solucion.add(opcion4);
+        solucion.add(opcion5);
         Evaluador groupChoice = new GroupChoice(solucion);
 
-        List<String> solucionJugador = new ArrayList<String>();
-        solucionJugador.add("B:" + opcion1);
-        solucionJugador.add("A:" + opcion2);
-        solucionJugador.add("A:" + opcion3);
-        solucionJugador.add("B:" + opcion4);
-        solucionJugador.add("A:" + opcion5);
+
+        Opcion opcion6 = new OpcionDeGrupo("Niki Lauda", "Pilotos de F1 con 1 DWC");
+        Opcion opcion7 = new OpcionDeGrupo("Nico Rosberg", "Pilotos de F1 con 1 DWC");
+        Opcion opcion8 = new OpcionDeGrupo("Lewis Hamilton", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion9 = new OpcionDeGrupo("Damon Hill", "Pilotos de F1 con mas de 1 DWC");
+        Opcion opcion10 = new OpcionDeGrupo("Fernando Alonso", "Pilotos de F1 con mas de 1 DWC");
+
+        List<Opcion> solucionJugador = new ArrayList<Opcion>();
+        solucionJugador.add(opcion6);
+        solucionJugador.add(opcion7);
+        solucionJugador.add(opcion8);
+        solucionJugador.add(opcion9);
+        solucionJugador.add(opcion10);
         Eleccion eleccionJugador = new Eleccion(solucionJugador);
 
         Puntaje puntaje = groupChoice.evaluarEleccion(eleccionJugador);

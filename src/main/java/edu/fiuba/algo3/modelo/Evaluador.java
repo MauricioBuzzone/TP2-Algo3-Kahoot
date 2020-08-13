@@ -6,5 +6,9 @@ public interface Evaluador {
 
     public Puntaje evaluarEleccion(Eleccion eleccion);
 
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones);
+
+    public boolean sonOpcionesValidasComoSolucion(List<Opcion> opciones);
+  
+    public boolean esCorrecta(Eleccion eleccion);
+
 }

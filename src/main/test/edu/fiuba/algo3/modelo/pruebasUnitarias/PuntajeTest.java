@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.Bonificador;
+import edu.fiuba.algo3.modelo.Puntaje;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PuntajeTest{
 

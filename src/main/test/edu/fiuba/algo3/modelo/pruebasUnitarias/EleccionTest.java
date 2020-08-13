@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -15,43 +14,44 @@ public class EleccionTest {
     @Test
     public void test01UnaEleccionDevuelveSerIgualASiMisma() {
 
-        String texto = new String("El cabildo de Buenos Aires");
-        List<String> jugada = new ArrayList<String>();
-        jugada.add(texto);
+        String texto = "El cabildo de Buenos Aires";
+        Opcion opcion = new OpcionComun(texto);
+        List<Opcion> jugada = new ArrayList<Opcion>();
+        jugada.add(opcion);
         Eleccion eleccion = new Eleccion(jugada);
         assert (eleccion.igualA(eleccion));
     }
 
     @Test
-    public void test02DosEleccionesDelMismoTextoSonIguales() {
+    public void test02DosEleccionesDeLaMismaOpcionSonIguales() {
 
-        String texto = new String("El cabildo de Buenos Aires");
+        Opcion opcion = new OpcionComun("El cabildo de Buenos Aires");
 
-        List<String> jugadaUno = new ArrayList<String>();
-        jugadaUno.add(texto);
+        List<Opcion> jugadaUno = new ArrayList<Opcion>();
+        jugadaUno.add(opcion);
         Eleccion eleccion = new Eleccion(jugadaUno);
 
-        List<String> jugadaDos = new ArrayList<String>();
-        jugadaDos.add(texto);
+        List<Opcion> jugadaDos = new ArrayList<Opcion>();
+        jugadaDos.add(opcion);
         Eleccion otraEleccion = new Eleccion(jugadaDos);
 
         assert (eleccion.igualA(otraEleccion));
     }
 
     @Test
-    public void test03DosEleccionesConDistintoTextoNoSonIguales() {
+    public void test03DosEleccionesConDistintoOpcionNoSonIguales() {
 
-        String texto = new String("El cabildo de Buenos Aires");
+        Opcion unaOpcion = new OpcionComun("El cabildo de Buenos Aires");
 
-        List<String> jugadaUno = new ArrayList<String>();
-        jugadaUno.add(texto);
+        List<Opcion> jugadaUno = new ArrayList<Opcion>();
+        jugadaUno.add(unaOpcion);
         Eleccion eleccion = new Eleccion(jugadaUno);
 
 
-        String otroTexto = new String("La Casa Rosada");
+        Opcion otroOpcion = new OpcionComun("La Casa Rosada");
 
-        List<String> jugadaDos = new ArrayList<String>();
-        jugadaDos.add(otroTexto);
+        List<Opcion> jugadaDos = new ArrayList<Opcion>();
+        jugadaDos.add(otroOpcion);
         Eleccion otraEleccion = new Eleccion(jugadaDos);
 
 
@@ -60,64 +60,41 @@ public class EleccionTest {
 
     @Test
     public void test04UnaEleccionDeMasDeUnaOpcionEsIgualASiMisma() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
 
-        List<String> jugada = new ArrayList<String>();
-        jugada.add(texto1);
-        jugada.add(texto2);
-        jugada.add(texto3);
-        jugada.add(texto4);
+        List<Opcion> jugada = new ArrayList<Opcion>();
+        jugada.add(opcion1);
+        jugada.add(opcion2);
+        jugada.add(opcion3);
+        jugada.add(opcion4);
         Eleccion eleccion = new Eleccion(jugada);
         assert (eleccion.igualA(eleccion));
     }
 
-    @Test
-    public void test05UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesSonIguales() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
-
-        jugada1.add(texto1);
-        jugada1.add(texto2);
-        jugada1.add(texto3);
-        jugada1.add(texto4);
-
-        jugada2.add(texto1);
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto4);
-
-        Eleccion eleccion1 = new Eleccion(jugada1);
-        Eleccion eleccion2 = new Eleccion(jugada2);
-        assert (eleccion1.igualA(eleccion2));
-    }
 
     @Test
-    public void test06UnaEleccionDeMasDeUnaOpcionYOtraEleccionConLasMismasOpcionesDesordenadasSonIguales() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
+    public void test06UnaEleccionDeMasDeUnaOpcionComunYOtraEleccionConLasMismasOpcionesComunesDesordenadasSonIguales() {
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
 
-        jugada1.add(texto4);
-        jugada1.add(texto3);
-        jugada1.add(texto2);
-        jugada1.add(texto1);
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada2.add(texto1);
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto4);
+        jugada1.add(opcion2);
+        jugada1.add(opcion3);
+        jugada1.add(opcion4);
+        jugada1.add(opcion1);
+
+        jugada2.add(opcion1);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion4);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -126,22 +103,22 @@ public class EleccionTest {
 
     @Test
     public void test07UnaEleccionDeMasDeUnaOpcionYOtraEleccionConDistintasOpcionesNoSonIguales() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto5);
-        jugada1.add(texto3);
-        jugada1.add(texto2);
+        jugada1.add(opcion5);
+        jugada1.add(opcion3);
+        jugada1.add(opcion2);
 
-        jugada2.add(texto1);
-        jugada2.add(texto2);
-        jugada2.add(texto4);
+        jugada2.add(opcion1);
+        jugada2.add(opcion2);
+        jugada2.add(opcion4);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -150,22 +127,22 @@ public class EleccionTest {
 
     @Test
     public void test08EleccionRecibeOtraEleccionYDevuelveLaCantidadDeCoincidencias() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto1);
-        jugada1.add(texto3);
-        jugada1.add(texto4);
+        jugada1.add(opcion1);
+        jugada1.add(opcion3);
+        jugada1.add(opcion4);
 
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto5);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -176,21 +153,21 @@ public class EleccionTest {
 
     @Test
     public void test09EleccionRecibeOtraEleccionSinCoincidenciasYDevuelveCero() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto1);
-        jugada1.add(texto4);
+        jugada1.add(opcion1);
+        jugada1.add(opcion4);
 
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto5);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -200,23 +177,23 @@ public class EleccionTest {
 
     @Test
     public void test10EleccionRecibeOtraEleccionConTresCoincidenciasYDevuelveTresCoincidencias() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto2);
-        jugada1.add(texto3);
-        jugada1.add(texto5);
+        jugada1.add(opcion2);
+        jugada1.add(opcion3);
+        jugada1.add(opcion5);
 
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto5);
-        jugada2.add(texto4);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
+        jugada2.add(opcion4);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -226,22 +203,22 @@ public class EleccionTest {
 
     @Test
     public void test11EleccionRecibeOtraEleccionConLasMismasOpcionesYDevuelveLaCantidadDeOpciones() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto2);
-        jugada1.add(texto3);
-        jugada1.add(texto5);
+        jugada1.add(opcion2);
+        jugada1.add(opcion3);
+        jugada1.add(opcion5);
 
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto5);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -251,21 +228,21 @@ public class EleccionTest {
 
     @Test
     public void test12EleccionRecibeOtraEleccionQueEstaContenidaYDevuelveQueEstaContenida() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto2);
-        jugada1.add(texto3);
-        jugada1.add(texto5);
+        jugada1.add(opcion2);
+        jugada1.add(opcion3);
+        jugada1.add(opcion5);
 
-        jugada2.add(texto3);
-        jugada2.add(texto5);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -275,21 +252,21 @@ public class EleccionTest {
 
     @Test
     public void test13EleccionRecibeOtraEleccionQueNoEstaContenidaYDevuelveQueNoEstaContenida() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto2);
-        jugada1.add(texto3);
-        jugada1.add(texto5);
+        jugada1.add(opcion2);
+        jugada1.add(opcion3);
+        jugada1.add(opcion5);
 
-        jugada2.add(texto3);
-        jugada2.add(texto4);
+        jugada2.add(opcion3);
+        jugada2.add(opcion4);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -299,22 +276,22 @@ public class EleccionTest {
 
     @Test
     public void test14EleccionRecibeOtraEleccionQueEsIgualYDevuelveQueEstaContenido() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto2);
-        jugada1.add(texto3);
-        jugada1.add(texto5);
+        jugada1.add(opcion2);
+        jugada1.add(opcion3);
+        jugada1.add(opcion5);
 
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto5);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
@@ -324,39 +301,40 @@ public class EleccionTest {
 
     @Test
     public void test15EleccionRecibeOtraEleccionQueEsMayorYDevuelveQueNoEstaContenido() {
-        String texto1 = new String("El cabildo de Buenos Aires");
-        String texto2 = new String("La casa rosada");
-        String texto3 = new String("El gran Rex");
-        String texto4 = new String("El obelisco");
-        String texto5 = new String("La cancha de Boca");
+        Opcion opcion1 = new OpcionComun("El cabildo de Buenos Aires");
+        Opcion opcion2 = new OpcionComun("La casa rosada");
+        Opcion opcion3 = new OpcionComun("El gran Rex");
+        Opcion opcion4 = new OpcionComun("El obelisco");
+        Opcion opcion5 = new OpcionComun("La cancha de Boca");
 
-        List<String> jugada1 = new ArrayList<String>();
-        List<String> jugada2 = new ArrayList<String>();
+        List<Opcion> jugada1 = new ArrayList<Opcion>();
+        List<Opcion> jugada2 = new ArrayList<Opcion>();
 
-        jugada1.add(texto2);
+        jugada1.add(opcion2);
 
-        jugada2.add(texto2);
-        jugada2.add(texto3);
-        jugada2.add(texto5);
+        jugada2.add(opcion2);
+        jugada2.add(opcion3);
+        jugada2.add(opcion5);
 
         Eleccion eleccion1 = new Eleccion(jugada1);
         Eleccion eleccion2 = new Eleccion(jugada2);
 
         assertFalse(eleccion1.contieneA(eleccion2));
     }
+
     @Test
     public void test16UnaEleccionDeUnaUnicaOpcionRecibeUnEvaluadorVFYDevuelveQueSusOpcionesSonValidasParaElEvaluadorVF(){
 
         // Creación de elementos necesarios para hacer la prueba
-        String opcionCorrecta = new String("Falso");
-        List<String> opcionesCorrectas = new ArrayList<String>();
+        Opcion opcionCorrecta = new OpcionComun("Falso");
+        List<Opcion> opcionesCorrectas = new ArrayList<Opcion>();
         opcionesCorrectas.add(opcionCorrecta);
 
         Evaluador evaluadorVF = new VerdaderoFalso(opcionesCorrectas);
 
         // Creo la opción a evalúar
-        String opcion = new String("Verdadero");
-        List<String> opciones = new ArrayList<String>();
+        Opcion opcion = new OpcionComun("Verdadero");
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion);
         Eleccion eleccion = new Eleccion(opciones);
 
@@ -367,21 +345,21 @@ public class EleccionTest {
     public void test17UnaEleccionDe6OpcionesRecibeUnEvaluadorMultipleChoiceClasicoDevuelveQueSusOpcionesNoSonValidasParaElEvaluador(){
 
         // Creación de elementos necesarios para hacer la prueba
-        String opcionCorrecta = new String("Jaime Lannister");
-        List<String> opcionesCorrectas = new ArrayList<String>();
+        Opcion opcionCorrecta = new OpcionComun("Jaime Lannister");
+        List<Opcion> opcionesCorrectas = new ArrayList<Opcion>();
         opcionesCorrectas.add(opcionCorrecta);
 
         Evaluador evaluadorMCC = new MultipleChoiceClasico(opcionesCorrectas);
 
         // Creo la opción a evaluar
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
-        String opcion5 = new String("Lancel Lannister");
-        String opcion6 = new String("Joffrey Lannister");
+        Opcion opcion1 = new OpcionComun("Jaime Lannister");
+        Opcion opcion2 = new OpcionComun("Tyrion Lannister");
+        Opcion opcion3 = new OpcionComun("Cersei Lannister");
+        Opcion opcion4 = new OpcionComun("Tywin Lannister");
+        Opcion opcion5 = new OpcionComun("Lancel Lannister");
+        Opcion opcion6 = new OpcionComun("Joffrey Lannister");
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -392,24 +370,27 @@ public class EleccionTest {
 
         assertFalse(eleccion.esUnaEleccionValidaComoSolucion(evaluadorMCC));
     }
+
+
+
     @Test
     public void test18UnaEleccionDeCuatroOpcionesYOtraOpcionDeTresOpcionesSePideLaCantidadDeNoCoincidenciasYDevuelveLaCantidadDeDiferenciasCorrecta(){
 
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
-        String opcion5 = new String("Lancel Lannister");
-        String opcion6 = new String("Joffrey Lannister");
+        Opcion opcion1 = new OpcionComun("Jaime Lannister");
+        Opcion opcion2 = new OpcionComun("Tyrion Lannister");
+        Opcion opcion3 = new OpcionComun("Cersei Lannister");
+        Opcion opcion4 = new OpcionComun("Tywin Lannister");
+        Opcion opcion5 = new OpcionComun("Lancel Lannister");
+        Opcion opcion6 = new OpcionComun("Joffrey Lannister");
 
-        List<String> opciones1 = new ArrayList<String>();
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
         opciones1.add(opcion1);
         opciones1.add(opcion2);
         opciones1.add(opcion3);
         opciones1.add(opcion4);
         Eleccion eleccion1 = new Eleccion(opciones1);
 
-        List<String> opciones2 = new ArrayList<String>();
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
         opciones2.add(opcion1);
         opciones2.add(opcion5);
         opciones2.add(opcion6);
@@ -417,22 +398,24 @@ public class EleccionTest {
 
         assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 2);
     }
+
+
     @Test
     public void test18UnaEleccionDeDosOpcionesYOtraOpcionDeCuatroOpcionesSePideLaCantidadDeNoCoincidenciasYDevuelveLaCantidadDeDiferenciasCorrecta(){
 
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
-        String opcion5 = new String("Lancel Lannister");
-        String opcion6 = new String("Joffrey Lannister");
+        Opcion opcion1 = new OpcionComun("Jaime Lannister");
+        Opcion opcion2 = new OpcionComun("Tyrion Lannister");
+        Opcion opcion3 = new OpcionComun("Cersei Lannister");
+        Opcion opcion4 = new OpcionComun("Tywin Lannister");
+        Opcion opcion5 = new OpcionComun("Lancel Lannister");
+        Opcion opcion6 = new OpcionComun("Joffrey Lannister");
 
-        List<String> opciones1 = new ArrayList<String>();
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
         opciones1.add(opcion1);
         opciones1.add(opcion2);
         Eleccion eleccion1 = new Eleccion(opciones1);
 
-        List<String> opciones2 = new ArrayList<String>();
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
         opciones2.add(opcion1);
         opciones2.add(opcion2);
         opciones2.add(opcion3);
@@ -441,17 +424,18 @@ public class EleccionTest {
 
         assertEquals(eleccion1.cantidadDeNoCoincidentes(eleccion2), 2);
     }
+
     @Test
     public void test19UnaEleccionSePideLaCantidadDeNoCoincidenciasConOtraEleccionIgualYDevuelveCero(){
 
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
-        String opcion5 = new String("Lancel Lannister");
-        String opcion6 = new String("Joffrey Lannister");
+        Opcion opcion1 = new OpcionComun("Jaime Lannister");
+        Opcion opcion2 = new OpcionComun("Tyrion Lannister");
+        Opcion opcion3 = new OpcionComun("Cersei Lannister");
+        Opcion opcion4 = new OpcionComun("Tywin Lannister");
+        Opcion opcion5 = new OpcionComun("Lancel Lannister");
+        Opcion opcion6 = new OpcionComun("Joffrey Lannister");
 
-        List<String> opciones1 = new ArrayList<String>();
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
         opciones1.add(opcion1);
         opciones1.add(opcion2);
         Eleccion eleccion1 = new Eleccion(opciones1);
@@ -462,21 +446,21 @@ public class EleccionTest {
     @Test
     public void test20UnaEleccionSeLePideLaCantidadDeNoCoincidenciasConOtraEleccionContenidaEnEllaYDevuelveCero(){
 
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
-        String opcion5 = new String("Lancel Lannister");
-        String opcion6 = new String("Joffrey Lannister");
+        Opcion opcion1 = new OpcionComun("Jaime Lannister");
+        Opcion opcion2 = new OpcionComun("Tyrion Lannister");
+        Opcion opcion3 = new OpcionComun("Cersei Lannister");
+        Opcion opcion4 = new OpcionComun("Tywin Lannister");
+        Opcion opcion5 = new OpcionComun("Lancel Lannister");
+        Opcion opcion6 = new OpcionComun("Joffrey Lannister");
 
-        List<String> opciones1 = new ArrayList<String>();
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
         opciones1.add(opcion1);
         opciones1.add(opcion2);
         opciones1.add(opcion3);
         opciones1.add(opcion4);
         Eleccion eleccion1 = new Eleccion(opciones1);
 
-        List<String> opciones2 = new ArrayList<String>();
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
         opciones2.add(opcion1);
         opciones2.add(opcion2);
         Eleccion eleccion2 = new Eleccion(opciones2);
@@ -485,53 +469,109 @@ public class EleccionTest {
     }
 
     @Test
-    public void test21AEleccionSeLePideVerficiarOtraEleccionIdenticaEstaEnOrdenDevuelveTrue(){
+    public void test21AEleccionConOpcionesOrdenadasSeLePideVerficarOtraEleccionIdenticaConOpcionesOrdenadasSiEstaEnOrdenDevuelveTrue(){
 
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
+        Opcion opcion1 = new OpcionOrdenada("Jaime Lannister", 1);
+        Opcion opcion2 = new OpcionOrdenada("Tyrion Lannister", 2);
+        Opcion opcion3 = new OpcionOrdenada("Cersei Lannister", 3);
+        Opcion opcion4 = new OpcionOrdenada("Tywin Lannister", 4);
 
 
-        List<String> opciones1 = new ArrayList<String>();
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
         opciones1.add(opcion1);
         opciones1.add(opcion2);
         opciones1.add(opcion3);
         opciones1.add(opcion4);
         Eleccion eleccion1 = new Eleccion(opciones1);
 
-        List<String> opciones2 = new ArrayList<String>();
-        opciones2.add(opcion1);
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
         opciones2.add(opcion2);
+        opciones2.add(opcion1);
         opciones2.add(opcion3);
         opciones2.add(opcion4);
         Eleccion eleccion2 = new Eleccion(opciones2);
 
-        assert(eleccion1.estaEnOrden(eleccion2));
+        assert(eleccion1.igualA(eleccion2));
     }
+
     @Test
-    public void test21AEleccionSeLePideVerficiarOtraEleccionDistintaEstaEnOrdenDevuelveFalse(){
+    public void test21AEleccionConOpcionesOrdenadasSeLePideVerficarOtraEleccionConOpcionesOrdenadasDeFormaDistintaAlNoEstarEnOrdenDevuelveFalse(){
 
-        String opcion1 = new String("Jaime Lannister");
-        String opcion2 = new String("Tyrion Lannister");
-        String opcion3 = new String("Cersei Lannister");
-        String opcion4 = new String("Tywin Lannister");
+        Opcion opcion1 = new OpcionOrdenada("Jaime Lannister", 1);
+        Opcion opcion2 = new OpcionOrdenada("Tyrion Lannister", 2);
+        Opcion opcion3 = new OpcionOrdenada("Cersei Lannister", 3);
+        Opcion opcion4 = new OpcionOrdenada("Tywin Lannister", 4);
 
 
-        List<String> opciones1 = new ArrayList<String>();
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
         opciones1.add(opcion1);
         opciones1.add(opcion2);
         opciones1.add(opcion3);
         opciones1.add(opcion4);
         Eleccion eleccion1 = new Eleccion(opciones1);
 
-        List<String> opciones2 = new ArrayList<String>();
-        opciones2.add(opcion1);
+        Opcion opcion5 = new OpcionOrdenada("Jaime Lannister", 3);
+        Opcion opcion6 = new OpcionOrdenada("Tyrion Lannister", 2);
+        Opcion opcion7 = new OpcionOrdenada("Cersei Lannister", 1);
+        Opcion opcion8 = new OpcionOrdenada("Tywin Lannister",4);
+
+
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
+        opciones2.add(opcion5);
+        opciones2.add(opcion6);
+        opciones2.add(opcion7);
+        opciones2.add(opcion8);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertFalse(eleccion1.igualA(eleccion2));
+    }
+
+    @Test
+    public void test22DosEleccionesConOpcionesDeGrupoConLasMismasOpcionesEnLosMismosGruposSonIguales(){
+
+        Opcion opcion1 = new OpcionDeGrupo("Alonso", "Campeones de F1");
+        Opcion opcion2 = new OpcionDeGrupo("Jenson", "Campeones de F1");
+        Opcion opcion3 = new OpcionDeGrupo("Marc Marques", "Campeones de MotoGP");
+
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        opciones1.add(opcion3);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
         opciones2.add(opcion2);
-        opciones2.add(opcion4);
+        opciones2.add(opcion1);
         opciones2.add(opcion3);
         Eleccion eleccion2 = new Eleccion(opciones2);
 
-        assertFalse(eleccion1.estaEnOrden(eleccion2));
+        assert(eleccion1.igualA(eleccion2));
     }
+
+    @Test
+    public void test23DosEleccionesConOpcionesDeGrupoConLasMismasOpcionesEnDistintosGruposSonIguales(){
+
+        Opcion opcion1 = new OpcionDeGrupo("Alonso", "Campeones de F1");
+        Opcion opcion2 = new OpcionDeGrupo("Jenson", "Campeones de F1");
+        Opcion opcion3 = new OpcionDeGrupo("Marc Marques", "Campeones de MotoGP");
+
+        List<Opcion> opciones1 = new ArrayList<Opcion>();
+        opciones1.add(opcion1);
+        opciones1.add(opcion2);
+        opciones1.add(opcion3);
+        Eleccion eleccion1 = new Eleccion(opciones1);
+
+        Opcion opcion4 = new OpcionDeGrupo("Alonso", "Campeones de F1");
+        Opcion opcion5 = new OpcionDeGrupo("Jenson", "Campeones de MotoGP");
+        Opcion opcion6 = new OpcionDeGrupo("Marc Marques", "Campeones de F1");
+
+        List<Opcion> opciones2 = new ArrayList<Opcion>();
+        opciones2.add(opcion4);
+        opciones2.add(opcion6);
+        opciones2.add(opcion5);
+        Eleccion eleccion2 = new Eleccion(opciones2);
+
+        assertFalse(eleccion1.igualA(eleccion2));
+    }
+
 }

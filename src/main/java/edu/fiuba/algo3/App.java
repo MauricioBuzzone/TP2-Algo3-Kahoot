@@ -1,8 +1,24 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.*;
 import edu.fiuba.algo3.modelo.*;
+
+
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+
+import javafx.scene.control.Button;
+import javafx.event.EventHandler;
+
+
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,31 +33,44 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
+        stage.setTitle("AlgoHoot - DEMO");
+        Scene escenaDeElegirJugadores = this.crearEscenaElegirJugadores();
+        stage.setScene(crearEscenaDeBienvenida(escenaDeElegirJugadores));
+        stage.show();
+    }
 
+    private Scene crearEscenaDeBienvenida(Scene escenaDeElegirJugadores) {
+        Label titulo = new Label("Bienvenido al más humilde y mejor kahoot de algoritmos III");
+        Button botonElegirJugadores = new Button();
+        botonElegirJugadores.setText("Ingresar jugadores");
+        botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, escenaDeElegirJugadores));
+        VBox contenedorPrincipal = new VBox(titulo, botonElegirJugadores);
+        contenedorPrincipal.setSpacing(30);
+        return new Scene(contenedorPrincipal, 300, 250);
+    }
 
-        String enunciado = "¿Aprobamos la entrega2?";
+    private Scene crearEscenaElegirJugadores(){
 
-        String opcion1 = "Re sí";
-        String opcion2 = "Se... ponele";
-        String opcion3 = "Mmm vs dsis";
-        String opcion4 = "Desaproba2 lince";
-        String opcion5 = "Recursan gente, los esperan en Derecho";
+        ListView jugadoresInscriptos = new ListView();
 
-        List<String> solucion = new ArrayList<String>();
-        solucion.add(opcion4);
+        TextField cuadroParaIngresarNombres = new TextField();
+        cuadroParaIngresarNombres.setPromptText("Ingrese el nombre del jugador");
 
-        List<String> opciones = new ArrayList<String>();
-        opciones.add(opcion5);
-        opciones.add(opcion4);
-        opciones.add(opcion3);
-        opciones.add(opcion2);
-        opciones.add(opcion1);
+        Button botonSiguienteJugador = new Button();
+        botonSiguienteJugador.setText("SiguienteJugador");
+        botonSiguienteJugador.setOnAction(new BotonSiguienteEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
 
+        Button botonComenzar = new Button();
+        botonComenzar.setText("Comenzar");
+        botonComenzar.setOnAction(new BotonComenzarEventHandler(jugadoresInscriptos, stage));
 
-        TipoDePregunta tipoDePregunta = new MultipleChoiceClasico(solucion);
-        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoDePregunta);
-        pregunta.mostrar();
+        HBox contenedorHorizontal = new HBox(botonSiguienteJugador, botonComenzar);
+        contenedorHorizontal.setSpacing(10);
 
+        VBox contenedorPrincipal = new VBox(cuadroParaIngresarNombres, contenedorHorizontal, jugadoresInscriptos);
+        contenedorPrincipal.setSpacing(10);
+
+        return new Scene(contenedorPrincipal, 300, 250);
 
     }
 

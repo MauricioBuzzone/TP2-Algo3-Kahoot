@@ -1,18 +1,14 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 public class MultipleChoiceClasicoTest {
     @Test
@@ -20,13 +16,13 @@ public class MultipleChoiceClasicoTest {
 
         String enunciado = "¿Quien creo el patron Poxi?";
 
-        String opcion1 = "Diego";
-        String opcion2 = "Tomas";
-        String opcion3 = "Pablo";
-        String opcion4 = "Pablo";
-        String opcion5 = "Eugenio";
+        Opcion opcion1 = new OpcionComun("Diego");
+        Opcion opcion2 = new OpcionComun("Tomas");
+        Opcion opcion3 = new OpcionComun("Pablo");
+        Opcion opcion4 = new OpcionComun("Pablo");
+        Opcion opcion5 = new OpcionComun("Eugenio");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion3);
         correctas.add(opcion4);
 
@@ -45,14 +41,15 @@ public class MultipleChoiceClasicoTest {
 
         String enunciado = "p -> q";
 
-        String opcion1 = "p'.q";
-        String opcion2 = "q'-> p'";
-        String opcion3 = "(p + q')'";
-        String opcion4 = "p'.q + p.p'";
-        String opcion5 = "p'.(q + p)";
-        String opcion6 = "(p + (q'.p'))'";
+        Opcion opcion1 = new OpcionComun("p'.q");
+        Opcion opcion2 = new OpcionComun("q'-> p'");
+        Opcion opcion3 = new OpcionComun("(p + q')'");
+        Opcion opcion4 = new OpcionComun("p'.q + p.p'");
+        Opcion opcion5 = new OpcionComun("p'.(q + p)");
+        Opcion opcion6 = new OpcionComun("(p + (q'.p'))'");
 
-        List<String> correctas = new ArrayList<String>();
+
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion2);
         correctas.add(opcion3);
@@ -72,13 +69,13 @@ public class MultipleChoiceClasicoTest {
 
         String enunciado = "P = NP";
 
-        String opcion1 = "Si";
-        String opcion2 = "Claramente no";
-        String opcion3 = "Un poquito";
-        String opcion4 = "Pablo = NicoPaez (?";
-        String opcion5 = ":SonLoMismo:";
+        Opcion opcion1 = new OpcionComun("Si");
+        Opcion opcion2 = new OpcionComun("Claramente no");
+        Opcion opcion3 = new OpcionComun("Un poquito");
+        Opcion opcion4 = new OpcionComun("Pablo = NicoPaez (?");
+        Opcion opcion5 = new OpcionComun(":SonLoMismo:");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
 
 
         assertThrows(SolucionInvalidaException.class,
@@ -92,13 +89,13 @@ public class MultipleChoiceClasicoTest {
 
 
         String enunciado = "¿Cuales son los Pilares de POO?";
-        String opcion1 = "Polimorfismo";
-        String opcion2 = "Bajo acoplamiento";
-        String opcion3 = "Alta cohesion";
-        String opcion4 = "Herencia";
-        String opcion5 = "Abstraccion";
+        Opcion opcion1 = new OpcionComun("Polimorfismo");
+        Opcion opcion2 = new OpcionComun("Bajo acoplamiento");
+        Opcion opcion3 = new OpcionComun("Alta cohesion");
+        Opcion opcion4 = new OpcionComun("Herencia");
+        Opcion opcion5 = new OpcionComun("Abstraccion");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion4);
         correctas.add(opcion5);
@@ -119,10 +116,10 @@ public class MultipleChoiceClasicoTest {
     @Test
     public void test05MultipleChoiceClasicoRecibeUnaEleccionDesacertadaYDevuelvaPuntajeDeValorCero(){
 
-        String texto = " 2+2 = 4 ";
-        List<String> opcion= new ArrayList<String>();
-        opcion.add(texto);
-        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(opcion);
+        Opcion opcion = new OpcionComun(" 2+2 = 4 ");
+        List<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcion);
+        Evaluador multipleChoiceClasico = new MultipleChoiceClasico(opciones);
 
         Eleccion eleccion = mock(Eleccion.class);
         when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
@@ -137,10 +134,11 @@ public class MultipleChoiceClasicoTest {
     @Test
     public void test06MultipleChoiceClasicoRecibeUnaListaConTresOpcionesYDevuelveQueEsasOpcionesSonValidasComoSolucion(){
 
-        String opcion1 = "Mike Wazowski";
-        String opcion2 = "James P. Sullivan";
-        String opcion3 = "Randall Boggs";
-        List<String> opciones = new ArrayList<String>();
+        Opcion opcion1 = new OpcionComun("Mike Wazowski");
+        Opcion opcion2 = new OpcionComun("James P. Sullivan");
+        Opcion opcion3 = new OpcionComun("Randall Boggs");
+
+        List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
         opciones.add(opcion2);
         opciones.add(opcion3);
@@ -151,22 +149,21 @@ public class MultipleChoiceClasicoTest {
     @Test
     public void test07MultipleChoiceClasicoecibeUnaListaConSeisOpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        String opcion3 = "Blancanieves";
-        String opcion4 = "Elsa";
-        String opcion5 = "Mérida";
-        String opcion6 = "Moana";
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        Opcion opcion3 = new OpcionComun("Blancanieves");
+        Opcion opcion4 = new OpcionComun("Elsa");
+        Opcion opcion5 = new OpcionComun("Mérida");
+        Opcion opcion6 = new OpcionComun("Moana");
 
-        List<String> opcionesValidas = new ArrayList<String>();
+        List<Opcion> opcionesValidas = new ArrayList<Opcion>();
         opcionesValidas.add(opcion1);
         opcionesValidas.add(opcion2);
         opcionesValidas.add(opcion3);
         opcionesValidas.add(opcion4);
 
-
         Evaluador multipleChoiceClasico = new MultipleChoiceClasico(opcionesValidas);
-        List<String> opcionesInvalidas = new ArrayList<String>();
+        List<Opcion> opcionesInvalidas = new ArrayList<Opcion>();
         opcionesInvalidas.add(opcion1);
         opcionesInvalidas.add(opcion2);
         opcionesInvalidas.add(opcion3);
@@ -179,14 +176,14 @@ public class MultipleChoiceClasicoTest {
     @Test
     public void test08multipleChoiceClasicoRecibeUnaListaCon0OpcionesYDevuelveQueEsasOpcionesNoSonValidasComoSolucion(){
 
-        String opcion1 = "Mulán";
-        String opcion2 = "Pocahontas";
-        List<String> opcionesValidas = new ArrayList<String>();
+        Opcion opcion1 = new OpcionComun("Mulán");
+        Opcion opcion2 = new OpcionComun("Pocahontas");
+        List<Opcion> opcionesValidas = new ArrayList<Opcion>();
         opcionesValidas.add(opcion1);
         opcionesValidas.add(opcion2);
         Evaluador multipleChoiceClasico = new MultipleChoiceClasico(opcionesValidas);
 
-        List<String> opciones = new ArrayList<String>();
+        List<Opcion> opciones = new ArrayList<Opcion>();
         assertFalse(multipleChoiceClasico.sonOpcionesValidasComoSolucion(opciones));
     }
     @Test
@@ -194,13 +191,13 @@ public class MultipleChoiceClasicoTest {
 
         String enunciado = "¿Quien creo el patron Poxi?";
 
-        String opcion1 = "Diego";
-        String opcion2 = "Tomas";
-        String opcion3 = "Pablo S";
-        String opcion4 = "Pablo M";
-        String opcion5 = "Eugenio";
+        Opcion opcion1 = new OpcionComun("Diego");
+        Opcion opcion2 = new OpcionComun("Tomas");
+        Opcion opcion3 = new OpcionComun("Pablo S");
+        Opcion opcion4 = new OpcionComun("Pablo M");
+        Opcion opcion5 = new OpcionComun("Eugenio");
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion3);
         correctas.add(opcion4);
 

@@ -1,17 +1,19 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.vista.VistaPreguntaClasica;
-
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
-public class MultipleChoiceConPenalidad extends TipoDePregunta{
+public class MultipleChoiceConPenalidad extends TipoDePregunta {
 
     private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
     private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
 
-    public MultipleChoiceConPenalidad(List<String> solucion){
+    public MultipleChoiceConPenalidad(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
-        if(!(eleccion.esUnaEleccionValidaComoSolucion(this))){
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+
+        if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
         eleccionCorrecta = eleccion;
@@ -31,16 +33,10 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta{
         return(cantidadCorrectas > cantidadIncorrectas);
     }
 
+    public static MultipleChoiceConPenalidad recuperar(JsonArray jsonArraySolucion){
 
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
-    }
-
-    @Override
-    public void mostrar(String enunciado, List<String> opciones){
-        VistaPreguntaClasica vista = new VistaPreguntaClasica(enunciado, opciones);
-        vista.setBonificadores();
-        vista.mostrar();
+        List<Opcion> opciones = Factory.crearOpciones("MultipleChoiceClasico", jsonArraySolucion);
+        MultipleChoiceConPenalidad multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opciones);
+        return multipleChoiceConPenalidad;
     }
 }

@@ -1,15 +1,19 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
-public class MultipleChoicePuntajeParcial extends TipoDePregunta{
+public class MultipleChoicePuntajeParcial extends TipoDePregunta {
 
     private static final int PUNTAJE_DESFAVORABLE = 0;
     private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
     private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
 
-    public MultipleChoicePuntajeParcial(List<String> solucion){
+    public MultipleChoicePuntajeParcial(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
@@ -27,10 +31,10 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta{
         return(eleccionCorrecta.contieneA(eleccion));
     }
 
+    public static MultipleChoicePuntajeParcial recuperar(JsonArray jsonArraySolucion){
 
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return(opciones.size() >= CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS && opciones.size() <= CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+        List<Opcion> opciones = Factory.crearOpciones("MultipleChoicePuntajeParcial", jsonArraySolucion);
+        MultipleChoicePuntajeParcial multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(opciones);
+        return multipleChoicePuntajeParcial;
     }
-
 }

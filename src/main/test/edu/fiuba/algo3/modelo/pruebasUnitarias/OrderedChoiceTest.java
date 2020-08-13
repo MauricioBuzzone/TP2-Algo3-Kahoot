@@ -1,18 +1,15 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
-import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 public class OrderedChoiceTest {
 
@@ -21,13 +18,13 @@ public class OrderedChoiceTest {
 
         String enunciado = "Ordernar estos nuemro de mayor a menor";
 
-        String opcion1 = "1";
-        String opcion2 = "2";
-        String opcion3 = "3";
-        String opcion4 = "4";
-        String opcion5 = "5";
+        Opcion opcion1 = new OpcionOrdenada("1", 1);
+        Opcion opcion2 = new OpcionOrdenada("2", 2);
+        Opcion opcion3 = new OpcionOrdenada("3", 3);
+        Opcion opcion4 = new OpcionOrdenada("4", 4);
+        Opcion opcion5 = new OpcionOrdenada("5", 5);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion2);
         correctas.add(opcion2);
@@ -48,21 +45,21 @@ public class OrderedChoiceTest {
     public void  test02OrderedChoiceRecibeUnaEleccionAcertadaYDevuelvePuntajeDeValorUno(){
 
         String enunciado = "Ordenar segun orden cronologico ";
-        String opcion1 = " 6/Enero/1929";
-        String opcion2 = " 20/Marzo/2012";
-        String opcion3 = " 24/Julio/1942";
-        String opcion4 = " 26/Agosto/2000";
+        Opcion opcion1 = new OpcionOrdenada("6/Enero/1929", 1);
+        Opcion opcion2 = new OpcionOrdenada("20/Marzo/2012", 4);
+        Opcion opcion3 = new OpcionOrdenada("24/Julio/1942", 2);
+        Opcion opcion4 = new OpcionOrdenada("26/Agosto/2000", 3);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
+        correctas.add(opcion2);
         correctas.add(opcion3);
         correctas.add(opcion4);
-        correctas.add(opcion2);
 
         TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
         Eleccion eleccion = mock(Eleccion.class);
-        when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(true);
+        when(eleccion.igualA(any(Eleccion.class))).thenReturn(true);
 
         Puntaje puntaje =orderedChoice.evaluarEleccion(eleccion);
 
@@ -75,23 +72,23 @@ public class OrderedChoiceTest {
     public void  test03OrderedChoiceRecibeUnaEleccionIncorrectaYDevuelvePuntajeDeValorCero(){
 
         String enunciado = "Ordenar segun orden cronologico ";
-        String opcion1 = " 6/Enero/1929";
-        String opcion2 = " 20/Marzo/2012";
-        String opcion3 = " 24/Julio/1942";
-        String opcion4 = " 26/Agosto/2000";
+        Opcion opcion1 = new OpcionOrdenada("6/Enero/1929", 1);
+        Opcion opcion2 = new OpcionOrdenada("20/Marzo/2012", 4);
+        Opcion opcion3 = new OpcionOrdenada("24/Julio/1942", 2);
+        Opcion opcion4 = new OpcionOrdenada("26/Agosto/2000", 3);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
+        correctas.add(opcion2);
         correctas.add(opcion3);
         correctas.add(opcion4);
-        correctas.add(opcion2);
 
 
         TipoDePregunta orderedChoice = new OrderedChoice(correctas);
 
         Eleccion eleccion = mock(Eleccion.class);
 
-        when(eleccion.estaEnOrden(any(Eleccion.class))).thenReturn(false);
+        when(eleccion.igualA(any(Eleccion.class))).thenReturn(false);
 
         Puntaje puntaje =orderedChoice.evaluarEleccion(eleccion);
 
@@ -105,9 +102,9 @@ public class OrderedChoiceTest {
 
         String enunciado = "Ordenar años";
 
-        String opcion1 = "Si";
+        Opcion opcion1 = new OpcionOrdenada("Si", 1);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
 
 
@@ -121,9 +118,9 @@ public class OrderedChoiceTest {
 
         String enunciado = "Ordenar años";
 
-        String opcion1 = "frula";
+        Opcion opcion1 = new OpcionOrdenada("frula", 1);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
         correctas.add(opcion1);
         correctas.add(opcion1);
@@ -141,18 +138,18 @@ public class OrderedChoiceTest {
     public void  test06OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMenorYDevuelvePuntajeDeValorCero(){
 
         String enunciado = "Ordenar segun orden cronologico ";
-        String opcion1 = " 6/Enero/1929";
-        String opcion2 = " 20/Marzo/2012";
-        String opcion3 = " 24/Julio/1942";
-        String opcion4 = " 26/Agosto/2000";
+        Opcion opcion1 = new OpcionOrdenada("6/Enero/1929", 1);
+        Opcion opcion2 = new OpcionOrdenada("20/Marzo/2012", 4);
+        Opcion opcion3 = new OpcionOrdenada("24/Julio/1942", 2);
+        Opcion opcion4 = new OpcionOrdenada("26/Agosto/2000", 3);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
+        correctas.add(opcion2);
         correctas.add(opcion3);
         correctas.add(opcion4);
-        correctas.add(opcion2);
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion3);
@@ -171,19 +168,19 @@ public class OrderedChoiceTest {
     public void  test07OrderedChoiceRecibeUnaEleccionConCantidadDeOpcionesMayorYDevuelveUnPuntajeDeValorCero(){
 
         String enunciado = "Ordenar segun orden cronologico ";
-        String opcion1 = " 6/Enero/1929";
-        String opcion2 = " 20/Marzo/2012";
-        String opcion3 = " 24/Julio/1942";
-        String opcion4 = " 26/Agosto/2000";
+        Opcion opcion1 = new OpcionOrdenada("6/Enero/1929", 1);
+        Opcion opcion2 = new OpcionOrdenada("20/Marzo/2012", 4);
+        Opcion opcion3 = new OpcionOrdenada("24/Julio/1942", 2);
+        Opcion opcion4 = new OpcionOrdenada("26/Agosto/2000", 3);
 
-        List<String> correctas = new ArrayList<String>();
+        List<Opcion> correctas = new ArrayList<Opcion>();
         correctas.add(opcion1);
+        correctas.add(opcion2);
         correctas.add(opcion3);
         correctas.add(opcion4);
-        correctas.add(opcion2);
 
 
-        List<String> opcionesJugador = new ArrayList<String>();
+        List<Opcion> opcionesJugador = new ArrayList<Opcion>();
         opcionesJugador.add(opcion1);
         opcionesJugador.add(opcion2);
         opcionesJugador.add(opcion3);
@@ -205,11 +202,11 @@ public class OrderedChoiceTest {
     public void test08OrderedChoiceEvaluaRespuestaCorrectaYDevuelvePuntajeDeValorUno(){
 
         String enunciado = "Pasos de TDD";
-        String opcion1 = "Test";
-        String opcion2 = "Code";
-        String opcion3 = "Refactor";
+        Opcion opcion1 = new OpcionOrdenada("Test", 1);
+        Opcion opcion2 = new OpcionOrdenada("Code", 2);
+        Opcion opcion3 = new OpcionOrdenada("Refactor", 3);
 
-        List<String> solucion = new ArrayList<String>();
+        List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
         solucion.add(opcion2);
         solucion.add(opcion3);

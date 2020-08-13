@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Jugador {
 
@@ -12,7 +14,11 @@ public class Jugador {
         this.puntosPorRespuesta = new ArrayList<Integer>();
     }
 
-    public void responder(Puntaje puntaje,Bonificador bonificador){
+    public String getNombre(){
+        return nombre;
+    }
+
+    public void responder(Puntaje puntaje, Bonificador bonificador){
         puntosPorRespuesta.add(puntaje.aplicarBonificador(bonificador));
     }
 

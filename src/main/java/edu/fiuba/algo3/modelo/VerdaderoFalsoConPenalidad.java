@@ -1,17 +1,18 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.vista.VistaPreguntaClasica;
-
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
-public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
+public class VerdaderoFalsoConPenalidad extends TipoDePregunta {
 
     private static final int PUNTAJE_FAVORABLE= 1;
     private static final int PUNTAJE_DESFAVORABLE = 1;
-    private static final int CANTIDAD_DE_SOLUCIONES_VALIDAS = 1;
 
-    public VerdaderoFalsoConPenalidad(List<String> solucion){
+    public VerdaderoFalsoConPenalidad(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
+        validador = new ValidadorOpcionUnica();
+
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
         }
@@ -23,16 +24,10 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta{
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
-    @Override
-    public boolean sonOpcionesValidasComoSolucion(List<String> opciones){
-        return (opciones.size() == CANTIDAD_DE_SOLUCIONES_VALIDAS);
-    }
+    public static VerdaderoFalsoConPenalidad recuperar(JsonArray jsonArraySolucion){
 
-
-    @Override
-    public void mostrar(String enunciado, List<String> opciones){
-        VistaPreguntaClasica vista = new VistaPreguntaClasica(enunciado, opciones);
-        vista.setBonificadores();
-        vista.mostrar();
+        List<Opcion> opciones = Factory.crearOpciones("VerdaderoFalsoConPenalidad",jsonArraySolucion);
+        VerdaderoFalsoConPenalidad verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(opciones);
+        return verdaderoFalsoConPenalidad;
     }
 }

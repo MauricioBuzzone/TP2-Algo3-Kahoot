@@ -1,27 +1,40 @@
 package edu.fiuba.algo3.modelo;
 
-import static java.lang.Math.abs;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Eleccion {
 
-    private List<String> opciones;
+    private List<Opcion> opciones;
 
-    public Eleccion(List<String> unasOpciones){
+    public Eleccion(List<Opcion> unasOpciones){
 
         this.opciones = unasOpciones;
     }
 
     public boolean igualA(Eleccion otraEleccion){
 
-        Set<String> misOpciones = new HashSet<>(this.opciones);
-        return (otraEleccion.mismasOpciones(misOpciones));
+        return(this.mismasOpciones(otraEleccion) && otraEleccion.mismasOpciones(this));
     }
 
-    private boolean mismasOpciones(Set<String> otrasOpciones){
+    private boolean mismasOpciones(Eleccion otraEleccion){
+        return otraEleccion.mismasOpciones(this.opciones);
+    }
 
-        Set<String> misOpciones = new HashSet<>(this.opciones);
-        return (misOpciones.equals(otrasOpciones));
+    private boolean mismasOpciones(List<Opcion> otrasOpciones) {
+        for(Opcion miOpcion : this.opciones){
+            int contador = 0;
+            for(Opcion otraOpcion : otrasOpciones){
+                if(miOpcion.igualA(otraOpcion)){
+                    contador++;
+                }
+            }
+            if(contador != 1){
+                return false;
+            }
+        }
+        return true;
     }
 
     public int cantidadCoincidencias(Eleccion otraEleccion){
@@ -29,11 +42,11 @@ public class Eleccion {
        return otraEleccion.cantidadMismasOpciones(opciones);
     }
 
-    private int cantidadMismasOpciones(List<String> otrasOpciones){
+    private int cantidadMismasOpciones(List<Opcion> otrasOpciones){
 
         int coincidencias = 0;
-        for (String opcion : otrasOpciones ){
-            if (this.opciones.contains(opcion)){
+        for (Opcion opcion : otrasOpciones ){
+            if (opcion.estaContenidoEn(this.opciones)){
                 coincidencias++;
             }
         }
@@ -41,7 +54,7 @@ public class Eleccion {
     }
 
     /*
-      Devuelve la cantidad de SUS opciones que no coincidan respecto de las MIAS.
+     *   Devuelve la cantidad de SUS opciones que no coincidan respecto de las MIAS.
      */
     public int cantidadDeNoCoincidentes(Eleccion otraEleccion){
 
@@ -49,22 +62,17 @@ public class Eleccion {
     }
 
     /*
-        Devuelve la cantidad de opciones MIAS que no pertenecen a la lista de opciones recibida
+     *   Devuelve la cantidad de opciones MIAS que no pertenecen a la lista de opciones recibida
      */
-    private int cantidadDeOpcionesQueNoEstanContenidas(List<String> otrasOpciones){
+    private int cantidadDeOpcionesQueNoEstanContenidas(List<Opcion> otrasOpciones){
 
         int cantidadOpcionesNoCoincidentes = 0;
-        for(String miOpcion : opciones){
-            if(!otrasOpciones.contains(miOpcion)){
+        for(Opcion miOpcion : opciones){
+            if(!miOpcion.estaContenidoEn(otrasOpciones)){
                 cantidadOpcionesNoCoincidentes++;
             }
         }
         return cantidadOpcionesNoCoincidentes;
-    }
-
-    private boolean contenidoEn(List<String> opciones){
-
-        return opciones.containsAll(this.opciones);
     }
 
     public boolean contieneA(Eleccion otraEleccion){
@@ -76,11 +84,13 @@ public class Eleccion {
         return (unEvaluador.sonOpcionesValidasComoSolucion(opciones));
     }
 
-    public boolean estaEnOrden(Eleccion eleccion){
-        return eleccion.tienenMismoOrden(this.opciones);
-    }
+    private boolean contenidoEn(List<Opcion> otrasOpciones){
 
-    private  boolean tienenMismoOrden(List<String> opciones){
-        return this.opciones.equals(opciones);
+        for(Opcion miOpcion : this.opciones){
+            if(!miOpcion.estaContenidoEn(otrasOpciones)){
+                return false;
+            }
+        }
+        return true;
     }
 }
