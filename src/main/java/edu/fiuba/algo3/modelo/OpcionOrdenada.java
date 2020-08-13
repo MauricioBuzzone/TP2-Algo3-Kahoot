@@ -25,6 +25,7 @@ public class OpcionOrdenada extends Opcion {
     public static OpcionOrdenada recuperar(JsonObject jsonObjectOpcion){
         String descripcion = jsonObjectOpcion.get("descripcion").getAsString();
         int indice = jsonObjectOpcion.get("indice").getAsInt();
+
         OpcionOrdenada opcionOrdenada = new OpcionOrdenada(descripcion, indice);
         return opcionOrdenada;
     }

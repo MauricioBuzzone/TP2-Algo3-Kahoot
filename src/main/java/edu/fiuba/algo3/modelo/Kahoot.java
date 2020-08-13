@@ -88,9 +88,7 @@ public class Kahoot {
         JsonArray ArrayRondas = jsonObject.get("Rondas").getAsJsonArray();
 
         for (JsonElement jsonRonda : ArrayRondas){
-
             Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
-
             this.agregarPregunta(pregunta);
         }
     }
