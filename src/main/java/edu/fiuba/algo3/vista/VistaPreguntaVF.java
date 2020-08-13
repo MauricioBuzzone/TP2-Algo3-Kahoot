@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.vista;
-
+/*
 import edu.fiuba.algo3.modelo.Kahoot;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,7 +21,7 @@ public class VistaPreguntaVF {
     private Scene crearEscena(String enunciado, List<String> opciones) {
 
         Button boton = new Button();
-        boton.setText()
+        boton.setText();
         String titulo = "Verdadero Falso";
         VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado));
         return new Scene(contenedorPrincipal, 350, 300);
@@ -30,4 +30,4 @@ public class VistaPreguntaVF {
     public void mostrar(){
         this.stage.show(escena);
     }
-}
+}*/

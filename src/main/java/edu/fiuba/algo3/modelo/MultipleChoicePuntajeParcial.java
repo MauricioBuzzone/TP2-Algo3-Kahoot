@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
 public class MultipleChoicePuntajeParcial extends TipoDePregunta {
 
@@ -29,4 +31,15 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta {
         return(eleccionCorrecta.contieneA(eleccion));
     }
 
+    public static MultipleChoicePuntajeParcial recuperar(JsonObject jsonObjectSolucion){
+
+        List<Opcion> opciones = new ArrayList<Opcion>();
+        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
+        for (JsonElement jsonOpcion : arrayOpciones) {
+            Opcion opcion = OpcionComun.recuperar(jsonOpcion.getAsJsonObject());
+            opciones.add(opcion);
+        }
+        MultipleChoicePuntajeParcial multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(opciones);
+        return multipleChoicePuntajeParcial;
+    }
 }

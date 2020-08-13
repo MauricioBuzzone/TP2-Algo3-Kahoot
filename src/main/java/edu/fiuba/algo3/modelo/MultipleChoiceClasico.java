@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
 public class MultipleChoiceClasico extends TipoDePregunta {
 
@@ -22,5 +24,17 @@ public class MultipleChoiceClasico extends TipoDePregunta {
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
+    }
+
+    public static MultipleChoiceClasico recuperar(JsonObject jsonObjectSolucion){
+
+        List<Opcion> opciones = new ArrayList<Opcion>();
+        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
+        for (JsonElement jsonOpcion : arrayOpciones) {
+            Opcion opcion = OpcionComun.recuperar(jsonOpcion.getAsJsonObject());
+            opciones.add(opcion);
+        }
+        MultipleChoiceClasico multipleChoiceClasico = new MultipleChoiceClasico(opciones);
+        return multipleChoiceClasico;
     }
 }

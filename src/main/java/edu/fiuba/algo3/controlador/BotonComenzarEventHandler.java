@@ -1,5 +1,5 @@
 package edu.fiuba.algo3;
-
+/*
 import edu.fiuba.algo3.controlador.ControladorPrincipal;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Kahoot;
@@ -46,5 +46,7 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
         }
         return jugadores;
     }
-}
 
+
+}
+*/

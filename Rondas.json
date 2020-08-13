@@ -1,0 +1,18 @@
+{"Rondas":[
+  {
+    "pregunta": {
+      "enunciado": "Diego es pintorRodillo",
+      "tipo": "VerdaderoFalso",
+      "solucion": {"opciones": [{"descripcion": "Verdadero"}]},
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    }
+  },
+  {
+    "pregunta": {
+      "enunciado": "Tomás nunca pintó con salsa de tomate",
+      "tipo": "VerdaderoFalso",
+      "solucion": {"opciones": [{"descripcion": "Falso"}]},
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    }
+  }
+]}

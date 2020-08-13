@@ -1,5 +1,5 @@
 package edu.fiuba.algo3;
-
+/*
 import edu.fiuba.algo3.*;
 import edu.fiuba.algo3.modelo.*;
 
@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * JavaFX App
- */
+ *//*
 public class App extends Application {
 
     public static Stage stage;
@@ -77,4 +77,4 @@ public class App extends Application {
         launch();
     }
 
-}
+}*/

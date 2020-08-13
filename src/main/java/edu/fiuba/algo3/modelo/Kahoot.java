@@ -3,6 +3,14 @@ package edu.fiuba.algo3.modelo;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 
 public class Kahoot {
 
@@ -63,5 +71,29 @@ public class Kahoot {
 
     public Tabla terminarJuego(){
         return tablaJugadores;
+    }
+
+    //Json
+    public void agregarRonda(String archivo) throws IOException{
+
+        String texto = Files.readString(Path.of(archivo));
+
+        JsonObject jsonObject = JsonParser.parseString(texto).getAsJsonObject();
+
+        this.agregarRonda(jsonObject);
+
+    }
+
+    private void agregarRonda(JsonObject jsonObject){
+        JsonArray ArrayRondas = jsonObject.get("Rondas").getAsJsonArray();
+
+        for (JsonElement jsonRonda : ArrayRondas){
+
+            Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
+
+            System.out.println(pregunta.getEnunciado());
+
+            this.agregarPregunta(pregunta);
+        }
     }
 }
