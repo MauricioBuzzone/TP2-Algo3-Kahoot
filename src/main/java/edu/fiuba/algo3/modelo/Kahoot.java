@@ -29,57 +29,28 @@ public class Kahoot {
     private Tabla tablaJugadores;
     private CuentaAtras cuentaAtras;
 
-    public Kahoot(List<Jugador> jugadores){
+    public Kahoot(List<Jugador> jugadores) {
         tablaJugadores = new Tabla(jugadores);
-        //this.agregarPreguntas();
+        try {
+            this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public Kahoot(List<Jugador> jugadores, String rutaArchivo){
+        tablaJugadores = new Tabla(jugadores);
+        try{
+            this.agregarRonda(rutaArchivo);
+        }catch (IOException ex){
+            System.out.println(ex);
+        }
     }
 
     //TestOnly. A borrar
     public Kahoot(List<Jugador> jugadores, Pregunta pregunta){
         tablaJugadores = new Tabla(jugadores);
         this.agregarPregunta(pregunta);
-    }
-
-    //A borrar.
-    private void agregarPreguntas(){
-
-        String enunciado = "Situar cronologicamente [de pasado a futuro]";
-
-        Opcion opcion1 = new OpcionOrdenada("Gallina", 2);
-        Opcion opcion2 = new OpcionOrdenada("Huevo", 1);
-        Opcion opcion3 = new OpcionOrdenada("Muerte de Mirtha", 4);
-        Opcion opcion4 = new OpcionOrdenada("El huevo frito", 3);
-
-        List<Opcion> solucion = new ArrayList<Opcion>();
-        solucion.add(opcion1);
-        solucion.add(opcion2);
-        solucion.add(opcion3);
-        solucion.add(opcion4);
-
-        List<Opcion> opciones = new ArrayList<Opcion>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
-        opciones.add(opcion3);
-        opciones.add(opcion4);
-
-
-        TipoDePregunta orderedChoice = new OrderedChoice(solucion);
-        Pregunta preguntaOC = new Pregunta(enunciado, opciones, orderedChoice);
-        this.agregarPregunta(preguntaOC);
-
-        String enunciado2 = "A Diego el gusta lo simple";
-        Opcion solucion2 = new OpcionComun("Verdadero");
-        Opcion opcionIncorrecta = new OpcionComun("Falso");
-
-        List<Opcion> opcionCorrecta = new ArrayList<Opcion>();
-        opcionCorrecta.add(solucion2);
-        List<Opcion> opciones2 = new ArrayList<Opcion>();
-        opciones2.add(opcionIncorrecta);
-        opciones2.add(solucion2);
-        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(opcionCorrecta);
-        Pregunta preguntaVF = new Pregunta(enunciado2, opciones2, tipoVerdaderoFalso);
-
-        this.agregarPregunta(preguntaVF);
     }
 
     public void agregarPregunta(Pregunta pregunta){

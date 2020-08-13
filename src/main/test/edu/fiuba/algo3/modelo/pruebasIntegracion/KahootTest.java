@@ -36,12 +36,7 @@ public class KahootTest{
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        Kahoot kahoot = new Kahoot(jugadores);
-        try {
-            kahoot.agregarRonda("Rondas.json");
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        Kahoot kahoot = new Kahoot(jugadores, "Rondas.json");
 
 
         assert(kahoot.haySiguienteRonda());
@@ -143,12 +138,8 @@ public class KahootTest{
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        Kahoot kahoot = new Kahoot(jugadores);
-        try {
-            kahoot.agregarRonda("Rondas01.json");
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+
+        Kahoot kahoot = new Kahoot(jugadores,"Rondas01.json");
 
         assert(kahoot.haySiguienteRonda());
         kahoot.siguienteRonda();
@@ -239,12 +230,8 @@ public class KahootTest{
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        Kahoot kahoot = new Kahoot(jugadores);
-        try {
-            kahoot.agregarRonda("Rondas02.json");
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        Kahoot kahoot = new Kahoot(jugadores,"Rondas02.json");
+
 
         assert(kahoot.haySiguienteRonda());
         kahoot.siguienteRonda();
@@ -333,4 +320,3 @@ public class KahootTest{
         Tabla tabla = kahoot.terminarJuego();
     }
 }
-
