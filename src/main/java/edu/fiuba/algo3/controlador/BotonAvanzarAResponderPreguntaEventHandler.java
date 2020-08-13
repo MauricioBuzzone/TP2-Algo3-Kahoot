@@ -27,6 +27,7 @@ public class BotonAvanzarAResponderPreguntaEventHandler implements EventHandler<
         String enunciado = kahoot.getEnunciado();
         List<String> opciones = kahoot.getOpciones();
 
+        kahoot.jugadorVaAResponder();
         VistaPreguntaVF vistaPregunta = new VistaPreguntaVF(stage, kahoot, enunciado, opciones);
         vistaPregunta.mostrar();
     }
