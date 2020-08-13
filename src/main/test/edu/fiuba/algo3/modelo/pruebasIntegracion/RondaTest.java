@@ -1,4 +1,4 @@
-/*
+
 package edu.fiuba.algo3.modelo.pruebasIntegracion;
 
 import edu.fiuba.algo3.modelo.*;
@@ -40,7 +40,7 @@ public class RondaTest{
 
         Bonificador bonificadorDiego = new Bonificador();
 
-        ronda.agregarRespuesta(eleccionDiego, bonificadorDiego);
+        ronda.agregarRespuesta(new Respuesta(diego, eleccionDiego, bonificadorDiego));
 
         List<Opcion> opcionTomas = new ArrayList<Opcion>();
         opcionTomas.add(new OpcionComun("Verdadero"));
@@ -48,9 +48,9 @@ public class RondaTest{
 
         Bonificador bonificadorTomas = new Bonificador();
 
-        ronda.agregarRespuesta(eleccionTomas, bonificadorTomas);
+        ronda.agregarRespuesta(new Respuesta(tomas, eleccionTomas, bonificadorTomas));
 
-        ronda.evaluarRespuestas();
+        ronda.responder();
 
         assertEquals(diego.puntosTotales(), 0);
         assertEquals (tomas.puntosTotales() , 1);
@@ -88,17 +88,16 @@ public class RondaTest{
 
         Bonificador bonificadorDiego = new Bonificador();
 
-        ronda.agregarRespuesta(eleccionDiego, bonificadorDiego);
-
+        ronda.agregarRespuesta(new Respuesta(diego, eleccionDiego, bonificadorDiego));
         List<Opcion> opcionTomas = new ArrayList<Opcion>();
         opcionTomas.add(new OpcionComun("Verdadero"));
         Eleccion eleccionTomas = new Eleccion(opcionTomas);
 
         Bonificador bonificadorTomas = new Bonificador();
 
-        ronda.agregarRespuesta(eleccionTomas, bonificadorTomas);
+        ronda.agregarRespuesta(new Respuesta(tomas, eleccionTomas, bonificadorTomas));
 
-        ronda.evaluarRespuestas();
+        ronda.responder();
 
         assertEquals(diego.puntosTotales(), 0);
         assertEquals (tomas.puntosTotales() , 2);
@@ -144,7 +143,7 @@ public class RondaTest{
 
         Bonificador bonificadorDiego = new Bonificador();
 
-        ronda.agregarRespuesta(eleccionDiego, bonificadorDiego);
+        ronda.agregarRespuesta(new Respuesta(diego, eleccionDiego, bonificadorDiego));
 
         List<Opcion> opcionTomas = new ArrayList<Opcion>();
         opcionTomas.add(opcion1);
@@ -154,13 +153,12 @@ public class RondaTest{
 
         Bonificador bonificadorTomas = new Bonificador();
 
-        ronda.agregarRespuesta(eleccionTomas, bonificadorTomas);
+        ronda.agregarRespuesta(new Respuesta(tomas, eleccionTomas, bonificadorTomas));
 
-        ronda.evaluarRespuestas();
+        ronda.responder();
 
         assertEquals(diego.puntosTotales(), 0);
         assertEquals (tomas.puntosTotales() , 1);
     }
 
 }
- */
