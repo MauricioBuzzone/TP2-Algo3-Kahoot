@@ -31,14 +31,9 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta {
         return(eleccionCorrecta.contieneA(eleccion));
     }
 
-    public static MultipleChoicePuntajeParcial recuperar(JsonObject jsonObjectSolucion){
+    public static MultipleChoicePuntajeParcial recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = new ArrayList<Opcion>();
-        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
-        for (JsonElement jsonOpcion : arrayOpciones) {
-            Opcion opcion = OpcionComun.recuperar(jsonOpcion.getAsJsonObject());
-            opciones.add(opcion);
-        }
+        List<Opcion> opciones = Factory.crearOpciones("MultipleChoicePuntajeParcial", jsonArraySolucion);
         MultipleChoicePuntajeParcial multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(opciones);
         return multipleChoicePuntajeParcial;
     }

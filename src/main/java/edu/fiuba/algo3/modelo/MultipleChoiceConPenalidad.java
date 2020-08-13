@@ -33,14 +33,9 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta {
         return(cantidadCorrectas > cantidadIncorrectas);
     }
 
-    public static MultipleChoiceConPenalidad recuperar(JsonObject jsonObjectSolucion){
+    public static MultipleChoiceConPenalidad recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = new ArrayList<Opcion>();
-        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
-        for (JsonElement jsonOpcion : arrayOpciones) {
-            Opcion opcion = OpcionComun.recuperar(jsonOpcion.getAsJsonObject());
-            opciones.add(opcion);
-        }
+        List<Opcion> opciones = Factory.crearOpciones("MultipleChoiceClasico", jsonArraySolucion);
         MultipleChoiceConPenalidad multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opciones);
         return multipleChoiceConPenalidad;
     }

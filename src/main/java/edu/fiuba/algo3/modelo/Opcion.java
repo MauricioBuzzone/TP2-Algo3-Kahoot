@@ -32,4 +32,10 @@ public abstract class Opcion {
     public String getDescripcion(){
         return this.descripcion;
     }
+
+
+    //wip Json
+    public void mostrar (){
+        System.out.println(descripcion);
+    }
 }

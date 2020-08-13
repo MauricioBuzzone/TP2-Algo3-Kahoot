@@ -27,14 +27,9 @@ public class OrderedChoice extends TipoDePregunta {
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
-    public static OrderedChoice recuperar(JsonObject jsonObjectSolucion){
+    public static OrderedChoice recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = new ArrayList<Opcion>();
-        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
-        for (JsonElement jsonOpcion : arrayOpciones) {
-            Opcion opcion = OpcionOrdenada.recuperar(jsonOpcion.getAsJsonObject());
-            opciones.add(opcion);
-        }
+        List<Opcion> opciones = Factory.crearOpciones("OrderedChoice",jsonArraySolucion);
         OrderedChoice orderedChoice = new OrderedChoice(opciones);
         return orderedChoice;
     }

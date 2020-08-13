@@ -26,14 +26,9 @@ public class MultipleChoiceClasico extends TipoDePregunta {
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
-    public static MultipleChoiceClasico recuperar(JsonObject jsonObjectSolucion){
+    public static MultipleChoiceClasico recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = new ArrayList<Opcion>();
-        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
-        for (JsonElement jsonOpcion : arrayOpciones) {
-            Opcion opcion = OpcionComun.recuperar(jsonOpcion.getAsJsonObject());
-            opciones.add(opcion);
-        }
+        List<Opcion> opciones = Factory.crearOpciones("MultipleChoiceClasico",jsonArraySolucion);
         MultipleChoiceClasico multipleChoiceClasico = new MultipleChoiceClasico(opciones);
         return multipleChoiceClasico;
     }

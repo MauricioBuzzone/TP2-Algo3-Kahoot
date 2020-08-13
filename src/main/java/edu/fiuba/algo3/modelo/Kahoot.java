@@ -91,8 +91,6 @@ public class Kahoot {
 
             Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
 
-            System.out.println(pregunta.getEnunciado());
-
             this.agregarPregunta(pregunta);
         }
     }

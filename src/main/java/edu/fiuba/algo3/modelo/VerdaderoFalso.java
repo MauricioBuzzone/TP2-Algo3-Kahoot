@@ -24,14 +24,9 @@ public class VerdaderoFalso extends TipoDePregunta {
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
-    public static VerdaderoFalso recuperar(JsonObject jsonObjectSolucion){
+    public static VerdaderoFalso recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = new ArrayList<Opcion>();
-        JsonArray arrayOpciones = jsonObjectSolucion.getAsJsonArray("solucion");
-        for (JsonElement jsonOpcion : arrayOpciones) {
-            Opcion opcion = OpcionComun.recuperar(jsonOpcion.getAsJsonObject());
-            opciones.add(opcion);
-        }
+        List<Opcion> opciones = Factory.crearOpciones("VerdaderoFalso",jsonArraySolucion);
         VerdaderoFalso verdaderoFalso = new VerdaderoFalso(opciones);
         return verdaderoFalso;
     }

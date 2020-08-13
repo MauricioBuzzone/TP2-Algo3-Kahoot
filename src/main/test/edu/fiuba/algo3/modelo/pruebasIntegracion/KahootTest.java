@@ -130,9 +130,6 @@ public class KahootTest{
         assertFalse(kahoot.haySiguienteRonda());
 
         Tabla tabla = kahoot.terminarJuego();
-
-
-        assert(true);
     }
 }
 
