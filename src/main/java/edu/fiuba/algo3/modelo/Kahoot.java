@@ -7,7 +7,13 @@ import java.util.ArrayList;
 
 public class Kahoot {
 
-    public static final int VERDADERO_FALSO = 1;
+    public static final int VERDADERO_FALSO = Pregunta.VERDADERO_FALSO;
+    public static final int VERDADERO_FALSO_CON_PENALIDAD = Pregunta.VERDADERO_FALSO_CON_PENALIDAD;
+    public static final int MULTIPLE_CHOICE_CLASICO = Pregunta.MULTIPLE_CHOICE_CLASICO;
+    public static final int MULTIPLE_CHOICE_CON_PENALIDAD = Pregunta.MULTIPLE_CHOICE_CON_PENALIDAD;
+    public static final int MULTIPLE_CHOICE_PUNTAJE_PARCIAL = Pregunta.MULTIPLE_CHOICE_PUNTAJE_PARCIAL;
+    public static final int ORDERED_CHOICE = Pregunta.ORDERED_CHOICE;
+    public static final int GROUP_CHOICE = Pregunta.GROUP_CHOICE;
 
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
@@ -17,6 +23,13 @@ public class Kahoot {
         tablaJugadores = new Tabla(jugadores);
         this.agregarPreguntas();
     }
+
+    //TestOnly
+    public Kahoot(List<Jugador> jugadores, Pregunta pregunta){
+        tablaJugadores = new Tabla(jugadores);
+        this.agregarPregunta(pregunta);
+    }
+
     private void agregarPreguntas(){
 
         String enunciadoUno = "Diego es pintorRodillo";
@@ -73,7 +86,7 @@ public class Kahoot {
     }
 
     public int tipoDePregunta(){
-        return 1; // cambiar lógica
+        return rondaActiva.tipoDePregunta();
     }
 
     public boolean haySiguienteJugador(){

@@ -39,12 +39,17 @@ public class Ronda {
     public void agregarRespuesta(Respuesta respuesta){
         respuestas.agregarRespuesta(respuesta);
     }
+
     public void responder(){
         pregunta.responderPregunta(respuestas);
     }
 
     public void activarExclusividad(){
         respuestas.activarExclusividad();
+    }
+
+    public int tipoDePregunta(){
+        return pregunta.tipoDePregunta();
     }
 
 

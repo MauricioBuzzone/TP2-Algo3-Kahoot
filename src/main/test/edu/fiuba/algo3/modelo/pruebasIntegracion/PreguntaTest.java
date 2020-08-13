@@ -1277,5 +1277,4 @@ public class PreguntaTest {
 
         Tabla tabla = kahoot.terminarJuego();
     }
-
 }

@@ -4,6 +4,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Pregunta {
+
+    public static final int VERDADERO_FALSO = 1;
+    public static final int VERDADERO_FALSO_CON_PENALIDAD = 2;
+    public static final int MULTIPLE_CHOICE_CLASICO = 3;
+    public static final int MULTIPLE_CHOICE_CON_PENALIDAD = 4;
+    public static final int MULTIPLE_CHOICE_PUNTAJE_PARCIAL = 5;
+    public static final int ORDERED_CHOICE = 6;
+    public static final int GROUP_CHOICE = 7;
+
     private TipoDePregunta tipo;
     private String enunciado;
     private List<Opcion> opciones;
@@ -30,5 +39,19 @@ public class Pregunta {
         return descripciones;
     }
 
-
+    public int tipoDePregunta(){
+        if(this.tipo.getClass() == VerdaderoFalso.class){
+            return VERDADERO_FALSO;
+        }else if(this.tipo.getClass() == VerdaderoFalsoConPenalidad.class){
+            return VERDADERO_FALSO_CON_PENALIDAD;
+        }else if(this.tipo.getClass() == MultipleChoiceClasico.class){
+            return MULTIPLE_CHOICE_CLASICO;
+        }else if(this.tipo.getClass() == MultipleChoicePuntajeParcial.class){
+            return MULTIPLE_CHOICE_PUNTAJE_PARCIAL;
+        }else if(this.tipo.getClass() == MultipleChoiceConPenalidad.class){
+            return MULTIPLE_CHOICE_CON_PENALIDAD;
+        }else{
+            return ORDERED_CHOICE;
+        }
+    }
 }
