@@ -32,6 +32,10 @@ public class Ronda {
         return jugadores.poll();
     }
 
+    public Jugador getJugador(){
+        return jugadorActivo;
+    }
+
     public void agregarRespuesta(Respuesta respuesta){
         respuestas.agregarRespuesta(respuesta);
     }

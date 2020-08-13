@@ -49,6 +49,10 @@ public class Kahoot {
         return rondaActiva.getSiguienteJugador();
     }
 
+    public Jugador getJugador(){
+        return rondaActiva.getJugador();
+    }
+
     public void agregarRespuesta(Respuesta respuesta){
         rondaActiva.agregarRespuesta(respuesta);
     }
