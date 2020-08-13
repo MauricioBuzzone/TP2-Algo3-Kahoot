@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
-
+import java.util.ArrayList;
+import com.google.gson.*;
 
 public class VerdaderoFalso extends TipoDePregunta {
 
@@ -21,5 +22,12 @@ public class VerdaderoFalso extends TipoDePregunta {
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
+    }
+
+    public static VerdaderoFalso recuperar(JsonArray jsonArraySolucion){
+
+        List<Opcion> opciones = Factory.crearOpciones("VerdaderoFalso",jsonArraySolucion);
+        VerdaderoFalso verdaderoFalso = new VerdaderoFalso(opciones);
+        return verdaderoFalso;
     }
 }

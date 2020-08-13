@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
 public class GroupChoice extends TipoDePregunta {
 
@@ -26,4 +28,11 @@ public class GroupChoice extends TipoDePregunta {
   
     @Override
     public boolean esCorrecta(Eleccion eleccion){return this.esUnaEleccionCorrecta(eleccion);}
+
+    public static GroupChoice recuperar(JsonArray jsonArraySolucion){
+
+        List<Opcion> opciones = Factory.crearOpciones("GroupChoice",jsonArraySolucion);
+        GroupChoice groupChoice = new GroupChoice(opciones);
+        return groupChoice;
+    }
 }

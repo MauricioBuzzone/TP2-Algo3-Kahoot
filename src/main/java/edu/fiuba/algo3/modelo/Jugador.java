@@ -14,6 +14,10 @@ public class Jugador {
         this.puntosPorRespuesta = new ArrayList<Integer>();
     }
 
+    public String getNombre(){
+        return nombre;
+    }
+
     public void responder(Puntaje puntaje, Bonificador bonificador){
         puntosPorRespuesta.add(puntaje.aplicarBonificador(bonificador));
     }

@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.*;
 
 public class OrderedChoice extends TipoDePregunta {
 
@@ -23,5 +25,12 @@ public class OrderedChoice extends TipoDePregunta {
     @Override
     public Puntaje evaluarEleccion(Eleccion eleccion){
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
+    }
+
+    public static OrderedChoice recuperar(JsonArray jsonArraySolucion){
+
+        List<Opcion> opciones = Factory.crearOpciones("OrderedChoice",jsonArraySolucion);
+        OrderedChoice orderedChoice = new OrderedChoice(opciones);
+        return orderedChoice;
     }
 }
