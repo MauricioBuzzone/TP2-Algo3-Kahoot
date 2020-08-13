@@ -21,7 +21,7 @@ public class Kahoot {
     public static final int ORDERED_CHOICE = Pregunta.ORDERED_CHOICE;
     public static final int GROUP_CHOICE = Pregunta.GROUP_CHOICE;
 
-    public static final String RUTA_ARCHIVO_DEFAULT = "Rondas.json";
+    public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
 
     private Ronda rondaActiva;

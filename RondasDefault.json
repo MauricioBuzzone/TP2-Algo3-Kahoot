@@ -1,0 +1,28 @@
+{
+  "Rondas":[
+    {
+      "enunciado": "¿Diego es pintorRodillo?",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "enunciado": "¿Vamos a tener clases presenciales el cuatri que viene?",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Falso"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "enunciado": "Ordenar los siguientes numeros de mayor a menor",
+      "tipo": "OrderedChoice",
+      "solucion": [{"descripcion": "12", "indice":1},{"descripcion": "3 + 5i","indice":2},{"descripcion": "4i","indice":3}],
+      "opciones": [{"descripcion": "12", "indice":1},{"descripcion": "3 + 5i","indice":2},{"descripcion": "4i","indice":3}]
+    },
+    {
+      "enunciado": "¿Aprobamos la entrega 3?",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    }
+  ]
+}
