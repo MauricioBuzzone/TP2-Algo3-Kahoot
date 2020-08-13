@@ -45,7 +45,6 @@ public class VistaPreguntaVF {
         botonEnviar.setText("E n v i a r");
         botonEnviar.setOnAction(controlador);
 
-
         HBox contenedorBotones = new HBox(botonVerdadero, botonFalso);
         contenedorBotones.setSpacing(20);
         VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), contenedorBotones, botonEnviar);
