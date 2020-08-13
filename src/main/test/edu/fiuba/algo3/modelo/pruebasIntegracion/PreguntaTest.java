@@ -1173,4 +1173,137 @@ public class PreguntaTest {
         assertEquals(diego.puntosTotales(), 5);
         assertEquals(tomas.puntosTotales(), 6);
     }
+
+    @Test
+    public void test4_1SeCreaUnKahootConDosRondasHayDosJugadoresRespondenATiempoAmbosPoseenLosPuntajesAdecuados(){
+
+        //Se crean las preguntas esto se levantaria en un archivo JSON
+        String enunciadoUno = "Diego es pintorRodillo";
+        Opcion solucionUno = new OpcionComun("Verdadero");
+        Opcion opcionIncorrectaUno = new OpcionComun("Falso");
+
+        List<Opcion> opcionCorrectaUno = new ArrayList<Opcion>();
+        opcionCorrectaUno.add(solucionUno);
+
+        List<Opcion> opcionesUno = new ArrayList<Opcion>();
+        opcionesUno.add(solucionUno);
+        opcionesUno.add(opcionIncorrectaUno);
+
+        TipoDePregunta tipoVerdaderoFalsoUno = new VerdaderoFalso(opcionCorrectaUno);
+        Pregunta preguntaUno = new Pregunta(enunciadoUno, opcionesUno, tipoVerdaderoFalsoUno);
+
+        String enunciadoDos = "Tomás nunca pintó con salsa de tomate";
+        Opcion solucionDos = new OpcionComun("Falso");
+        Opcion opcionIncorrectaDos = new OpcionComun("Verdadero");
+        List<Opcion> opcionCorrectaDos = new ArrayList<Opcion>();
+        opcionCorrectaDos.add(solucionDos);
+
+        List<Opcion> opcionesDos = new ArrayList<Opcion>();
+        opcionesDos.add(opcionIncorrectaDos);
+        opcionesDos.add(solucionDos);
+
+
+        TipoDePregunta tipoVerdaderoFalsoDos = new VerdaderoFalso(opcionCorrectaDos);
+        Pregunta preguntaDos = new Pregunta(enunciadoDos, opcionesDos, tipoVerdaderoFalsoDos);
+        //Fin de preguntas
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+        List<Jugador> jugadores = new ArrayList<Jugador>();
+        jugadores.add(diego);
+        jugadores.add(tomas);
+
+
+        Kahoot kahoot = new Kahoot(jugadores);
+
+        //TestOnly ya se creo en el constructor
+        kahoot.agregarPreguntas(preguntaUno);
+        kahoot.agregarPreguntas(preguntaDos);
+
+
+        assert(kahoot.haySiguienteRonda());
+
+        kahoot.siguienteRonda();
+
+        String enunciado = kahoot.getEnunciado();
+        List<String> opciones = kahoot.getOpciones();
+        int tipoDePregunta = kahoot.tipoDePregunta();
+
+        assert(tipoDePregunta == Kahoot.VERDADERO_FALSO);
+
+        assert(kahoot.haySiguienteJugador());
+
+        //Timer
+        Jugador jugador1 = kahoot.getSiguienteJugador();
+
+        List<Opcion> opcionDiegoUno = new ArrayList<Opcion>();
+        opcionDiegoUno.add(new OpcionComun("Falso"));
+        Eleccion primeraEleccionDiego = new Eleccion(opcionDiegoUno);
+        Bonificador bonificadorDiego = new Bonificador();
+        Respuesta primeraRespuestaDiego = new Respuesta(jugador1, primeraEleccionDiego, bonificadorDiego);
+
+
+        kahoot.agregarRespuesta(primeraRespuestaDiego);
+
+        assert(kahoot.haySiguienteJugador());
+
+        Jugador jugador2 = kahoot.getSiguienteJugador();
+
+        List<Opcion> opcionTomasUno = new ArrayList<Opcion>();
+        opcionTomasUno.add(new OpcionComun("Verdadero"));
+        Eleccion primeraEleccionTomas = new Eleccion(opcionTomasUno);
+        Bonificador bonificadorTomas = new Bonificador();
+        Respuesta primeraRespuestaTomas = new Respuesta(jugador2, primeraEleccionTomas, bonificadorTomas);
+
+        kahoot.agregarRespuesta(primeraRespuestaTomas);
+
+
+        assertFalse(kahoot.haySiguienteJugador());
+
+        kahoot.responder();
+
+
+        assert(kahoot.haySiguienteRonda());
+
+        kahoot.siguienteRonda();
+
+        String enunciado = kahoot.getEnunciado();
+        List<String> opciones = kahoot.getOpciones();
+        int tipoDePregunta = kahoot.tipoDePregunta();
+
+        assert(tipoDePregunta == Kahoot.VERDADERO_FALSO);
+
+        assert(kahoot.haySiguienteJugador());
+
+        //Timer
+        Jugador jugador1 = kahoot.getSiguienteJugador();
+
+        List<Opcion> opcionDiegoDos = new ArrayList<Opcion>();
+        opcionDiegoDos.add(new OpcionComun("Falso"));
+        Eleccion segundaEleccionDiego = new Eleccion(opcionDiegoDos);
+        Bonificador segundoBonificadorDiego = new Bonificador();
+
+        Respuesta segundaRespuestaDiego = new Respuesta(jugador1, segundaEleccionDiego, segundoBonificadorDiego);
+
+        kahoot.agregarRespuesta(segundaRespuestaDiego);
+
+        assert(kahoot.haySiguienteJugador());
+
+        Jugador jugador2 = kahoot.getSiguienteJugador();
+
+        List<Opcion> opcionTomasDos = new ArrayList<Opcion>();
+        opcionTomasDos.add(new OpcionComun("Falso"));
+        Eleccion segundaEleccionTomas = new Eleccion(opcionTomasDos);
+        Bonificador segundoBonificadorTomas = new Bonificador();
+
+        Respuesta segundaRespuestaTomas = new Respuesta(jugador2, segundaEleccionTomas, segundoBonificadorTomas);
+
+        assertFalse(kahoot.hayJugadorSiguiente());
+
+        kahoot.responder();
+
+        assertFalse(kahoot.haySiguienteRonda());
+
+        Tabla tabla = kahoot.terminarJuego();
+    }
 }
