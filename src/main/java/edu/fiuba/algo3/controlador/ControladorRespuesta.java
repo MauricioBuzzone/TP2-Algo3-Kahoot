@@ -41,7 +41,7 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
 
 
     public void handle(ActionEvent actionEvent) {
-        System.out.println(opcionesAlmacenadas.size());
+
         Eleccion eleccion = new Eleccion(opcionesAlmacenadas);
         Respuesta respuesta = new Respuesta(kahoot.getJugador(), eleccion, bonificador);
         kahoot.agregarRespuesta(respuesta);
