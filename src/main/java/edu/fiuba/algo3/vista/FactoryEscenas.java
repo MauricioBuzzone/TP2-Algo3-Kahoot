@@ -32,7 +32,30 @@ public class FactoryEscenas {
         List<Opcion> opciones = pregunta.getOpciones();
         List<String> descripciones = this.descripcionesDeOpciones(opciones);
 
-        return crearEscenaDeVerdaderoFalso(enunciado,descripciones);
+        TipoDePregunta tipo = pregunta.getTipoDePregunta();
+
+        if(tipo.getClass() == VerdaderoFalso.class){
+            return crearEscenaDeVerdaderoFalso(enunciado,descripciones);
+
+        }else if(tipo.getClass() == VerdaderoFalsoConPenalidad.class){
+            return crearEscenaDeVerdaderoFalsoConPenalidad(enunciado, descripciones);
+
+        }else if(tipo.getClass() == MultipleChoiceClasico.class){
+            return crearEscenaDeMultipleChoiceClasico(enunciado, descripciones);
+
+        }else if(tipo.getClass() == MultipleChoicePuntajeParcial.class){
+            return crearEscenaDeMultipleChoiceParcial(enunciado, descripciones);
+
+        }else if(tipo.getClass() == MultipleChoiceConPenalidad.class){
+            return crearEscenaDeMultipleChoiceConPenalidad(enunciado, descripciones);
+
+        }else if(tipo.getClass() == OrderedChoice.class){
+            return crearEscenaDeOrderedChoice(enunciado, descripciones);
+
+        }else{//tipo.getClass() == GroupChoice.class
+            return crearEscenaDeGroupChoice(enunciado, descripciones);
+
+        }
     }
 
     private Scene crearEscenaDeVerdaderoFalso(String enunciado, List<String> opciones){
@@ -59,6 +82,84 @@ public class FactoryEscenas {
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
+    private Scene crearEscenaDeVerdaderoFalsoConPenalidad(String enunciado, List<String> opciones){
+        String titulo = "Verdadero Falso con Penalidad";
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
+        Button botonEnviar = new Button();
+        botonEnviar.setText("E n v i a r");
+        botonEnviar.setOnAction(controlador);
+
+        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), botonEnviar);
+        contenedorPrincipal.setSpacing(10);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
+    private Scene crearEscenaDeMultipleChoiceClasico(String enunciado, List<String> opciones){
+        String titulo = "Múltiple choice clásico";
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
+        Button botonEnviar = new Button();
+        botonEnviar.setText("E n v i a r");
+        botonEnviar.setOnAction(controlador);
+
+        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), botonEnviar);
+        contenedorPrincipal.setSpacing(10);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
+    private Scene crearEscenaDeMultipleChoiceParcial(String enunciado, List<String> opciones) {
+        String titulo = "Múltiple choice de puntaje parcial";
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
+        Button botonEnviar = new Button();
+        botonEnviar.setText("E n v i a r");
+        botonEnviar.setOnAction(controlador);
+
+        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), botonEnviar);
+        contenedorPrincipal.setSpacing(10);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
+    private Scene crearEscenaDeMultipleChoiceConPenalidad(String enunciado, List<String> opciones) {
+        String titulo = "Múltiple choice con penalidad";
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
+        Button botonEnviar = new Button();
+        botonEnviar.setText("E n v i a r");
+        botonEnviar.setOnAction(controlador);
+
+        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), botonEnviar);
+        contenedorPrincipal.setSpacing(10);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
+    private Scene crearEscenaDeOrderedChoice(String enunciado, List<String> opciones) {
+        String titulo = "Ordered choice";
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
+        Button botonEnviar = new Button();
+        botonEnviar.setText("E n v i a r");
+        botonEnviar.setOnAction(controlador);
+
+        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), botonEnviar);
+        contenedorPrincipal.setSpacing(10);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
+    private Scene crearEscenaDeGroupChoice(String enunciado, List<String> opciones) {
+        String titulo = "Group choice";
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
+        Button botonEnviar = new Button();
+        botonEnviar.setText("E n v i a r");
+        botonEnviar.setOnAction(controlador);
+
+        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), botonEnviar);
+        contenedorPrincipal.setSpacing(10);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
     private List<String> descripcionesDeOpciones(List<Opcion> opciones){
         List<String> descripciones = new ArrayList<String>();
         for(Opcion opcion : opciones){
@@ -66,4 +167,5 @@ public class FactoryEscenas {
         }
         return descripciones;
     }
+
 }
