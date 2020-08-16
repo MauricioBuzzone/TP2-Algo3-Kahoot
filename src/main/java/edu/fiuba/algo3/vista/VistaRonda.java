@@ -46,6 +46,7 @@ public class VistaRonda implements Observer {
             Scene escena = crearEscenaRonda(jugadorActivo);
             stage.setScene(escena);
         }else {
+            jugadorAnterior = null;
             Scene escena = crearEscenaTabla();
             stage.setScene(escena);
         }
