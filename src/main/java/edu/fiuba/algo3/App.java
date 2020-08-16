@@ -28,6 +28,9 @@ import java.util.List;
  */
 public class App extends Application {
 
+    private static final int ANCHO_ESCENA = 400;
+    private static final int LARGO_ESCENA = 350;
+
     public static Stage stage;
 
     @Override
@@ -46,7 +49,7 @@ public class App extends Application {
         botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, escenaDeElegirJugadores));
         VBox contenedorPrincipal = new VBox(titulo, botonElegirJugadores);
         contenedorPrincipal.setSpacing(30);
-        return new Scene(contenedorPrincipal, 300, 250);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
     private Scene crearEscenaElegirJugadores(){
@@ -70,7 +73,7 @@ public class App extends Application {
         VBox contenedorPrincipal = new VBox(cuadroParaIngresarNombres, contenedorHorizontal, jugadoresInscriptos);
         contenedorPrincipal.setSpacing(10);
 
-        return new Scene(contenedorPrincipal, 300, 250);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
 
     }
 

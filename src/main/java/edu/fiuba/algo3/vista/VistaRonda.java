@@ -19,15 +19,19 @@ import java.util.Observer;
 
 public class VistaRonda implements Observer {
 
+    private static final int ANCHO_ESCENA = 400;
+    private static final int LARGO_ESCENA = 350;
+
     private Ronda rondaActiva;
     private Stage stage;
-    private Button botonFinal;
-    private Jugador jugadorAnterior = null;
+    private Button botonAvanzarRonda;
+    private Jugador jugadorAnterior;
 
-    public VistaRonda(Stage stage, Ronda rondaActiva, Button botonFinal) {
+    public VistaRonda(Stage stage, Ronda rondaActiva, Button botonAvanzarRonda) {
         this.rondaActiva = rondaActiva;
         this.stage = stage;
-        this.botonFinal = botonFinal;
+        this.botonAvanzarRonda = botonAvanzarRonda;
+        this.jugadorAnterior = null;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class VistaRonda implements Observer {
         avanzarATurno.setOnAction(new BotonAvanzarATurnoEventHandler(this.stage, escenaProxima));
         VBox contenedorPrincipal = new VBox(titulo, avanzarATurno);
         contenedorPrincipal.setSpacing(30);
-        return new Scene(contenedorPrincipal, 300, 250);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
     private List<String> descripcionesAPartirDeOpciones(List<Opcion> opciones){
@@ -91,14 +95,14 @@ public class VistaRonda implements Observer {
         contenedorBotones.setSpacing(20);
         VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), contenedorBotones, botonEnviar);
         contenedorPrincipal.setSpacing(10);
-        return new Scene(contenedorPrincipal, 350, 300);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
     private Scene crearEscenaTabla() {
         Label titulo = new Label("Información de todos los participantes de la ronda previa.");
-        VBox contenedorPrincipal = new VBox(titulo, botonFinal);
+        VBox contenedorPrincipal = new VBox(titulo, botonAvanzarRonda);
         contenedorPrincipal.setSpacing(30);
-        return new Scene(contenedorPrincipal, 300, 250);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
 
     }
 
