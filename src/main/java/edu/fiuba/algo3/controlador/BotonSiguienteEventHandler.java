@@ -1,4 +1,4 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.controlador;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;

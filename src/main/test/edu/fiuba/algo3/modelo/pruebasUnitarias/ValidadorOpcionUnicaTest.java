@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
-import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.OpcionComun;
-import edu.fiuba.algo3.modelo.ValidadorDeOpciones;
-import edu.fiuba.algo3.modelo.ValidadorOpcionUnica;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.opciones.OpcionComun;
+import edu.fiuba.algo3.modelo.validadores.ValidadorDeOpciones;
+import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionUnica;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

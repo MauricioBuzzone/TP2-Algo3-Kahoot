@@ -1,9 +1,11 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.preguntas;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import com.google.gson.*;
+import edu.fiuba.algo3.modelo.Factory;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.respuestas.Respuestas;
 
 public class Pregunta {
 

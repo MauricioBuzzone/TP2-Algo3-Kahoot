@@ -1,16 +1,13 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Ronda;
-import edu.fiuba.algo3.modelo.Respuesta;
-import edu.fiuba.algo3.modelo.Opcion;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.Eleccion;
 import edu.fiuba.algo3.modelo.Bonificador;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.respuestas;
+import edu.fiuba.algo3.modelo.preguntas.Evaluador;
+
 import java.util.List;
 import java.util.ArrayList;
 
