@@ -18,6 +18,10 @@ public class Jugador {
         return nombre;
     }
 
+    public int getPuntos(){
+        return this.puntosTotales();
+    }
+
     public void responder(Puntaje puntaje, Bonificador bonificador){
         puntosPorRespuesta.add(puntaje.aplicarBonificador(bonificador));
     }

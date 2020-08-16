@@ -4,12 +4,16 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.controlador.*;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import java.util.List;
+import java.util.*;
 import java.util.ArrayList;
 
 
@@ -23,11 +27,13 @@ public class VistaRonda implements Observer {
     private Stage stage;
     private Button botonFinal;
     private Jugador jugadorAnterior = null;
+    private Queue<Jugador> jugadores;
 
     public VistaRonda(Stage stage, Ronda rondaActiva, Button botonFinal) {
         this.rondaActiva = rondaActiva;
         this.stage = stage;
         this.botonFinal = botonFinal;
+        this.jugadores = new LinkedList<Jugador>();
     }
 
     @Override
@@ -35,6 +41,7 @@ public class VistaRonda implements Observer {
 
         Jugador jugadorActivo = rondaActiva.getJugadorActivo();
         if(jugadorActivo != jugadorAnterior){
+            jugadores.add(jugadorActivo);
             jugadorAnterior = jugadorActivo;
             Scene escena = crearEscenaRonda(jugadorActivo);
             stage.setScene(escena);
@@ -45,7 +52,7 @@ public class VistaRonda implements Observer {
     }
 
     private Scene crearEscenaRonda(Jugador jugadorActivo) {
-        Label titulo = new Label("Información sobre el jugador que está por venir" + jugadorActivo.getNombre());
+        Label titulo = new Label("Información sobre el jugador que está por venir " + jugadorActivo.getNombre());
         Button avanzarATurno = new Button();
         avanzarATurno.setText("Avanzar");
 
@@ -55,7 +62,7 @@ public class VistaRonda implements Observer {
 
         Scene escenaProxima = this.crearEscenaDeVerdaderoFalso(enunciado, descripciones);
 
-        avanzarATurno.setOnAction(new BotonAvanzarATurnoEventHandler(this.stage, escenaProxima));
+        avanzarATurno.setOnAction(new BotonAvanzarATurnoEventHandler(this.stage, escenaProxima, rondaActiva));
         VBox contenedorPrincipal = new VBox(titulo, avanzarATurno);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 300, 250);
@@ -96,7 +103,21 @@ public class VistaRonda implements Observer {
 
     private Scene crearEscenaTabla() {
         Label titulo = new Label("Información de todos los participantes de la ronda previa.");
-        VBox contenedorPrincipal = new VBox(titulo, botonFinal);
+        TableView tableView = new TableView();
+        TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
+        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos");
+
+        column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        column2.setCellValueFactory(new PropertyValueFactory<>("puntos"));
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+
+        while(!jugadores.isEmpty()){
+            tableView.getItems().add(jugadores.poll());
+        }
+
+        VBox contenedorPrincipal = new VBox(titulo, tableView, botonFinal);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 300, 250);
 

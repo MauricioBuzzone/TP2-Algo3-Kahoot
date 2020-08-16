@@ -40,6 +40,7 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
     }
 
     public void handle(ActionEvent actionEvent) {
+        this.rondaActiva.jugadorYaRespondio();
         Eleccion eleccion = new Eleccion(opcionesAlmacenadas);
         Respuesta respuesta = new Respuesta(rondaActiva.getJugadorActivo(), eleccion, bonificador);
         rondaActiva.agregarRespuesta(respuesta);

@@ -8,6 +8,7 @@ public class Ronda extends Observable{
     private Queue<Jugador> jugadores;
     private Respuestas respuestas;
     private Jugador jugadorActivo;
+    private CuentaAtras cuentaAtras;
 
     public void proximoJugador(){
         this.jugadorActivo = this.nuevoJugador();
@@ -63,6 +64,14 @@ public class Ronda extends Observable{
         jugadores = new LinkedList<Jugador>(listaJugadores);
     }
 
+    public void jugadorVaAResponder(RespondedorPorDefecto respondedor){
+        Timer timer = new Timer();
+        this.cuentaAtras = new CuentaAtras(respondedor);
+        timer.schedule(this.cuentaAtras, 15000);
+    }
 
+    public void jugadorYaRespondio(){
+        cuentaAtras.cancel();
+    }
 
 }
