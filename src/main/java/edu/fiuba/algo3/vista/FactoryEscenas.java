@@ -80,11 +80,7 @@ public class FactoryEscenas {
     }
 
     private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
-        if(tipo.getClass() == VerdaderoFalsoConPenalid.class || tipo.getClass() == MultipleChoiceConPenalidad()){
-            return new ContenedorBonificadores(controlador);
-        }
-        return new ContenedorDeExclusividad(controlador);
-
+        return new ContenedorBonificadores(controlador);
     }
 
     private Scene crearEscenaDeVerdaderoFalso(String enunciado, List<String> opciones){
