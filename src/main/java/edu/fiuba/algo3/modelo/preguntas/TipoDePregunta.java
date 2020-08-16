@@ -38,8 +38,6 @@ public abstract class TipoDePregunta implements Evaluador {
         return validador.opcionesValidasComoSolucion(opciones);
     }
 
-
-
     public boolean esCorrecta(Eleccion eleccion){
         return eleccion.igualA(eleccionCorrecta);
     }
