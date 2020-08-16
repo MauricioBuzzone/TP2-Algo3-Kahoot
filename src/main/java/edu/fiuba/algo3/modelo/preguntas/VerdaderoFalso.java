@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionUnica;
+import edu.fiuba.algo3.modelo.FactoryOpciones;
 
 public class VerdaderoFalso extends TipoDePregunta {
 
@@ -30,7 +31,8 @@ public class VerdaderoFalso extends TipoDePregunta {
 
     public static VerdaderoFalso recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = Factory.crearOpciones("VerdaderoFalso",jsonArraySolucion);
+        FactoryOpciones factoryOpciones = new FactoryOpciones();
+        List<Opcion> opciones = factoryOpciones.crearOpciones("VerdaderoFalso",jsonArraySolucion);
         VerdaderoFalso verdaderoFalso = new VerdaderoFalso(opciones);
         return verdaderoFalso;
     }

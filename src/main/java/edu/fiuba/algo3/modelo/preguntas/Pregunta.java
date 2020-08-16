@@ -3,7 +3,8 @@ package edu.fiuba.algo3.modelo.preguntas;
 import java.util.List;
 
 import com.google.gson.*;
-import edu.fiuba.algo3.modelo.Factory;
+import edu.fiuba.algo3.modelo.FactoryTipoDePregunta;
+import edu.fiuba.algo3.modelo.FactoryOpciones;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.respuestas.Respuestas;
 
@@ -59,14 +60,15 @@ public class Pregunta {
         String enunciado = jsonObjectPregunta.get("enunciado").getAsString();
         String tipoDePregunta = jsonObjectPregunta.get("tipo").getAsString();
 
-        TipoDePregunta tipo = Factory.crearTipoDePregunta(tipoDePregunta, jsonObjectPregunta);
+        FactoryTipoDePregunta factoryTipoDePregunta= new FactoryTipoDePregunta();
+        TipoDePregunta tipo = factoryTipoDePregunta.crearTipoDePregunta(tipoDePregunta, jsonObjectPregunta);
+
 
         JsonArray arrayOpciones = jsonObjectPregunta.getAsJsonArray("opciones");
-        List<Opcion> opciones = Factory.crearOpciones(tipoDePregunta ,arrayOpciones);
-
+        FactoryOpciones factoryOpciones = new FactoryOpciones();
+        List<Opcion> opciones = factoryOpciones.crearOpciones(tipoDePregunta ,arrayOpciones);
 
         Pregunta pregunta = new Pregunta(enunciado, opciones, tipo);
-
         return pregunta;
     }
 }

@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
+import edu.fiuba.algo3.modelo.FactoryOpciones;
 
 public class MultipleChoicePuntajeParcial extends TipoDePregunta {
 
@@ -37,7 +38,8 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta {
 
     public static MultipleChoicePuntajeParcial recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = Factory.crearOpciones("MultipleChoicePuntajeParcial", jsonArraySolucion);
+        FactoryOpciones factoryOpciones = new FactoryOpciones();
+        List<Opcion> opciones = factoryOpciones.crearOpciones("MultipleChoicePuntajeParcial", jsonArraySolucion);
         MultipleChoicePuntajeParcial multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(opciones);
         return multipleChoicePuntajeParcial;
     }
