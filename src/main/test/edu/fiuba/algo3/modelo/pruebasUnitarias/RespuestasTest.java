@@ -1,6 +1,12 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 import edu.fiuba.algo3.modelo.*;
 
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.opciones.OpcionComun;
+import edu.fiuba.algo3.modelo.preguntas.Evaluador;
+import edu.fiuba.algo3.modelo.preguntas.VerdaderoFalso;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.respuestas.Respuestas;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;

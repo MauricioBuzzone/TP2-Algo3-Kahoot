@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.*;
-import com.google.gson.*;
+
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.respuestas.Respuestas;
 
 public class Ronda extends Observable{
     private Pregunta pregunta;

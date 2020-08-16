@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.controlador.*;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
