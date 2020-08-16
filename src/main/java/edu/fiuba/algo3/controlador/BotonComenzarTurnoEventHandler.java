@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 
-import edu.fiuba.algo3.modelo.Ronda;
+import edu.fiuba.algo3.modelo.*;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,14 +14,19 @@ public class BotonComenzarTurnoEventHandler implements EventHandler<ActionEvent>
 
     private Stage stage;
     private Scene scene;
+    private Ronda ronda;
 
 
-    public BotonComenzarTurnoEventHandler(Stage stage, Scene scene) {
+
+    public BotonComenzarTurnoEventHandler(Stage stage, Scene scene, Ronda ronda) {
         this.stage = stage;
         this.scene = scene;
+        this.ronda = ronda;
     }
 
     public void handle(ActionEvent actionEvent) {
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(this.ronda);
+        ronda.jugadorVaAResponder(respondedor);
         stage.setScene(scene);
     }
 }

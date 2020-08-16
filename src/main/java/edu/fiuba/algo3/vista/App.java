@@ -51,10 +51,12 @@ public class App extends Application {
 
         TextField cuadroParaIngresarNombres = new TextField();
         cuadroParaIngresarNombres.setPromptText("Ingrese el nombre del jugador");
+        cuadroParaIngresarNombres.setOnKeyPressed(new EscribirSiguienteJugadorEventHandlerEnter(cuadroParaIngresarNombres,jugadoresInscriptos));
+
 
         Button botonSiguienteJugador = new Button();
         botonSiguienteJugador.setText("SiguienteJugador");
-        botonSiguienteJugador.setOnAction(new BotonSiguienteEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
+        botonSiguienteJugador.setOnAction(new EscribirSiguienteJugadorEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
 
         Button botonComenzar = new Button();
         botonComenzar.setText("Comenzar");

@@ -92,16 +92,4 @@ public class Kahoot extends Observable{
         }
     }
 
-
-
-
-
-    //pa q compile
-    public void agregarRespuesta(Respuesta respuesta){
-
-    }
-    //pa q compile x2
-    public Jugador getJugador(){
-        return new Jugador("pepe");
-    }
 }

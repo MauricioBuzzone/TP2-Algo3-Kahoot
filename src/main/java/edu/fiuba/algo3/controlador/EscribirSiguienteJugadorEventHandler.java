@@ -6,20 +6,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
-
 import java.util.List;
 
 
 
-public class BotonSiguienteEventHandler implements EventHandler<ActionEvent> {
+public class EscribirSiguienteJugadorEventHandler implements EventHandler<ActionEvent>{
 
     private TextField textField;
     private ListView tabla;
 
-    public BotonSiguienteEventHandler(TextField textField, ListView tablaJugadores) {
+    public EscribirSiguienteJugadorEventHandler(TextField textField, ListView tablaJugadores) {
         this.textField = textField;
         this.tabla = tablaJugadores;
     }
+
 
     public void handle(ActionEvent actionEvent){
         String nombreJugadorNuevo = this.textField.getText();
