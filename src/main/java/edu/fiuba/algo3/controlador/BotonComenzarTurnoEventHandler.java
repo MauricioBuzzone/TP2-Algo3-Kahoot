@@ -10,13 +10,13 @@ import javafx.event.ActionEvent;
 import java.util.List;
 import java.util.ArrayList;
 
-public class BotonAvanzarATurnoEventHandler implements EventHandler<ActionEvent> {
+public class BotonComenzarTurnoEventHandler implements EventHandler<ActionEvent> {
 
     private Stage stage;
     private Scene scene;
 
 
-    public BotonAvanzarATurnoEventHandler(Stage stage, Scene scene) {
+    public BotonComenzarTurnoEventHandler(Stage stage, Scene scene) {
         this.stage = stage;
         this.scene = scene;
     }

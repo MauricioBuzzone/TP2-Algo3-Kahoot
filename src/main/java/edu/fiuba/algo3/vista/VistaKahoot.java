@@ -18,6 +18,7 @@ public class VistaKahoot implements Observer{
 
     private static final int ANCHO_ESCENA = 400;
     private static final int LARGO_ESCENA = 350;
+    private static final int ESPACIADO = 30;
 
     private Kahoot kahoot;
     private Stage stage;
@@ -42,7 +43,6 @@ public class VistaKahoot implements Observer{
             Scene escena = crearEscenaTabla();
             stage.setScene(escena);
         }
-
     }
 
     private Scene crearEscenaRonda(Ronda ronda){
@@ -51,13 +51,13 @@ public class VistaKahoot implements Observer{
         avanzarATurno.setText("Avanzar");
         avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
         VBox contenedorPrincipal = new VBox(titulo, avanzarATurno);
-        contenedorPrincipal.setSpacing(30);
+        contenedorPrincipal.setSpacing(ESPACIADO);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
     private Scene crearEscenaTabla(){
         Label titulo = new Label("**Terminó el juego, a mimir?**");
         VBox contenedorPrincipal = new VBox(titulo);
-        contenedorPrincipal.setSpacing(30);
+        contenedorPrincipal.setSpacing(ESPACIADO);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 

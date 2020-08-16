@@ -21,7 +21,6 @@ public class FactoryEscenas {
     private Stage stage;
     private Ronda rondaActiva;
     public FactoryEscenas(Stage stage, Ronda rondaActiva){
-
         this.stage=stage;
         this.rondaActiva= rondaActiva;
     }
@@ -59,7 +58,6 @@ public class FactoryEscenas {
         contenedorPrincipal.setSpacing(10);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
-
 
     private List<String> descripcionesDeOpciones(List<Opcion> opciones){
         List<String> descripciones = new ArrayList<String>();

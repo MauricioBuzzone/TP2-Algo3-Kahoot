@@ -15,7 +15,6 @@ public class Kahoot extends Observable{
 
     public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
-
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
     private Tabla tablaJugadores;
@@ -60,7 +59,6 @@ public class Kahoot extends Observable{
     public boolean quedanRondas(){
         return(!rondas.isEmpty());
     }
-
 
     public Ronda getRondaActiva(){
         return rondaActiva;

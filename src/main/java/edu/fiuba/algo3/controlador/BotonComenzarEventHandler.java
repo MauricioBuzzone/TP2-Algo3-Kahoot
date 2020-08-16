@@ -19,10 +19,10 @@ import java.util.List;
 public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
 
     private Stage stage;
-    private ListView nombreJugadores;
+    private ListView nombresJugadores;
 
     public BotonComenzarEventHandler(ListView jugadoresInscriptos, Stage stage) {
-        this.nombreJugadores = jugadoresInscriptos;
+        this.nombresJugadores = jugadoresInscriptos;
         this.stage = stage;
     }
 
@@ -40,7 +40,7 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
 
     private List<Jugador> obtenerJugadores() {
 
-        List<String> nombres =  this.nombreJugadores.getItems();
+        List<String> nombres =  this.nombresJugadores.getItems();
         List<Jugador> jugadores = new ArrayList<Jugador>();
         for(String nombre : nombres){
             jugadores.add(new Jugador(nombre));
