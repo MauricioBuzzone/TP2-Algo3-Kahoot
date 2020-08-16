@@ -1,17 +1,22 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.preguntas;
 
 import java.util.List;
-import java.util.ArrayList;
-import com.google.gson.*;
 
-public class MultipleChoiceClasico extends TipoDePregunta {
+import com.google.gson.*;
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
+
+public class OrderedChoice extends TipoDePregunta {
 
     private static final int PUNTAJE_FAVORABLE= 1;
     private static final int PUNTAJE_DESFAVORABLE = 0;
-    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 1;
+    private static final int CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS = 2;
     private static final int CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS = 5;
 
-    public MultipleChoiceClasico(List<Opcion> solucion){
+    public OrderedChoice(List<Opcion> solucion){
+
         Eleccion eleccion = new Eleccion(solucion);
         validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
@@ -26,10 +31,10 @@ public class MultipleChoiceClasico extends TipoDePregunta {
         return this.evaluarEleccion(eleccion, PUNTAJE_FAVORABLE, PUNTAJE_DESFAVORABLE);
     }
 
-    public static MultipleChoiceClasico recuperar(JsonArray jsonArraySolucion){
+    public static OrderedChoice recuperar(JsonArray jsonArraySolucion){
 
-        List<Opcion> opciones = Factory.crearOpciones("MultipleChoiceClasico",jsonArraySolucion);
-        MultipleChoiceClasico multipleChoiceClasico = new MultipleChoiceClasico(opciones);
-        return multipleChoiceClasico;
+        List<Opcion> opciones = Factory.crearOpciones("OrderedChoice",jsonArraySolucion);
+        OrderedChoice orderedChoice = new OrderedChoice(opciones);
+        return orderedChoice;
     }
 }

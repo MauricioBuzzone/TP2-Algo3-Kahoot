@@ -1,4 +1,7 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.respuestas;
+
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.preguntas.Evaluador;
 
 public class Respuesta {
 

@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.HashSet;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.preguntas.Evaluador;
+
 import java.util.List;
-import java.util.Set;
 
 public class Eleccion {
 

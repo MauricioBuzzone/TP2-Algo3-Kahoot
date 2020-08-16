@@ -1,6 +1,13 @@
 package edu.fiuba.algo3.modelo.pruebasIntegracion;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.opciones.OpcionComun;
+import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
+import edu.fiuba.algo3.modelo.opciones.OpcionOrdenada;
+import edu.fiuba.algo3.modelo.preguntas.*;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.respuestas.Respuestas;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,6 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
 import com.google.gson.*;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.opciones.OpcionComun;
+import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
+import edu.fiuba.algo3.modelo.opciones.OpcionOrdenada;
+import edu.fiuba.algo3.modelo.preguntas.*;
+
 import java.util.List;
 import java.util.ArrayList;
 

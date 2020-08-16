@@ -1,6 +1,13 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.opciones.OpcionOrdenada;
+import edu.fiuba.algo3.modelo.preguntas.Evaluador;
+import edu.fiuba.algo3.modelo.preguntas.OrderedChoice;
+import edu.fiuba.algo3.modelo.preguntas.TipoDePregunta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

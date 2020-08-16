@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.validadores;
+
+import edu.fiuba.algo3.modelo.opciones.Opcion;
 
 import java.util.List;
 

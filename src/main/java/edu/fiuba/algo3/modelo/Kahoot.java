@@ -2,13 +2,13 @@ package edu.fiuba.algo3.modelo;
 
 
 import java.util.*;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import com.google.gson.*;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 
 public class Kahoot extends Observable{
