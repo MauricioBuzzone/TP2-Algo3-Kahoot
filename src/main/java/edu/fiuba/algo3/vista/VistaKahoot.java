@@ -4,6 +4,10 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.controlador.BotonProximoJugadorEventHandler;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,7 +56,20 @@ public class VistaKahoot implements Observer{
         return new Scene(contenedorPrincipal, 300, 250);
     }
     private Scene crearEscenaTabla(){
-        Label titulo = new Label("**Terminó el juego, a mimir?**");
+        Label titulo = new Label("Puntaje final");
+        TableView tableView = new TableView();
+        TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
+        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos");
+
+        column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        column2.setCellValueFactory(new PropertyValueFactory<>("puntos"));
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+
+        //for(Jugador jugador: kahoot.getJugadores()){
+          //  tableView.getItems().add(jugador);
+        //}
         VBox contenedorPrincipal = new VBox(titulo);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 300, 250);
