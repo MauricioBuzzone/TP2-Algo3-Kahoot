@@ -33,12 +33,8 @@ public class Pregunta {
         return enunciado;
     }
 
-    public List<String> getOpciones() {
-        List<String> descripciones = new ArrayList<String>();
-        for(Opcion opcion : opciones){
-            descripciones.add(opcion.getDescripcion());
-        }
-        return descripciones;
+    public List<Opcion> getOpciones() {
+        return opciones;
     }
 
     public int tipoDePregunta(){

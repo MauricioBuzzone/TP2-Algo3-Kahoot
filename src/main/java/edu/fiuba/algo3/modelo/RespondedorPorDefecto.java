@@ -19,6 +19,10 @@ public class RespondedorPorDefecto extends Observable {
     }
 
 
+
+
+
+
     private Respuesta respuestaPorDefecto(){
         Jugador unJugador = this.kahoot.getJugador();
         Opcion opcionVacia = new OpcionComun("");

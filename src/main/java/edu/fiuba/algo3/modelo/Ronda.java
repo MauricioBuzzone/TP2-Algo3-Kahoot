@@ -1,15 +1,61 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.List;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.*;
 import com.google.gson.*;
 
-public class Ronda {
+public class Ronda extends Observable{
     private Pregunta pregunta;
     private Queue<Jugador> jugadores;
     private Respuestas respuestas;
     private Jugador jugadorActivo;
+
+    public void proximoJugador(){
+        this.jugadorActivo = this.nuevoJugador();
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    public Jugador getJugadorActivo(){
+        return jugadorActivo;
+    }
+
+    private Jugador nuevoJugador(){
+        if(this.quedanJugadores()){
+            return jugadores.poll();
+        }
+        return jugadorActivo;
+    }
+
+    public boolean quedanJugadores(){
+        return(!jugadores.isEmpty());
+    }
+
+    public List<Opcion> getOpciones(){
+        return pregunta.getOpciones();
+    }
+
+
+    // Dar vuelta el encapsulamiento.
+    public String getEnunciado(){
+        return pregunta.getEnunciado();
+    }
+
+
+    public void agregarRespuesta(Respuesta respuesta){
+        respuestas.agregarRespuesta(respuesta);
+        if(this.quedanJugadores()){
+            this.proximoJugador();
+        }else{
+            this.responder();
+        }
+    }
+
+    private void responder(){
+        pregunta.responderPregunta(respuestas);
+        this.setChanged();
+        this.notifyObservers();
+    }
+
 
     public Ronda(Pregunta unaPregunta, List<Jugador> listaJugadores) {
         respuestas = new Respuestas();
@@ -17,39 +63,6 @@ public class Ronda {
         jugadores = new LinkedList<Jugador>(listaJugadores);
     }
 
-    public String getEnunciado() {
-        return pregunta.getEnunciado();
-    }
 
-    public List<String> getOpciones() {
-        return pregunta.getOpciones();
-    }
 
-    public boolean haySiguienteJugador(){
-        return(!jugadores.isEmpty());
-    }
-
-    public void siguienteJugador(){
-        jugadorActivo = jugadores.poll();
-    }
-
-    public Jugador getJugador(){
-        return jugadorActivo;
-    }
-
-    public void agregarRespuesta(Respuesta respuesta){
-        respuestas.agregarRespuesta(respuesta);
-    }
-
-    public void responder(){
-        pregunta.responderPregunta(respuestas);
-    }
-
-    public void activarExclusividad(){
-        respuestas.activarExclusividad();
-    }
-
-    public int tipoDePregunta(){
-        return pregunta.tipoDePregunta();
-    }
 }

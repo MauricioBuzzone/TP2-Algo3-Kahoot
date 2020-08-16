@@ -1,4 +1,4 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Kahoot;
@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Respuesta;
 import edu.fiuba.algo3.modelo.Opcion;
 import edu.fiuba.algo3.modelo.OpcionComun;
 
-import edu.fiuba.algo3.vista.VistaTurnoJugador;
+import edu.fiuba.algo3.controlador.*;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
