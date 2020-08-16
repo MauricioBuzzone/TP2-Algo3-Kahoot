@@ -67,10 +67,10 @@ public class VistaKahoot implements Observer{
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
 
-        //for(Jugador jugador: kahoot.getJugadores()){
-          //  tableView.getItems().add(jugador);
-        //}
-        VBox contenedorPrincipal = new VBox(titulo);
+        for(Jugador jugador: kahoot.terminarJuego()){
+            tableView.getItems().add(jugador);
+        }
+        VBox contenedorPrincipal = new VBox(titulo, tableView);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 300, 250);
     }
