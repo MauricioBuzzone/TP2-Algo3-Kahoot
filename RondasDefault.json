@@ -8,7 +8,7 @@
     },
     {
       "enunciado": "¿Vamos a tener clases presenciales el cuatri que viene?",
-      "tipo": "VerdaderoFalso",
+      "tipo": "VerdaderoFalsoConPenalidad",
       "solucion": [{"descripcion": "Falso"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
     },
@@ -20,7 +20,7 @@
     },
     {
       "enunciado": "¿Aprobamos la entrega 3?",
-      "tipo": "VerdaderoFalso",
+      "tipo": "VerdaderoFalsoConPenalidad",
       "solucion": [{"descripcion": "Verdadero"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
     }

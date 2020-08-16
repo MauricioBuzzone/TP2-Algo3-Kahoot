@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.vista;
 
+
+import edu.fiuba.algo3.vista.ContenedorVerdaderoFalso;
+import edu.fiuba.algo3.vista.ContenedorBonificadores;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.preguntas.*;
 import edu.fiuba.algo3.controlador.*;
@@ -25,18 +28,36 @@ public class FactoryEscenas {
         this.rondaActiva= rondaActiva;
     }
 
-    public Scene crearEscenaPregunta(){
+    public Scene crearEscenaPregunta() {
 
         Pregunta pregunta = rondaActiva.getPregunta();
         String enunciado = pregunta.getEnunciado();
         List<Opcion> opciones = pregunta.getOpciones();
         List<String> descripciones = this.descripcionesDeOpciones(opciones);
 
+        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
+
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
 
-        if(tipo.getClass() == VerdaderoFalso.class){
-            return crearEscenaDeVerdaderoFalso(enunciado,descripciones);
+        VBox contenedorPrincipal = new VBox();
+        VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, descripciones, controlador);
 
+        VBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
+        contenedorDeBonificadores.setSpacing(15);
+
+        HBox contenedorHorizontal = new HBox(contenedorDeOpciones, contenedorDeBonificadores);
+        contenedorHorizontal.setSpacing(30);
+
+        contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
+        contenedorPrincipal.setSpacing(20);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+    }
+
+    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<String> descripciones, ControladorRespuesta controlador){
+
+        //if(tipo.getClass() == VerdaderoFalso.class){
+        return new ContenedorVerdaderoFalso(controlador);
+/*
         }else if(tipo.getClass() == VerdaderoFalsoConPenalidad.class){
             return crearEscenaDeVerdaderoFalsoConPenalidad(enunciado, descripciones);
 
@@ -55,7 +76,15 @@ public class FactoryEscenas {
         }else{//tipo.getClass() == GroupChoice.class
             return crearEscenaDeGroupChoice(enunciado, descripciones);
 
+        }*/
+    }
+
+    private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
+        if(tipo.getClass() == VerdaderoFalsoConPenalid.class || tipo.getClass() == MultipleChoiceConPenalidad()){
+            return new ContenedorBonificadores(controlador);
         }
+        return new ContenedorDeExclusividad(controlador);
+
     }
 
     private Scene crearEscenaDeVerdaderoFalso(String enunciado, List<String> opciones){

@@ -13,7 +13,7 @@ import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 public class Kahoot extends Observable{
 
-    public static final String RUTA_ARCHIVO_DEFAULT = "Rondas02.json";
+    public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
