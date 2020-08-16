@@ -5,7 +5,10 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Puntaje;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JugadorTest {
 
@@ -82,5 +85,41 @@ public class JugadorTest {
 
         assertEquals(jugador.puntosTotales(),5);
 
+    }
+
+    @Test
+    public void test06InicialmenteSepuedeUtilizarExclusividadDeAmbosJugadores(){
+        Jugador jugador1 = new Jugador("Don Pepito");
+        Jugador jugador2 = new Jugador("Don Jose");
+
+        assert(jugador1.puedeUtilizarExclusividad());
+        assert(jugador2.puedeUtilizarExclusividad());
+    }
+
+    @Test
+    public void test07NingunJugadorPuedeUsarTresExclusividades(){
+        Jugador jugador1 = new Jugador("Don Pepito");
+        Jugador jugador2 = new Jugador("Don Jose");
+
+
+        jugador1.activarExclusividad();
+        jugador1.activarExclusividad();
+        jugador2.activarExclusividad();
+        jugador2.activarExclusividad();
+
+        assertFalse(jugador1.puedeUtilizarExclusividad());
+        assertFalse(jugador2.puedeUtilizarExclusividad());
+    }
+
+    @Test
+    public void testo08LosJugadoresPuedeUtilizarExclusividadLuegoDeHaberlaUsadoUnaVezAnteriormente(){
+        Jugador jugador1 = new Jugador("Don Pepito");
+        Jugador jugador2 = new Jugador("Don Jose");
+
+        jugador1.activarExclusividad();
+        jugador2.activarExclusividad();
+
+        assert(jugador1.puedeUtilizarExclusividad());
+        assert(jugador2.puedeUtilizarExclusividad());
     }
 }

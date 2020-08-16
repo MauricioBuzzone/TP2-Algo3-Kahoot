@@ -17,11 +17,11 @@ public class Kahoot extends Observable{
 
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
-    private Tabla tablaJugadores;
+    private List<Jugador> jugadores;
     private CuentaAtras cuentaAtras;
 
     public Kahoot(List<Jugador> jugadores) {
-        tablaJugadores = new Tabla(jugadores);
+        this.jugadores = jugadores;
         try {
             this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
         } catch (IOException ex) {
@@ -30,7 +30,7 @@ public class Kahoot extends Observable{
     }
 
     public Kahoot(List<Jugador> jugadores, String rutaArchivo){
-        tablaJugadores = new Tabla(jugadores);
+        this.jugadores = jugadores;
         try{
             this.agregarRonda(rutaArchivo);
         }catch (IOException ex){
@@ -39,7 +39,7 @@ public class Kahoot extends Observable{
     }
 
     public void agregarPregunta(Pregunta pregunta){
-        Ronda ronda = new Ronda(pregunta, tablaJugadores.jugadores());
+        Ronda ronda = new Ronda(pregunta,  this.jugadores);
         rondas.add(ronda);
     }
 
@@ -68,8 +68,8 @@ public class Kahoot extends Observable{
         return new ArrayList(rondas);
     }
 
-    public Tabla terminarJuego(){
-        return tablaJugadores;
+    public List<Jugador> terminarJuego(){
+        return this.jugadores;
     }
 
     //Json
