@@ -2,35 +2,26 @@ package edu.fiuba.algo3.modelo;
 
 
 import java.util.*;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
-public class Kahoot {
 
-    public static final int VERDADERO_FALSO = Pregunta.VERDADERO_FALSO;
-    public static final int VERDADERO_FALSO_CON_PENALIDAD = Pregunta.VERDADERO_FALSO_CON_PENALIDAD;
-    public static final int MULTIPLE_CHOICE_CLASICO = Pregunta.MULTIPLE_CHOICE_CLASICO;
-    public static final int MULTIPLE_CHOICE_CON_PENALIDAD = Pregunta.MULTIPLE_CHOICE_CON_PENALIDAD;
-    public static final int MULTIPLE_CHOICE_PUNTAJE_PARCIAL = Pregunta.MULTIPLE_CHOICE_PUNTAJE_PARCIAL;
-    public static final int ORDERED_CHOICE = Pregunta.ORDERED_CHOICE;
-    public static final int GROUP_CHOICE = Pregunta.GROUP_CHOICE;
+public class Kahoot extends Observable{
 
     public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
-
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
-    private Tabla tablaJugadores;
+    private List<Jugador> jugadores;
     private CuentaAtras cuentaAtras;
 
     public Kahoot(List<Jugador> jugadores) {
-        tablaJugadores = new Tabla(jugadores);
+        this.jugadores = jugadores;
         try {
             this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
         } catch (IOException ex) {
@@ -39,7 +30,7 @@ public class Kahoot {
     }
 
     public Kahoot(List<Jugador> jugadores, String rutaArchivo){
-        tablaJugadores = new Tabla(jugadores);
+        this.jugadores = jugadores;
         try{
             this.agregarRonda(rutaArchivo);
         }catch (IOException ex){
@@ -47,69 +38,38 @@ public class Kahoot {
         }
     }
 
-    //TestOnly. A borrar
-    public Kahoot(List<Jugador> jugadores, Pregunta pregunta){
-        tablaJugadores = new Tabla(jugadores);
-        this.agregarPregunta(pregunta);
-    }
-
     public void agregarPregunta(Pregunta pregunta){
-        Ronda ronda = new Ronda(pregunta, tablaJugadores.jugadores());
+        Ronda ronda = new Ronda(pregunta,  this.jugadores);
         rondas.add(ronda);
     }
 
-    public void jugadorVaAResponder(RespondedorPorDefecto respondedor){
-        Timer timer = new Timer();
-        this.cuentaAtras = new CuentaAtras(respondedor);
-        timer.schedule(this.cuentaAtras, 15000);
+    public void proximaRonda(){
+        this.rondaActiva = this.nuevaRonda();
+        this.setChanged();
+        this.notifyObservers();
     }
 
-    public void jugadorYaRespondio(){
-        cuentaAtras.cancel();
+    private Ronda nuevaRonda(){
+        if(this.quedanRondas()){
+            return rondas.poll();
+        }
+        return rondaActiva;
     }
 
-    public boolean haySiguienteRonda(){
+    public boolean quedanRondas(){
         return(!rondas.isEmpty());
     }
 
-    public void siguienteRonda(){
-        rondaActiva = rondas.poll();
+    public Ronda getRondaActiva(){
+        return rondaActiva;
     }
 
-    public String getEnunciado(){
-        return rondaActiva.getEnunciado();
+    public List<Ronda> getRondas(){
+        return new ArrayList(rondas);
     }
 
-    public List<String> getOpciones(){
-        return rondaActiva.getOpciones();
-    }
-
-    public int tipoDePregunta(){
-        return rondaActiva.tipoDePregunta();
-    }
-
-    public boolean haySiguienteJugador(){
-        return rondaActiva.haySiguienteJugador();
-    }
-
-    public void siguienteJugador(){
-        rondaActiva.siguienteJugador();
-    }
-
-    public Jugador getJugador(){
-        return rondaActiva.getJugador();
-    }
-
-    public void agregarRespuesta(Respuesta respuesta){
-        rondaActiva.agregarRespuesta(respuesta);
-    }
-
-    public void responder(){
-        rondaActiva.responder();
-    }
-
-    public Tabla terminarJuego(){
-        return tablaJugadores;
+    public List<Jugador> terminarJuego(){
+        return this.jugadores;
     }
 
     //Json
@@ -131,4 +91,5 @@ public class Kahoot {
             this.agregarPregunta(pregunta);
         }
     }
+
 }

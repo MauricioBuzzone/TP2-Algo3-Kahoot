@@ -6,16 +6,24 @@ import java.util.List;
 
 public class Jugador {
 
+    private static final int USOS_DE_EXCLUSIVIDAD_MAXIMA = 2;
+
     private String nombre;
     private List<Integer> puntosPorRespuesta;
+    private int usosDeExclusividad;
 
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntosPorRespuesta = new ArrayList<Integer>();
+        this.usosDeExclusividad = USOS_DE_EXCLUSIVIDAD_MAXIMA;
     }
 
     public String getNombre(){
         return nombre;
+    }
+
+    public int getPuntos(){
+        return this.puntosTotales();
     }
 
     public void responder(Puntaje puntaje, Bonificador bonificador){
@@ -32,6 +40,14 @@ public class Jugador {
         if(puntosTotales < 0)
             return 0;
         return puntosTotales;
+    }
+
+    public void activarExclusividad() {
+        usosDeExclusividad--;
+    }
+
+    public boolean puedeUtilizarExclusividad() {
+        return usosDeExclusividad > 0;
     }
 
     //TestOnly
