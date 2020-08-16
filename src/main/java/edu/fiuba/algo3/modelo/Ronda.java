@@ -23,6 +23,10 @@ public class Ronda extends Observable{
         return jugadorActivo;
     }
 
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
+
     private Jugador nuevoJugador(){
         if(this.quedanJugadores()){
             return jugadores.poll();

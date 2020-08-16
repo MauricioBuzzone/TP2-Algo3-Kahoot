@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.controlador.*;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import javafx.scene.Scene;
@@ -50,63 +51,27 @@ public class VistaRonda implements Observer {
     }
 
     private Scene crearEscenaRonda(Jugador jugadorActivo) {
-        Label titulo = new Label("Información sobre el jugador que está por venir" + jugadorActivo.getNombre());
-        Button avanzarATurno = new Button();
-        avanzarATurno.setText("Avanzar");
+        Label titulo = new Label("Turno de " + jugadorActivo.getNombre() + " buena suerte ");
+        Button comenzarTurno = new Button();
+        comenzarTurno.setText("Jugar");
 
-        List<Opcion> opciones = rondaActiva.getOpciones();
-        List<String> descripciones = this.descripcionesAPartirDeOpciones(opciones);
-        String enunciado = rondaActiva.getEnunciado();
 
-        Scene escenaProxima = this.crearEscenaDeVerdaderoFalso(enunciado, descripciones);
+        FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva);
+        Scene escenaProxima = factory.crearEscenaPregunta();
 
-        avanzarATurno.setOnAction(new BotonAvanzarATurnoEventHandler(this.stage, escenaProxima));
-        VBox contenedorPrincipal = new VBox(titulo, avanzarATurno);
+        comenzarTurno.setOnAction(new BotonAvanzarATurnoEventHandler(this.stage, escenaProxima));
+        VBox contenedorPrincipal = new VBox(titulo, comenzarTurno);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
-    private List<String> descripcionesAPartirDeOpciones(List<Opcion> opciones){
-        List<String> descripciones = new ArrayList<String>();
-        for(Opcion opcion : opciones){
-            descripciones.add(opcion.getDescripcion());
-        }
-        return descripciones;
-    }
-
-
-    private Scene crearEscenaDeVerdaderoFalso(String enunciado, List<String> opciones){
-        String titulo = "Verdadero Falso";
-
-        ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
-
-        Button botonVerdadero = new Button();
-        botonVerdadero.setText(opciones.get(0));
-        botonVerdadero.setOnAction(new BotonOpcionComunEventHandler(controlador, opciones.get(0)));
-
-        Button botonFalso = new Button();
-        botonFalso.setText(opciones.get(1));
-        botonFalso.setOnAction(new BotonOpcionComunEventHandler(controlador, opciones.get(1)));
-
-        Button botonEnviar = new Button();
-        botonEnviar.setText("E n v i a r");
-        botonEnviar.setOnAction(controlador);
-
-        HBox contenedorBotones = new HBox(botonVerdadero, botonFalso);
-        contenedorBotones.setSpacing(20);
-        VBox contenedorPrincipal = new VBox(new Label(titulo), new Label(enunciado), contenedorBotones, botonEnviar);
-        contenedorPrincipal.setSpacing(10);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
-    }
 
     private Scene crearEscenaTabla() {
         Label titulo = new Label("Información de todos los participantes de la ronda previa.");
         VBox contenedorPrincipal = new VBox(titulo, botonAvanzarRonda);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
-
     }
-
 
     public void cambiarRondaActiva(Ronda rondaActiva){
         this.rondaActiva = rondaActiva;
