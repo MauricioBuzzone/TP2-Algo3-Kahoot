@@ -32,6 +32,10 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
         opcionesAlmacenadas.add(opcion);
     }
 
+    public void reiniciarOpciones(){
+        opcionesAlmacenadas = new ArrayList<Opcion>();
+    }
+
     public void setBonificador(Bonificador bonificador){
         this.bonificador = bonificador;
     }

@@ -13,6 +13,24 @@
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
     },
     {
+      "enunciado": "¿Que calculos son iguales a '4'?",
+      "tipo": "MultipleChoiceClasico",
+      "solucion": [{"descripcion": "2*2"},{"descripcion": "2**2"}],
+      "opciones": [{"descripcion": "2*2"},{"descripcion": "1**4"},{"descripcion": "2-2"},{"descripcion": "2**2"}]
+    },
+    {
+      "enunciado": "¿Que calculos son iguales a '4'?",
+      "tipo": "MultipleChoiceConPenalidad",
+      "solucion": [{"descripcion": "2*2"},{"descripcion": "2**2"}],
+      "opciones": [{"descripcion": "2*2"},{"descripcion": "1**4"},{"descripcion": "2-2"},{"descripcion": "2**2"}]
+    },
+    {
+      "enunciado": "¿Que calculos son iguales a '4'?",
+      "tipo": "MultipleChoicePuntajeParcial",
+      "solucion": [{"descripcion": "2*2"},{"descripcion": "2**2"}],
+      "opciones": [{"descripcion": "2*2"},{"descripcion": "1**4"},{"descripcion": "2-2"},{"descripcion": "2**2"}]
+    },
+    {
       "enunciado": "Ordenar los siguientes numeros de mayor a menor",
       "tipo": "OrderedChoice",
       "solucion": [{"descripcion": "12", "indice":1},{"descripcion": "3 + 5i","indice":2},{"descripcion": "4i","indice":3}],
