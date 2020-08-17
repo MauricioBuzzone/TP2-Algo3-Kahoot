@@ -310,8 +310,8 @@ public class PreguntaTest {
 
         List<Opcion> solucion = new ArrayList<Opcion>();
         solucion.add(opcion1);
-        solucion.add(opcion3);
         solucion.add(opcion5);
+        solucion.add(opcion3);
 
         List<Opcion> opciones = new ArrayList<Opcion>();
         opciones.add(opcion1);
