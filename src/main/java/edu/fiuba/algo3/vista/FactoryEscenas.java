@@ -57,16 +57,16 @@ public class FactoryEscenas {
 
     private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<String> descripciones, ControladorRespuesta controlador){
 
-        if(tipo.getClass() == VerdaderoFalso.class || tipo.getClass() == VerdaderoFalsoConPenalidad.class){
+        if(esTipoVerdaderoFalso(tipo)){
         return new ContenedorVerdaderoFalso(controlador);
 
-        }else if(tipo.getClass() == MultipleChoiceClasico.class || tipo.getClass() == MultipleChoicePuntajeParcial.class || tipo.getClass() == MultipleChoiceConPenalidad.class){
+        }else if(esTipoMultipleChoice(tipo)){
             return new ContenedorMultipleChoice(controlador, descripciones);}
 /*
-        }else if(tipo.getClass() == OrderedChoice.class){
+        }else if(esTipoOrderedChoice(tipo)){
             return crearEscenaDeOrderedChoice(enunciado, descripciones);
 
-        }else{//tipo.getClass() == GroupChoice.class
+        }else{//esTipoGroupChoice(tipo)
             return crearEscenaDeGroupChoice(enunciado, descripciones);
 
         }*/
@@ -74,7 +74,7 @@ public class FactoryEscenas {
     }
 
     private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
-        if(tipo.getClass() == VerdaderoFalsoConPenalidad.class || tipo.getClass() == MultipleChoiceConPenalidad.class) {
+        if(esTipoConPenalidad(tipo)) {
             return new ContenedorBonificadores(controlador);
         }else{
             return new ContenedorExclusividad(controlador, rondaActiva.getJugadorActivo());
@@ -102,4 +102,25 @@ public class FactoryEscenas {
         return new VBox(contenedorDeBonificadores);
     }
 
+    private boolean esTipoVerdaderoFalso(TipoDePregunta tipo){
+        return (tipo.getClass() == VerdaderoFalso.class || tipo.getClass() == VerdaderoFalsoConPenalidad.class);
+    }
+
+    private boolean esTipoMultipleChoice(TipoDePregunta tipo){
+        return (tipo.getClass() == MultipleChoiceClasico.class ||
+                tipo.getClass() == MultipleChoicePuntajeParcial.class ||
+                tipo.getClass() == MultipleChoiceConPenalidad.class);
+    }
+
+    private boolean esTipoOrderedChoice(TipoDePregunta tipo) {
+        return tipo.getClass() == OrderedChoice.class;
+    }
+
+    private boolean esTipoGroupChoice(TipoDePregunta tipo){
+        return tipo.getClass() == GroupChoice.class;
+    }
+
+    private boolean esTipoConPenalidad(TipoDePregunta tipo){
+        return (tipo.getClass() == VerdaderoFalsoConPenalidad.class || tipo.getClass() == MultipleChoiceConPenalidad.class);
+    }
 }
