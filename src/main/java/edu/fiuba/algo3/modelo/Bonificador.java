@@ -27,4 +27,6 @@ public class Bonificador {
     public int bonificarPuntos(int puntos){
         return puntos * factor;
     }
+
+    public int getFactor() {return factor;}
 }

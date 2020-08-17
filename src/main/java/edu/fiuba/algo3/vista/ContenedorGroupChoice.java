@@ -38,7 +38,7 @@ public class ContenedorGroupChoice extends VBox {
             opcion.setSpacing(5);
         }
         this.getChildren().addAll(contenedoresOpciones);
-        this.setSpacing(40);
+        this.setSpacing(ESPACIADO_BOTONES);
     }
 
     private SplitMenuButton crearMenuDeGrupos(ControladorRespuesta controlador,List<String> grupos, String descripcion){

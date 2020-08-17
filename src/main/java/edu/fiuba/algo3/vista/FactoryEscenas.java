@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.ArrayList;
 
+import static javafx.geometry.Pos.*;
+
 public class FactoryEscenas {
 
     private static final int ANCHO_ESCENA = 400;
@@ -41,13 +43,15 @@ public class FactoryEscenas {
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
 
         VBox contenedorPrincipal = new VBox();
+        contenedorPrincipal.setAlignment(TOP_CENTER);
         VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
-        contenedorVerticalDerecho.setSpacing(200);
+        contenedorVerticalDerecho.setSpacing(250);
 
         HBox contenedorHorizontal = new HBox(contenedorDeOpciones, contenedorVerticalDerecho);
-        contenedorHorizontal.setSpacing(200);
+        contenedorHorizontal.setSpacing(150);
+        contenedorHorizontal.setAlignment(CENTER);
 
         contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
@@ -71,9 +75,9 @@ public class FactoryEscenas {
         return contenedorPreguntas;
     }
 
-    private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
+    private HBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
         if(esTipoConPenalidad(tipo)) {
-            return new ContenedorBonificadores(controlador);
+            return new ContenedorBonificadores(controlador, rondaActiva.getJugadorActivo());
         }else{
             return new ContenedorExclusividad(controlador, rondaActiva.getJugadorActivo());
         }
@@ -81,7 +85,7 @@ public class FactoryEscenas {
 
 
     private VBox contenedorVerticalDerecho(TipoDePregunta tipo, ControladorRespuesta controlador){
-        VBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
+        HBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
         contenedorDeBonificadores.setSpacing(15);
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {

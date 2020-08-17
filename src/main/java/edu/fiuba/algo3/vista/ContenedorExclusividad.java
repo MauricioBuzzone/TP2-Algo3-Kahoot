@@ -4,9 +4,9 @@ import edu.fiuba.algo3.controlador.BotonExclusividadEventHandler;
 import edu.fiuba.algo3.controlador.ControladorRespuesta;
 import edu.fiuba.algo3.modelo.Jugador;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
-public class ContenedorExclusividad extends VBox {
+public class ContenedorExclusividad extends HBox {
 
     public ContenedorExclusividad(ControladorRespuesta controlador, Jugador jugadorActivo) {
 
