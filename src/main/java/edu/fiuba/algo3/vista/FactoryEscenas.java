@@ -59,19 +59,10 @@ public class FactoryEscenas {
 
         if(tipo.getClass() == VerdaderoFalso.class || tipo.getClass() == VerdaderoFalsoConPenalidad.class){
         return new ContenedorVerdaderoFalso(controlador);
-/*
-        }else if(tipo.getClass() == VerdaderoFalsoConPenalidad.class){
-            return crearEscenaDeVerdaderoFalsoConPenalidad(enunciado, descripciones);
-*/
-        }else if(tipo.getClass() == MultipleChoiceClasico.class){
+
+        }else if(tipo.getClass() == MultipleChoiceClasico.class || tipo.getClass() == MultipleChoicePuntajeParcial.class || tipo.getClass() == MultipleChoiceConPenalidad.class){
             return new ContenedorMultipleChoice(controlador, descripciones);}
 /*
-        }else if(tipo.getClass() == MultipleChoicePuntajeParcial.class){
-            return crearEscenaDeMultipleChoiceParcial(enunciado, descripciones);
-
-        }else if(tipo.getClass() == MultipleChoiceConPenalidad.class){
-            return crearEscenaDeMultipleChoiceConPenalidad(enunciado, descripciones);
-
         }else if(tipo.getClass() == OrderedChoice.class){
             return crearEscenaDeOrderedChoice(enunciado, descripciones);
 
@@ -82,8 +73,12 @@ public class FactoryEscenas {
         return null; //<-- a borrar
     }
 
-    private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){   // cambiar a hbox
-        return new ContenedorBonificadores(controlador);
+    private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
+        if(tipo.getClass() == VerdaderoFalsoConPenalidad.class || tipo.getClass() == MultipleChoiceConPenalidad.class) {
+            return new ContenedorBonificadores(controlador);
+        }else{
+            return new ContenedorExclusividad(controlador, rondaActiva.getJugadorActivo());
+        }
     }
 
     private List<String> descripcionesDeOpciones(List<Opcion> opciones){

@@ -82,4 +82,7 @@ public class Ronda extends Observable{
         cuentaAtras.cancel();
     }
 
+    public void activarExclusividad() {
+        respuestas.activarExclusividad();
+    }
 }
