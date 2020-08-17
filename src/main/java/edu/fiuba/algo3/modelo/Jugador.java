@@ -10,6 +10,7 @@ public class Jugador {
 
     private String nombre;
     private List<Integer> puntosPorRespuesta;
+    private int ultimoPuntaje;
     private int usosDeExclusividad;
 
     public Jugador(String nombre){
@@ -22,11 +23,17 @@ public class Jugador {
         return nombre;
     }
 
+    //para la tabla
+    public int getUltimoPuntaje(){
+        return ultimoPuntaje;
+    }
     public int getPuntos(){
         return this.puntosTotales();
     }
+    //
 
     public void responder(Puntaje puntaje, Bonificador bonificador){
+        ultimoPuntaje = puntaje.aplicarBonificador(bonificador);
         puntosPorRespuesta.add(puntaje.aplicarBonificador(bonificador));
     }
 

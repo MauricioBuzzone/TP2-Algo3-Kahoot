@@ -63,7 +63,7 @@ public class VistaKahoot implements Observer{
         Label titulo = new Label("Puntaje final");
         TableView tableView = new TableView();
         TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
-        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos");
+        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos Totales");
 
         column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         column2.setCellValueFactory(new PropertyValueFactory<>("puntos"));
