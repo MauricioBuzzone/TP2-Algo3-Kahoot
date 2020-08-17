@@ -1,0 +1,28 @@
+{
+  "Rondas":[
+    {
+      "enunciado": "1: La opción correcta es: Verdadero",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "enunciado": "2: La opción correcta es: Falso",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Falso"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "enunciado": "3: La opción correcta es: Verdadero",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "enunciado": "4: La opción correcta es: Falso",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Falso"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    }
+  ]
+}
