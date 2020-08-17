@@ -28,4 +28,8 @@ public class OpcionDeGrupo extends Opcion {
         OpcionDeGrupo opcionDeGrupo = new OpcionDeGrupo(descripcion, grupo);
         return opcionDeGrupo;
     }
+
+    public String getGrupo() {
+        return grupo;
+    }
 }

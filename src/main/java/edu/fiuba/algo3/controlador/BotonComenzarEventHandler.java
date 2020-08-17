@@ -1,10 +1,15 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.controlador.*;
+
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.VistaKahoot;
 import edu.fiuba.algo3.vista.VistaRonda;
 import edu.fiuba.algo3.modelo.Kahoot;
+
+
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import edu.fiuba.algo3.modelo.Ronda;
 import javafx.event.EventHandler;
@@ -20,17 +25,26 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
 
     private Stage stage;
     private ListView nombresJugadores;
+    private String rutaKahoot;
 
-    public BotonComenzarEventHandler(ListView jugadoresInscriptos, Stage stage) {
+    public BotonComenzarEventHandler(ListView jugadoresInscriptos, Stage stage, String rutaKahoot) {
         this.nombresJugadores = jugadoresInscriptos;
         this.stage = stage;
+        this.rutaKahoot = rutaKahoot;
     }
 
     public void handle(ActionEvent actionEvent){
 
         List<Jugador> jugadores = this.obtenerJugadores();
-
-        Kahoot kahoot = new Kahoot(jugadores);
+        if(jugadores.isEmpty()){
+            Alert alertaNombreInvalido = new Alert(AlertType.INFORMATION);
+            alertaNombreInvalido.setTitle("Error");
+            alertaNombreInvalido.setHeaderText(null);
+            alertaNombreInvalido.setContentText("Debe haber al menos un Jugador para comenzar.");
+            alertaNombreInvalido.showAndWait();
+            return;
+        }
+        Kahoot kahoot = new Kahoot(jugadores, rutaKahoot);
 
         VistaRonda vistaRonda = this.asignarVistaRonda(kahoot);
         VistaKahoot vistaKahoot = new VistaKahoot(stage, kahoot, vistaRonda);
@@ -60,4 +74,3 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
         return vistaRonda;
     }
 }
-

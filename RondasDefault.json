@@ -8,9 +8,27 @@
     },
     {
       "enunciado": "¿Vamos a tener clases presenciales el cuatri que viene?",
-      "tipo": "VerdaderoFalso",
+      "tipo": "VerdaderoFalsoConPenalidad",
       "solucion": [{"descripcion": "Falso"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "enunciado": "¿Que calculos son iguales a '4'?",
+      "tipo": "MultipleChoiceClasico",
+      "solucion": [{"descripcion": "2*2"},{"descripcion": "2**2"}],
+      "opciones": [{"descripcion": "2*2"},{"descripcion": "1**4"},{"descripcion": "2-2"},{"descripcion": "2**2"}]
+    },
+    {
+      "enunciado": "¿Que calculos son iguales a '4'?",
+      "tipo": "MultipleChoiceConPenalidad",
+      "solucion": [{"descripcion": "2*2"},{"descripcion": "2**2"}],
+      "opciones": [{"descripcion": "2*2"},{"descripcion": "1**4"},{"descripcion": "2-2"},{"descripcion": "2**2"}]
+    },
+    {
+      "enunciado": "¿Que calculos son iguales a '4'?",
+      "tipo": "MultipleChoicePuntajeParcial",
+      "solucion": [{"descripcion": "2*2"},{"descripcion": "2**2"}],
+      "opciones": [{"descripcion": "2*2"},{"descripcion": "1**4"},{"descripcion": "2-2"},{"descripcion": "2**2"}]
     },
     {
       "enunciado": "Ordenar los siguientes numeros de mayor a menor",
@@ -20,7 +38,7 @@
     },
     {
       "enunciado": "¿Aprobamos la entrega 3?",
-      "tipo": "VerdaderoFalso",
+      "tipo": "VerdaderoFalsoConPenalidad",
       "solucion": [{"descripcion": "Verdadero"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
     }

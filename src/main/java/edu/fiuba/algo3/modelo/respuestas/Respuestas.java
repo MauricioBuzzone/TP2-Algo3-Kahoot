@@ -17,6 +17,7 @@ public class Respuestas{
     public void responder(Evaluador evaluador){
         tipoDeRespuestas.responder(evaluador);
     }
+
     public void activarExclusividad(){
         tipoDeRespuestas = tipoDeRespuestas.mejorarExclusividad();
     }

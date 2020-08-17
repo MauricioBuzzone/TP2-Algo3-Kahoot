@@ -32,8 +32,26 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
         opcionesAlmacenadas.add(opcion);
     }
 
+    public void eliminarPorDescripcion(Opcion opcionAEliminar){
+
+        for(Opcion opcion: opcionesAlmacenadas){
+            if(opcion.mismaDescripcion(opcionAEliminar)){ ;
+                opcionesAlmacenadas.remove(opcion);
+                break;
+            }
+        }
+    }
+
+    public void reiniciarOpciones(){
+        opcionesAlmacenadas = new ArrayList<Opcion>();
+    }
+
     public void setBonificador(Bonificador bonificador){
         this.bonificador = bonificador;
+    }
+
+    public void activarExclusividad(){
+        this.rondaActiva.activarExclusividad();
     }
 
     public void handle(ActionEvent actionEvent) {

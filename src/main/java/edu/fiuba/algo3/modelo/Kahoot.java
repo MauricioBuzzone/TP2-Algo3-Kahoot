@@ -13,7 +13,7 @@ import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 public class Kahoot extends Observable{
 
-    public static final String RUTA_ARCHIVO_DEFAULT = "Rondas02.json";
+    public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
     private Ronda rondaActiva;
     private Queue<Ronda> rondas = new LinkedList<Ronda>();
@@ -22,11 +22,7 @@ public class Kahoot extends Observable{
 
     public Kahoot(List<Jugador> jugadores) {
         this.jugadores = jugadores;
-        try {
-            this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        this.abrirArchivoDefault();
     }
 
     public Kahoot(List<Jugador> jugadores, String rutaArchivo){
@@ -34,6 +30,14 @@ public class Kahoot extends Observable{
         try{
             this.agregarRonda(rutaArchivo);
         }catch (IOException ex){
+            this.abrirArchivoDefault();
+        }
+    }
+
+    private void abrirArchivoDefault(){
+        try {
+            this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
+        } catch (IOException ex) {
             System.out.println(ex);
         }
     }
