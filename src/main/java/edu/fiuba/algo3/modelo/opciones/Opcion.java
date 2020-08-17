@@ -33,5 +33,7 @@ public abstract class Opcion {
         return this.descripcion;
     }
 
-
+    public boolean mismaDescripcion(Opcion opcion){
+        return opcion.mismaDescripcion(this.descripcion);
+    }
 }

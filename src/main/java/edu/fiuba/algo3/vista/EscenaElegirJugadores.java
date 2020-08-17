@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.EscribirSiguienteJugadorEventHandler;
+import edu.fiuba.algo3.controlador.BotonEliminarJugadoresEventHandler;
 import edu.fiuba.algo3.controlador.EscribirSiguienteJugadorEventHandlerEnter;
 import edu.fiuba.algo3.controlador.BotonComenzarEventHandler;
 
@@ -40,7 +41,11 @@ public class EscenaElegirJugadores extends Scene {
         botonComenzar.setText("Comenzar");
         botonComenzar.setOnAction(new BotonComenzarEventHandler(jugadoresInscriptos, stage, rutaKahoot));
 
-        HBox contenedorHorizontal = new HBox(botonSiguienteJugador, botonComenzar);
+        Button botonEliminarJugadores = new Button();
+        botonEliminarJugadores.setText("Eliminar jugador");
+        botonEliminarJugadores.setOnAction(new BotonEliminarJugadoresEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
+
+        HBox contenedorHorizontal = new HBox(botonSiguienteJugador, botonComenzar, botonEliminarJugadores);
         contenedorHorizontal.setSpacing(10);
 
         contenedorPrincipal.getChildren().addAll(cuadroParaIngresarNombres, contenedorHorizontal, jugadoresInscriptos);
