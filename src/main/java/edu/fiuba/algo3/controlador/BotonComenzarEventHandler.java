@@ -5,6 +5,11 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.VistaKahoot;
 import edu.fiuba.algo3.vista.VistaRonda;
 import edu.fiuba.algo3.modelo.Kahoot;
+
+
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import edu.fiuba.algo3.modelo.Ronda;
 import javafx.event.EventHandler;
@@ -31,7 +36,14 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent){
 
         List<Jugador> jugadores = this.obtenerJugadores();
-
+        if(jugadores.isEmpty()){
+            Alert alertaNombreInvalido = new Alert(AlertType.INFORMATION);
+            alertaNombreInvalido.setTitle("Error");
+            alertaNombreInvalido.setHeaderText(null);
+            alertaNombreInvalido.setContentText("Debe haber al menos un Jugador para comenzar.");
+            alertaNombreInvalido.showAndWait();
+            return;
+        }
         Kahoot kahoot = new Kahoot(jugadores, rutaKahoot);
 
         VistaRonda vistaRonda = this.asignarVistaRonda(kahoot);
