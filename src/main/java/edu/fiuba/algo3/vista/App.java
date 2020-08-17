@@ -65,4 +65,8 @@ public class App extends Application {
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
+    @Override
+    public void stop(){
+        System.exit(0);
+    };
 }

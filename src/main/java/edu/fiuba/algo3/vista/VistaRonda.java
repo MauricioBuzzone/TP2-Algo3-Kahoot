@@ -78,14 +78,14 @@ public class VistaRonda implements Observer {
 
 
     private Scene crearEscenaTabla() {
-        Label titulo = new Label("Información de todos los participantes de la ronda previa.");
+        Label titulo = new Label("Información de los puntajes de la ronda previa.");
 
         TableView tableView = new TableView();
         TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
         TableColumn<String, Integer> column2 = new TableColumn<>("Puntos");
 
         column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        column2.setCellValueFactory(new PropertyValueFactory<>("puntos"));
+        column2.setCellValueFactory(new PropertyValueFactory<>("ultimoPuntaje"));
 
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
