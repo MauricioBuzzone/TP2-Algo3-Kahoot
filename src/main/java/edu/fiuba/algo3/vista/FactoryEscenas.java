@@ -77,7 +77,7 @@ public class FactoryEscenas {
 
     private HBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
         if(esTipoConPenalidad(tipo)) {
-            return new ContenedorBonificadores(controlador);
+            return new ContenedorBonificadores(controlador, rondaActiva.getJugadorActivo());
         }else{
             return new ContenedorExclusividad(controlador, rondaActiva.getJugadorActivo());
         }
