@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.opciones.Opcion;
+
 import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.MenuItem;
 

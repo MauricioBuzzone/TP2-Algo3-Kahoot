@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.*;
-import edu.fiuba.algo3.vista.EscenaElegirJugadores;
+
 
 
 import javafx.application.Application;
@@ -13,12 +13,9 @@ import javafx.scene.control.Button;
 
 
 import javafx.stage.FileChooser;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
-import javafx.scene.control.ListView;
 
 /**
  * JavaFX App

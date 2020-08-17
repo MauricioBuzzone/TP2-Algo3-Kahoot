@@ -7,7 +7,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 
-import java.util.List;
 
 public class BotonOpcionOrdenadaEventHandler implements EventHandler<ActionEvent> {
 

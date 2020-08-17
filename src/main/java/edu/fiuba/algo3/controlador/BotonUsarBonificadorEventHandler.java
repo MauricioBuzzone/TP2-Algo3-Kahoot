@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.opciones.Opcion;
-import edu.fiuba.algo3.modelo.opciones.OpcionComun;
 import edu.fiuba.algo3.modelo.Bonificador;
 import javafx.scene.control.Button;
 import edu.fiuba.algo3.modelo.Jugador;

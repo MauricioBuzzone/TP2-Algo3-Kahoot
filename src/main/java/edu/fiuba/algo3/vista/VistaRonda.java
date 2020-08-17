@@ -2,21 +2,18 @@ package edu.fiuba.algo3.vista;
 
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.vista.*;
 import edu.fiuba.algo3.controlador.*;
-import edu.fiuba.algo3.modelo.opciones.Opcion;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
+
 import javafx.stage.Stage;
 import java.util.*;
-import java.util.ArrayList;
+
 
 
 import java.util.Observable;

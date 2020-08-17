@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.vista;
 
 
-import edu.fiuba.algo3.vista.ContenedorVerdaderoFalso;
-import edu.fiuba.algo3.vista.ContenedorMultipleChoice;
-import edu.fiuba.algo3.vista.ContenedorBonificadores;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.preguntas.*;
 import edu.fiuba.algo3.controlador.*;
@@ -15,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.util.List;
-import java.util.ArrayList;
 
 import static javafx.geometry.Pos.*;
 
