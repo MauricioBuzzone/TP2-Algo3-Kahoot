@@ -22,11 +22,7 @@ public class Kahoot extends Observable{
 
     public Kahoot(List<Jugador> jugadores) {
         this.jugadores = jugadores;
-        try {
-            this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        this.abrirArchivoDefault();
     }
 
     public Kahoot(List<Jugador> jugadores, String rutaArchivo){
@@ -34,6 +30,14 @@ public class Kahoot extends Observable{
         try{
             this.agregarRonda(rutaArchivo);
         }catch (IOException ex){
+            this.abrirArchivoDefault();
+        }
+    }
+
+    private void abrirArchivoDefault(){
+        try {
+            this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
+        } catch (IOException ex) {
             System.out.println(ex);
         }
     }

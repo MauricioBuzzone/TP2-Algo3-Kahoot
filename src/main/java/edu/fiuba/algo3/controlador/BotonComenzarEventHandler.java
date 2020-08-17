@@ -20,17 +20,19 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
 
     private Stage stage;
     private ListView nombresJugadores;
+    private String rutaKahoot;
 
-    public BotonComenzarEventHandler(ListView jugadoresInscriptos, Stage stage) {
+    public BotonComenzarEventHandler(ListView jugadoresInscriptos, Stage stage, String rutaKahoot) {
         this.nombresJugadores = jugadoresInscriptos;
         this.stage = stage;
+        this.rutaKahoot = rutaKahoot;
     }
 
     public void handle(ActionEvent actionEvent){
 
         List<Jugador> jugadores = this.obtenerJugadores();
 
-        Kahoot kahoot = new Kahoot(jugadores);
+        Kahoot kahoot = new Kahoot(jugadores, rutaKahoot);
 
         VistaRonda vistaRonda = this.asignarVistaRonda(kahoot);
         VistaKahoot vistaKahoot = new VistaKahoot(stage, kahoot, vistaRonda);
@@ -60,4 +62,3 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
         return vistaRonda;
     }
 }
-
