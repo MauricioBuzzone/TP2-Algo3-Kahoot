@@ -39,17 +39,6 @@ public class Ronda extends Observable{
         return(!jugadores.isEmpty());
     }
 
-    public List<Opcion> getOpciones(){
-        return pregunta.getOpciones();
-    }
-
-
-    // Dar vuelta el encapsulamiento.
-    public String getEnunciado(){
-        return pregunta.getEnunciado();
-    }
-
-
     public void agregarRespuesta(Respuesta respuesta){
         respuestas.agregarRespuesta(respuesta);
         if(this.quedanJugadores()){

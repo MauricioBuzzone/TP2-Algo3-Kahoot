@@ -54,8 +54,10 @@ public class App extends Application {
         Button botonElegirArchivo = new Button("Seleccione el kahoot");
         botonElegirArchivo.setOnAction(e -> {
             File archivoSeleccionado = fileChooser.showOpenDialog(stage);
-            String path = archivoSeleccionado.getPath();
-            labelArchivo.setText(path);
+            if(archivoSeleccionado != null){
+                String path = archivoSeleccionado.getPath();
+                labelArchivo.setText(path);
+            }
         });
         Button botonElegirJugadores = new Button();
         botonElegirJugadores.setText("Ingresar jugadores");
