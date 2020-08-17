@@ -5,13 +5,13 @@ import edu.fiuba.algo3.controlador.ControladorRespuesta;
 import edu.fiuba.algo3.controlador.BotonUsarBonificadorEventHandler;
 import edu.fiuba.algo3.modelo.Bonificador;
 
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.util.List;
 
 
-public class ContenedorBonificadores extends VBox {
+public class ContenedorBonificadores extends HBox {
 
     private static final int ESPACIADO_BONIFICADORES = 15;
     private static final String X2 = "X2";
