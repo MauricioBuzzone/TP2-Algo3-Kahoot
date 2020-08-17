@@ -36,6 +36,10 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
         this.bonificador = bonificador;
     }
 
+    public void activarExclusividad(){
+        this.rondaActiva.activarExclusividad();
+    }
+
     public void handle(ActionEvent actionEvent) {
         this.rondaActiva.jugadorYaRespondio();
         Eleccion eleccion = new Eleccion(opcionesAlmacenadas);
