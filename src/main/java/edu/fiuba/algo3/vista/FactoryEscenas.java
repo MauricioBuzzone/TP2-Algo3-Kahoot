@@ -35,14 +35,13 @@ public class FactoryEscenas {
         Pregunta pregunta = rondaActiva.getPregunta();
         String enunciado = pregunta.getEnunciado();
         List<Opcion> opciones = pregunta.getOpciones();
-        List<String> descripciones = this.descripcionesDeOpciones(opciones);
 
         ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
 
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
 
         VBox contenedorPrincipal = new VBox();
-        VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, descripciones, controlador);
+        VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
         contenedorVerticalDerecho.setSpacing(200);
@@ -55,22 +54,21 @@ public class FactoryEscenas {
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
-    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<String> descripciones, ControladorRespuesta controlador){
-
+    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador){
+        VBox contenedorPreguntas = new VBox();
         if(esTipoVerdaderoFalso(tipo)){
-        return new ContenedorVerdaderoFalso(controlador);
+            contenedorPreguntas = new  ContenedorVerdaderoFalso(controlador);
 
         }else if(esTipoMultipleChoice(tipo)){
-            return new ContenedorMultipleChoice(controlador, descripciones);}
+            contenedorPreguntas = new ContenedorMultipleChoice(controlador, opciones);
 /*
         }else if(esTipoOrderedChoice(tipo)){
             return crearEscenaDeOrderedChoice(enunciado, descripciones);
-
+*/
         }else{//esTipoGroupChoice(tipo)
-            return crearEscenaDeGroupChoice(enunciado, descripciones);
-
-        }*/
-        return null; //<-- a borrar
+            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones);
+        }
+        return contenedorPreguntas;
     }
 
     private VBox crearContenedorDeBonificadores(TipoDePregunta tipo, ControladorRespuesta controlador){
@@ -81,13 +79,6 @@ public class FactoryEscenas {
         }
     }
 
-    private List<String> descripcionesDeOpciones(List<Opcion> opciones){
-        List<String> descripciones = new ArrayList<String>();
-        for(Opcion opcion : opciones){
-            descripciones.add(opcion.getDescripcion());
-        }
-        return descripciones;
-    }
 
     private VBox contenedorVerticalDerecho(TipoDePregunta tipo, ControladorRespuesta controlador){
         VBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
