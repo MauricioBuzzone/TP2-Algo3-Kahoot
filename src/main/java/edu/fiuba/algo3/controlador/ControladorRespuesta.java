@@ -32,6 +32,16 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
         opcionesAlmacenadas.add(opcion);
     }
 
+    public void eliminarPorDescripcion(Opcion opcionAEliminar){
+
+        for(Opcion opcion: opcionesAlmacenadas){
+            if(opcion.mismaDescripcion(opcionAEliminar)){ ;
+                opcionesAlmacenadas.remove(opcion);
+                break;
+            }
+        }
+    }
+
     public void reiniciarOpciones(){
         opcionesAlmacenadas = new ArrayList<Opcion>();
     }

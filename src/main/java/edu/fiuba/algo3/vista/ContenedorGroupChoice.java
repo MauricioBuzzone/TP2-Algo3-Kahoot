@@ -32,21 +32,23 @@ public class ContenedorGroupChoice extends VBox {
         for (String descripcion : descripciones) {
             HBox opcion = new HBox();
             Label labelDescripcion = new Label(descripcion);
-            SplitMenuButton menuDeGrupos = this.crearMenuDeGrupos(controlador,grupos);
+            SplitMenuButton menuDeGrupos = this.crearMenuDeGrupos(controlador,grupos, descripcion);
             opcion.getChildren().addAll(labelDescripcion,menuDeGrupos);
             contenedoresOpciones.add(opcion);
+            opcion.setSpacing(5);
         }
         this.getChildren().addAll(contenedoresOpciones);
+        this.setSpacing(40);
     }
 
-    private SplitMenuButton crearMenuDeGrupos(ControladorRespuesta controlador,List<String> grupos){
+    private SplitMenuButton crearMenuDeGrupos(ControladorRespuesta controlador,List<String> grupos, String descripcion){
         SplitMenuButton menuDeGrupos = new SplitMenuButton();
         menuDeGrupos.setText("Grupo");
 
         for(String grupo: grupos){
             MenuItem opcionGrupo = new MenuItem(grupo);
 
-            opcionGrupo.setOnAction(new BotonOpcionDeGrupoEventHandler(controlador, menuDeGrupos, opcionGrupo));
+            opcionGrupo.setOnAction(new BotonOpcionDeGrupoEventHandler(controlador, menuDeGrupos, opcionGrupo,descripcion));
             menuDeGrupos.getItems().add(opcionGrupo);
         }
         return menuDeGrupos;
