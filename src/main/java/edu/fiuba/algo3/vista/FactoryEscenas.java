@@ -61,10 +61,10 @@ public class FactoryEscenas {
 
         }else if(esTipoMultipleChoice(tipo)){
             contenedorPreguntas = new ContenedorMultipleChoice(controlador, opciones);
-/*
+
         }else if(esTipoOrderedChoice(tipo)){
-            return crearEscenaDeOrderedChoice(enunciado, descripciones);
-*/
+            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones);
+
         }else{//esTipoGroupChoice(tipo)
             contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones);
         }
