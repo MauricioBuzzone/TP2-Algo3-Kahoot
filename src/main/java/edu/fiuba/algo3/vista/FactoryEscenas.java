@@ -45,7 +45,6 @@ public class FactoryEscenas {
         VBox contenedorPrincipal = new VBox();
         contenedorPrincipal.setAlignment(TOP_CENTER);
         VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
-        contenedorDeOpciones.setAlignment(CENTER_LEFT);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
         contenedorVerticalDerecho.setSpacing(250);
