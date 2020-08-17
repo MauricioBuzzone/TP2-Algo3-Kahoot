@@ -21,7 +21,10 @@ public class BotonOpcionDeGrupoEventHandler implements EventHandler<ActionEvent>
         this.itemAsociado= itemAsociado;
     }
     public void handle(ActionEvent actionEvent) {
+        menuDeGruposAsociado.setText(itemAsociado.getText());
+        for(MenuItem item :menuDeGruposAsociado.getItems()) {
+            item.setDisable(false);
+        }
         itemAsociado.setDisable(true);
-
     }
 }
