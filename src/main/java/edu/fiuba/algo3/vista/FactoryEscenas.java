@@ -19,6 +19,8 @@ import static javafx.geometry.Pos.*;
 public class FactoryEscenas {
 
     private static final String ENVIAR = "Enviar";
+    private static final int ANCHO_LABEL_ENUNCIADO = 500;
+    private static final int ALTO_LABEL_ENUNCIADO = 75;
 
     private Stage stage;
     private Ronda rondaActiva;
@@ -50,7 +52,11 @@ public class FactoryEscenas {
         contenedorHorizontal.setSpacing(80);
         contenedorHorizontal.setAlignment(CENTER);
 
-        contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
+        Label labelEnunciado = new Label(enunciado);
+        labelEnunciado.setPrefSize(ANCHO_LABEL_ENUNCIADO, ALTO_LABEL_ENUNCIADO);
+        labelEnunciado.setFont(new Font(App.FUENTE, 20));
+        labelEnunciado.setAlignment(CENTER);
+        contenedorPrincipal.getChildren().addAll(labelEnunciado, contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
