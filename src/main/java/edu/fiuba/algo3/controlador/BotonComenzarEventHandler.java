@@ -64,10 +64,10 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
 
     private VistaRonda asignarVistaRonda(Kahoot kahoot) {
         List<Ronda> rondas = kahoot.getRondas();
-        Button botonFinal = new Button();
-        botonFinal.setText("Finalizar ronda");
-        botonFinal.setOnAction(new BotonProximaRondaEventHandler(kahoot));
-        VistaRonda vistaRonda = new VistaRonda(stage, rondas.get(0), botonFinal);
+
+        Button botonProximaRonda = new Button();
+        botonProximaRonda.setOnAction(new BotonProximaRondaEventHandler(kahoot));
+        VistaRonda vistaRonda = new VistaRonda(stage, rondas.get(0), botonProximaRonda);
         for (Ronda ronda : rondas) {
             ronda.addObserver(vistaRonda);
         }

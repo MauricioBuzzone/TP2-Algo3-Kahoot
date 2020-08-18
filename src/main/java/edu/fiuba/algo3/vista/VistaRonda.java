@@ -39,6 +39,11 @@ public class VistaRonda implements Observer {
     public VistaRonda(Stage stage, Ronda rondaActiva, Button botonAvanzarRonda) {
         this.rondaActiva = rondaActiva;
         this.stage = stage;
+
+        botonAvanzarRonda.setText("Próxima ronda");
+        botonAvanzarRonda.setFont(new Font(App.FUENTE, 18));
+        botonAvanzarRonda.setPrefSize(200,14);
+
         this.botonAvanzarRonda = botonAvanzarRonda;
         this.jugadorAnterior = null;
         this.jugadores = new LinkedList<Jugador>();
@@ -103,7 +108,15 @@ public class VistaRonda implements Observer {
 
 
     private Scene crearEscenaTabla() {
-        Label titulo = new Label("Información de los puntajes de la ronda previa.");
+        Label titulo = new Label("¡Terminó la ronda!");
+        titulo.setFont(new Font(App.FUENTE, 24));
+        Label tituloPuntos = new Label("Puntos conseguidos");
+        tituloPuntos.setFont(new Font(App.FUENTE, 20));
+
+        VBox contenedorTitulo = new VBox(titulo, tituloPuntos);
+        contenedorTitulo.setSpacing(5);
+        contenedorTitulo.setAlignment(Pos.CENTER);
+
 
         TableView tableView = new TableView();
         TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
@@ -119,8 +132,9 @@ public class VistaRonda implements Observer {
             tableView.getItems().add(jugadores.poll());
         }
 
-        VBox contenedorPrincipal = new VBox(titulo, tableView, botonAvanzarRonda);
+        VBox contenedorPrincipal = new VBox(contenedorTitulo, tableView, botonAvanzarRonda);
         contenedorPrincipal.setSpacing(ESPACIADO);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
 
     }
