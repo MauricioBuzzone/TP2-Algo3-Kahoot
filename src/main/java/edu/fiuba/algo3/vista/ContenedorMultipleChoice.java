@@ -25,11 +25,11 @@ public class ContenedorMultipleChoice extends VBox{
     private static final String PATH_IMAGENES_BOTONES = "resources/BotonMultipleChoice/";
     private static final String NOMBRE_IMAGENES_PRIMERA_PARTE = "IMG_BOTON_MC_";
     private static final String EXTENSION_IMAGENES = ".png";
-    private static final int ESPACIO_ENTRE_BOTONES_Y_REINICIAR = 100;
+    private static final int ESPACIO_ENTRE_BOTONES_Y_REINICIAR = 40;
     private static final int ANCHO_BOTON_REINICIAR = 150;
     private static final int ALTO_BOTON_REINICIAR = 30;
     private static final int ANCHO_BOTON_OPCION = 270;
-    private static final int ALTO_BOTON_OPCION = 40;
+    private static final int ALTO_BOTON_OPCION = 35;
 
     public ContenedorMultipleChoice(ControladorRespuesta controlador, List<Opcion> opciones){
         super();
@@ -45,7 +45,7 @@ public class ContenedorMultipleChoice extends VBox{
             boton.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
             botones.add(boton);
 
-            FileInputStream input = null;
+          /* FileInputStream input = null;
             try {
                 input = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + contadorDescripciones.toString() + EXTENSION_IMAGENES);
             }catch(IOException ex){
@@ -53,7 +53,7 @@ public class ContenedorMultipleChoice extends VBox{
             }
             Image  imagenBoton = new Image(input);
             ImageView imageView = new ImageView(imagenBoton);
-            boton.setGraphic(imageView);
+            boton.setGraphic(imageView);*/
         }
 
         VBox contenedorDeBotonesOpcion = new VBox();
