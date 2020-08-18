@@ -23,11 +23,14 @@ public class ContenedorVerdaderoFalso extends VBox{
     private static final String PATH_IMAGENES_BOTONES = "resources/BotonVerdaderoFalso/";
     private static final String NOMBRE_IMAGENES_PRIMERA_PARTE = "IMG_BOTON_MC_";
     private static final String EXTENSION_IMAGENES = ".png";
+    private static final int ANCHO_BOTON_OPCION = 270;
+    private static final int ALTO_BOTON_OPCION = 40;
 
     public ContenedorVerdaderoFalso(ControladorRespuesta controlador){
         super();
         Button botonVerdadero = new Button();
         botonVerdadero.setText(VERDADERO);
+        botonVerdadero.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
         botonVerdadero.setFont(new Font(App.FUENTE, 20));
         botonVerdadero.setOnAction(new BotonOpcionUnicaEventHandler(controlador, VERDADERO));
         FileInputStream input1 = null;
@@ -42,6 +45,7 @@ public class ContenedorVerdaderoFalso extends VBox{
 
         Button botonFalso = new Button();
         botonFalso.setText(FALSO);
+        botonFalso.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
         botonFalso.setFont(new Font(App.FUENTE, 20));
         botonFalso.setOnAction(new BotonOpcionUnicaEventHandler(controlador, FALSO));
         FileInputStream input2 = null;
