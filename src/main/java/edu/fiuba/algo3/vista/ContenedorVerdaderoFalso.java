@@ -21,7 +21,7 @@ public class ContenedorVerdaderoFalso extends VBox{
     private static final String VERDADERO = "Verdadero";
     private static final String FALSO = "Falso";
     private static final String PATH_IMAGENES_BOTONES = "resources/BotonVerdaderoFalso/";
-    private static final String NOMBRE_IMAGENES_PRIMERA_PARTE = "IMG_BOTON_MC_";
+    private static final String NOMBRE_IMAGENES_PRIMERA_PARTE = "IMG_BOTON_VF_";
     private static final String EXTENSION_IMAGENES = ".png";
     private static final int ANCHO_BOTON_OPCION = 270;
     private static final int ALTO_BOTON_OPCION = 40;
@@ -33,32 +33,26 @@ public class ContenedorVerdaderoFalso extends VBox{
         botonVerdadero.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
         botonVerdadero.setFont(new Font(App.FUENTE, 20));
         botonVerdadero.setOnAction(new BotonOpcionUnicaEventHandler(controlador, VERDADERO));
-        FileInputStream input1 = null;
         try {
-            input1 = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + "1" + EXTENSION_IMAGENES);
+            FileInputStream input1 = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + "1" + EXTENSION_IMAGENES);
+            Image  imagenBoton1 = new Image(input1);
+            ImageView imageView1 = new ImageView(imagenBoton1);
+            botonVerdadero.setGraphic(imageView1);
         }catch(IOException ex){
-
         }
-        Image  imagenBoton1 = new Image(input1);
-        ImageView imageView1 = new ImageView(imagenBoton1);
-        botonVerdadero.setGraphic(imageView1);
 
         Button botonFalso = new Button();
         botonFalso.setText(FALSO);
         botonFalso.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
         botonFalso.setFont(new Font(App.FUENTE, 20));
         botonFalso.setOnAction(new BotonOpcionUnicaEventHandler(controlador, FALSO));
-        FileInputStream input2 = null;
         try {
-            input2 = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + "2" + EXTENSION_IMAGENES);
+            FileInputStream input2 = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + "2" + EXTENSION_IMAGENES);
+            Image imagenBoton2 = new Image(input2);
+            ImageView imageView2 = new ImageView(imagenBoton2);
+            botonFalso.setGraphic(imageView2);
         }catch(IOException ex){
-
         }
-        Image imagenBoton2 = new Image(input2);
-        ImageView imageView2 = new ImageView(imagenBoton2);
-        botonFalso.setGraphic(imageView2);
-
-
         this.getChildren().addAll(botonVerdadero, botonFalso);
         this.setSpacing(ESPACIADO_BOTONES);
     }
