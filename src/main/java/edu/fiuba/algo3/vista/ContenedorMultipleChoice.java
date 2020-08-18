@@ -47,13 +47,16 @@ public class ContenedorMultipleChoice extends VBox{
 
           /* FileInputStream input = null;
             try {
-                input = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + contadorDescripciones.toString() + EXTENSION_IMAGENES);
+                FileInputStream input = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + contadorDescripciones.toString() + EXTENSION_IMAGENES);
+                Image  imagenBoton = new Image(input);
+                ImageView imageView = new ImageView(imagenBoton);
+                boton.setGraphic(imageView);
             }catch(IOException ex){
-                continue;
             }
             Image  imagenBoton = new Image(input);
             ImageView imageView = new ImageView(imagenBoton);
             boton.setGraphic(imageView);*/
+
         }
 
         VBox contenedorDeBotonesOpcion = new VBox();
