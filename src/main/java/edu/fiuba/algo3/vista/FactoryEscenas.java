@@ -18,8 +18,6 @@ import static javafx.geometry.Pos.*;
 
 public class FactoryEscenas {
 
-    private static final int ANCHO_ESCENA = 500;
-    private static final int LARGO_ESCENA = 650;
     private static final String ENVIAR = "Enviar";
 
     private Stage stage;
@@ -49,12 +47,12 @@ public class FactoryEscenas {
         contenedorVerticalDerecho.setSpacing(50);
 
         HBox contenedorHorizontal = new HBox(contenedorDeOpciones, contenedorVerticalDerecho);
-        contenedorHorizontal.setSpacing(150);
+        contenedorHorizontal.setSpacing(80);
         contenedorHorizontal.setAlignment(CENTER);
 
         contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
     private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador){
@@ -89,7 +87,8 @@ public class FactoryEscenas {
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
-            botonEnviar.setFont(new Font("Calabri", 20));
+            botonEnviar.setFont(new Font(App.FUENTE, 20));
+            botonEnviar.setPrefSize(130,14);
             botonEnviar.setOnAction(controlador);
             return new VBox(reloj, contenedorDeBonificadores, botonEnviar);
         }

@@ -9,14 +9,15 @@ import javafx.scene.text.Font;
 
 public class ContenedorExclusividad extends HBox {
     private static final int TAMANIO_LETRA = 18;
-    private static final String FUENTE = "Calabri";
 
     public ContenedorExclusividad(ControladorRespuesta controlador, Jugador jugadorActivo) {
 
         super();
         Button botonExclusividad = new Button();
         botonExclusividad.setText("Exclusividad");
-        botonExclusividad.setFont(new Font(FUENTE, TAMANIO_LETRA));
+        botonExclusividad.setFont(new Font(App.FUENTE, 14));
+        botonExclusividad.setPrefSize(130,14);
+        botonExclusividad.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
 
         botonExclusividad.setOnAction(new BotonExclusividadEventHandler(controlador, jugadorActivo, botonExclusividad));
         if(!jugadorActivo.puedeUtilizarExclusividad()) {

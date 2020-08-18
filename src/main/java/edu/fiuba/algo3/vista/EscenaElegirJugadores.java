@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Font;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,28 +22,31 @@ import javafx.scene.layout.VBox;
 
 public class EscenaElegirJugadores extends Scene {
 
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 400;
+    private static final int TAMANIO_LETRA = 18;
 
     public EscenaElegirJugadores(Stage stage, String rutaKahoot, VBox contenedorPrincipal) {
-        super(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        super(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
 
         ListView jugadoresInscriptos = new ListView();
 
         TextField cuadroParaIngresarNombres = new TextField();
         cuadroParaIngresarNombres.setPromptText("Ingrese el nombre del jugador");
+        cuadroParaIngresarNombres.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
         cuadroParaIngresarNombres.setOnKeyPressed(new EscribirSiguienteJugadorEventHandlerEnter(cuadroParaIngresarNombres, jugadoresInscriptos));
 
         Button botonSiguienteJugador = new Button();
         botonSiguienteJugador.setText("SiguienteJugador");
+        botonSiguienteJugador.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
         botonSiguienteJugador.setOnAction(new EscribirSiguienteJugadorEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
 
         Button botonComenzar = new Button();
         botonComenzar.setText("Comenzar");
+        botonComenzar.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
         botonComenzar.setOnAction(new BotonComenzarEventHandler(jugadoresInscriptos, stage, rutaKahoot));
 
         Button botonEliminarJugadores = new Button();
         botonEliminarJugadores.setText("Eliminar jugador");
+        botonEliminarJugadores.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
         botonEliminarJugadores.setOnAction(new BotonEliminarJugadoresEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
 
         HBox contenedorHorizontal = new HBox(botonSiguienteJugador, botonComenzar, botonEliminarJugadores);

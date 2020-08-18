@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Labeled;
 import javafx.scene.text.Font;
 
+
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
 import java.util.ArrayList;
@@ -33,10 +34,10 @@ public class ContenedorGroupChoice extends VBox {
         for (String descripcion : descripciones) {
             HBox opcion = new HBox();
             Label labelDescripcion = new Label(descripcion);
-            labelDescripcion.setFont(new Font("Calabri", 24));
+            labelDescripcion.setFont(new Font(App.FUENTE, 20));
             SplitMenuButton menuDeGrupos = this.crearMenuDeGrupos(controlador,grupos, descripcion);
-            menuDeGrupos.setPrefSize(110,18);
-            menuDeGrupos.setFont(new Font("Calabir", 18));
+            menuDeGrupos.setPrefSize(120,14);
+            menuDeGrupos.setFont(new Font(App.FUENTE, 14));
             opcion.getChildren().addAll(labelDescripcion,menuDeGrupos);
             contenedoresOpciones.add(opcion);
             opcion.setSpacing(10);
@@ -48,6 +49,7 @@ public class ContenedorGroupChoice extends VBox {
     private SplitMenuButton crearMenuDeGrupos(ControladorRespuesta controlador,List<String> grupos, String descripcion){
         SplitMenuButton menuDeGrupos = new SplitMenuButton();
         menuDeGrupos.setText("Grupo");
+        menuDeGrupos.setFont(new Font(App.FUENTE, 14));
 
         for(String grupo: grupos){
             MenuItem opcionGrupo = new MenuItem(grupo);

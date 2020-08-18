@@ -28,10 +28,6 @@ public class VistaKahoot implements Observer{
     private static final String PREGUNTA_MCPP = "Múltiple Choice con Puntaje Parcial";
     private static final String PREGUNTA_OC = "Ordered Choice";
     private static final String PREGUNTA_GC = "Group Choice";
-
-
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 350;
     private static final int ESPACIADO = 30;
 
     private Kahoot kahoot;
@@ -70,7 +66,7 @@ public class VistaKahoot implements Observer{
         avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
         VBox contenedorPrincipal = new VBox(contenedorSuperior, avanzarATurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
 
@@ -112,7 +108,7 @@ public class VistaKahoot implements Observer{
         }
         VBox contenedorPrincipal = new VBox(titulo, tableView);
         contenedorPrincipal.setSpacing(ESPACIADO);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
 }

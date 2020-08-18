@@ -72,7 +72,7 @@ public class VistaRonda implements Observer {
         comenzarTurno.setOnAction(new BotonComenzarTurnoEventHandler(this.stage, escenaProxima, rondaActiva, reloj));
         VBox contenedorPrincipal = new VBox(titulo, comenzarTurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
 
@@ -95,7 +95,7 @@ public class VistaRonda implements Observer {
 
         VBox contenedorPrincipal = new VBox(titulo, tableView, botonAvanzarRonda);
         contenedorPrincipal.setSpacing(ESPACIADO);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
 
     }
 

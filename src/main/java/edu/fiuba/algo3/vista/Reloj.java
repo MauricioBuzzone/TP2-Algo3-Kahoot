@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import javafx.scene.text.Font;
 
 public class Reloj extends Pane {
     private Timeline animacion;
@@ -14,10 +15,11 @@ public class Reloj extends Pane {
     private Label etiqueta;
 
     public Reloj(int temporizador) {
+
         super();
-        this.etiqueta = new Label("00:"+temporizador);
+        this.etiqueta = new Label("  00:"+temporizador);
         this.temporizador = temporizador;
-        etiqueta.setFont(javafx.scene.text.Font.font(40));
+        etiqueta.setFont(new Font(App.FUENTE,40));
 
         getChildren().add(etiqueta);
         animacion = new Timeline(new KeyFrame(Duration.seconds(1), e -> actualizarEtiqueta()));
@@ -29,9 +31,9 @@ public class Reloj extends Pane {
             temporizador--;
         }
         if(temporizador<10) {
-            textoEtiqueta = "00:0" + temporizador;
+            textoEtiqueta = "  00:0" + temporizador;
         }else {
-            textoEtiqueta = "00:" + temporizador;
+            textoEtiqueta = "  00:" + temporizador;
         }
         etiqueta.setText(textoEtiqueta);
     }
