@@ -16,7 +16,11 @@ import javafx.scene.text.Font;
 
 public class ContenedorBonificadores extends HBox {
 
-    private static final int ESPACIADO_BONIFICADORES = 15;
+    private static final int ESPACIADO_BONIFICADORES = 5;
+    private static final int TAMANIO_BONIFICADORES = 20;
+    private static final int ANCHO = 58;
+    private static final int ALTO = 14;
+
     private static final String X2 = "X2";
     private static final String X3 = "X3";
 
@@ -29,11 +33,13 @@ public class ContenedorBonificadores extends HBox {
 
         Button botonX2 = new Button();
         botonX2.setText(X2);
-        botonX2.setFont(new Font(App.FUENTE, 14));
+        botonX2.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
+        botonX2.setPrefSize(ANCHO,ALTO);
+
         Button botonX3 = new Button();
         botonX3.setText(X3);
-        botonX3.setFont(new Font(App.FUENTE, 14));
-
+        botonX3.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
+        botonX3.setPrefSize(ANCHO,ALTO);
 
         botonX2.setOnAction(new BotonUsarBonificadorEventHandler(jugadorActivo, controlador, bonificadorX2, botonX2, botonX3));
         if(!jugadorActivo.puedeUtilizarx2()) {
@@ -45,6 +51,5 @@ public class ContenedorBonificadores extends HBox {
         }
 
         this.getChildren().addAll(botonX2, botonX3);
-        this.setSpacing(ESPACIADO_BONIFICADORES);
     }
 }
