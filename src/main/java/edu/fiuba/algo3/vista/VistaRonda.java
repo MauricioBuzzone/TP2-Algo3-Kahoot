@@ -26,6 +26,7 @@ public class VistaRonda implements Observer {
     private static final int LARGO_ESCENA = 350;
     private static final int ESPACIADO = 30;
 
+    private Reloj reloj;
     private Ronda rondaActiva;
     private Stage stage;
     private Button botonAvanzarRonda;
@@ -64,10 +65,11 @@ public class VistaRonda implements Observer {
         Button comenzarTurno = new Button();
         comenzarTurno.setText("Jugar");
 
-        FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva);
+        reloj = new Reloj(15);
+        FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva, reloj);
         Scene escenaProxima = factory.crearEscenaPregunta();
 
-        comenzarTurno.setOnAction(new BotonComenzarTurnoEventHandler(this.stage, escenaProxima, rondaActiva));
+        comenzarTurno.setOnAction(new BotonComenzarTurnoEventHandler(this.stage, escenaProxima, rondaActiva, reloj));
         VBox contenedorPrincipal = new VBox(titulo, comenzarTurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
