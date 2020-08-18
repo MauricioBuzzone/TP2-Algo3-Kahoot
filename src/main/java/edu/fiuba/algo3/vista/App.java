@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 
 
 /**
@@ -22,8 +23,10 @@ import javafx.scene.control.Label;
  */
 public class App extends Application {
 
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 350;
+    public static final int ANCHO_ESCENA = 650;
+    public static final int LARGO_ESCENA = 350;
+    public static final String FUENTE = "Candara";
+    private static final int TAMANIO_LETRA = 18;
 
     public static Stage stage;
 
@@ -41,14 +44,17 @@ public class App extends Application {
 
     private Scene crearEscenaDeBienvenida() {
         Label titulo = new Label("Bienvenido al más humilde y mejor kahoot de algoritmos III");
+        titulo.setFont(new Font(FUENTE, TAMANIO_LETRA));
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
         fileChooser.setInitialDirectory(new File("Kahoots"));
 
         Label labelArchivo = new Label("Kahoot default");
+        labelArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA));
 
         Button botonElegirArchivo = new Button("Seleccione el kahoot");
+        botonElegirArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA));
         botonElegirArchivo.setOnAction(e -> {
             File archivoSeleccionado = fileChooser.showOpenDialog(stage);
             if(archivoSeleccionado != null){
@@ -58,6 +64,7 @@ public class App extends Application {
         });
         Button botonElegirJugadores = new Button();
         botonElegirJugadores.setText("Ingresar jugadores");
+        botonElegirJugadores.setFont(new Font(FUENTE, TAMANIO_LETRA));
         botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, labelArchivo));
         VBox contenedorPrincipal = new VBox(titulo, botonElegirArchivo, labelArchivo, botonElegirJugadores);
         contenedorPrincipal.setSpacing(30);

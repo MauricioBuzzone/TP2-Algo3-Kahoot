@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.List;
 
@@ -17,15 +18,15 @@ import static javafx.geometry.Pos.*;
 
 public class FactoryEscenas {
 
-    private static final int ANCHO_ESCENA = 500;
-    private static final int ALTO_ESCENA = 650;
     private static final String ENVIAR = "Enviar";
 
     private Stage stage;
     private Ronda rondaActiva;
-    public FactoryEscenas(Stage stage, Ronda rondaActiva){
+    private Reloj reloj;
+    public FactoryEscenas(Stage stage, Ronda rondaActiva, Reloj reloj){
         this.stage=stage;
         this.rondaActiva= rondaActiva;
+        this.reloj = reloj;
     }
 
     public Scene crearEscenaPregunta() {
@@ -43,15 +44,16 @@ public class FactoryEscenas {
         VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
-        contenedorVerticalDerecho.setSpacing(250);
+        contenedorVerticalDerecho.setSpacing(50);
 
         HBox contenedorHorizontal = new HBox(contenedorDeOpciones, contenedorVerticalDerecho);
-        contenedorHorizontal.setSpacing(150);
+        contenedorHorizontal.setSpacing(80);
         contenedorHorizontal.setAlignment(CENTER);
 
         contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, ALTO_ESCENA);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
+
     }
 
     private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador){
@@ -86,11 +88,13 @@ public class FactoryEscenas {
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
+            botonEnviar.setFont(new Font(App.FUENTE, 20));
+            botonEnviar.setPrefSize(130,14);
             botonEnviar.setOnAction(controlador);
-            return new VBox(contenedorDeBonificadores, botonEnviar);
+            return new VBox(reloj, contenedorDeBonificadores, botonEnviar);
         }
 
-        return new VBox(contenedorDeBonificadores);
+        return new VBox(reloj, contenedorDeBonificadores);
     }
 
     private boolean esTipoVerdaderoFalso(TipoDePregunta tipo){
