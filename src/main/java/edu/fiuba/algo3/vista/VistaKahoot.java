@@ -88,8 +88,8 @@ public class VistaKahoot implements Observer{
 
     private String nombreTipoDePregunta(Pregunta pregunta){
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
-        if(tipo.getClass() == VerdaderoFalso.class){
-            return PREGUNTA_VF;
+        if(tipo.getClass() == GroupChoice.class){
+            return PREGUNTA_GC;
         }else if(tipo.getClass() == VerdaderoFalsoConPenalidad.class){
             return PREGUNTA_VFCP;
         }else if(tipo.getClass() == MultipleChoiceClasico.class){
@@ -100,10 +100,9 @@ public class VistaKahoot implements Observer{
             return PREGUNTA_MCPP;
         }else if(tipo.getClass() == OrderedChoice.class) {
             return PREGUNTA_OC;
-        }else if(tipo.getClass() == GroupChoice.class) {
-            return PREGUNTA_GC;
+        }else{//(tipo.getClass() == VerdaderoFalso.class ) {
+            return PREGUNTA_VF;
         }
-        return "ALGO SALIÓ MAL"; // <<<<<<<<<<<<--------------------- BORRAR ESTO!!!!!!!!! DE ALGUNA MANERA!!! LANZAR EXCEPCIÓN
     }
 
     private Scene crearEscenaTabla(){
