@@ -76,6 +76,16 @@ public class Jugador {
         return usosDeX3 > 0;
     }
 
+    public int usosDisponiblesX2(){
+        return usosDeX2;
+    }
+    public int usosDisponiblesX3(){
+        return usosDeX3;
+    }
+    public int usosDisponiblesExclusividad(){
+        return usosDeExclusividad;
+    }
+
     //TestOnly
     public void asignarPuntos(int puntos){
         puntosPorRespuesta.add(puntos);

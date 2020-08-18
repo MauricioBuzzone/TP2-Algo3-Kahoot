@@ -10,6 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.geometry.Pos;
 
 import javafx.stage.Stage;
 import java.util.*;
@@ -61,17 +63,41 @@ public class VistaRonda implements Observer {
 
     private Scene crearEscenaRonda(Jugador jugadorActivo) {
 
-        Label titulo = new Label("Turno de " + jugadorActivo.getNombre() + " buena suerte ");
+        Label titulo = new Label("Próximo Jugador: " + jugadorActivo.getNombre());
+        titulo.setFont(new Font(App.FUENTE, 24));
+        Label buenaSuerte = new Label("¡Buena suerte!");
+        buenaSuerte.setFont(new Font(App.FUENTE, 22));
+
+        VBox contenedorTitulo = new VBox(titulo, buenaSuerte);
+        contenedorTitulo.setSpacing(5);
+        contenedorTitulo.setAlignment(Pos.CENTER);
+
+        Label usosBonificadorX2 = new Label("Usos disponibles X2: " + jugadorActivo.usosDisponiblesX2());
+        usosBonificadorX2.setFont(new Font(App.FUENTE, 18));
+        Label usosBonificadorX3 = new Label("Usos disponibles X3: " + jugadorActivo.usosDisponiblesX3());
+        usosBonificadorX3.setFont(new Font(App.FUENTE, 18));
+        Label usosExclusividad = new Label("Usos disponibles Exclusividad: " + jugadorActivo.usosDisponiblesExclusividad());
+        usosExclusividad.setFont(new Font(App.FUENTE, 18));
+
+        VBox bonificadores = new VBox(usosBonificadorX2, usosBonificadorX3, usosExclusividad);
+        bonificadores.setSpacing(1);
+        bonificadores.setAlignment(Pos.CENTER);
+
         Button comenzarTurno = new Button();
         comenzarTurno.setText("Jugar");
+        comenzarTurno.setPrefSize(130,14);
+        comenzarTurno.setFont(new Font(App.FUENTE, 18));
 
-        reloj = new Reloj(15);
+        reloj = new Reloj(15); // <<<<<<<<<<--------------------------------- CAMBIAR POR EL TIEMPO DEL TIMER URGENTE!!! NO OLVIDARSE
         FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva, reloj);
         Scene escenaProxima = factory.crearEscenaPregunta();
 
         comenzarTurno.setOnAction(new BotonComenzarTurnoEventHandler(this.stage, escenaProxima, rondaActiva, reloj));
-        VBox contenedorPrincipal = new VBox(titulo, comenzarTurno);
+
+        VBox contenedorPrincipal = new VBox(contenedorTitulo, bonificadores, comenzarTurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
