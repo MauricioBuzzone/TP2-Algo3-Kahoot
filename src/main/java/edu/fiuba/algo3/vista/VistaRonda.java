@@ -88,7 +88,7 @@ public class VistaRonda implements Observer {
         comenzarTurno.setPrefSize(130,14);
         comenzarTurno.setFont(new Font(App.FUENTE, 18));
 
-        reloj = new Reloj(15); // <<<<<<<<<<--------------------------------- CAMBIAR POR EL TIEMPO DEL TIMER URGENTE!!! NO OLVIDARSE
+        reloj = new Reloj(rondaActiva.getTiempo());
         FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva, reloj);
         Scene escenaProxima = factory.crearEscenaPregunta();
 

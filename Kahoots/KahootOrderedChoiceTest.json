@@ -1,18 +1,21 @@
 {
   "Rondas":[
     {
+      "tiempo": 20,
       "enunciado": "1: Ordenar las siguientes opciones",
       "tipo": "OrderedChoice",
       "solucion": [{"descripcion": "Primera", "indice":1},{"descripcion": "Segunda","indice":2},{"descripcion": "Tercera","indice":3}],
       "opciones": [{"descripcion": "Tercera", "indice":3},{"descripcion": "Segunda","indice":2},{"descripcion": "Primera","indice":1}]
     },
     {
+      "tiempo": 20,
       "enunciado": "2: Ordenar las siguientes opciones",
       "tipo": "OrderedChoice",
       "solucion": [{"descripcion": "Primera", "indice":1},{"descripcion": "Cuarto","indice":4},{"descripcion": "Tercera","indice":3},{"descripcion": "Segunda","indice":2}],
       "opciones": [{"descripcion": "Tercera", "indice":3},{"descripcion": "Segunda","indice":2},{"descripcion": "Primera","indice":1},{"descripcion": "Cuarto","indice":4}]
     },
     {
+      "tiempo": 15,
       "enunciado": "3: Ordenar las siguientes opciones",
       "tipo": "OrderedChoice",
       "solucion": [{"descripcion": "Primera", "indice":1},{"descripcion": "Segunda","indice":2}],

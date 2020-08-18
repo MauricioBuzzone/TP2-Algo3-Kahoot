@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.util.List;
+import javafx.scene.text.Font;
 
 
 public class ContenedorBonificadores extends HBox {
@@ -28,8 +29,10 @@ public class ContenedorBonificadores extends HBox {
 
         Button botonX2 = new Button();
         botonX2.setText(X2);
+        botonX2.setFont(new Font(App.FUENTE, 14));
         Button botonX3 = new Button();
         botonX3.setText(X3);
+        botonX3.setFont(new Font(App.FUENTE, 14));
 
 
         botonX2.setOnAction(new BotonUsarBonificadorEventHandler(jugadorActivo, controlador, bonificadorX2, botonX2, botonX3));
