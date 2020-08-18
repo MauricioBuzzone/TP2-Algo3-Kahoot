@@ -17,8 +17,8 @@ import static javafx.geometry.Pos.*;
 
 public class FactoryEscenas {
 
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 350;
+    private static final int ANCHO_ESCENA = 500;
+    private static final int ALTO_ESCENA = 650;
     private static final String ENVIAR = "Enviar";
 
     private Stage stage;
@@ -51,7 +51,7 @@ public class FactoryEscenas {
 
         contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return new Scene(contenedorPrincipal, ANCHO_ESCENA, ALTO_ESCENA);
     }
 
     private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador){
