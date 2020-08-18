@@ -43,7 +43,7 @@ public class FactoryEscenas {
         VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
-        contenedorVerticalDerecho.setSpacing(250);
+        contenedorVerticalDerecho.setSpacing(50);
 
         HBox contenedorHorizontal = new HBox(contenedorDeOpciones, contenedorVerticalDerecho);
         contenedorHorizontal.setSpacing(150);
@@ -84,13 +84,15 @@ public class FactoryEscenas {
         HBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
         contenedorDeBonificadores.setSpacing(15);
 
+        Reloj reloj = new Reloj(15);
+
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
             botonEnviar.setOnAction(controlador);
-            return new VBox(contenedorDeBonificadores, botonEnviar);
+            return new VBox(reloj, contenedorDeBonificadores, botonEnviar);
         }
 
-        return new VBox(contenedorDeBonificadores);
+        return new VBox(reloj, contenedorDeBonificadores);
     }
 
     private boolean esTipoVerdaderoFalso(TipoDePregunta tipo){
