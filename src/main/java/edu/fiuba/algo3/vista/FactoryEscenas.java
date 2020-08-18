@@ -24,9 +24,11 @@ public class FactoryEscenas {
 
     private Stage stage;
     private Ronda rondaActiva;
-    public FactoryEscenas(Stage stage, Ronda rondaActiva){
+    private Reloj reloj;
+    public FactoryEscenas(Stage stage, Ronda rondaActiva, Reloj reloj){
         this.stage=stage;
         this.rondaActiva= rondaActiva;
+        this.reloj = reloj;
     }
 
     public Scene crearEscenaPregunta() {
@@ -44,7 +46,7 @@ public class FactoryEscenas {
         VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
-        contenedorVerticalDerecho.setSpacing(250);
+        contenedorVerticalDerecho.setSpacing(50);
 
         HBox contenedorHorizontal = new HBox(contenedorDeOpciones, contenedorVerticalDerecho);
         contenedorHorizontal.setSpacing(150);
@@ -89,10 +91,10 @@ public class FactoryEscenas {
             Button botonEnviar = new Button(ENVIAR);
             botonEnviar.setFont(new Font("Calabri", 20));
             botonEnviar.setOnAction(controlador);
-            return new VBox(contenedorDeBonificadores, botonEnviar);
+            return new VBox(reloj, contenedorDeBonificadores, botonEnviar);
         }
 
-        return new VBox(contenedorDeBonificadores);
+        return new VBox(reloj, contenedorDeBonificadores);
     }
 
     private boolean esTipoVerdaderoFalso(TipoDePregunta tipo){
