@@ -18,9 +18,10 @@ import javafx.stage.Stage;
 import javafx.geometry.Pos;
 
 
-
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Queue;
 
 
 public class VistaKahoot implements Observer{
@@ -120,21 +121,11 @@ public class VistaKahoot implements Observer{
         Label tituloTabla = new Label("Tabla final");
         tituloTabla.setFont(new Font(App.FUENTE, 18));
 
-        TableView tableView = new TableView();
-        TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
-        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos Totales");
+        Queue<Jugador> jugadores = new LinkedList<>(kahoot.terminarJuego());
 
-        column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        column2.setCellValueFactory(new PropertyValueFactory<>("puntos"));
+        TablaDePuntajes tabla = new TablaDePuntajes("puntos","Puntos Totales", jugadores);
 
-        tableView.getColumns().add(column1);
-        tableView.getColumns().add(column2);
-
-        for(Jugador jugador: kahoot.terminarJuego()){
-            tableView.getItems().add(jugador);
-        }
-
-        VBox contenedorTabla = new VBox(tituloTabla, tableView);
+        VBox contenedorTabla = new VBox(tituloTabla, tabla);
         contenedorTabla.setSpacing(5);
         contenedorTabla.setAlignment(Pos.CENTER);
 

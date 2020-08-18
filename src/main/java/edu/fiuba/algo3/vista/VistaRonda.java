@@ -117,22 +117,9 @@ public class VistaRonda implements Observer {
         contenedorTitulo.setSpacing(5);
         contenedorTitulo.setAlignment(Pos.CENTER);
 
+        TablaDePuntajes tabla = new TablaDePuntajes("ultimoPuntaje", "Puntos Conseguidos", jugadores);
 
-        TableView tableView = new TableView();
-        TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
-        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos");
-
-        column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        column2.setCellValueFactory(new PropertyValueFactory<>("ultimoPuntaje"));
-
-        tableView.getColumns().add(column1);
-        tableView.getColumns().add(column2);
-
-        while(!jugadores.isEmpty()){
-            tableView.getItems().add(jugadores.poll());
-        }
-
-        VBox contenedorPrincipal = new VBox(contenedorTitulo, tableView, botonAvanzarRonda);
+        VBox contenedorPrincipal = new VBox(contenedorTitulo, tabla, botonAvanzarRonda);
         contenedorPrincipal.setSpacing(ESPACIADO);
         contenedorPrincipal.setAlignment(Pos.CENTER);
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
