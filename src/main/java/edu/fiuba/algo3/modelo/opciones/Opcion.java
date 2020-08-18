@@ -8,6 +8,23 @@ public abstract class Opcion {
 
     public abstract boolean igualA(Opcion unaOpcion);
 
+    public boolean estaContenidoEn(List<Opcion> opciones){
+        for(Opcion opcion : opciones){
+            if(this.igualA(opcion)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean mismaDescripcion(Opcion opcion){
+        return opcion.mismaDescripcion(this.descripcion);
+    }
+
+    public String getDescripcion(){
+        return this.descripcion;
+    }
+
     protected boolean mismaDescripcion(String unaDescripcion){
         return this.descripcion.equals(unaDescripcion);
     }
@@ -18,22 +35,5 @@ public abstract class Opcion {
 
     protected boolean mismoIndice(int unIndice){
         return false;
-    }
-
-    public boolean estaContenidoEn(List<Opcion> opciones){
-        for(Opcion opcion : opciones){
-            if(this.igualA(opcion)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public String getDescripcion(){
-        return this.descripcion;
-    }
-
-    public boolean mismaDescripcion(Opcion opcion){
-        return opcion.mismaDescripcion(this.descripcion);
     }
 }

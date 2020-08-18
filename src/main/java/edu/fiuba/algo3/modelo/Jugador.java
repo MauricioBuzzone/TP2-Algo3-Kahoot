@@ -58,10 +58,10 @@ public class Jugador {
         usosDeExclusividad--;
     }
 
-    public  void activarx2() {
+    public void activarx2() {
         usosDeX2--;
     }
-    public  void activarx3() {
+    public void activarx3() {
         usosDeX3--;
     }
 

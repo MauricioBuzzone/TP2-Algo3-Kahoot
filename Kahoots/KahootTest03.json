@@ -1,0 +1,27 @@
+{
+  "Rondas":[
+    {
+      "tiempo": 20,
+      "enunciado": "1: Agrupar las siguientes opciones",
+      "tipo": "GroupChoice",
+      "solucion": [{"descripcion": "grupoA1", "grupo": "A"},{"descripcion": "grupoA2","grupo": "A"},
+        {"descripcion": "grupoB1","grupo": "B"},{"descripcion": "grupoB2","grupo": "B"}],
+      "opciones": [{"descripcion": "grupoA1", "grupo": "A"},{"descripcion": "grupoA2","grupo": "A"},
+        {"descripcion": "grupoB1","grupo": "B"},{"descripcion": "grupoB2","grupo": "B"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "1: Ordenar las siguientes opciones",
+      "tipo": "OrderedChoice",
+      "solucion": [{"descripcion": "Primera", "indice":1},{"descripcion": "Segunda","indice":2},{"descripcion": "Tercera","indice":3}],
+      "opciones": [{"descripcion": "Tercera", "indice":3},{"descripcion": "Segunda","indice":2},{"descripcion": "Primera","indice":1}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "1: La opción correcta es: Verdadero",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    }
+  ]
+}
