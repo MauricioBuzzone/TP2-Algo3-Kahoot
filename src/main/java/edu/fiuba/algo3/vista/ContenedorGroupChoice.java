@@ -13,6 +13,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.control.Labeled;
+import javafx.scene.text.Font;
 
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
@@ -21,7 +23,6 @@ import java.util.List;
 
 public class ContenedorGroupChoice extends VBox {
     private static final int ESPACIADO_BOTONES = 15;
-    private static final String REINICIAR = "Reiniciar";
 
     public ContenedorGroupChoice(ControladorRespuesta controlador, List<Opcion> opciones) {
         super();
@@ -32,10 +33,13 @@ public class ContenedorGroupChoice extends VBox {
         for (String descripcion : descripciones) {
             HBox opcion = new HBox();
             Label labelDescripcion = new Label(descripcion);
+            labelDescripcion.setFont(new Font("Calabri", 24));
             SplitMenuButton menuDeGrupos = this.crearMenuDeGrupos(controlador,grupos, descripcion);
+            menuDeGrupos.setPrefSize(110,18);
+            menuDeGrupos.setFont(new Font("Calabir", 18));
             opcion.getChildren().addAll(labelDescripcion,menuDeGrupos);
             contenedoresOpciones.add(opcion);
-            opcion.setSpacing(5);
+            opcion.setSpacing(10);
         }
         this.getChildren().addAll(contenedoresOpciones);
         this.setSpacing(ESPACIADO_BOTONES);

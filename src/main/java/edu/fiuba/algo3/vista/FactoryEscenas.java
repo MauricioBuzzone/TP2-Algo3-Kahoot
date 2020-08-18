@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.List;
 
@@ -17,8 +18,8 @@ import static javafx.geometry.Pos.*;
 
 public class FactoryEscenas {
 
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 350;
+    private static final int ANCHO_ESCENA = 500;
+    private static final int LARGO_ESCENA = 650;
     private static final String ENVIAR = "Enviar";
 
     private Stage stage;
@@ -86,6 +87,7 @@ public class FactoryEscenas {
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
+            botonEnviar.setFont(new Font("Calabri", 20));
             botonEnviar.setOnAction(controlador);
             return new VBox(contenedorDeBonificadores, botonEnviar);
         }
