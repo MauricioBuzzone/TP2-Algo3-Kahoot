@@ -86,6 +86,13 @@ public class Jugador {
         return usosDeExclusividad;
     }
 
+    public boolean tieneMasPuntosQue(Jugador otroJugador){
+        return otroJugador.tieneMenosOLosMismosPuntosQue(this.puntosTotales());
+    }
+
+    private boolean tieneMenosOLosMismosPuntosQue(int otrosPuntos){
+        return (this.puntosTotales() <= otrosPuntos);
+    }
     //TestOnly
     public void asignarPuntos(int puntos){
         puntosPorRespuesta.add(puntos);

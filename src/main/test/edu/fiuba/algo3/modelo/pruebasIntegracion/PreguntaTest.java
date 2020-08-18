@@ -1181,4 +1181,47 @@ public class PreguntaTest {
         assertEquals(diego.puntosTotales(), 5);
         assertEquals(tomas.puntosTotales(), 6);
     }
+
+    @Test
+    public void test4_1CuandoSeJuegaUnaRondaConDosJugadoresYUnoRespondeBienYElOtroMalElPrimeroTieneMasPuntosQueElSegundo(){
+
+        String enunciado = "Diego es pintorRodillo (?";
+        Opcion solucion = new OpcionComun("Verdadero");
+        Opcion opcionIncorrecta = new OpcionComun("Falso");
+
+        List<Opcion> opcionCorrecta = new ArrayList<Opcion>();
+        opcionCorrecta.add(solucion);
+        List<Opcion> opciones = new ArrayList<Opcion>();
+        opciones.add(opcionIncorrecta);
+        opciones.add(solucion);
+
+        TipoDePregunta tipoVerdaderoFalso = new VerdaderoFalso(opcionCorrecta);
+        Pregunta pregunta = new Pregunta(enunciado, opciones, tipoVerdaderoFalso);
+
+        Jugador diego = new Jugador("Diego");
+        Jugador tomas = new Jugador("Tomas");
+
+        List<Opcion> opcionDiego = new ArrayList<Opcion>();
+        opcionDiego.add(new OpcionComun("Falso"));
+        Eleccion eleccionDiego = new Eleccion(opcionDiego);
+
+
+        List<Opcion> opcionTomas = new ArrayList<Opcion>();
+        opcionTomas.add(new OpcionComun("Verdadero"));
+        Eleccion eleccionTomas = new Eleccion(opcionTomas);
+
+        Bonificador bonificadorDiego = new Bonificador();
+        Bonificador bonificadorTomas = new Bonificador();
+
+        Respuesta respuestaDiego = new Respuesta(diego, eleccionDiego, bonificadorDiego);
+        Respuesta respuestaTomas = new Respuesta(tomas, eleccionTomas, bonificadorTomas);
+
+        Respuestas respuestas = new Respuestas();
+        respuestas.agregarRespuesta(respuestaDiego);
+        respuestas.agregarRespuesta(respuestaTomas);
+
+        pregunta.responderPregunta(respuestas);
+
+        assert(tomas.tieneMasPuntosQue(diego));
+    }
 }

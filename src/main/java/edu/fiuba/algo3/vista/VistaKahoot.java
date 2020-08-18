@@ -59,7 +59,6 @@ public class VistaKahoot implements Observer{
         }
     }
 
-
     private Scene crearEscenaRonda(Ronda ronda){
         Pregunta pregunta = ronda.getPregunta();
         Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
@@ -85,7 +84,6 @@ public class VistaKahoot implements Observer{
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
-
     private String nombreTipoDePregunta(Pregunta pregunta){
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
         if(tipo.getClass() == GroupChoice.class){
@@ -107,7 +105,21 @@ public class VistaKahoot implements Observer{
 
     private Scene crearEscenaTabla(){
 
-        Label titulo = new Label("Puntaje final");
+
+        Label titulo = new Label("¡Terminó el AlgoHoot!");
+        titulo.setFont(new Font(App.FUENTE, 26));
+
+        Label tituloGanador = new Label("El ganador es: " + kahoot.jugadorConMasPuntos().getNombre());
+        tituloGanador.setFont(new Font(App.FUENTE, 22));
+
+        VBox contenedorTitulo = new VBox(titulo, tituloGanador);
+        contenedorTitulo.setSpacing(5);
+        contenedorTitulo.setAlignment(Pos.CENTER);
+
+
+        Label tituloTabla = new Label("Tabla final");
+        tituloTabla.setFont(new Font(App.FUENTE, 18));
+
         TableView tableView = new TableView();
         TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
         TableColumn<String, Integer> column2 = new TableColumn<>("Puntos Totales");
@@ -121,7 +133,12 @@ public class VistaKahoot implements Observer{
         for(Jugador jugador: kahoot.terminarJuego()){
             tableView.getItems().add(jugador);
         }
-        VBox contenedorPrincipal = new VBox(titulo, tableView);
+
+        VBox contenedorTabla = new VBox(tituloTabla, tableView);
+        contenedorTabla.setSpacing(5);
+        contenedorTabla.setAlignment(Pos.CENTER);
+
+        VBox contenedorPrincipal = new VBox(contenedorTitulo, contenedorTabla);
         contenedorPrincipal.setSpacing(ESPACIADO);
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }

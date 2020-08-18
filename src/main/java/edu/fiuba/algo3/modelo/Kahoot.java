@@ -72,6 +72,16 @@ public class Kahoot extends Observable{
         return new ArrayList(rondas);
     }
 
+    public Jugador jugadorConMasPuntos(){
+        Jugador jugadorActualConMasPuntos = jugadores.get(0);
+        for(Jugador jugador : jugadores){
+            if(jugador.tieneMasPuntosQue(jugadorActualConMasPuntos)){
+                jugadorActualConMasPuntos = jugador;
+            }
+        }
+        return jugadorActualConMasPuntos;
+    }
+
     public List<Jugador> terminarJuego(){
         return this.jugadores;
     }
@@ -87,14 +97,13 @@ public class Kahoot extends Observable{
 
     }
 
-    private void agregarRonda(JsonObject jsonObject){
+    private void agregarRonda(JsonObject jsonObject) {
         JsonArray ArrayRondas = jsonObject.get("Rondas").getAsJsonArray();
 
-        for (JsonElement jsonRonda : ArrayRondas){
+        for (JsonElement jsonRonda : ArrayRondas) {
             Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
             int tiempo = (jsonRonda.getAsJsonObject()).get("tiempo").getAsInt();
-            this.agregarPregunta(pregunta ,tiempo);
+            this.agregarPregunta(pregunta, tiempo);
         }
     }
-
 }
