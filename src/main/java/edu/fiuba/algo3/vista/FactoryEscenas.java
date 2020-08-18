@@ -23,9 +23,11 @@ public class FactoryEscenas {
 
     private Stage stage;
     private Ronda rondaActiva;
-    public FactoryEscenas(Stage stage, Ronda rondaActiva){
+    private Reloj reloj;
+    public FactoryEscenas(Stage stage, Ronda rondaActiva, Reloj reloj){
         this.stage=stage;
         this.rondaActiva= rondaActiva;
+        this.reloj = reloj;
     }
 
     public Scene crearEscenaPregunta() {
@@ -83,8 +85,6 @@ public class FactoryEscenas {
     private VBox contenedorVerticalDerecho(TipoDePregunta tipo, ControladorRespuesta controlador){
         HBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
         contenedorDeBonificadores.setSpacing(15);
-
-        Reloj reloj = new Reloj(15);
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
