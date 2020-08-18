@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.geometry.Pos;
 
 
 public class EscenaElegirJugadores extends Scene {
@@ -49,8 +50,13 @@ public class EscenaElegirJugadores extends Scene {
         botonEliminarJugadores.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
         botonEliminarJugadores.setOnAction(new BotonEliminarJugadoresEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
 
-        HBox contenedorHorizontal = new HBox(botonSiguienteJugador, botonComenzar, botonEliminarJugadores);
-        contenedorHorizontal.setSpacing(10);
+        HBox contenedorBotonesManipulacion = new HBox(botonSiguienteJugador, botonEliminarJugadores);
+        contenedorBotonesManipulacion.setSpacing(5);
+        contenedorBotonesManipulacion.setAlignment(Pos.CENTER_LEFT);
+
+        HBox contenedorHorizontal = new HBox(contenedorBotonesManipulacion, botonComenzar);
+        contenedorHorizontal.setSpacing(100);
+        contenedorHorizontal.setAlignment(Pos.CENTER);
 
         contenedorPrincipal.getChildren().addAll(cuadroParaIngresarNombres, contenedorHorizontal, jugadoresInscriptos);
         contenedorPrincipal.setSpacing(10);

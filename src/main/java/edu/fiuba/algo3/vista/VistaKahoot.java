@@ -13,7 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
+
+
 
 import java.util.Observable;
 import java.util.Observer;
@@ -55,17 +59,29 @@ public class VistaKahoot implements Observer{
         }
     }
 
+
     private Scene crearEscenaRonda(Ronda ronda){
         Pregunta pregunta = ronda.getPregunta();
         Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
+        titulo.setFont(new Font(App.FUENTE, 22));
+
         Label enunciado = new Label(pregunta.getEnunciado());
+        enunciado.setFont(new Font(App.FUENTE, 18));
+
         VBox contenedorSuperior = new VBox(titulo, enunciado);
-        contenedorSuperior.setSpacing(5);
+        contenedorSuperior.setSpacing(3);
+        contenedorSuperior.setAlignment(Pos.CENTER);
+
         Button avanzarATurno = new Button();
         avanzarATurno.setText("Avanzar");
+        avanzarATurno.setFont(new Font(App.FUENTE, 18));
         avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
+        avanzarATurno.setPrefSize(130,14);
+
         VBox contenedorPrincipal = new VBox(contenedorSuperior, avanzarATurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 

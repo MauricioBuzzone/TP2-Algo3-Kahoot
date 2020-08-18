@@ -53,7 +53,6 @@ public class FactoryEscenas {
         contenedorPrincipal.getChildren().addAll(new Label(enunciado), contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
-
     }
 
     private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador){
@@ -67,7 +66,7 @@ public class FactoryEscenas {
         }else if(esTipoOrderedChoice(tipo)){
             contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones);
 
-        }else{//esTipoGroupChoice(tipo)
+        }else if(esTipoGroupChoice(tipo)){
             contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones);
         }
         return contenedorPreguntas;

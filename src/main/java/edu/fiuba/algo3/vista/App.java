@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
+import javafx.geometry.Pos;
 
 /**
  * JavaFX App
@@ -27,6 +28,8 @@ public class App extends Application {
     public static final int LARGO_ESCENA = 350;
     public static final String FUENTE = "Candara";
     private static final int TAMANIO_LETRA = 18;
+    private static final int TAMANIO_LETRA_ARCHIVO = 12;
+    private static final int TAMANIO_LETRA_TITULO = 28;
 
     public static Stage stage;
 
@@ -43,15 +46,15 @@ public class App extends Application {
     }
 
     private Scene crearEscenaDeBienvenida() {
-        Label titulo = new Label("Bienvenido al más humilde y mejor kahoot de algoritmos III");
-        titulo.setFont(new Font(FUENTE, TAMANIO_LETRA));
+        Label titulo = new Label("ALGOHOOT III");
+        titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
         fileChooser.setInitialDirectory(new File("Kahoots"));
 
         Label labelArchivo = new Label("Kahoot default");
-        labelArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA));
+        labelArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA_ARCHIVO));
 
         Button botonElegirArchivo = new Button("Seleccione el kahoot");
         botonElegirArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA));
@@ -62,12 +65,17 @@ public class App extends Application {
                 labelArchivo.setText(path);
             }
         });
+        VBox seleccionDeKahoot = new VBox(botonElegirArchivo, labelArchivo);
+        seleccionDeKahoot.setSpacing(5);
+        seleccionDeKahoot.setAlignment(Pos.CENTER);
+
         Button botonElegirJugadores = new Button();
         botonElegirJugadores.setText("Ingresar jugadores");
         botonElegirJugadores.setFont(new Font(FUENTE, TAMANIO_LETRA));
         botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, labelArchivo));
-        VBox contenedorPrincipal = new VBox(titulo, botonElegirArchivo, labelArchivo, botonElegirJugadores);
+        VBox contenedorPrincipal = new VBox(titulo, seleccionDeKahoot, botonElegirJugadores);
         contenedorPrincipal.setSpacing(30);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
