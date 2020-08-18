@@ -1,42 +1,49 @@
 {
   "Rondas":[
     {
+      "tiempo": 20,
       "enunciado": "1: Verdadero o Falso Clásico",
       "tipo": "VerdaderoFalso",
       "solucion": [{"descripcion": "Verdadero"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
     },
     {
+      "tiempo": 15,
       "enunciado": "2: Verdadero o Falso con Penalidad",
       "tipo": "VerdaderoFalsoConPenalidad",
       "solucion": [{"descripcion": "Verdadero"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
     },
     {
+      "tiempo": 10,
       "enunciado": "3: Multiple Choice Clásico",
       "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "opcion correcta 1"},{"descripcion": "opcion correcta 2"}],
       "opciones": [{"descripcion": "opcion correcta 1"},{"descripcion": "opcion incorrecta 1"},{"descripcion": "opcion correcta 2"},{"descripcion": "opcion incorrecta 2"}]
     },
     {
+      "tiempo": 20,
       "enunciado": "4: Multiple Choice Con Penalidad",
       "tipo": "MultipleChoiceConPenalidad",
       "solucion": [{"descripcion": "opcion correcta 1"},{"descripcion": "opcion correcta 2"}],
       "opciones": [{"descripcion": "opcion incorrecta 1"},{"descripcion": "opcion incorrecta 2"},{"descripcion": "opcion correcta 1"},{"descripcion": "opcion correcta 2"}]
     },
     {
+      "tiempo": 20,
       "enunciado": "5: Multiple Choice de Puntaje Parcial",
       "tipo": "MultipleChoicePuntajeParcial",
       "solucion": [{"descripcion": "opcion correcta 1"},{"descripcion": "opcion correcta 2"}],
       "opciones": [{"descripcion": "opcion correcta 1"},{"descripcion": "opcion correcta 2"},{"descripcion": "opcion incorrecta 1"},{"descripcion": "opcion incorrecta 2"}]
     },
     {
+      "tiempo": 20,
       "enunciado": "6: Ordered Choice",
       "tipo": "OrderedChoice",
       "solucion": [{"descripcion": "Primera", "indice":1},{"descripcion": "Segunda","indice":2},{"descripcion": "Tercera","indice":3}],
       "opciones": [{"descripcion": "Tercera", "indice":3},{"descripcion": "Segunda","indice":2},{"descripcion": "Primera","indice":1}]
     },
     {
+      "tiempo": 20,
       "enunciado": "7: Group Choice",
       "tipo": "GroupChoice",
       "solucion": [{"descripcion": "grupoA", "grupo": "A"},{"descripcion": "grupoB","grupo": "B"}],

@@ -65,7 +65,7 @@ public class VistaRonda implements Observer {
         Button comenzarTurno = new Button();
         comenzarTurno.setText("Jugar");
 
-        reloj = new Reloj(15);
+        reloj = new Reloj(rondaActiva.getTiempo());
         FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva, reloj);
         Scene escenaProxima = factory.crearEscenaPregunta();
 

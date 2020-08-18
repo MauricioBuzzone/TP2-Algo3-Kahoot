@@ -42,8 +42,8 @@ public class Kahoot extends Observable{
         }
     }
 
-    public void agregarPregunta(Pregunta pregunta){
-        Ronda ronda = new Ronda(pregunta,  this.jugadores);
+    public void agregarPregunta(Pregunta pregunta, int tiempo){
+        Ronda ronda = new Ronda(pregunta,  this.jugadores, tiempo);
         rondas.add(ronda);
     }
 
@@ -92,7 +92,8 @@ public class Kahoot extends Observable{
 
         for (JsonElement jsonRonda : ArrayRondas){
             Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
-            this.agregarPregunta(pregunta);
+            int tiempo = (jsonRonda.getAsJsonObject()).get("tiempo").getAsInt();
+            this.agregarPregunta(pregunta ,tiempo);
         }
     }
 

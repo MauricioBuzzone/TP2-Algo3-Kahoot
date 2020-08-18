@@ -1,6 +1,7 @@
 {
   "Rondas":[
     {
+      "tiempo": 20,
       "enunciado": "1: Agrupar las siguientes opciones",
       "tipo": "GroupChoice",
       "solucion": [{"descripcion": "grupoA1", "grupo": "A"},{"descripcion": "grupoA2","grupo": "A"},
@@ -9,12 +10,14 @@
                     {"descripcion": "grupoB1","grupo": "B"},{"descripcion": "grupoB2","grupo": "B"}]
     },
     {
+      "tiempo": 15,
       "enunciado": "2: Agrupar las siguientes opciones",
       "tipo": "GroupChoice",
       "solucion": [{"descripcion": "grupoA", "grupo": "A"},{"descripcion": "grupoB","grupo": "B"}],
       "opciones": [{"descripcion": "grupoB", "grupo": "B"},{"descripcion": "grupoA","grupo": "A"}]
     },
     {
+      "tiempo": 10,
       "enunciado": "3: Agrupar las siguientes opciones",
       "tipo": "GroupChoice",
       "solucion": [{"descripcion": "grupoA1", "grupo": "A"},{"descripcion": "grupoA2","grupo": "A"},
