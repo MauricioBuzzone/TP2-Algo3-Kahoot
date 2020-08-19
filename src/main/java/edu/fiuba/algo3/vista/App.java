@@ -49,6 +49,7 @@ public class App extends Application {
         this.stage = stage;
         stage.setTitle("AlgoHoot!");
         stage.getIcons().add(new Image("file:resources/AlgoHootIcon.png"));
+        stage.setResizable(false);
         stage.setScene(crearEscenaDeBienvenida());
         stage.show();
     }
@@ -58,7 +59,7 @@ public class App extends Application {
     }
 
     private Scene crearEscenaDeBienvenida() {
-        Label titulo = new Label("ALGOHOOT III");
+        Label titulo = new Label("               ");
         titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
 
         musica = new ReproduccionSonido("kahootInicio.mp3");
