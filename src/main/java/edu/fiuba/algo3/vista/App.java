@@ -25,7 +25,7 @@ import javafx.geometry.Pos;
 public class App extends Application {
 
     public static final int ANCHO_ESCENA = 650;
-    public static final int LARGO_ESCENA = 350;
+    public static final int LARGO_ESCENA = 500;
     public static final String FUENTE = "Candara";
     private static final int TAMANIO_LETRA = 18;
     private static final int TAMANIO_LETRA_ARCHIVO = 12;
