@@ -16,7 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -40,7 +39,6 @@ public class App extends Application {
     private static final int TAMANIO_LETRA_ARCHIVO = 12;
     private static final int TAMANIO_LETRA_TITULO = 28;
 
-    private ReproduccionSonido musica;
     public static Stage stage;
     private static final String RUTA_ARCHIVO_BACKGROUND = "resources/Backgrounds/Bienvenida.png";
 
@@ -61,9 +59,6 @@ public class App extends Application {
     private Scene crearEscenaDeBienvenida() {
         Label titulo = new Label("               ");
         titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
-
-        musica = new ReproduccionSonido("kahootInicio.mp3");
-        musica.reproducir();
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
