@@ -1,0 +1,57 @@
+{
+  "Rondas":[
+    {
+      "tiempo": 20,
+      "enunciado": "EEUU participó en la Segunda Guerra Mundial desde el principio",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Falso"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "Suiza permaneció neutral durante el conflicto",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "¿Cuáles de estos personajes fueron líderes activos durante la guerra?",
+      "tipo": "MultipleChoiceClasico",
+      "solucion": [{"descripcion": "Churchill"},{"descripcion": "Stalin"},{"descripcion": "Mussolini"}],
+      "opciones": [{"descripcion": "Napoleón"},{"descripcion": "Putin"},{"descripcion": "Washington"},{"descripcion": "Churchill"},{"descripcion": "Stalin"},{"descripcion": "Mussolini"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "Ciudades que fueron conquistadas por el ejército alemán",
+      "tipo": "MultipleChoiceConPenalidad",
+      "solucion": [{"descripcion": "París"},{"descripcion": "Varsovia"}],
+      "opciones": [{"descripcion": "Stalingrado"},{"descripcion": "Moscú"},{"descripcion": "Madrid"},{"descripcion": "París"},{"descripcion": "Varsovia"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "Batallas importantes",
+      "tipo": "MultipleChoicePuntajeParcial",
+      "solucion": [{"descripcion": "Bombardeo de Londres"},{"descripcion": "Batalla de Stalingrado"},{"descripcion": "Bombardeo de Pearl Harbor"},{"descripcion": "Batalla de Iwo Jima"}],
+      "opciones": [{"descripcion": "Bombardeo de Londres"},{"descripcion": "Guerar de 100 años"},{"descripcion": "Batalla de Caseros"},{"descripcion": "Batalla de Stalingrado"},{"descripcion": "Bombardeo de Pearl Harbor"},{"descripcion": "Batalla de Iwo Jima"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "Ordenar según cronología",
+      "tipo": "OrderedChoice",
+      "solucion": [{"descripcion": "Pacto Ribbentrop-Mólotov", "indice":1},{"descripcion": "Desembarco de Normandía", "indice":2},{"descripcion": "Conquista de Berlín","indice":3},{"descripcion": "Bombardeo a Hiroshima y Nagasaki","indice":4}],
+      "opciones": [{"descripcion": "Conquista de Berlín","indice":3},{"descripcion": "Pacto Ribbentrop-Mólotov", "indice":1},{"descripcion": "Desembarco de Normandía", "indice":2},{"descripcion": "Bombardeo a Hiroshima y Nagasaki","indice":4}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "Ubicar los países en cada bando",
+      "tipo": "GroupChoice",
+      "solucion": [{"descripcion": "Alemania", "grupo": "Eje"},{"descripcion": "Inglaterra","grupo": "Aliado"},
+                  {"descripcion": "Italia","grupo": "Eje"},{"descripcion": "Estados Unidos","grupo": "Aliado"},
+                  {"descripcion": "Japón","grupo": "Eje"},{"descripcion": "Unión Soviética","grupo": "Aliado"}],
+      "opciones": [{"descripcion": "Alemania", "grupo": "Eje"},{"descripcion": "Inglaterra","grupo": "Aliado"},
+                  {"descripcion": "Italia","grupo": "Eje"},{"descripcion": "Estados Unidos","grupo": "Aliado"},
+                  {"descripcion": "Japón","grupo": "Eje"},{"descripcion": "Unión Soviética","grupo": "Aliado"}]
+    }
+  ]
+}
