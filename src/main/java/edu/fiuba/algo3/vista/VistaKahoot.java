@@ -20,6 +20,7 @@ import javafx.geometry.Pos;
 
 import java.util.LinkedList;
 import java.util.Observable;
+import java.util.List;
 import java.util.Observer;
 import java.util.Queue;
 
@@ -114,10 +115,16 @@ public class VistaKahoot implements Observer{
         Label titulo = new Label("¡Terminó el AlgoHoot!");
         titulo.setFont(new Font(App.FUENTE, 26));
 
-        Label tituloGanador = new Label("El ganador es: " + kahoot.jugadorConMasPuntos().getNombre());
-        tituloGanador.setFont(new Font(App.FUENTE, 22));
+        Label tituloFinal = new Label();
 
-        VBox contenedorTitulo = new VBox(titulo, tituloGanador);
+        if(this.hayEmpate()){
+            tituloFinal.setText("Un inesperado empate!!! ╯°□°）╯︵ ┻━┻");
+            tituloFinal.setFont(new Font(App.FUENTE, 22));
+        }else {
+            tituloFinal.setText("El ganador es: " + kahoot.jugadorConMasPuntos().getNombre());
+            tituloFinal.setFont(new Font(App.FUENTE, 22));
+        }
+        VBox contenedorTitulo = new VBox(titulo, tituloFinal);
         contenedorTitulo.setSpacing(5);
         contenedorTitulo.setAlignment(Pos.CENTER);
 
@@ -138,4 +145,16 @@ public class VistaKahoot implements Observer{
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
+    private boolean hayEmpate(){
+        List<Jugador> jugadores = new LinkedList<>(kahoot.terminarJuego());
+        Jugador jugadorConMasPuntos = kahoot.jugadorConMasPuntos();
+
+        boolean hayEmpate = false;
+        for(Jugador jugador : jugadores){
+            if(jugador.jugadoresConMismosPuntos(jugadorConMasPuntos)){;
+                hayEmpate = true;
+            }
+        }
+        return hayEmpate;
+    }
 }
