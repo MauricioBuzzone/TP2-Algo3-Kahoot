@@ -49,6 +49,7 @@ public class App extends Application {
         this.stage = stage;
         stage.setTitle("AlgoHoot!");
         stage.getIcons().add(new Image("file:resources/AlgoHootIcon.png"));
+        stage.setResizable(false);
         stage.setScene(crearEscenaDeBienvenida());
         stage.show();
     }

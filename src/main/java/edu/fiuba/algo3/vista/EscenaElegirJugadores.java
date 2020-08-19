@@ -41,6 +41,8 @@ public class EscenaElegirJugadores extends Scene {
         super(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
 
         ListView jugadoresInscriptos = new ListView();
+        jugadoresInscriptos.setStyle("    -fx-font-family: " + App.FUENTE + " ;\n" +
+                                     "    -fx-font-size: 15pt;");
 
         TextField cuadroParaIngresarNombres = new TextField();
         cuadroParaIngresarNombres.setPromptText("Ingrese el nombre del jugador");
