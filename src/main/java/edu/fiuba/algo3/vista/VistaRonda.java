@@ -27,6 +27,14 @@ public class VistaRonda implements Observer {
     private static final int ANCHO_ESCENA = 400;
     private static final int LARGO_ESCENA = 350;
     private static final int ESPACIADO = 30;
+    private static final int TAMANIO_FONT_BOTON = 18;
+    private static final int TAMANIO_FONT_TITULO = 36;
+    private static final int TAMANIO_FONT_SUB_TITULO = 20;
+    private static final int TAMANIO_FONT_BUENASUERTE = 24;
+    private static final int TAMANIO_FONT_BONIFICADORES = 22;
+    private static final int TAMANIO_FONT_EXCLUSIVIDAD = 22;
+    private static final int TAMANIO_FONT_BOTON_JUGAR = 28;
+
 
     private Reloj reloj;
     private Ronda rondaActiva;
@@ -41,7 +49,7 @@ public class VistaRonda implements Observer {
         this.stage = stage;
 
         botonAvanzarRonda.setText("Próxima ronda");
-        botonAvanzarRonda.setFont(new Font(App.FUENTE, 18));
+        botonAvanzarRonda.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
         botonAvanzarRonda.setPrefSize(200,14);
 
         this.botonAvanzarRonda = botonAvanzarRonda;
@@ -71,20 +79,20 @@ public class VistaRonda implements Observer {
         TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
 
         Label titulo = new Label("Próximo Jugador: " + jugadorActivo.getNombre());
-        titulo.setFont(new Font(App.FUENTE, 24));
+        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
         Label buenaSuerte = new Label("¡Buena suerte!");
-        buenaSuerte.setFont(new Font(App.FUENTE, 22));
+        buenaSuerte.setFont(new Font(App.FUENTE, TAMANIO_FONT_BUENASUERTE));
 
         VBox contenedorTitulo = new VBox(titulo, buenaSuerte);
         contenedorTitulo.setSpacing(5);
         contenedorTitulo.setAlignment(Pos.CENTER);
 
         Label usosBonificadorX2 = new Label("Usos disponibles X2: " + jugadorActivo.usosDisponiblesX2());
-        usosBonificadorX2.setFont(new Font(App.FUENTE, 18));
+        usosBonificadorX2.setFont(new Font(App.FUENTE, TAMANIO_FONT_BONIFICADORES));
         Label usosBonificadorX3 = new Label("Usos disponibles X3: " + jugadorActivo.usosDisponiblesX3());
-        usosBonificadorX3.setFont(new Font(App.FUENTE, 18));
+        usosBonificadorX3.setFont(new Font(App.FUENTE, TAMANIO_FONT_BONIFICADORES));
         Label usosExclusividad = new Label("Usos disponibles Exclusividad: " + jugadorActivo.usosDisponiblesExclusividad());
-        usosExclusividad.setFont(new Font(App.FUENTE, 18));
+        usosExclusividad.setFont(new Font(App.FUENTE, TAMANIO_FONT_EXCLUSIVIDAD));
 
         VBox bonificadores = new VBox(usosBonificadorX2, usosBonificadorX3, usosExclusividad);
         bonificadores.setSpacing(1);
@@ -93,7 +101,7 @@ public class VistaRonda implements Observer {
         Button comenzarTurno = new Button();
         comenzarTurno.setText("Jugar");
         comenzarTurno.setPrefSize(130,14);
-        comenzarTurno.setFont(new Font(App.FUENTE, 18));
+        comenzarTurno.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON_JUGAR));
         comenzarTurno.setStyle(coloreador.colorBoton(rondaActiva.getPregunta().getTipoDePregunta()));
 
         reloj = new Reloj(rondaActiva.getTiempo());
@@ -112,9 +120,9 @@ public class VistaRonda implements Observer {
 
     private Scene crearEscenaTabla() {
         Label titulo = new Label("¡Terminó la ronda!");
-        titulo.setFont(new Font(App.FUENTE, 24));
+        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
         Label tituloPuntos = new Label("Puntos conseguidos");
-        tituloPuntos.setFont(new Font(App.FUENTE, 20));
+        tituloPuntos.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
 
         VBox contenedorTitulo = new VBox(titulo, tituloPuntos);
         contenedorTitulo.setSpacing(5);

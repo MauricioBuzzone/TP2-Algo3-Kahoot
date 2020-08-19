@@ -24,6 +24,8 @@ import java.util.List;
 
 public class ContenedorGroupChoice extends VBox {
     private static final int ESPACIADO_BOTONES = 15;
+    private static final int TAMANIO_FONT_LABEL = 20;
+    private static final int TAMANIO_FONT_MENU = 14;
 
     public ContenedorGroupChoice(ControladorRespuesta controlador, List<Opcion> opciones, String colorBoton) {
         super();
@@ -34,11 +36,11 @@ public class ContenedorGroupChoice extends VBox {
         for (String descripcion : descripciones) {
             HBox opcion = new HBox();
             Label labelDescripcion = new Label(descripcion);
-            labelDescripcion.setFont(new Font(App.FUENTE, 20));
+            labelDescripcion.setFont(new Font(App.FUENTE, TAMANIO_FONT_LABEL));
 
             SplitMenuButton menuDeGrupos = this.crearMenuDeGrupos(controlador,grupos, descripcion);
             menuDeGrupos.setPrefSize(120,14);
-            menuDeGrupos.setFont(new Font(App.FUENTE, 14));
+            menuDeGrupos.setFont(new Font(App.FUENTE, TAMANIO_FONT_MENU));
 
             opcion.getChildren().addAll(labelDescripcion,menuDeGrupos);
             contenedoresOpciones.add(opcion);
@@ -51,7 +53,7 @@ public class ContenedorGroupChoice extends VBox {
     private SplitMenuButton crearMenuDeGrupos(ControladorRespuesta controlador,List<String> grupos, String descripcion){
         SplitMenuButton menuDeGrupos = new SplitMenuButton();
         menuDeGrupos.setText("Grupo");
-        menuDeGrupos.setFont(new Font(App.FUENTE, 14));
+        menuDeGrupos.setFont(new Font(App.FUENTE, TAMANIO_FONT_MENU));
 
         for(String grupo: grupos){
             MenuItem opcionGrupo = new MenuItem(grupo);
