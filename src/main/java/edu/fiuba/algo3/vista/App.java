@@ -11,12 +11,19 @@ import java.io.File;
 
 import javafx.scene.control.Button;
 
-
+import javafx.geometry.Insets;
 import javafx.stage.FileChooser;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import java.io.IOException;
+import java.io.FileInputStream;
 
 import javafx.geometry.Pos;
 
@@ -31,8 +38,9 @@ public class App extends Application {
     private static final int TAMANIO_LETRA = 18;
     private static final int TAMANIO_LETRA_ARCHIVO = 12;
     private static final int TAMANIO_LETRA_TITULO = 28;
-
     public static Stage stage;
+    private static final String RUTA_ARCHIVO_BACKGROUND = "resources/Backgrounds/Bienvenida.png";
+    private static final String COLOR_BOTONES = "-fx-background-color: #ffffff; ";
 
     @Override
     public void start(Stage stage) {
@@ -63,6 +71,7 @@ public class App extends Application {
 
         Button botonElegirArchivo = new Button("Seleccione el kahoot");
         botonElegirArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA));
+        botonElegirArchivo.setStyle(COLOR_BOTONES);
         botonElegirArchivo.setOnAction(e -> {
             File archivoSeleccionado = fileChooser.showOpenDialog(stage);
             if(archivoSeleccionado != null){
@@ -80,10 +89,21 @@ public class App extends Application {
         Button botonElegirJugadores = new Button();
         botonElegirJugadores.setText("Ingresar jugadores");
         botonElegirJugadores.setFont(new Font(FUENTE, TAMANIO_LETRA));
+        botonElegirJugadores.setStyle(COLOR_BOTONES);
         botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, labelArchivo));
         VBox contenedorPrincipal = new VBox(titulo, seleccionDeKahoot, botonElegirJugadores);
         contenedorPrincipal.setSpacing(30);
         contenedorPrincipal.setAlignment(Pos.CENTER);
+        contenedorPrincipal.setPadding(new Insets(25));
+
+        try {
+            FileInputStream input = new FileInputStream(RUTA_ARCHIVO_BACKGROUND);
+            Image imagen = new Image(input);
+            BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+            contenedorPrincipal.setBackground(new Background(imagenDeFondo));
+        }catch (IOException ex){
+            // Comienza igual pero sin un background.
+        }
         return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
     }
 
