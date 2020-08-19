@@ -35,11 +35,13 @@ public class ContenedorBonificadores extends HBox {
         botonX2.setText(X2);
         botonX2.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
         botonX2.setPrefSize(ANCHO,ALTO);
+        botonX2.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
 
         Button botonX3 = new Button();
         botonX3.setText(X3);
         botonX3.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
         botonX3.setPrefSize(ANCHO,ALTO);
+        botonX3.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
 
         botonX2.setOnAction(new BotonUsarBonificadorEventHandler(jugadorActivo, controlador, bonificadorX2, botonX2, botonX3));
         if(!jugadorActivo.puedeUtilizarx2()) {

@@ -15,6 +15,8 @@ public class ContenedorExclusividad extends HBox {
         super();
         Button botonExclusividad = new Button();
         botonExclusividad.setText("Exclusividad");
+        botonExclusividad.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
+
         botonExclusividad.setFont(new Font(App.FUENTE, 14));
         botonExclusividad.setPrefSize(130,14);
         botonExclusividad.setFont(new Font(App.FUENTE, TAMANIO_LETRA));

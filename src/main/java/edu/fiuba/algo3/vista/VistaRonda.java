@@ -68,6 +68,8 @@ public class VistaRonda implements Observer {
 
     private Scene crearEscenaRonda(Jugador jugadorActivo) {
 
+        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
+
         Label titulo = new Label("Próximo Jugador: " + jugadorActivo.getNombre());
         titulo.setFont(new Font(App.FUENTE, 24));
         Label buenaSuerte = new Label("¡Buena suerte!");
@@ -92,6 +94,7 @@ public class VistaRonda implements Observer {
         comenzarTurno.setText("Jugar");
         comenzarTurno.setPrefSize(130,14);
         comenzarTurno.setFont(new Font(App.FUENTE, 18));
+        comenzarTurno.setStyle(coloreador.colorBoton(rondaActiva.getPregunta().getTipoDePregunta()));
 
         reloj = new Reloj(rondaActiva.getTiempo());
         FactoryEscenas factory = new FactoryEscenas(stage, rondaActiva, reloj);
@@ -102,7 +105,7 @@ public class VistaRonda implements Observer {
         VBox contenedorPrincipal = new VBox(contenedorTitulo, bonificadores, comenzarTurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
         contenedorPrincipal.setAlignment(Pos.CENTER);
-
+        contenedorPrincipal.setStyle(coloreador.colorBackground(rondaActiva.getPregunta().getTipoDePregunta()));
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 

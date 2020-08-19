@@ -40,10 +40,11 @@ public class FactoryEscenas {
         ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
 
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
+        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
 
         VBox contenedorPrincipal = new VBox();
         contenedorPrincipal.setAlignment(TOP_CENTER);
-        VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador);
+        VBox contenedorDeOpciones = this.crearContenedorDeOpciones(tipo, opciones, controlador, coloreador);
 
         VBox contenedorVerticalDerecho = this.contenedorVerticalDerecho(tipo, controlador);
         contenedorVerticalDerecho.setSpacing(50);
@@ -58,22 +59,25 @@ public class FactoryEscenas {
         labelEnunciado.setAlignment(CENTER);
         contenedorPrincipal.getChildren().addAll(labelEnunciado, contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
+        contenedorPrincipal.setStyle(coloreador.colorBackground(tipo));
+
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
-    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador){
+    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador, TipoDePreguntaColorHandler coloreador){
         VBox contenedorPreguntas = new VBox();
+        String colorBoton = coloreador.colorBoton(tipo);
         if(esTipoVerdaderoFalso(tipo)){
-            contenedorPreguntas = new  ContenedorVerdaderoFalso(controlador);
+            contenedorPreguntas = new  ContenedorVerdaderoFalso(controlador, colorBoton);
 
         }else if(esTipoMultipleChoice(tipo)){
-            contenedorPreguntas = new ContenedorMultipleChoice(controlador, opciones);
+            contenedorPreguntas = new ContenedorMultipleChoice(controlador, opciones, colorBoton);
 
         }else if(esTipoOrderedChoice(tipo)){
-            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones);
+            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones /*,colorBoton*/);
 
         }else if(esTipoGroupChoice(tipo)){
-            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones);
+            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones /*,colorBoton*/);
         }
         return contenedorPreguntas;
     }
@@ -93,6 +97,7 @@ public class FactoryEscenas {
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
+            botonEnviar.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_NEGRO);
             botonEnviar.setFont(new Font(App.FUENTE, 20));
             botonEnviar.setPrefSize(130,14);
             botonEnviar.setOnAction(controlador);

@@ -61,6 +61,8 @@ public class VistaKahoot implements Observer{
     }
 
     private Scene crearEscenaRonda(Ronda ronda){
+        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
+
         Pregunta pregunta = ronda.getPregunta();
         Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
         titulo.setFont(new Font(App.FUENTE, 22));
@@ -77,10 +79,12 @@ public class VistaKahoot implements Observer{
         avanzarATurno.setFont(new Font(App.FUENTE, 18));
         avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
         avanzarATurno.setPrefSize(130,14);
+        avanzarATurno.setStyle(coloreador.colorBoton(pregunta.getTipoDePregunta()));
 
         VBox contenedorPrincipal = new VBox(contenedorSuperior, avanzarATurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
         contenedorPrincipal.setAlignment(Pos.CENTER);
+        contenedorPrincipal.setStyle(coloreador.colorBackground(pregunta.getTipoDePregunta()));
 
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }

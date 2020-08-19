@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -38,9 +39,10 @@ public class App extends Application {
     private static final int TAMANIO_LETRA = 18;
     private static final int TAMANIO_LETRA_ARCHIVO = 12;
     private static final int TAMANIO_LETRA_TITULO = 28;
+
+    private ReproduccionSonido musica;
     public static Stage stage;
     private static final String RUTA_ARCHIVO_BACKGROUND = "resources/Backgrounds/Bienvenida.png";
-    private static final String COLOR_BOTONES = "-fx-background-color: #ffffff; ";
 
     @Override
     public void start(Stage stage) {
@@ -59,8 +61,8 @@ public class App extends Application {
         Label titulo = new Label("ALGOHOOT III");
         titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
 
-        ReproduccionSonido musica = new ReproduccionSonido("kahootInicio.mp3");//a borrar
-        musica.reproducir(); // a borrar
+        musica = new ReproduccionSonido("kahootInicio.mp3");
+        musica.reproducir();
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
@@ -70,8 +72,8 @@ public class App extends Application {
         labelArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA_ARCHIVO));
 
         Button botonElegirArchivo = new Button("Seleccione el kahoot");
-        botonElegirArchivo.setFont(new Font(FUENTE, TAMANIO_LETRA));
-        botonElegirArchivo.setStyle(COLOR_BOTONES);
+        botonElegirArchivo.setFont(Font.font(FUENTE, TAMANIO_LETRA));
+        botonElegirArchivo.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
         botonElegirArchivo.setOnAction(e -> {
             File archivoSeleccionado = fileChooser.showOpenDialog(stage);
             if(archivoSeleccionado != null){
@@ -88,14 +90,13 @@ public class App extends Application {
 
         Button botonElegirJugadores = new Button();
         botonElegirJugadores.setText("Ingresar jugadores");
-        botonElegirJugadores.setFont(new Font(FUENTE, TAMANIO_LETRA));
-        botonElegirJugadores.setStyle(COLOR_BOTONES);
+        botonElegirJugadores.setFont(Font.font(FUENTE, TAMANIO_LETRA));
+        botonElegirJugadores.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_NEGRO);
         botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, labelArchivo));
         VBox contenedorPrincipal = new VBox(titulo, seleccionDeKahoot, botonElegirJugadores);
         contenedorPrincipal.setSpacing(30);
         contenedorPrincipal.setAlignment(Pos.CENTER);
         contenedorPrincipal.setPadding(new Insets(25));
-
         try {
             FileInputStream input = new FileInputStream(RUTA_ARCHIVO_BACKGROUND);
             Image imagen = new Image(input);
