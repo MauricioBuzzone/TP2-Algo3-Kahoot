@@ -32,6 +32,8 @@ public class App extends Application {
     private static final int TAMANIO_LETRA_ARCHIVO = 12;
     private static final int TAMANIO_LETRA_TITULO = 28;
 
+    private ReproduccionSonido musica;
+
     public static Stage stage;
 
     @Override
@@ -51,8 +53,8 @@ public class App extends Application {
         Label titulo = new Label("ALGOHOOT III");
         titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
 
-        ReproduccionSonido musica = new ReproduccionSonido("kahootInicio.mp3");//a borrar
-        musica.reproducir(); // a borrar
+        musica = new ReproduccionSonido("kahootInicio.mp3");
+        musica.reproducir();
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
