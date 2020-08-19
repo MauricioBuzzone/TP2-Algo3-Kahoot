@@ -7,21 +7,22 @@ public class TipoDePreguntaColorHandler {
 
     private static final String COLOR_BACKGROUND_VERDADERO_FALSO = "-fx-background-color: #8BC34A; ";
     private static final String COLOR_BACKGROUND_VERDADERO_FALSO_PENALIDAD = "-fx-background-color: #689f38; ";
-    private static final String COLOR_BACKGROUND_MULTIPLE_CHOICE_CLASICO = "-fx-background-color: #F44336; ";      //<<< elegir
-    private static final String COLOR_BACKGROUND_MULTIPLE_CHOICE_PENALIDAD = "-fx-background-color: #FF5722; ";    //<<< elegir
-    private static final String COLOR_BACKGROUND_MULTIPLE_CHOICE_PARCIAL = "-fx-background-color: #BDBDBD; ";      //<<< elegir
-    private static final String COLOR_BACKGROUND_ORDERED_CHOICE = "-fx-background-color: #0097A7; ";               //<<< elegir
-    private static final String COLOR_BACKGROUND_GROUP_CHOICE = "-fx-background-color: #B2EBF2; ";                 //<<< elegir
+    private static final String COLOR_BACKGROUND_MULTIPLE_CHOICE_CLASICO = "-fx-background-color: #FA3226; ";
+    private static final String COLOR_BACKGROUND_MULTIPLE_CHOICE_PENALIDAD = "-fx-background-color: #F0361B; ";
+    private static final String COLOR_BACKGROUND_MULTIPLE_CHOICE_PARCIAL = "-fx-background-color: #FA970A; ";
+    private static final String COLOR_BACKGROUND_ORDERED_CHOICE = "-fx-background-color: #2F74D4; ";
+    private static final String COLOR_BACKGROUND_GROUP_CHOICE = "-fx-background-color: #4C60E6; ";
     private static final String COLOR_BACKGROUND_DEFAULT = "-fx-background-color: #009688; ";                      //<<< elegir
 
     private static final String COLOR_BOTON_VERDADERO_FALSO = "-fx-background-color: #DCEDC8; ";
     private static final String COLOR_BOTON_VERDADERO_FALSO_PENALIDAD = "-fx-background-color: #8BC34A; ";
-    private static final String COLOR_BOTON_MULTIPLE_CHOICE_CLASICO = "-fx-background-color: #FFCDD2; ";      //<<< elegir
-    private static final String COLOR_BOTON_MULTIPLE_CHOICE_PENALIDAD = "-fx-background-color: #FF5722; ";    //<<< elegir
-    private static final String COLOR_BOTON_MULTIPLE_CHOICE_PARCIAL = "-fx-background-color: #BDBDBD; ";      //<<< elegir
-    private static final String COLOR_BOTON_ORDERED_CHOICE = "-fx-background-color: #0097A7; ";               //<<< elegir
-    private static final String COLOR_BOTON_GROUP_CHOICE = "-fx-background-color: #B2EBF2; ";                 //<<< elegir
+    private static final String COLOR_BOTON_MULTIPLE_CHOICE_CLASICO = "-fx-background-color: #F7633B; ";
+    private static final String COLOR_BOTON_MULTIPLE_CHOICE_PENALIDAD = "-fx-background-color: #FA7541; ";
+    private static final String COLOR_BOTON_MULTIPLE_CHOICE_PARCIAL = "-fx-background-color: #F0D57F; ";
+    private static final String COLOR_BOTON_ORDERED_CHOICE = "-fx-background-color: #40B6EB; ";
+    private static final String COLOR_BOTON_GROUP_CHOICE = "-fx-background-color: #478FFC; ";
     private static final String COLOR_BOTON_DEFAULT = "-fx-background-color: #009688; ";                      //<<< elegir
+
     public static final String COLOR_BOTON_BLANCO = "-fx-background-color: #FFFFFF; ";
     public static final String COLOR_BOTON_NEGRO = "-fx-background-color: #000000; -fx-text-fill: #ffffff; ";
 
