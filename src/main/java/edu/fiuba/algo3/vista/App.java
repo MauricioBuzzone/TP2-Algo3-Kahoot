@@ -58,7 +58,7 @@ public class App extends Application {
     }
 
     private Scene crearEscenaDeBienvenida() {
-        Label titulo = new Label("ALGOHOOT III");
+        Label titulo = new Label("               ");
         titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
 
         musica = new ReproduccionSonido("kahootInicio.mp3");
