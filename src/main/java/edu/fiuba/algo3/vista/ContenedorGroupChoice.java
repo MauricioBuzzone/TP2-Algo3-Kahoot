@@ -21,6 +21,7 @@ import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Pos;
 
 public class ContenedorGroupChoice extends VBox {
     private static final int ESPACIADO_BOTONES = 15;
@@ -53,6 +54,7 @@ public class ContenedorGroupChoice extends VBox {
         SplitMenuButton menuDeGrupos = this.crearMenuDeGrupos(controlador, grupos, descripcion);
 
         opcion.getChildren().addAll(labelDescripcion,menuDeGrupos);
+        opcion.setAlignment(Pos.CENTER_RIGHT);
         return opcion;
     }
 
