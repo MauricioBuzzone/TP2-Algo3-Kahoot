@@ -15,6 +15,7 @@ import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 public class Kahoot extends Observable{
 
+    private static final int TIEMPO_MAXIMO = 60;
     public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
     private Ronda rondaActiva;
@@ -113,6 +114,9 @@ public class Kahoot extends Observable{
         for (JsonElement jsonRonda : ArrayRondas) {
             Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
             int tiempo = (jsonRonda.getAsJsonObject()).get("tiempo").getAsInt();
+            if(tiempo >= TIEMPO_MAXIMO){
+                tiempo = TIEMPO_MAXIMO;
+            }
             this.agregarPregunta(pregunta, tiempo);
         }
     }
