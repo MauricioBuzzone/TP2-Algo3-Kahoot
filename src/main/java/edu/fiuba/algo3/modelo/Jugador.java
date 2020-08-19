@@ -93,6 +93,15 @@ public class Jugador {
     private boolean tieneMenosOLosMismosPuntosQue(int otrosPuntos){
         return (this.puntosTotales() <= otrosPuntos);
     }
+
+    public boolean jugadoresConMismosPuntos(Jugador otroJugador){
+        return otroJugador.mismosPuntos(this.puntosTotales(), this.nombre);
+    }
+
+    private  boolean mismosPuntos(int otroPuntaje, String nombre){
+        return (this.puntosTotales() == otroPuntaje &&
+                this.nombre.equals(nombre) == false);
+    }
     //TestOnly
     public void asignarPuntos(int puntos){
         puntosPorRespuesta.add(puntos);

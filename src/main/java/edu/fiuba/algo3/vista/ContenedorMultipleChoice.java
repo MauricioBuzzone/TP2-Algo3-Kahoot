@@ -31,6 +31,7 @@ public class ContenedorMultipleChoice extends VBox{
     private static final int ALTO_BOTON_REINICIAR = 30;
     private static final int ANCHO_BOTON_OPCION = 270;
     private static final int ALTO_BOTON_OPCION = 35;
+    private static final int TAMANIO_FONT_BOTON = 20;
 
     public ContenedorMultipleChoice(ControladorRespuesta controlador, List<Opcion> opciones, String colorBoton){
         super();
@@ -44,22 +45,9 @@ public class ContenedorMultipleChoice extends VBox{
             Button boton = new Button(descripcion);
             boton.setOnAction(new BotonOpcionComunEventHandler(controlador, descripcion, boton));
             boton.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
-            boton.setFont(new Font(App.FUENTE, 20));
+            boton.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
             boton.setStyle(colorBoton);
             botones.add(boton);
-
-          /* FileInputStream input = null;
-            try {
-                FileInputStream input = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + contadorDescripciones.toString() + EXTENSION_IMAGENES);
-                Image  imagenBoton = new Image(input);
-                ImageView imageView = new ImageView(imagenBoton);
-                boton.setGraphic(imageView);
-            }catch(IOException ex){
-            }
-            Image  imagenBoton = new Image(input);
-            ImageView imageView = new ImageView(imagenBoton);
-            boton.setGraphic(imageView);*/
-
         }
 
         VBox contenedorDeBotonesOpcion = new VBox();
@@ -69,7 +57,7 @@ public class ContenedorMultipleChoice extends VBox{
         Button botonReiniciar = new Button();
         botonReiniciar.setText(REINICIAR);
         botonReiniciar.setPrefSize(ANCHO_BOTON_REINICIAR, ALTO_BOTON_REINICIAR);
-        botonReiniciar.setFont(new Font(App.FUENTE, 20));
+        botonReiniciar.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
         botonReiniciar.setOnAction(new BotonReiniciarOpcionesEventHandler(controlador, botones));
         botonReiniciar.setStyle(colorBoton);
 

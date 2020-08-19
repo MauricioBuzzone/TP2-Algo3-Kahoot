@@ -20,6 +20,7 @@ import javafx.geometry.Pos;
 
 import java.util.LinkedList;
 import java.util.Observable;
+import java.util.List;
 import java.util.Observer;
 import java.util.Queue;
 
@@ -33,7 +34,11 @@ public class VistaKahoot implements Observer{
     private static final String PREGUNTA_MCPP = "Múltiple Choice con Puntaje Parcial";
     private static final String PREGUNTA_OC = "Ordered Choice";
     private static final String PREGUNTA_GC = "Group Choice";
+
     private static final int ESPACIADO = 30;
+    private static final int TAMANIO_FONT_TITULO = 24;
+    private static final int TAMANIO_FONT_SUB_TITULO = 28;
+    private static final int TAMANIO_FONT_BOTON_AVANZAR = 22;
 
     private Kahoot kahoot;
     private Stage stage;
@@ -65,10 +70,10 @@ public class VistaKahoot implements Observer{
 
         Pregunta pregunta = ronda.getPregunta();
         Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
-        titulo.setFont(new Font(App.FUENTE, 22));
+        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
 
         Label enunciado = new Label(pregunta.getEnunciado());
-        enunciado.setFont(new Font(App.FUENTE, 18));
+        enunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
 
         VBox contenedorSuperior = new VBox(titulo, enunciado);
         contenedorSuperior.setSpacing(3);
@@ -76,7 +81,7 @@ public class VistaKahoot implements Observer{
 
         Button avanzarATurno = new Button();
         avanzarATurno.setText("Avanzar");
-        avanzarATurno.setFont(new Font(App.FUENTE, 18));
+        avanzarATurno.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON_AVANZAR));
         avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
         avanzarATurno.setPrefSize(130,14);
         avanzarATurno.setStyle(coloreador.colorBoton(pregunta.getTipoDePregunta()));
@@ -114,10 +119,16 @@ public class VistaKahoot implements Observer{
         Label titulo = new Label("¡Terminó el AlgoHoot!");
         titulo.setFont(new Font(App.FUENTE, 26));
 
-        Label tituloGanador = new Label("El ganador es: " + kahoot.jugadorConMasPuntos().getNombre());
-        tituloGanador.setFont(new Font(App.FUENTE, 22));
+        Label tituloFinal = new Label();
 
-        VBox contenedorTitulo = new VBox(titulo, tituloGanador);
+        if(this.hayEmpate()){
+            tituloFinal.setText("Un inesperado empate!!! ╯°□°）╯︵ ┻━┻");
+            tituloFinal.setFont(new Font(App.FUENTE, 22));
+        }else {
+            tituloFinal.setText("El ganador es: " + kahoot.jugadorConMasPuntos().getNombre());
+            tituloFinal.setFont(new Font(App.FUENTE, 22));
+        }
+        VBox contenedorTitulo = new VBox(titulo, tituloFinal);
         contenedorTitulo.setSpacing(5);
         contenedorTitulo.setAlignment(Pos.CENTER);
 
@@ -138,4 +149,16 @@ public class VistaKahoot implements Observer{
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
+    private boolean hayEmpate(){
+        List<Jugador> jugadores = new LinkedList<>(kahoot.terminarJuego());
+        Jugador jugadorConMasPuntos = kahoot.jugadorConMasPuntos();
+
+        boolean hayEmpate = false;
+        for(Jugador jugador : jugadores){
+            if(jugador.jugadoresConMismosPuntos(jugadorConMasPuntos)){;
+                hayEmpate = true;
+            }
+        }
+        return hayEmpate;
+    }
 }

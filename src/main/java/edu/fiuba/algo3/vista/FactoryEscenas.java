@@ -21,6 +21,9 @@ public class FactoryEscenas {
     private static final String ENVIAR = "Enviar";
     private static final int ANCHO_LABEL_ENUNCIADO = 500;
     private static final int ALTO_LABEL_ENUNCIADO = 75;
+    private static final int TAMANIO_FONT_ENUNCIADO = 20;
+    private static final int TAMANIO_FONT_BOTON_ENVIAR = 20;
+
 
     private Stage stage;
     private Ronda rondaActiva;
@@ -55,7 +58,7 @@ public class FactoryEscenas {
 
         Label labelEnunciado = new Label(enunciado);
         labelEnunciado.setPrefSize(ANCHO_LABEL_ENUNCIADO, ALTO_LABEL_ENUNCIADO);
-        labelEnunciado.setFont(new Font(App.FUENTE, 20));
+        labelEnunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_ENUNCIADO));
         labelEnunciado.setAlignment(CENTER);
         contenedorPrincipal.getChildren().addAll(labelEnunciado, contenedorHorizontal);
         contenedorPrincipal.setSpacing(20);
@@ -74,10 +77,10 @@ public class FactoryEscenas {
             contenedorPreguntas = new ContenedorMultipleChoice(controlador, opciones, colorBoton);
 
         }else if(esTipoOrderedChoice(tipo)){
-            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones /*,colorBoton*/);
+            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones, colorBoton);
 
         }else if(esTipoGroupChoice(tipo)){
-            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones /*,colorBoton*/);
+            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones ,colorBoton);
         }
         return contenedorPreguntas;
     }
@@ -98,7 +101,7 @@ public class FactoryEscenas {
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
             botonEnviar.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_NEGRO);
-            botonEnviar.setFont(new Font(App.FUENTE, 20));
+            botonEnviar.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON_ENVIAR));
             botonEnviar.setPrefSize(130,14);
             botonEnviar.setOnAction(controlador);
             return new VBox(reloj, contenedorDeBonificadores, botonEnviar);
