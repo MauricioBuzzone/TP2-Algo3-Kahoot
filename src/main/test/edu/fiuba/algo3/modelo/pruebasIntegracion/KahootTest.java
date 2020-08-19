@@ -22,7 +22,7 @@ public class KahootTest {
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        String rutaDeLaPrueba = "Kahoots/KahootTest01.json";
+        String rutaDeLaPrueba = "Kahoots/Testing/KahootTest01.json";
         Kahoot kahoot = new Kahoot(jugadores, rutaDeLaPrueba);
 
         //Verdadero Falso
@@ -120,7 +120,7 @@ public class KahootTest {
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        String rutaDeLaPrueba = "Kahoots/KahootTest02.json";
+        String rutaDeLaPrueba = "Kahoots/Testing/KahootTest02.json";
         Kahoot kahoot = new Kahoot(jugadores, rutaDeLaPrueba);
 
         //Multiple Choice con Penalidad
@@ -218,7 +218,7 @@ public class KahootTest {
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        String rutaDeLaPrueba = "Kahoots/KahootTest03.json";
+        String rutaDeLaPrueba = "Kahoots/Testing/KahootTest03.json";
         Kahoot kahoot = new Kahoot(jugadores, rutaDeLaPrueba);
 
         //Group Choice

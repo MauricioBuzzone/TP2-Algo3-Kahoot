@@ -23,6 +23,7 @@ public class FactoryEscenas {
     private static final int ALTO_LABEL_ENUNCIADO = 75;
     private static final int TAMANIO_FONT_ENUNCIADO = 20;
     private static final int TAMANIO_FONT_BOTON_ENVIAR = 20;
+    private static final int MAXIMOS_CARACTERES_VISIBLES = 48;
 
 
     private Stage stage;
@@ -38,6 +39,10 @@ public class FactoryEscenas {
 
         Pregunta pregunta = rondaActiva.getPregunta();
         String enunciado = pregunta.getEnunciado();
+        String enunciadoCompleto = pregunta.getEnunciado();
+        if(enunciado.length()>MAXIMOS_CARACTERES_VISIBLES){
+            enunciadoCompleto = enunciado.substring(0,MAXIMOS_CARACTERES_VISIBLES) + "\n" + enunciado.substring(MAXIMOS_CARACTERES_VISIBLES,enunciado.length());
+        }
         List<Opcion> opciones = pregunta.getOpciones();
 
         ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
@@ -56,7 +61,7 @@ public class FactoryEscenas {
         contenedorHorizontal.setSpacing(80);
         contenedorHorizontal.setAlignment(CENTER);
 
-        Label labelEnunciado = new Label(enunciado);
+        Label labelEnunciado = new Label(enunciadoCompleto);
         labelEnunciado.setPrefSize(ANCHO_LABEL_ENUNCIADO, ALTO_LABEL_ENUNCIADO);
         labelEnunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_ENUNCIADO));
         labelEnunciado.setAlignment(CENTER);

@@ -39,6 +39,7 @@ public class VistaKahoot implements Observer{
     private static final int TAMANIO_FONT_TITULO = 24;
     private static final int TAMANIO_FONT_SUB_TITULO = 28;
     private static final int TAMANIO_FONT_BOTON_AVANZAR = 22;
+    private static final int MAXIMOS_CARACTERES_VISIBLES = 48;
 
     private Kahoot kahoot;
     private Stage stage;
@@ -72,7 +73,12 @@ public class VistaKahoot implements Observer{
         Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
         titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
 
-        Label enunciado = new Label(pregunta.getEnunciado());
+        String enunciadoString = pregunta.getEnunciado();
+        String enunciadoCompleto = pregunta.getEnunciado();
+        if((enunciadoString).length()>MAXIMOS_CARACTERES_VISIBLES){
+            enunciadoCompleto = enunciadoString.substring(0,MAXIMOS_CARACTERES_VISIBLES) + "\n" + enunciadoString.substring(MAXIMOS_CARACTERES_VISIBLES,enunciadoString.length());
+        }
+        Label enunciado = new Label(enunciadoCompleto);
         enunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
 
         VBox contenedorSuperior = new VBox(titulo, enunciado);
