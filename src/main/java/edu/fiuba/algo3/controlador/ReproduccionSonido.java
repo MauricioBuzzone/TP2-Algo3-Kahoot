@@ -18,6 +18,7 @@ public class ReproduccionSonido {
         //reproductor = new MediaPlayer(audio);
     }
     public void reproducir(){
+        reproductor.setCycleCount(AudioClip.INDEFINITE);
         reproductor.play(0.2);
     }
     //reproductor.setVolume(0.2);
