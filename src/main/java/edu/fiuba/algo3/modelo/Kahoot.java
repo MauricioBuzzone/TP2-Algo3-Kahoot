@@ -7,8 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.google.gson.*;
+import edu.fiuba.algo3.modelo.excepciones.ArchivoJsonMalEscritoException;
+import edu.fiuba.algo3.modelo.excepciones.ErrorAlAbrirArchivoException;
+import edu.fiuba.algo3.modelo.excepciones.NoHayPreguntasException;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 
 public class Kahoot extends Observable{
@@ -32,13 +34,16 @@ public class Kahoot extends Observable{
         }catch (IOException ex){
             this.abrirArchivoDefault();
         }
+        if(rondas.isEmpty()){
+            throw new NoHayPreguntasException();
+        }
     }
 
     private void abrirArchivoDefault(){
         try {
             this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
         } catch (IOException ex) {
-            System.out.println(ex);
+            throw new ErrorAlAbrirArchivoException();
         }
     }
 
@@ -89,12 +94,17 @@ public class Kahoot extends Observable{
     //Json
     public void agregarRonda(String archivo) throws IOException{
 
-        String texto = Files.readString(Path.of(archivo));
+        try {
 
-        JsonObject jsonObject = JsonParser.parseString(texto).getAsJsonObject();
+            String texto = Files.readString(Path.of(archivo));
 
-        this.agregarRonda(jsonObject);
+            JsonObject jsonObject = JsonParser.parseString(texto).getAsJsonObject();
 
+            this.agregarRonda(jsonObject);
+
+        }catch(JsonSyntaxException | NullPointerException ex1){
+            throw new ArchivoJsonMalEscritoException();
+        }
     }
 
     private void agregarRonda(JsonObject jsonObject) {
