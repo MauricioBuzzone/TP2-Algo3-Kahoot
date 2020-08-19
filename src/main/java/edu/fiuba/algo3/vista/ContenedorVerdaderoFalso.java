@@ -27,24 +27,23 @@ public class ContenedorVerdaderoFalso extends VBox{
     private static final int ALTO_BOTON_OPCION = 40;
     private static final int TAMANIO_FONT_BOTON = 20;
 
-
     public ContenedorVerdaderoFalso(ControladorRespuesta controlador, String colorBoton){
         super();
-        Button botonVerdadero = new Button();
-        botonVerdadero.setText(VERDADERO);
-        botonVerdadero.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
-        botonVerdadero.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
-        botonVerdadero.setOnAction(new BotonOpcionUnicaEventHandler(controlador, VERDADERO));
-        botonVerdadero.setStyle(colorBoton);
 
-        Button botonFalso = new Button();
-        botonFalso.setText(FALSO);
-        botonFalso.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
-        botonFalso.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
-        botonFalso.setOnAction(new BotonOpcionUnicaEventHandler(controlador, FALSO));
-        botonFalso.setStyle(colorBoton);
+        Button botonVerdadero = this.crearBoton(VERDADERO, colorBoton, controlador);
+        Button botonFalso = this.crearBoton(FALSO, colorBoton, controlador);
 
         this.getChildren().addAll(botonVerdadero, botonFalso);
         this.setSpacing(ESPACIADO_BOTONES);
+    }
+
+    private Button crearBoton(String descripcion, String colorBoton, ControladorRespuesta controlador ){
+        Button boton = new Button(descripcion);
+        boton.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
+        boton.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
+        boton.setOnAction(new BotonOpcionUnicaEventHandler(controlador, descripcion));
+        boton.setStyle(colorBoton);
+
+        return boton;
     }
 }

@@ -31,17 +31,8 @@ public class ContenedorBonificadores extends HBox {
         Bonificador bonificadorX3 = new Bonificador();
         bonificadorX3.cambiarFactorX3();
 
-        Button botonX2 = new Button();
-        botonX2.setText(X2);
-        botonX2.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
-        botonX2.setPrefSize(ANCHO,ALTO);
-        botonX2.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
-
-        Button botonX3 = new Button();
-        botonX3.setText(X3);
-        botonX3.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
-        botonX3.setPrefSize(ANCHO,ALTO);
-        botonX3.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
+        Button botonX2 = this.crearBoton(X2);
+        Button botonX3 = this.crearBoton(X3);
 
         botonX2.setOnAction(new BotonUsarBonificadorEventHandler(jugadorActivo, controlador, bonificadorX2, botonX2, botonX3));
         if(!jugadorActivo.puedeUtilizarx2()) {
@@ -53,5 +44,14 @@ public class ContenedorBonificadores extends HBox {
         }
 
         this.getChildren().addAll(botonX2, botonX3);
+    }
+
+    private Button crearBoton( String bonificador){
+        Button boton = new Button(bonificador);
+        boton.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
+        boton.setPrefSize(ANCHO,ALTO);
+        boton.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
+
+        return boton;
     }
 }

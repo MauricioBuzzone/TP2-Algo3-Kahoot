@@ -38,15 +38,10 @@ public class ContenedorMultipleChoice extends VBox{
         List<Button> botones = new ArrayList<Button>();
         List<String> descripciones = this.descripcionesDeOpciones(opciones);
 
-
         Integer contadorDescripciones = 0;
         for(String descripcion : descripciones){
             contadorDescripciones = contadorDescripciones + 1;
-            Button boton = new Button(descripcion);
-            boton.setOnAction(new BotonOpcionComunEventHandler(controlador, descripcion, boton));
-            boton.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
-            boton.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
-            boton.setStyle(colorBoton);
+            Button boton = this.crearBotonOpcion(descripcion, colorBoton, controlador);
             botones.add(boton);
         }
 
@@ -54,12 +49,7 @@ public class ContenedorMultipleChoice extends VBox{
         contenedorDeBotonesOpcion.getChildren().addAll(botones);
         contenedorDeBotonesOpcion.setSpacing(ESPACIADO_BOTONES);
 
-        Button botonReiniciar = new Button();
-        botonReiniciar.setText(REINICIAR);
-        botonReiniciar.setPrefSize(ANCHO_BOTON_REINICIAR, ALTO_BOTON_REINICIAR);
-        botonReiniciar.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
-        botonReiniciar.setOnAction(new BotonReiniciarOpcionesEventHandler(controlador, botones));
-        botonReiniciar.setStyle(colorBoton);
+        Button botonReiniciar = this.crearBotonReiniciar( colorBoton, controlador, botones);
 
         this.getChildren().addAll(contenedorDeBotonesOpcion, botonReiniciar);
         this.setSpacing(ESPACIO_ENTRE_BOTONES_Y_REINICIAR);
@@ -72,5 +62,28 @@ public class ContenedorMultipleChoice extends VBox{
             descripciones.add(opcion.getDescripcion());
         }
         return descripciones;
+    }
+
+    private Button crearBotonOpcion(String descripcion, String colorBoton, ControladorRespuesta controlador ){
+
+        Button boton = new Button(descripcion);
+        boton.setOnAction(new BotonOpcionComunEventHandler(controlador, descripcion, boton));
+        boton.setPrefSize(ANCHO_BOTON_OPCION, ALTO_BOTON_OPCION);
+        boton.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
+        boton.setStyle(colorBoton);
+
+        return boton;
+    }
+
+    private Button crearBotonReiniciar(String colorBoton, ControladorRespuesta controlador ,List<Button> botones) {
+
+        Button botonReiniciar = new Button();
+        botonReiniciar.setText(REINICIAR);
+        botonReiniciar.setPrefSize(ANCHO_BOTON_REINICIAR, ALTO_BOTON_REINICIAR);
+        botonReiniciar.setOnAction(new BotonReiniciarOpcionesEventHandler(controlador, botones));
+        botonReiniciar.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
+        botonReiniciar.setStyle(colorBoton);
+
+        return botonReiniciar;
     }
 }
