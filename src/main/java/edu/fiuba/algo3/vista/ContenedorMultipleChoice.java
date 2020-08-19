@@ -47,19 +47,6 @@ public class ContenedorMultipleChoice extends VBox{
             boton.setFont(new Font(App.FUENTE, 20));
             boton.setStyle(colorBoton);
             botones.add(boton);
-
-          /* FileInputStream input = null;
-            try {
-                FileInputStream input = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + contadorDescripciones.toString() + EXTENSION_IMAGENES);
-                Image  imagenBoton = new Image(input);
-                ImageView imageView = new ImageView(imagenBoton);
-                boton.setGraphic(imageView);
-            }catch(IOException ex){
-            }
-            Image  imagenBoton = new Image(input);
-            ImageView imageView = new ImageView(imagenBoton);
-            boton.setGraphic(imageView);*/
-
         }
 
         VBox contenedorDeBotonesOpcion = new VBox();

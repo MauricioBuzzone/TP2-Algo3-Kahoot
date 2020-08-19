@@ -74,10 +74,10 @@ public class FactoryEscenas {
             contenedorPreguntas = new ContenedorMultipleChoice(controlador, opciones, colorBoton);
 
         }else if(esTipoOrderedChoice(tipo)){
-            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones /*,colorBoton*/);
+            contenedorPreguntas = new ContenedorDeOrderedChoice(controlador, opciones, colorBoton);
 
         }else if(esTipoGroupChoice(tipo)){
-            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones /*,colorBoton*/);
+            contenedorPreguntas = new ContenedorGroupChoice(controlador, opciones ,colorBoton);
         }
         return contenedorPreguntas;
     }

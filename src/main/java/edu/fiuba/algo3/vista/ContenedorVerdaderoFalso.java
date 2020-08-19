@@ -34,13 +34,6 @@ public class ContenedorVerdaderoFalso extends VBox{
         botonVerdadero.setFont(new Font(App.FUENTE, 20));
         botonVerdadero.setOnAction(new BotonOpcionUnicaEventHandler(controlador, VERDADERO));
         botonVerdadero.setStyle(colorBoton);
-        try {
-            FileInputStream input1 = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + "1" + EXTENSION_IMAGENES);
-            Image  imagenBoton1 = new Image(input1);
-            ImageView imageView1 = new ImageView(imagenBoton1);
-            botonVerdadero.setGraphic(imageView1);
-        }catch(IOException ex){
-        }
 
         Button botonFalso = new Button();
         botonFalso.setText(FALSO);
@@ -48,13 +41,7 @@ public class ContenedorVerdaderoFalso extends VBox{
         botonFalso.setFont(new Font(App.FUENTE, 20));
         botonFalso.setOnAction(new BotonOpcionUnicaEventHandler(controlador, FALSO));
         botonFalso.setStyle(colorBoton);
-        try {
-            FileInputStream input2 = new FileInputStream(PATH_IMAGENES_BOTONES + NOMBRE_IMAGENES_PRIMERA_PARTE + "2" + EXTENSION_IMAGENES);
-            Image imagenBoton2 = new Image(input2);
-            ImageView imageView2 = new ImageView(imagenBoton2);
-            botonFalso.setGraphic(imageView2);
-        }catch(IOException ex){
-        }
+
         this.getChildren().addAll(botonVerdadero, botonFalso);
         this.setSpacing(ESPACIADO_BOTONES);
     }

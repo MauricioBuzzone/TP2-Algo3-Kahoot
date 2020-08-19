@@ -18,7 +18,7 @@ public class ContenedorDeOrderedChoice extends VBox {
 
     private static final int ESPACIADO_BOTONES = 15;
 
-    public ContenedorDeOrderedChoice(ControladorRespuesta controlador, List<Opcion> opciones) {
+    public ContenedorDeOrderedChoice(ControladorRespuesta controlador, List<Opcion> opciones, String colorBoton) {
         super();
         List<HBox> contenedoresHorizontales = new ArrayList<HBox>();
 
@@ -31,6 +31,7 @@ public class ContenedorDeOrderedChoice extends VBox {
 
             Button flechaArriba = new Button("▲");
             flechaArriba.setPrefSize(28, 28);
+            flechaArriba.setStyle(colorBoton);
             if(index == 1){
                 flechaArriba.setOnAction( new BotonOpcionOrdenadaEventHandler(controlador, index, ultimo,
                                                 labels.get(0), labels.get(ultimo - 1)));
@@ -41,6 +42,7 @@ public class ContenedorDeOrderedChoice extends VBox {
 
             Button flechaAbajo  = new Button("▼");
             flechaAbajo.setPrefSize(28, 28);
+            flechaAbajo.setStyle(colorBoton);
             if(index == ultimo){
                 flechaAbajo.setOnAction( new BotonOpcionOrdenadaEventHandler(controlador, index, 1,
                                                 labels.get(index - 1 ), labels.get(0)));
