@@ -115,7 +115,6 @@ public class VistaKahoot implements Observer{
 
     private Scene crearEscenaTabla(){
 
-
         Label titulo = new Label("¡Terminó el AlgoHoot!");
         titulo.setFont(new Font(App.FUENTE, 26));
 
@@ -160,5 +159,16 @@ public class VistaKahoot implements Observer{
             }
         }
         return hayEmpate;
+    }
+
+    private Label crearLabelProximaPregunta(String descripcion, String tipoDePregunta){
+
+        Label titulo = new Label("Próxima pregunta: " + tipoDePregunta);
+        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
+
+        Label enunciado = new Label(descripcion);
+        enunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
+
+        return titulo;
     }
 }
