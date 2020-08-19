@@ -49,6 +49,9 @@ public class App extends Application {
         Label titulo = new Label("ALGOHOOT III");
         titulo.setFont(new Font(FUENTE, TAMANIO_LETRA_TITULO));
 
+        ReproduccionSonido musica = new ReproduccionSonido("kahootInicio.mp3");//a borrar
+        musica.reproducir(); // a borrar
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
         fileChooser.setInitialDirectory(new File("Kahoots"));
