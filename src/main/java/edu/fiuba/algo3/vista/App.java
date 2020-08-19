@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import javafx.scene.image.Image;
 
 import javafx.geometry.Pos;
 
@@ -36,7 +37,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        stage.setTitle("AlgoHoot - DEMO");
+        stage.setTitle("AlgoHoot!");
+        stage.getIcons().add(new Image("file:resources/AlgoHootIcon.png"));
         stage.setScene(crearEscenaDeBienvenida());
         stage.show();
     }
@@ -65,6 +67,9 @@ public class App extends Application {
             File archivoSeleccionado = fileChooser.showOpenDialog(stage);
             if(archivoSeleccionado != null){
                 String path = archivoSeleccionado.getPath();
+                int start = path.lastIndexOf("Kahoots");
+                int end = path.length();
+                path =  path.substring(start, end);
                 labelArchivo.setText(path);
             }
         });
