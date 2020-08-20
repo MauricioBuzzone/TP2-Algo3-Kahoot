@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
-import edu.fiuba.algo3.modelo.FactoryOpciones;
+import edu.fiuba.algo3.modelo.preguntas.FactoryOpcionesOrdenadas;
 
 public class OrderedChoice extends TipoDePregunta {
 
@@ -34,9 +34,15 @@ public class OrderedChoice extends TipoDePregunta {
 
     public static OrderedChoice recuperar(JsonArray jsonArraySolucion){
 
-        FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones("OrderedChoice",jsonArraySolucion);
+        FactoryOpciones factory = new FactoryOpcionesOrdenadas();
+        List<Opcion> opciones = factory.crearOpciones(jsonArraySolucion);
         OrderedChoice orderedChoice = new OrderedChoice(opciones);
         return orderedChoice;
+    }
+
+    @Override
+    public List<Opcion> recuperarOpciones(JsonArray arrayOpciones){
+        FactoryOpciones factory = new FactoryOpcionesOrdenadas();
+        return factory.crearOpciones(arrayOpciones);
     }
 }
