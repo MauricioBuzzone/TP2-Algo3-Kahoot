@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class RespondedorPorDefecto extends Observable {
+public class RespondedorPorDefecto {
 
     private Ronda ronda;
     public RespondedorPorDefecto(Ronda ronda){

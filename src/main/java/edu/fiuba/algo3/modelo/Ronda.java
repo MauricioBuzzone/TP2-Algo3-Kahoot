@@ -23,6 +23,7 @@ public class Ronda extends Observable{
         pregunta = unaPregunta;
         jugadores = new LinkedList<Jugador>(listaJugadores);
         this.tiempo = tiempo;
+        this.jugadorActivo = jugadores.peek();
     }
 
     public void proximoJugador(){
