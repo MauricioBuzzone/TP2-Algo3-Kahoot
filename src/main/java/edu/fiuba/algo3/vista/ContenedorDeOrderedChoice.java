@@ -6,20 +6,24 @@ import edu.fiuba.algo3.controlador.ControladorRespuesta;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.opciones.OpcionOrdenada;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.geometry.Pos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContenedorDeOrderedChoice extends VBox {
 
-    private static final String PUNTERO_ARRIBA = "▲";
-    private static final String PUNTERO_ABAJO = "▼";
-    private static final int ANCHO_BOTON =28;
-    private static final int ALTO_BOTON =28;
+    private static final String RUTA_FLECHA_ARRIBA = "file:resources/BotonesOrderedChoice/flechaArriba.png";
+    private static final String RUTA_FLECHA_ABAJO = "file:resources/BotonesOrderedChoice/flechaAbajo.png";
+
+    private static final int ANCHO_BOTON =15;
+    private static final int ALTO_BOTON =15;
     private static final int ESPACIADO_BOTONES = 15;
 
     public ContenedorDeOrderedChoice(ControladorRespuesta controlador, List<Opcion> opciones, String colorBoton) {
@@ -33,11 +37,13 @@ public class ContenedorDeOrderedChoice extends VBox {
 
         for(Opcion opcion : opciones){
 
-            Button flechaArriba = this.crearBotonArriba(controlador,colorBoton,labels,index, ultimoindex);
+            Button botonArriba = this.crearBoton(RUTA_FLECHA_ARRIBA, colorBoton);
+            this.setControladorBotonArriba(controlador, botonArriba, labels, index, ultimoindex);
 
-            Button flechaAbajo  = this.crearBotonAbajo(controlador,colorBoton,labels,index, ultimoindex);
+            Button botonAbajo = this.crearBoton(RUTA_FLECHA_ABAJO, colorBoton);
+            this.setControladorBotonAbajo(controlador, botonAbajo, labels, index, ultimoindex);
 
-            VBox contenedorFlechaArribaAbajo = new VBox(flechaArriba, flechaAbajo);
+            VBox contenedorFlechaArribaAbajo = new VBox(botonArriba, botonAbajo);
 
             HBox contenedorOpcion = new HBox(labels.get(index -1), contenedorFlechaArribaAbajo);
             contenedorOpcion.setSpacing(15);
@@ -53,39 +59,42 @@ public class ContenedorDeOrderedChoice extends VBox {
         this.setSpacing(ESPACIADO_BOTONES);
     }
 
-    private Button crearBotonArriba(ControladorRespuesta controlador, String colorBoton, List<Label> labels,int index ,int ultimoIndex){
-        Button flechaArriba = this.crearBoton(PUNTERO_ARRIBA,colorBoton);
+    private void setControladorBotonArriba(ControladorRespuesta controlador, Button botonArriba, List<Label> labels,int index ,int ultimoIndex){
 
         if(index == 1){
             Label labelActual = labels.get(0);
             Label labelUltimo = labels.get(ultimoIndex - 1);
-            flechaArriba.setOnAction( new BotonOpcionOrdenadaEventHandler(controlador, index, ultimoIndex, labelActual, labelUltimo));
+            botonArriba.setOnAction( new BotonOpcionOrdenadaEventHandler(controlador, index, ultimoIndex, labelActual, labelUltimo));
         }else {
             Label labelActual = labels.get(index  - 1);
             Label labelAnterior = labels.get(index  - 2);
-            flechaArriba.setOnAction(new BotonOpcionOrdenadaEventHandler(controlador, index, index - 1, labelActual, labelAnterior));
+            botonArriba.setOnAction(new BotonOpcionOrdenadaEventHandler(controlador, index, index - 1, labelActual, labelAnterior));
         }
-        return flechaArriba;
     }
 
-    private Button crearBotonAbajo(ControladorRespuesta controlador, String colorBoton, List<Label> labels,int index, int ultimoIndex){
-        Button flechaAbajo  = this.crearBoton(PUNTERO_ABAJO,colorBoton);
+
+    private void setControladorBotonAbajo(ControladorRespuesta controlador, Button botonAbajo, List<Label> labels,int index ,int ultimoIndex){
 
         if(index == ultimoIndex){
             Label labelActual = labels.get(index - 1 );
             Label labelPrimero = labels.get(0);
-            flechaAbajo.setOnAction( new BotonOpcionOrdenadaEventHandler(controlador, index, 1, labelActual, labelPrimero));
+            botonAbajo.setOnAction( new BotonOpcionOrdenadaEventHandler(controlador, index, 1, labelActual, labelPrimero));
         }else {
             Label labelActual = labels.get(index - 1 );
             Label labelProximo = labels.get(index);
-            flechaAbajo.setOnAction(new BotonOpcionOrdenadaEventHandler(controlador, index, index + 1, labelActual, labelProximo));
+            botonAbajo.setOnAction(new BotonOpcionOrdenadaEventHandler(controlador, index, index + 1, labelActual, labelProximo));
         }
-        return flechaAbajo;
     }
 
-    private Button crearBoton(String descripcion, String colorBoton){
-        Button boton  = new Button(descripcion);
-        boton.setPrefSize(ALTO_BOTON, ANCHO_BOTON);
+
+    private Button crearBoton(String rutaImagenBoton, String colorBoton){
+        Button boton  = new Button();
+        Image imagen = new Image(rutaImagenBoton);
+        ImageView vistaBoton = new ImageView(imagen);
+        vistaBoton.setFitWidth(this.ANCHO_BOTON);
+        vistaBoton.setFitHeight(this.ALTO_BOTON);
+        boton.setGraphic(vistaBoton);
+
         boton.setStyle(colorBoton);
         return boton;
     }
