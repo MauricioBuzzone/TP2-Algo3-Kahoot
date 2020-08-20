@@ -9,28 +9,23 @@ import edu.fiuba.algo3.modelo.validadores.ValidadorDeOpciones;
 import java.util.List;
 
 public abstract class TipoDePregunta implements Evaluador {
+
     protected Eleccion eleccionCorrecta;
     protected ValidadorDeOpciones validador;
 
-
     public void responderPregunta(Respuesta respuesta) {
-
         respuesta.responderSegunEvaluador(this);
     }
 
     protected boolean esUnaEleccionCorrecta(Eleccion eleccion){
-
         return eleccion.igualA(this.eleccionCorrecta);
     }
 
     protected Puntaje evaluarEleccion(Eleccion eleccion, int puntosCasoFavorable, int puntosCasoDesfavorable){
-
         if(this.esUnaEleccionCorrecta(eleccion)){
-            Puntaje puntaje = Puntaje.crearPuntajeFavorable(puntosCasoFavorable);
-            return puntaje;
+            return Puntaje.crearPuntajeFavorable(puntosCasoFavorable);
         }
-        Puntaje puntaje = Puntaje.crearPuntajeDesfavorable(puntosCasoDesfavorable);
-        return puntaje;
+        return Puntaje.crearPuntajeDesfavorable(puntosCasoDesfavorable);
     }
 
     @Override

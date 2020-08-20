@@ -15,7 +15,6 @@ public class OpcionComun extends Opcion {
 
     public static OpcionComun recuperar(JsonObject jsonObjectOpcion){
         String descripcion = jsonObjectOpcion.get("descripcion").getAsString();
-        OpcionComun opcionComun = new OpcionComun(descripcion);
-        return opcionComun;
+        return new OpcionComun(descripcion);
     }
 }

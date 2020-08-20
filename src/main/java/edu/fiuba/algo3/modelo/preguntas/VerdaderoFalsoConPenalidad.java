@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.FactoryOpciones;
 
 public class VerdaderoFalsoConPenalidad extends TipoDePregunta {
 
-    private static final int PUNTAJE_FAVORABLE= 1;
+    private static final int PUNTAJE_FAVORABLE = 1;
     private static final int PUNTAJE_DESFAVORABLE = 1;
 
     public VerdaderoFalsoConPenalidad(List<Opcion> solucion){
@@ -30,10 +30,8 @@ public class VerdaderoFalsoConPenalidad extends TipoDePregunta {
     }
 
     public static VerdaderoFalsoConPenalidad recuperar(JsonArray jsonArraySolucion){
-
         FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones("VerdaderoFalsoConPenalidad",jsonArraySolucion);
-        VerdaderoFalsoConPenalidad verdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidad(opciones);
-        return verdaderoFalsoConPenalidad;
+        List<Opcion> opciones = factoryOpciones.crearOpciones("VerdaderoFalsoConPenalidad", jsonArraySolucion);
+        return new VerdaderoFalsoConPenalidad(opciones);
     }
 }

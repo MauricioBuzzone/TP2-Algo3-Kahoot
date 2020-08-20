@@ -19,7 +19,7 @@ public class OrderedChoice extends TipoDePregunta {
     public OrderedChoice(List<Opcion> solucion){
 
         Eleccion eleccion = new Eleccion(solucion);
-        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS, CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
@@ -35,8 +35,7 @@ public class OrderedChoice extends TipoDePregunta {
     public static OrderedChoice recuperar(JsonArray jsonArraySolucion){
 
         FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones("OrderedChoice",jsonArraySolucion);
-        OrderedChoice orderedChoice = new OrderedChoice(opciones);
-        return orderedChoice;
+        List<Opcion> opciones = factoryOpciones.crearOpciones("OrderedChoice", jsonArraySolucion);
+        return new OrderedChoice(opciones);
     }
 }

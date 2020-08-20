@@ -17,7 +17,7 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta {
 
     public MultipleChoicePuntajeParcial(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
-        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS, CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
@@ -37,10 +37,8 @@ public class MultipleChoicePuntajeParcial extends TipoDePregunta {
     }
 
     public static MultipleChoicePuntajeParcial recuperar(JsonArray jsonArraySolucion){
-
         FactoryOpciones factoryOpciones = new FactoryOpciones();
         List<Opcion> opciones = factoryOpciones.crearOpciones("MultipleChoicePuntajeParcial", jsonArraySolucion);
-        MultipleChoicePuntajeParcial multipleChoicePuntajeParcial = new MultipleChoicePuntajeParcial(opciones);
-        return multipleChoicePuntajeParcial;
+        return new MultipleChoicePuntajeParcial(opciones);
     }
 }

@@ -26,7 +26,6 @@ public class OpcionOrdenada extends Opcion {
         String descripcion = jsonObjectOpcion.get("descripcion").getAsString();
         int indice = jsonObjectOpcion.get("indice").getAsInt();
 
-        OpcionOrdenada opcionOrdenada = new OpcionOrdenada(descripcion, indice);
-        return opcionOrdenada;
+        return new OpcionOrdenada(descripcion, indice);
     }
 }

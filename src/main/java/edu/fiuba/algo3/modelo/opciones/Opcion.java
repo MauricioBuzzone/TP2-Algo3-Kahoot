@@ -9,12 +9,7 @@ public abstract class Opcion {
     public abstract boolean igualA(Opcion unaOpcion);
 
     public boolean estaContenidoEn(List<Opcion> opciones){
-        for(Opcion opcion : opciones){
-            if(this.igualA(opcion)){
-                return true;
-            }
-        }
-        return false;
+        return opciones.stream().anyMatch(o -> o.igualA(this));
     }
 
     public boolean mismaDescripcion(Opcion opcion){

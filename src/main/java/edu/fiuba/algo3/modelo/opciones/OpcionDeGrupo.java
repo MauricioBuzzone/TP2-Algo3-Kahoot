@@ -25,8 +25,7 @@ public class OpcionDeGrupo extends Opcion {
     public static OpcionDeGrupo recuperar(JsonObject jsonObjectOpcion){
         String descripcion = jsonObjectOpcion.get("descripcion").getAsString();
         String grupo = jsonObjectOpcion.get("grupo").getAsString();
-        OpcionDeGrupo opcionDeGrupo = new OpcionDeGrupo(descripcion, grupo);
-        return opcionDeGrupo;
+        return new OpcionDeGrupo(descripcion, grupo);
     }
 
     public String getGrupo() {

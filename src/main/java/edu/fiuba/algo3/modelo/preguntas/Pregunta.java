@@ -41,15 +41,14 @@ public class Pregunta {
         String enunciado = jsonObjectPregunta.get("enunciado").getAsString();
         String tipoDePregunta = jsonObjectPregunta.get("tipo").getAsString();
 
-        FactoryTipoDePregunta factoryTipoDePregunta= new FactoryTipoDePregunta();
+        FactoryTipoDePregunta factoryTipoDePregunta = new FactoryTipoDePregunta();
         TipoDePregunta tipo = factoryTipoDePregunta.crearTipoDePregunta(tipoDePregunta, jsonObjectPregunta);
 
 
         JsonArray arrayOpciones = jsonObjectPregunta.getAsJsonArray("opciones");
         FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones(tipoDePregunta ,arrayOpciones);
+        List<Opcion> opciones = factoryOpciones.crearOpciones(tipoDePregunta, arrayOpciones);
 
-        Pregunta pregunta = new Pregunta(enunciado, opciones, tipo);
-        return pregunta;
+        return new Pregunta(enunciado, opciones, tipo);
     }
 }

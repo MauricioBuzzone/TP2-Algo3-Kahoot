@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.preguntas.Evaluador;
 
 public class Respuesta {
 
-    private static final int PUNTAJE_NULO = 0;
+    private static final int PUNTAJE_POR_DEFECTO = 0;
     private Jugador jugador;
     private Eleccion eleccion;
     private Bonificador bonificador;
@@ -16,11 +16,11 @@ public class Respuesta {
         this.eleccion = eleccion;
         this.jugador = jugador;
         this.bonificador = bonificador;
-        this.puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_NULO);
+        this.puntaje = Puntaje.crearPuntajeFavorable(PUNTAJE_POR_DEFECTO);
     }
 
-    public void responderSegunEvaluador(Evaluador unEvaluador){
-        this.puntaje = unEvaluador.evaluarEleccion(eleccion);
+    public void responderSegunEvaluador(Evaluador evaluador){
+        this.puntaje = evaluador.evaluarEleccion(eleccion);
     }
 
     public void actualizarPuntaje(){

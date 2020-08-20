@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.google.gson.*;
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
-import edu.fiuba.algo3.modelo.opciones.Opcion;
-import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
-import edu.fiuba.algo3.modelo.FactoryOpciones;
+import edu.fiuba.algo3.modelo.opciones.*;
+import edu.fiuba.algo3.modelo.preguntas.*;
+import edu.fiuba.algo3.modelo.validadores.*;
+import edu.fiuba.algo3.modelo.excepciones.*;
 
 public class GroupChoice extends TipoDePregunta {
 
@@ -18,7 +18,7 @@ public class GroupChoice extends TipoDePregunta {
 
     public GroupChoice(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
-        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS, CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
@@ -35,10 +35,8 @@ public class GroupChoice extends TipoDePregunta {
     public boolean esCorrecta(Eleccion eleccion){return this.esUnaEleccionCorrecta(eleccion);}
 
     public static GroupChoice recuperar(JsonArray jsonArraySolucion){
-
         FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones("GroupChoice",jsonArraySolucion);
-        GroupChoice groupChoice = new GroupChoice(opciones);
-        return groupChoice;
+        List<Opcion> opciones = factoryOpciones.crearOpciones("GroupChoice", jsonArraySolucion);
+        return new GroupChoice(opciones);
     }
 }

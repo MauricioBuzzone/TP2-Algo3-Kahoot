@@ -16,7 +16,7 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta {
 
     public MultipleChoiceConPenalidad(List<Opcion> solucion){
         Eleccion eleccion = new Eleccion(solucion);
-        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS,CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
+        validador = new ValidadorOpcionesMultiples(CANTIDAD_DE_SOLUCIONES_MINIMAS_VALIDAS, CANTIDAD_DE_SOLUCIONES_MAXIMAS_VALIDAS);
 
         if(!eleccion.esUnaEleccionValidaComoSolucion(this)){
             throw new SolucionInvalidaException();
@@ -42,7 +42,6 @@ public class MultipleChoiceConPenalidad extends TipoDePregunta {
 
         FactoryOpciones factoryOpciones = new FactoryOpciones();
         List<Opcion> opciones = factoryOpciones.crearOpciones("MultipleChoiceClasico", jsonArraySolucion);
-        MultipleChoiceConPenalidad multipleChoiceConPenalidad = new MultipleChoiceConPenalidad(opciones);
-        return multipleChoiceConPenalidad;
+        return new MultipleChoiceConPenalidad(opciones);
     }
 }
