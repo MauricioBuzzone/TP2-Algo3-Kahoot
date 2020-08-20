@@ -8,20 +8,8 @@ import edu.fiuba.algo3.controlador.BotonComenzarEventHandler;
 
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Parent;
-
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import java.io.IOException;
-import java.io.FileInputStream;
-
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Font;
@@ -49,23 +37,11 @@ public class EscenaElegirJugadores extends Scene {
         cuadroParaIngresarNombres.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
         cuadroParaIngresarNombres.setOnKeyPressed(new EscribirSiguienteJugadorEventHandlerEnter(cuadroParaIngresarNombres, jugadoresInscriptos));
 
-        Button botonSiguienteJugador = new Button();
-        botonSiguienteJugador.setText("SiguienteJugador");
-        botonSiguienteJugador.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
-        botonSiguienteJugador.setOnAction(new EscribirSiguienteJugadorEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
-        botonSiguienteJugador.setStyle(COLOR_BOTONES);
+        Button botonSiguienteJugador = this.crearBotonSiguienteJugador(cuadroParaIngresarNombres, jugadoresInscriptos);
 
-        Button botonComenzar = new Button();
-        botonComenzar.setText("Comenzar");
-        botonComenzar.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
-        botonComenzar.setOnAction(new BotonComenzarEventHandler(jugadoresInscriptos, stage, rutaKahoot));
-        botonComenzar.setStyle(COLOR_BOTONES);
+        Button botonComenzar = this.crearBotonComenzar(jugadoresInscriptos, stage, rutaKahoot);
 
-        Button botonEliminarJugadores = new Button();
-        botonEliminarJugadores.setText("Eliminar jugador");
-        botonEliminarJugadores.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
-        botonEliminarJugadores.setOnAction(new BotonEliminarJugadoresEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
-        botonEliminarJugadores.setStyle(COLOR_BOTONES);
+        Button botonEliminarJugadores = this.crearBotonEliminarJugadores(cuadroParaIngresarNombres, jugadoresInscriptos);
 
         HBox contenedorBotonesManipulacion = new HBox(botonSiguienteJugador, botonEliminarJugadores);
         contenedorBotonesManipulacion.setSpacing(5);
@@ -78,4 +54,35 @@ public class EscenaElegirJugadores extends Scene {
         contenedorPrincipal.getChildren().addAll(cuadroParaIngresarNombres, contenedorHorizontal, jugadoresInscriptos);
         contenedorPrincipal.setSpacing(10);
     }
+
+    private Button crearBotonSiguienteJugador(TextField cuadroParaIngresarNombres, ListView jugadoresInscriptos) {
+
+        Button botonSiguienteJugador = new Button();
+        botonSiguienteJugador.setText("SiguienteJugador");
+        botonSiguienteJugador.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
+        botonSiguienteJugador.setOnAction(new EscribirSiguienteJugadorEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
+        botonSiguienteJugador.setStyle(COLOR_BOTONES);
+        return botonSiguienteJugador;
+    }
+
+    private Button crearBotonComenzar(ListView jugadoresInscriptos, Stage stage, String rutaKahoot) {
+
+        Button botonComenzar = new Button();
+        botonComenzar.setText("Comenzar");
+        botonComenzar.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
+        botonComenzar.setOnAction(new BotonComenzarEventHandler(jugadoresInscriptos, stage, rutaKahoot));
+        botonComenzar.setStyle(COLOR_BOTONES);
+        return botonComenzar;
+    }
+
+    private Button crearBotonEliminarJugadores(TextField cuadroParaIngresarNombres, ListView jugadoresInscriptos){
+
+        Button botonEliminarJugadores = new Button();
+        botonEliminarJugadores.setText("Eliminar jugador");
+        botonEliminarJugadores.setFont(new Font(App.FUENTE, TAMANIO_LETRA));
+        botonEliminarJugadores.setOnAction(new BotonEliminarJugadoresEventHandler(cuadroParaIngresarNombres, jugadoresInscriptos));
+        botonEliminarJugadores.setStyle(COLOR_BOTONES);
+        return botonEliminarJugadores;
+    }
+
 }
