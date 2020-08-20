@@ -9,7 +9,7 @@ public abstract class Opcion {
     public abstract boolean igualA(Opcion unaOpcion);
 
     public boolean estaContenidoEn(List<Opcion> opciones){
-        return opciones.stream().anyMatch(o -> o.igualA(this));
+        return opciones.stream().anyMatch(opcion -> opcion.igualA(this));
     }
 
     public boolean mismaDescripcion(Opcion opcion){
@@ -30,5 +30,15 @@ public abstract class Opcion {
 
     protected boolean mismoIndice(int unIndice){
         return false;
+    }
+
+    public int cantidadDeConcurrencias(List<Opcion> opciones){
+        int contador = 0;
+        for(Opcion opcion : opciones){
+            if(this.igualA(opcion)){
+                contador++;
+            }
+        }
+        return contador;
     }
 }

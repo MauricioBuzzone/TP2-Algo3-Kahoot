@@ -40,8 +40,9 @@ public class FactoryEscenas {
         Pregunta pregunta = rondaActiva.getPregunta();
         String enunciado = pregunta.getEnunciado();
         String enunciadoCompleto = pregunta.getEnunciado();
-        if(enunciado.length()>MAXIMOS_CARACTERES_VISIBLES){
-            enunciadoCompleto = enunciado.substring(0,MAXIMOS_CARACTERES_VISIBLES) + "\n" + enunciado.substring(MAXIMOS_CARACTERES_VISIBLES,enunciado.length());
+        if(enunciado.length() > MAXIMOS_CARACTERES_VISIBLES){
+            enunciadoCompleto = enunciado.substring(0, MAXIMOS_CARACTERES_VISIBLES) + "\n"
+                                + enunciado.substring(MAXIMOS_CARACTERES_VISIBLES, enunciado.length());
         }
         List<Opcion> opciones = pregunta.getOpciones();
 

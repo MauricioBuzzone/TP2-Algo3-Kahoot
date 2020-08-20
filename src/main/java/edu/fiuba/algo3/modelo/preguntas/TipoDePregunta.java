@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.validadores.ValidadorDeOpciones;
-
+import com.google.gson.*;
 import java.util.List;
 
 public abstract class TipoDePregunta implements Evaluador {
@@ -27,6 +27,8 @@ public abstract class TipoDePregunta implements Evaluador {
         }
         return Puntaje.crearPuntajeDesfavorable(puntosCasoDesfavorable);
     }
+
+    public abstract List<Opcion> recuperarOpciones(JsonArray jsonArraySolucion);
 
     @Override
     public boolean sonOpcionesValidasComoSolucion(List<Opcion> opciones){

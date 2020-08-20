@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
-import edu.fiuba.algo3.modelo.FactoryOpciones;
+import edu.fiuba.algo3.modelo.preguntas.FactoryOpcionesComunes;
 
 public class MultipleChoiceClasico extends TipoDePregunta {
 
@@ -32,8 +32,14 @@ public class MultipleChoiceClasico extends TipoDePregunta {
     }
 
     public static MultipleChoiceClasico recuperar(JsonArray jsonArraySolucion){
-        FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones("MultipleChoiceClasico", jsonArraySolucion);
+        FactoryOpciones factory = new FactoryOpcionesComunes();
+        List<Opcion> opciones = factory.crearOpciones(jsonArraySolucion);
         return new MultipleChoiceClasico(opciones);
+    }
+
+    @Override
+    public List<Opcion> recuperarOpciones(JsonArray arrayOpciones){
+        FactoryOpciones factory = new FactoryOpcionesComunes();
+        return factory.crearOpciones(arrayOpciones);
     }
 }

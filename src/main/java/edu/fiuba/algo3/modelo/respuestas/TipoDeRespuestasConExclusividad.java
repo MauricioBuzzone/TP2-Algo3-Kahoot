@@ -39,17 +39,17 @@ public class TipoDeRespuestasConExclusividad implements TipoDeRespuestas {
     }
 
     private boolean hayUnicaRespuestaCorrecta(Evaluador evaluador){
-        int cantiadDeCorrectas = 0;
-        for (Respuesta respuesta : misRespuestas){
-            if(respuesta.respuestaCorrecta(evaluador)) {
-               cantiadDeCorrectas++;
+        int cantidadDeCorrectas = 0;
+        for (Respuesta respuesta : misRespuestas) {
+            if (respuesta.respuestaCorrecta(evaluador)) {
+                cantidadDeCorrectas++;
             }
         }
-        return cantiadDeCorrectas == 1;
+        return cantidadDeCorrectas == 1;
     }
 
     private Respuesta buscarRespuestaCorrecta(Evaluador evaluador){
-        Respuesta respuestaCorrecta =null;
+        Respuesta respuestaCorrecta = null;
         for(Respuesta respuesta : misRespuestas){
             if(respuesta.respuestaCorrecta(evaluador)){
                 respuestaCorrecta = respuesta;
