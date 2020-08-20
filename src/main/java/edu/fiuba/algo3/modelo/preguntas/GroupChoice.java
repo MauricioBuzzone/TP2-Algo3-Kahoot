@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
-import edu.fiuba.algo3.modelo.FactoryOpciones;
+import edu.fiuba.algo3.modelo.preguntas.FactoryOpcionesDeGrupo;
 
 public class GroupChoice extends TipoDePregunta {
 
@@ -36,9 +36,15 @@ public class GroupChoice extends TipoDePregunta {
 
     public static GroupChoice recuperar(JsonArray jsonArraySolucion){
 
-        FactoryOpciones factoryOpciones = new FactoryOpciones();
-        List<Opcion> opciones = factoryOpciones.crearOpciones("GroupChoice",jsonArraySolucion);
+        FactoryOpciones factory = new FactoryOpcionesDeGrupo();
+        List<Opcion> opciones = factory.crearOpciones(jsonArraySolucion);
         GroupChoice groupChoice = new GroupChoice(opciones);
         return groupChoice;
+    }
+
+    @Override
+    public List<Opcion> recuperarOpciones(JsonArray arrayOpciones){
+        FactoryOpciones factory = new FactoryOpcionesDeGrupo();
+        return factory.crearOpciones(arrayOpciones);
     }
 }
