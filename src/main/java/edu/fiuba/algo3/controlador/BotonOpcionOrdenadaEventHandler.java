@@ -30,7 +30,7 @@ public class BotonOpcionOrdenadaEventHandler implements EventHandler<ActionEvent
         this.permutar();
     }
 
-    public void actualizarRespuesta(){
+    private void actualizarRespuesta(){
         controladorRespuesta.actualizarOpcionConDescripcionPor(new OpcionOrdenada(miLabel.getText(), indexAsociado));
         controladorRespuesta.actualizarOpcionConDescripcionPor(new OpcionOrdenada(labelAsociado.getText(), miIndex));
     }
