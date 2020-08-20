@@ -24,8 +24,6 @@ import java.util.Observer;
 
 public class VistaRonda implements Observer {
 
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 350;
     private static final int ESPACIADO = 30;
     private static final int TAMANIO_FONT_BOTON = 18;
     private static final int TAMANIO_FONT_TITULO = 36;
@@ -34,6 +32,10 @@ public class VistaRonda implements Observer {
     private static final int TAMANIO_FONT_BONIFICADORES = 22;
     private static final int TAMANIO_FONT_EXCLUSIVIDAD = 22;
     private static final int TAMANIO_FONT_BOTON_JUGAR = 28;
+    private static final int ANCHO_BOTON_AVANZAR_RONDA = 200;
+    private static final int ALTO_BOTON_AVANZAR_RONDA = 14;
+    private static final int ANCHO_BOTON_COMENZAR_TURNO = 130;
+    private static final int ALTO_BOTON_COMENZAR_TURNO = 14;
 
 
     private Reloj reloj;
@@ -48,10 +50,7 @@ public class VistaRonda implements Observer {
         this.rondaActiva = rondaActiva;
         this.stage = stage;
 
-        botonAvanzarRonda.setText("Próxima ronda");
-        botonAvanzarRonda.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON));
-        botonAvanzarRonda.setPrefSize(200,14);
-
+        this.configurarBoton(botonAvanzarRonda, ANCHO_BOTON_AVANZAR_RONDA, ALTO_BOTON_AVANZAR_RONDA, "Próxima ronda", TAMANIO_FONT_BOTON);
         this.botonAvanzarRonda = botonAvanzarRonda;
         this.jugadorAnterior = null;
         this.jugadores = new LinkedList<Jugador>();
@@ -74,34 +73,34 @@ public class VistaRonda implements Observer {
         }
     }
 
+    private Label crearLabel(String descripcion,int tamanio){
+        Label label = new Label(descripcion);
+        label.setFont(new Font(App.FUENTE, tamanio));
+
+        return label;
+    }
+
     private Scene crearEscenaRonda(Jugador jugadorActivo) {
 
         TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
 
-        Label titulo = new Label("Próximo Jugador: " + jugadorActivo.getNombre());
-        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
-        Label buenaSuerte = new Label("¡Buena suerte!");
-        buenaSuerte.setFont(new Font(App.FUENTE, TAMANIO_FONT_BUENASUERTE));
+        Label titulo = this.crearLabel("Próximo Jugador: " + jugadorActivo.getNombre(), TAMANIO_FONT_TITULO);
+        Label buenaSuerte = this.crearLabel("¡Buena suerte!", TAMANIO_FONT_BUENASUERTE);
 
         VBox contenedorTitulo = new VBox(titulo, buenaSuerte);
         contenedorTitulo.setSpacing(5);
         contenedorTitulo.setAlignment(Pos.CENTER);
 
-        Label usosBonificadorX2 = new Label("Usos disponibles X2: " + jugadorActivo.usosDisponiblesX2());
-        usosBonificadorX2.setFont(new Font(App.FUENTE, TAMANIO_FONT_BONIFICADORES));
-        Label usosBonificadorX3 = new Label("Usos disponibles X3: " + jugadorActivo.usosDisponiblesX3());
-        usosBonificadorX3.setFont(new Font(App.FUENTE, TAMANIO_FONT_BONIFICADORES));
-        Label usosExclusividad = new Label("Usos disponibles Exclusividad: " + jugadorActivo.usosDisponiblesExclusividad());
-        usosExclusividad.setFont(new Font(App.FUENTE, TAMANIO_FONT_EXCLUSIVIDAD));
+        Label usosBonificadorX2 = this.crearLabel("Usos disponibles X2: " + jugadorActivo.usosDisponiblesX2(), TAMANIO_FONT_BONIFICADORES);
+        Label usosBonificadorX3 = this.crearLabel("Usos disponibles X3: " + jugadorActivo.usosDisponiblesX3(), TAMANIO_FONT_BONIFICADORES);
+        Label usosExclusividad = this.crearLabel("Usos disponibles Exclusividad: " + jugadorActivo.usosDisponiblesExclusividad(),TAMANIO_FONT_EXCLUSIVIDAD);
 
         VBox bonificadores = new VBox(usosBonificadorX2, usosBonificadorX3, usosExclusividad);
         bonificadores.setSpacing(1);
         bonificadores.setAlignment(Pos.CENTER);
 
         Button comenzarTurno = new Button();
-        comenzarTurno.setText("Jugar");
-        comenzarTurno.setPrefSize(130,14);
-        comenzarTurno.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON_JUGAR));
+        this.configurarBoton(comenzarTurno, ANCHO_BOTON_COMENZAR_TURNO, ALTO_BOTON_COMENZAR_TURNO, "Jugar", TAMANIO_FONT_BOTON_JUGAR);
         comenzarTurno.setStyle(coloreador.colorBoton(rondaActiva.getPregunta().getTipoDePregunta()));
 
         reloj = new Reloj(rondaActiva.getTiempo());
@@ -117,12 +116,10 @@ public class VistaRonda implements Observer {
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
-
     private Scene crearEscenaTabla() {
-        Label titulo = new Label("¡Terminó la ronda!");
-        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
-        Label tituloPuntos = new Label("Puntos conseguidos");
-        tituloPuntos.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
+
+        Label titulo = this.crearLabel("¡Terminó la ronda!", TAMANIO_FONT_TITULO);
+        Label tituloPuntos = this.crearLabel("Puntos conseguidos", TAMANIO_FONT_SUB_TITULO);
 
         VBox contenedorTitulo = new VBox(titulo, tituloPuntos);
         contenedorTitulo.setSpacing(5);
@@ -140,4 +137,11 @@ public class VistaRonda implements Observer {
     public void cambiarRondaActiva(Ronda rondaActiva){
         this.rondaActiva = rondaActiva;
     }
+
+    private void configurarBoton(Button boton, int alto, int ancho, String descripcion, int tamanio){
+        boton.setText(descripcion);
+        boton.setFont(new Font(App.FUENTE, tamanio));
+        boton.setPrefSize(alto,ancho);
+    }
+
 }
