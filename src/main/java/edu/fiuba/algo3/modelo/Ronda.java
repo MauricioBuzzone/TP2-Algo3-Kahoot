@@ -69,7 +69,6 @@ public class Ronda extends Observable{
         this.notifyObservers();
     }
 
-
     public void jugadorVaAResponder(RespondedorPorDefecto respondedor){
         Timer timer = new Timer();
         this.cuentaAtras = new CuentaAtras(respondedor);

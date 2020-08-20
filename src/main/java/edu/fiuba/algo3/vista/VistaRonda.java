@@ -82,18 +82,23 @@ public class VistaRonda implements Observer {
 
     private Scene crearEscenaRonda(Jugador jugadorActivo) {
 
-        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
+        StyleHandler coloreador = new StyleHandler();
 
         Label titulo = this.crearLabel("Próximo Jugador: " + jugadorActivo.getNombre(), TAMANIO_FONT_TITULO);
+        titulo.setStyle(coloreador.colorFont(rondaActiva.getPregunta().getTipoDePregunta()));
         Label buenaSuerte = this.crearLabel("¡Buena suerte!", TAMANIO_FONT_BUENASUERTE);
+        buenaSuerte.setStyle(coloreador.colorFont(rondaActiva.getPregunta().getTipoDePregunta()));
 
         VBox contenedorTitulo = new VBox(titulo, buenaSuerte);
         contenedorTitulo.setSpacing(5);
         contenedorTitulo.setAlignment(Pos.CENTER);
 
         Label usosBonificadorX2 = this.crearLabel("Usos disponibles X2: " + jugadorActivo.usosDisponiblesX2(), TAMANIO_FONT_BONIFICADORES);
+        usosBonificadorX2.setStyle(coloreador.colorFont(rondaActiva.getPregunta().getTipoDePregunta()));
         Label usosBonificadorX3 = this.crearLabel("Usos disponibles X3: " + jugadorActivo.usosDisponiblesX3(), TAMANIO_FONT_BONIFICADORES);
+        usosBonificadorX3.setStyle(coloreador.colorFont(rondaActiva.getPregunta().getTipoDePregunta()));
         Label usosExclusividad = this.crearLabel("Usos disponibles Exclusividad: " + jugadorActivo.usosDisponiblesExclusividad(),TAMANIO_FONT_EXCLUSIVIDAD);
+        usosExclusividad.setStyle(coloreador.colorFont(rondaActiva.getPregunta().getTipoDePregunta()));
 
         VBox bonificadores = new VBox(usosBonificadorX2, usosBonificadorX3, usosExclusividad);
         bonificadores.setSpacing(1);

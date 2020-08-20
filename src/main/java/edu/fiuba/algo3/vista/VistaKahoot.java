@@ -70,12 +70,14 @@ public class VistaKahoot implements Observer{
     }
 
     private Scene crearEscenaRonda(Ronda ronda){
-        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
+        StyleHandler coloreador = new StyleHandler();
 
         Pregunta pregunta = ronda.getPregunta();
 
         Label titulo = this.crearLabelTitulo(pregunta);
+        titulo.setStyle(coloreador.colorFont(pregunta.getTipoDePregunta()));
         Label enunciado = this.crearLabelEnunciado(pregunta);
+        enunciado.setStyle(coloreador.colorFont(pregunta.getTipoDePregunta()));
 
         VBox contenedorSuperior = new VBox(titulo, enunciado);
         contenedorSuperior.setSpacing(ESPACIADO_TITULO_ENUNCIADO);
@@ -158,7 +160,7 @@ public class VistaKahoot implements Observer{
         return hayEmpate;
     }
 
-    private Button crearBotonAvanzar(Ronda ronda, Pregunta pregunta, TipoDePreguntaColorHandler coloreador){
+    private Button crearBotonAvanzar(Ronda ronda, Pregunta pregunta, StyleHandler coloreador){
 
         Button avanzarATurno = new Button();
         avanzarATurno.setText("Avanzar");
@@ -170,14 +172,28 @@ public class VistaKahoot implements Observer{
     }
 
     private Label crearLabelEnunciado(Pregunta pregunta){
-        String enunciadoString = pregunta.getEnunciado();
-        String enunciadoCompleto = pregunta.getEnunciado();
-        if((enunciadoString).length()>MAXIMOS_CARACTERES_VISIBLES){
-            enunciadoCompleto = enunciadoString.substring(0,MAXIMOS_CARACTERES_VISIBLES) + "\n" + enunciadoString.substring(MAXIMOS_CARACTERES_VISIBLES,enunciadoString.length());
-        }
-        Label enunciado = new Label(enunciadoCompleto);
+        Label enunciado = new Label(this.dividirEnunciado(pregunta.getEnunciado()));
         enunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
         return enunciado;
+    }
+
+    private String dividirEnunciado(String enunciado){
+        String enunciadoCortado = "";
+        String[] palabrasDelEnunciado = enunciado.split("\\s+");
+
+        int contadorLetras = 0;
+        for(int i = 0; i < palabrasDelEnunciado.length; i++){
+            String palabra = palabrasDelEnunciado[i];
+
+            if(contadorLetras + palabra.length() > MAXIMOS_CARACTERES_VISIBLES){
+                enunciadoCortado = enunciadoCortado + "\n" + palabra + " ";
+                contadorLetras = palabra.length();
+            }else{
+                enunciadoCortado = enunciadoCortado + palabra + " ";
+                contadorLetras = contadorLetras + (palabra + " ").length();
+            }
+        }
+        return enunciadoCortado;
     }
 
     private Label crearLabelTitulo(Pregunta pregunta){
@@ -185,4 +201,5 @@ public class VistaKahoot implements Observer{
         titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
         return  titulo;
     }
+
 }

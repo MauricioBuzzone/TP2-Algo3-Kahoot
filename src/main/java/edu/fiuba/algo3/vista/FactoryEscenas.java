@@ -38,18 +38,14 @@ public class FactoryEscenas {
     public Scene crearEscenaPregunta() {
 
         Pregunta pregunta = rondaActiva.getPregunta();
-        String enunciado = pregunta.getEnunciado();
-        String enunciadoCompleto = pregunta.getEnunciado();
-        if(enunciado.length() > MAXIMOS_CARACTERES_VISIBLES){
-            enunciadoCompleto = enunciado.substring(0, MAXIMOS_CARACTERES_VISIBLES) + "\n"
-                                + enunciado.substring(MAXIMOS_CARACTERES_VISIBLES, enunciado.length());
-        }
+        String enunciado = this.dividirEnunciado(pregunta.getEnunciado());
+
         List<Opcion> opciones = pregunta.getOpciones();
 
         ControladorRespuesta controlador = new ControladorRespuesta(stage, rondaActiva);
 
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
-        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
+        StyleHandler coloreador = new StyleHandler();
 
         VBox contenedorPrincipal = new VBox();
         contenedorPrincipal.setAlignment(TOP_CENTER);
@@ -62,7 +58,9 @@ public class FactoryEscenas {
         contenedorHorizontal.setSpacing(80);
         contenedorHorizontal.setAlignment(CENTER);
 
-        Label labelEnunciado = new Label(enunciadoCompleto);
+        Label labelEnunciado = new Label(enunciado);
+        labelEnunciado.setStyle(coloreador.colorFont(tipo));
+
         labelEnunciado.setPrefSize(ANCHO_LABEL_ENUNCIADO, ALTO_LABEL_ENUNCIADO);
         labelEnunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_ENUNCIADO));
         labelEnunciado.setAlignment(CENTER);
@@ -73,7 +71,7 @@ public class FactoryEscenas {
         return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
-    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador, TipoDePreguntaColorHandler coloreador){
+    private VBox crearContenedorDeOpciones(TipoDePregunta tipo, List<Opcion> opciones, ControladorRespuesta controlador, StyleHandler coloreador){
         VBox contenedorPreguntas = new VBox();
         String colorBoton = coloreador.colorBoton(tipo);
         if(esTipoVerdaderoFalso(tipo)){
@@ -99,14 +97,13 @@ public class FactoryEscenas {
         }
     }
 
-
     private VBox contenedorVerticalDerecho(TipoDePregunta tipo, ControladorRespuesta controlador){
         HBox contenedorDeBonificadores = this.crearContenedorDeBonificadores(tipo, controlador);
         contenedorDeBonificadores.setSpacing(15);
 
         if(tipo.getClass() != VerdaderoFalso.class && tipo.getClass() != VerdaderoFalsoConPenalidad.class) {
             Button botonEnviar = new Button(ENVIAR);
-            botonEnviar.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_NEGRO);
+            botonEnviar.setStyle(StyleHandler.COLOR_BOTON_NEGRO);
             botonEnviar.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON_ENVIAR));
             botonEnviar.setPrefSize(130,14);
             botonEnviar.setOnAction(controlador);
@@ -136,5 +133,24 @@ public class FactoryEscenas {
 
     private boolean esTipoConPenalidad(TipoDePregunta tipo){
         return (tipo.getClass() == VerdaderoFalsoConPenalidad.class || tipo.getClass() == MultipleChoiceConPenalidad.class);
+    }
+
+    private String dividirEnunciado(String enunciado){
+        String enunciadoCortado = "";
+        String[] palabrasDelEnunciado = enunciado.split("\\s+");
+
+        int contadorLetras = 0;
+        for(int i = 0; i < palabrasDelEnunciado.length; i++){
+            String palabra = palabrasDelEnunciado[i];
+
+            if(contadorLetras + palabra.length() > MAXIMOS_CARACTERES_VISIBLES){
+                enunciadoCortado = enunciadoCortado + "\n" + palabra + " ";
+                contadorLetras = palabra.length();
+            }else{
+                enunciadoCortado = enunciadoCortado + palabra + " ";
+                contadorLetras = contadorLetras + (palabra + " ").length();
+            }
+        }
+        return enunciadoCortado;
     }
 }

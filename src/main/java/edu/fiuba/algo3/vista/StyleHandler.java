@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.modelo.preguntas.*;
 
 
-public class TipoDePreguntaColorHandler {
+public class StyleHandler {
 
     private static final String COLOR_BACKGROUND_VERDADERO_FALSO = "-fx-background-color: #8BC34A; ";
     private static final String COLOR_BACKGROUND_VERDADERO_FALSO_PENALIDAD = "-fx-background-color: #689f38; ";
@@ -16,16 +16,17 @@ public class TipoDePreguntaColorHandler {
 
     private static final String COLOR_BOTON_VERDADERO_FALSO = "-fx-background-color: #DCEDC8; ";
     private static final String COLOR_BOTON_VERDADERO_FALSO_PENALIDAD = "-fx-background-color: #8BC34A; ";
-    private static final String COLOR_BOTON_MULTIPLE_CHOICE_CLASICO = "-fx-background-color: #EB4C46; ";
+    private static final String COLOR_BOTON_MULTIPLE_CHOICE_CLASICO = "-fx-background-color: #EB4C46; -fx-text-fill: #ffffff; ";
     private static final String COLOR_BOTON_MULTIPLE_CHOICE_PENALIDAD = "-fx-background-color: #F9914A; ";
     private static final String COLOR_BOTON_MULTIPLE_CHOICE_PARCIAL = "-fx-background-color: #FA7E51; ";
     private static final String COLOR_BOTON_ORDERED_CHOICE = "-fx-background-color: #D2FAF5; ";
     private static final String COLOR_BOTON_GROUP_CHOICE = "-fx-background-color: #E4B4F1; ";
-
     private static final String COLOR_BOTON_DEFAULT = "-fx-background-color: #979A93; ";
-
     public static final String COLOR_BOTON_BLANCO = "-fx-background-color: #FFFFFF; ";
     public static final String COLOR_BOTON_NEGRO = "-fx-background-color: #000000; -fx-text-fill: #ffffff; ";
+
+    private static final String COLOR_FONT_DEFAULT = "";
+    private static final String COLOR_FONT_MCC = "-fx-text-fill: #ffffff;";
 
     public String colorBackground(TipoDePregunta tipoDePregunta){
         if(tipoDePregunta.getClass() == VerdaderoFalso.class){
@@ -68,4 +69,11 @@ public class TipoDePreguntaColorHandler {
 
     }
 
+    public String colorFont(TipoDePregunta tipoDePregunta) {
+        if (tipoDePregunta.getClass() == MultipleChoiceClasico.class) {
+            return COLOR_FONT_MCC;
+        }else{
+            return COLOR_FONT_DEFAULT;
+        }
+    }
 }

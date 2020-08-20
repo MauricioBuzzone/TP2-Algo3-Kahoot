@@ -33,7 +33,7 @@ public class ContenedorMultipleChoice extends VBox{
     private static final int ALTO_BOTON_OPCION = 35;
     private static final int TAMANIO_FONT_BOTON = 20;
 
-    public ContenedorMultipleChoice(ControladorRespuesta controlador, List<Opcion> opciones, String colorBoton){
+    public ContenedorMultipleChoice(ControladorRespuesta controlador, List<Opcion> opciones, String styleBoton){
         super();
         List<Button> botones = new ArrayList<Button>();
         List<String> descripciones = this.descripcionesDeOpciones(opciones);
@@ -41,7 +41,7 @@ public class ContenedorMultipleChoice extends VBox{
         Integer contadorDescripciones = 0;
         for(String descripcion : descripciones){
             contadorDescripciones = contadorDescripciones + 1;
-            Button boton = this.crearBotonOpcion(descripcion, colorBoton, controlador);
+            Button boton = this.crearBotonOpcion(descripcion, styleBoton, controlador);
             botones.add(boton);
         }
 
@@ -49,7 +49,7 @@ public class ContenedorMultipleChoice extends VBox{
         contenedorDeBotonesOpcion.getChildren().addAll(botones);
         contenedorDeBotonesOpcion.setSpacing(ESPACIADO_BOTONES);
 
-        Button botonReiniciar = this.crearBotonReiniciar( colorBoton, controlador, botones);
+        Button botonReiniciar = this.crearBotonReiniciar( styleBoton, controlador, botones);
 
         this.getChildren().addAll(contenedorDeBotonesOpcion, botonReiniciar);
         this.setSpacing(ESPACIO_ENTRE_BOTONES_Y_REINICIAR);

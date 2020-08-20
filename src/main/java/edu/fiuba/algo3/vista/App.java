@@ -111,7 +111,7 @@ public class App extends Application {
 
         Button botonElegirArchivo = new Button("Seleccione el kahoot");
         botonElegirArchivo.setFont(Font.font(FUENTE, TAMANIO_LETRA));
-        botonElegirArchivo.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
+        botonElegirArchivo.setStyle(StyleHandler.COLOR_BOTON_BLANCO);
         botonElegirArchivo.setOnAction(e -> {
             File archivoSeleccionado = fileChooser.showOpenDialog(stage);
             if(archivoSeleccionado != null){
@@ -131,7 +131,7 @@ public class App extends Application {
         Button botonElegirJugadores = new Button();
         botonElegirJugadores.setText("Ingresar jugadores");
         botonElegirJugadores.setFont(Font.font(FUENTE, TAMANIO_LETRA));
-        botonElegirJugadores.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_NEGRO);
+        botonElegirJugadores.setStyle(StyleHandler.COLOR_BOTON_NEGRO);
         botonElegirJugadores.setOnAction(new BotonIngresarJugadoresEventHandler(this.stage, labelArchivo));
         return botonElegirJugadores;
     }

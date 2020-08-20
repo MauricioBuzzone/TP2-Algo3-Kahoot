@@ -50,7 +50,7 @@ public class ContenedorBonificadores extends HBox {
         Button boton = new Button(bonificador);
         boton.setFont(new Font(App.FUENTE, TAMANIO_BONIFICADORES));
         boton.setPrefSize(ANCHO,ALTO);
-        boton.setStyle(TipoDePreguntaColorHandler.COLOR_BOTON_BLANCO);
+        boton.setStyle(StyleHandler.COLOR_BOTON_BLANCO);
 
         return boton;
     }
