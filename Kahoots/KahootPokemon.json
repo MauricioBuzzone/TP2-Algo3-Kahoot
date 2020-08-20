@@ -1,0 +1,60 @@
+{
+  "Rondas":[
+    {
+      "tiempo": 25,
+      "enunciado": "Ash no ganó nunca una liga.",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Falso"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "tiempo": 10,
+      "enunciado": "El plural de Pokémon es Pokémon",
+      "tipo": "VerdaderoFalsoConPenalidad",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "tiempo": 10,
+      "enunciado": "¿Cuántos Unown existen?",
+      "tipo": "MultipleChoiceClasico",
+      "solucion": [{"descripcion": "28"}],
+      "opciones": [{"descripcion": "22"},{"descripcion": "28"},{"descripcion": "31"},{"descripcion": "36"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "¿Qué Pokémon son tipo Dragón-Psíquico?",
+      "tipo": "MultipleChoicePuntajeParcial",
+      "solucion": [{"descripcion": "Latias"},{"descripcion": "Latios"}],
+      "opciones": [{"descripcion": "Giratina"},{"descripcion": "Latios"},{"descripcion": "Latias"},{"descripcion": "Altaria"},{"descripcion": "Kyurem"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "El tipo Hada es débil contra los tipos:",
+      "tipo": "MultipleChoiceClasico",
+      "solucion": [{"descripcion": "Acero"},{"descripcion": "Veneno"}],
+      "opciones": [{"descripcion": "Dragón"},{"descripcion": "Acero"},{"descripcion": "Veneno"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "¿Cuáles Pokémon pertenecen a la primera generación?",
+      "tipo": "MultipleChoiceConPenalidad",
+      "solucion": [{"descripcion": "Pikachu"},{"descripcion": "Starmie"}],
+      "opciones": [{"descripcion": "Seedot"},{"descripcion": "Starmie"},{"descripcion": "Ralts"},{"descripcion": "Pikachu"},{"descripcion": "Electivire"}]
+    },
+    {
+      "tiempo": 30,
+      "enunciado": "Ordenar según año de lanzamiento",
+      "tipo": "OrderedChoice",
+      "solucion": [{"descripcion": "Amarillo", "indice":1},{"descripcion": "Rojo fuego","indice":2},{"descripcion": "Esmeralda","indice":3},{"descripcion": "Black & White","indice":4}],
+      "opciones": [{"descripcion": "Esmeralda", "indice":3},{"descripcion": "Amarillo","indice":1},{"descripcion": "Black & White","indice":4},{"descripcion": "Rojo fuego","indice":2}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "Agrupar por tipos",
+      "tipo": "GroupChoice",
+      "solucion": [{"descripcion": "Charizard", "grupo": "Fuego"},{"descripcion": "Starmie","grupo": "Agua"},{"descripcion": "Wooper","grupo": "Agua"},{"descripcion": "Magikarp","grupo": "Agua"},{"descripcion": "Growlithe","grupo": "Fuego"},{"descripcion": "Vulpix","grupo": "Fuego"}],
+      "opciones": [{"descripcion": "Charizard", "grupo": "Fuego"},{"descripcion": "Starmie","grupo": "Agua"},{"descripcion": "Wooper","grupo": "Agua"},{"descripcion": "Magikarp","grupo": "Agua"},{"descripcion": "Growlithe","grupo": "Fuego"},{"descripcion": "Vulpix","grupo": "Fuego"}]
+    }
+  ]
+}

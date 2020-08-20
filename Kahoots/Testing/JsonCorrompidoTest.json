@@ -1,0 +1,11 @@
+{
+  "Rondas":[
+    {
+      "tiempo": 20,
+      "enunciado": "1: Verdadero o Falso Clásico",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    }
+  ]
+}

@@ -1,55 +1,86 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.List;
-import java.util.Queue;
-import java.util.LinkedList;
-import com.google.gson.*;
+import java.util.*;
 
-public class Ronda {
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.respuestas.Respuestas;
+
+public class Ronda extends Observable{
+
+    private static final int SEG_A_MILISEG = 1000;
+
     private Pregunta pregunta;
     private Queue<Jugador> jugadores;
     private Respuestas respuestas;
     private Jugador jugadorActivo;
+    private CuentaAtras cuentaAtras;
+    private int tiempo;
 
-    public Ronda(Pregunta unaPregunta, List<Jugador> listaJugadores) {
+    public Ronda(Pregunta unaPregunta, List<Jugador> listaJugadores, int tiempo) {
         respuestas = new Respuestas();
         pregunta = unaPregunta;
         jugadores = new LinkedList<Jugador>(listaJugadores);
+        this.tiempo = tiempo;
+        this.jugadorActivo = jugadores.peek();
     }
 
-    public String getEnunciado() {
-        return pregunta.getEnunciado();
+    public void proximoJugador(){
+        this.jugadorActivo = this.nuevoJugador();
+        this.setChanged();
+        this.notifyObservers();
     }
 
-    public List<String> getOpciones() {
-        return pregunta.getOpciones();
-    }
-
-    public boolean haySiguienteJugador(){
-        return(!jugadores.isEmpty());
-    }
-
-    public void siguienteJugador(){
-        jugadorActivo = jugadores.poll();
-    }
-
-    public Jugador getJugador(){
+    public Jugador getJugadorActivo(){
         return jugadorActivo;
+    }
+
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
+
+    public int getTiempo(){
+        return tiempo;
+    }
+
+    private Jugador nuevoJugador(){
+        if(this.quedanJugadores()){
+            return jugadores.poll();
+        }
+        return jugadorActivo;
+    }
+
+    public boolean quedanJugadores(){
+        return(!jugadores.isEmpty());
     }
 
     public void agregarRespuesta(Respuesta respuesta){
         respuestas.agregarRespuesta(respuesta);
+        if(this.quedanJugadores()){
+            this.proximoJugador();
+        }else{
+            this.responder();
+        }
     }
 
-    public void responder(){
+    private void responder(){
         pregunta.responderPregunta(respuestas);
+        this.setChanged();
+        this.notifyObservers();
     }
 
-    public void activarExclusividad(){
+    public void jugadorVaAResponder(RespondedorPorDefecto respondedor){
+        Timer timer = new Timer();
+        this.cuentaAtras = new CuentaAtras(respondedor);
+        timer.schedule(this.cuentaAtras, this.tiempo * SEG_A_MILISEG);
+    }
+
+    public void jugadorYaRespondio(){
+        cuentaAtras.cancel();
+    }
+
+    public void activarExclusividad() {
         respuestas.activarExclusividad();
-    }
-
-    public int tipoDePregunta(){
-        return pregunta.tipoDePregunta();
     }
 }

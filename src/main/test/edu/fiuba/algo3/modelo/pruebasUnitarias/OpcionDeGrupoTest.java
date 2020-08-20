@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.pruebasUnitarias;
 
-import edu.fiuba.algo3.modelo.OpcionComun;
-import edu.fiuba.algo3.modelo.OpcionDeGrupo;
-import edu.fiuba.algo3.modelo.OpcionOrdenada;
+import edu.fiuba.algo3.modelo.opciones.OpcionComun;
+import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
+import edu.fiuba.algo3.modelo.opciones.OpcionOrdenada;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -76,6 +76,27 @@ public class OpcionDeGrupoTest {
         assertFalse(unaOpcion.igualA(otraOpcion));
     }
 
+    @Test
+    public void test07UnaOpcionDeGrupoYUnaOpcionOrdenadaQuePoseenIgualInformacionTienenLaMismaInformacion(){
+
+        //Enunciado = Poner en el grupo correcto los autos
+        //Grupos = Autos para repartir Tofu | Autos comunes
+        OpcionDeGrupo unaOpcion = new OpcionDeGrupo("Subaru Imprezza", "Tofu");
+        OpcionOrdenada otraOpcion = new OpcionOrdenada("Subaru Imprezza", 1);
+
+        assert(unaOpcion.mismaDescripcion(otraOpcion));
+    }
+
+    @Test
+    public void test08UnaOpcionDeGrupoYUnaOpcionComunQuePoseenIgualInformacionTienenLaMismaInformacion(){
+
+        //Enunciado = Poner en el grupo correcto los autos
+        //Grupos = Autos para repartir Tofu | Autos comunes
+        OpcionDeGrupo unaOpcion = new OpcionDeGrupo("Subaru Imprezza", "Tofu");
+        OpcionComun otraOpcion = new OpcionComun("Subaru Imprezza");
+
+        assert(unaOpcion.mismaDescripcion(otraOpcion));
+    }
 
 
 }

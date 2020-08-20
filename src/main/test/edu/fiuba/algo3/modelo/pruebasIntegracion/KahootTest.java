@@ -1,322 +1,379 @@
 package edu.fiuba.algo3.modelo.pruebasIntegracion;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.opciones.*;
+
+import edu.fiuba.algo3.modelo.respuestas.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
-
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
-
-public class KahootTest{
+public class KahootTest {
 
     @Test
-    public void test01KahootConDosJugadoresYRondasDeRondasJsonYLosJugaresPuedenJugar(){
-
+    public void test01CuandoSeJuegaElSiguienteKahoot_VF_MCC_LosPuntajesDeLosJugadoresSonLosSiguientes(){
         Jugador diego = new Jugador("Diego");
-        Jugador tomas = new Jugador("Tomas");
+        Jugador tomas = new Jugador("Tomás");
 
-        List<Jugador> jugadores = new ArrayList<Jugador>();
+        List<Jugador> jugadores = new ArrayList<>();
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        Kahoot kahoot = new Kahoot(jugadores, "Rondas.json");
+        String rutaDeLaPrueba = "Kahoots/Testing/KahootTest01.json";
+        Kahoot kahoot = new Kahoot(jugadores, rutaDeLaPrueba);
 
+        //Verdadero Falso
+        kahoot.proximaRonda();
 
-        assert(kahoot.haySiguienteRonda());
+        Ronda rondaActiva = kahoot.getRondaActiva();
 
-        kahoot.siguienteRonda();
+        rondaActiva.proximoJugador();
+        Jugador diegoRonda1 = rondaActiva.getJugadorActivo();
 
-        String enunciado = kahoot.getEnunciado();
-        List<String> opciones = kahoot.getOpciones();
-        int tipoDePregunta = kahoot.tipoDePregunta();
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        assert(tipoDePregunta == Kahoot.VERDADERO_FALSO);
-
-        assert(kahoot.haySiguienteJugador());
-
-        //Timer
-        kahoot.siguienteJugador();
-        Jugador jugador1 = kahoot.getJugador();
-
-        List<Opcion> opcionDiegoUno = new ArrayList<Opcion>();
-        opcionDiegoUno.add(new OpcionComun("Falso"));
-        Eleccion primeraEleccionDiego = new Eleccion(opcionDiegoUno);
+        //Respuesta de Diego
+        Opcion opcionDiego = new OpcionComun("Verdadero");
+        List<Opcion> opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcionDiego);
+        Eleccion eleccionDiego = new Eleccion(opcionesDiego);
         Bonificador bonificadorDiego = new Bonificador();
-        Respuesta primeraRespuestaDiego = new Respuesta(jugador1, primeraEleccionDiego, bonificadorDiego);
+        Respuesta respuestaDiego = new Respuesta(diegoRonda1, eleccionDiego, bonificadorDiego);
 
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
 
-        kahoot.agregarRespuesta(primeraRespuestaDiego);
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda1 = rondaActiva.getJugadorActivo();
 
-        assert(kahoot.haySiguienteJugador());
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        kahoot.siguienteJugador();
-        Jugador jugador2 = kahoot.getJugador();
-
-        List<Opcion> opcionTomasUno = new ArrayList<Opcion>();
-        opcionTomasUno.add(new OpcionComun("Verdadero"));
-        Eleccion primeraEleccionTomas = new Eleccion(opcionTomasUno);
+        //Respuesta de Tomas
+        Opcion opcionTomas = new OpcionComun("Falso");
+        List<Opcion> opcionesTomas = new ArrayList<>();
+        opcionesTomas.add(opcionTomas);
+        Eleccion eleccionTomas = new Eleccion(opcionesTomas);
         Bonificador bonificadorTomas = new Bonificador();
-        Respuesta primeraRespuestaTomas = new Respuesta(jugador2, primeraEleccionTomas, bonificadorTomas);
+        Respuesta respuestaTomas = new Respuesta(tomasRonda1, eleccionTomas, bonificadorTomas);
 
-        kahoot.agregarRespuesta(primeraRespuestaTomas);
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
 
+        assert(kahoot.jugadorConMasPuntos().equals(diegoRonda1));
 
-        assertFalse(kahoot.haySiguienteJugador());
+        //Multiple Choice
+        kahoot.proximaRonda();
 
-        kahoot.responder();
+        rondaActiva = kahoot.getRondaActiva();
+        rondaActiva.proximoJugador();
 
+        Jugador diegoRonda2 = rondaActiva.getJugadorActivo();
 
-        assert(kahoot.haySiguienteRonda());
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        kahoot.siguienteRonda();
+        //Respuesta de Diego
+        opcionDiego = new OpcionComun("Opcion incorrecta 1");
+        opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcionDiego);
+        eleccionDiego = new Eleccion(opcionesDiego);
+        bonificadorDiego = new Bonificador();
+        respuestaDiego = new Respuesta(diegoRonda2, eleccionDiego, bonificadorDiego);
 
-        String enunciado2 = kahoot.getEnunciado();
-        List<String> opciones2 = kahoot.getOpciones();
-        int tipoDePregunta2 = kahoot.tipoDePregunta();
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
 
-        assert(tipoDePregunta == Kahoot.VERDADERO_FALSO);
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda2 = rondaActiva.getJugadorActivo();
 
-        assert(kahoot.haySiguienteJugador());
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        //Timer
-        kahoot.siguienteJugador();
-        jugador1 = kahoot.getJugador();
+        //Respuesta de Tomas
+        opcionTomas = new OpcionComun("Opcion correcta 1");
+        opcionesTomas = new ArrayList<>();
+        opcionesTomas.add(opcionTomas);
+        eleccionTomas = new Eleccion(opcionesTomas);
+        bonificadorTomas = new Bonificador();
+        respuestaTomas = new Respuesta(tomasRonda2, eleccionTomas, bonificadorTomas);
 
-        List<Opcion> opcionDiegoDos = new ArrayList<Opcion>();
-        opcionDiegoDos.add(new OpcionComun("Falso"));
-        Eleccion segundaEleccionDiego = new Eleccion(opcionDiegoDos);
-        Bonificador segundoBonificadorDiego = new Bonificador();
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
 
-        Respuesta segundaRespuestaDiego = new Respuesta(jugador1, segundaEleccionDiego, segundoBonificadorDiego);
+        jugadores = kahoot.terminarJuego();
 
-        kahoot.agregarRespuesta(segundaRespuestaDiego);
-
-        assert(kahoot.haySiguienteJugador());
-
-        kahoot.siguienteJugador();
-        jugador2 = kahoot.getJugador();
-
-        List<Opcion> opcionTomasDos = new ArrayList<Opcion>();
-        opcionTomasDos.add(new OpcionComun("Falso"));
-        Eleccion segundaEleccionTomas = new Eleccion(opcionTomasDos);
-        Bonificador segundoBonificadorTomas = new Bonificador();
-
-        Respuesta segundaRespuestaTomas = new Respuesta(jugador2, segundaEleccionTomas, segundoBonificadorTomas);
-
-        assertFalse(kahoot.haySiguienteJugador());
-
-        kahoot.responder();
-
-        assertFalse(kahoot.haySiguienteRonda());
-
-        Tabla tabla = kahoot.terminarJuego();
+        assertEquals(jugadores.get(0).getPuntos(), 1);
+        assertEquals(jugadores.get(1).getPuntos(), 1);
     }
 
     @Test
-    public void test02KahootConDosJugadoresYRondsMultipleChoicePuedenSerJugadasYAsignanCorectamenteLosPuntosAlosJugadores(){
+    public void test02CuandoSeJuegaElSiguienteKahoot_MCP_MCPP_LosPuntajesDeLosJugadoresSonLosSiguientes(){
         Jugador diego = new Jugador("Diego");
-        Jugador tomas = new Jugador("Tomas");
+        Jugador tomas = new Jugador("Tomás");
 
-        List<Jugador> jugadores = new ArrayList<Jugador>();
+        List<Jugador> jugadores = new ArrayList<>();
         jugadores.add(diego);
         jugadores.add(tomas);
 
+        String rutaDeLaPrueba = "Kahoots/Testing/KahootTest02.json";
+        Kahoot kahoot = new Kahoot(jugadores, rutaDeLaPrueba);
 
-        Kahoot kahoot = new Kahoot(jugadores,"Rondas01.json");
+        //Multiple Choice con Penalidad
+        kahoot.proximaRonda();
 
-        assert(kahoot.haySiguienteRonda());
-        kahoot.siguienteRonda();
+        Ronda rondaActiva = kahoot.getRondaActiva();
 
-        assert(kahoot.haySiguienteJugador());
+        rondaActiva.proximoJugador();
+        Jugador diegoRonda1 = rondaActiva.getJugadorActivo();
 
-        //Timer
-        kahoot.siguienteJugador();
-        Jugador jugador1 = kahoot.getJugador();
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        List<Opcion> opcionDiegoUno = new ArrayList<Opcion>();
-        opcionDiegoUno.add(new OpcionComun("opcion1"));
-        opcionDiegoUno.add(new OpcionComun("opcion2"));
-        Eleccion primeraEleccionDiego = new Eleccion(opcionDiegoUno);
+        //Respuesta de Diego
+        Opcion opcionDiego = new OpcionComun("Opcion correcta 1");
+        List<Opcion> opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcionDiego);
+        Eleccion eleccionDiego = new Eleccion(opcionesDiego);
         Bonificador bonificadorDiego = new Bonificador();
-        Respuesta primeraRespuestaDiego = new Respuesta(jugador1, primeraEleccionDiego, bonificadorDiego);
+        Respuesta respuestaDiego = new Respuesta(diegoRonda1, eleccionDiego, bonificadorDiego);
 
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
 
-        kahoot.agregarRespuesta(primeraRespuestaDiego);
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda1 = rondaActiva.getJugadorActivo();
 
-        assert(kahoot.haySiguienteJugador());
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        kahoot.siguienteJugador();
-        Jugador jugador2 = kahoot.getJugador();
-
-        List<Opcion> opcionTomasUno = new ArrayList<Opcion>();
-        opcionTomasUno.add(new OpcionComun("opcion2"));
-        opcionTomasUno.add(new OpcionComun("opcion3"));
-        Eleccion primeraEleccionTomas = new Eleccion(opcionTomasUno);
+        //Respuesta de Tomas
+        Opcion opcionTomas = new OpcionComun("Opcion incorrecta 1");
+        List<Opcion> opcionesTomas = new ArrayList<>();
+        opcionesTomas.add(opcionTomas);
+        Eleccion eleccionTomas = new Eleccion(opcionesTomas);
         Bonificador bonificadorTomas = new Bonificador();
-        Respuesta primeraRespuestaTomas = new Respuesta(jugador2, primeraEleccionTomas, bonificadorTomas);
+        Respuesta respuestaTomas = new Respuesta(tomasRonda1, eleccionTomas, bonificadorTomas);
 
-        kahoot.agregarRespuesta(primeraRespuestaTomas);
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
 
+        assert(kahoot.jugadorConMasPuntos().equals(diegoRonda1));
 
-        assertFalse(kahoot.haySiguienteJugador());
+        //Multiple Choice con Puntaje Parcial
+        kahoot.proximaRonda();
 
-        kahoot.responder();
+        rondaActiva = kahoot.getRondaActiva();
+        rondaActiva.proximoJugador();
 
-        assertEquals(jugador1.puntosTotales(),1);
-        assertEquals(jugador2.puntosTotales(),0);
+        Jugador diegoRonda2 = rondaActiva.getJugadorActivo();
 
-        assert(kahoot.haySiguienteRonda());
-        kahoot.siguienteRonda();
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        //Timer
-        kahoot.siguienteJugador();
-        jugador1 = kahoot.getJugador();
+        //Respuesta de Diego
+        opcionDiego = new OpcionComun("Opcion correcta 1");
+        opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcionDiego);
+        eleccionDiego = new Eleccion(opcionesDiego);
+        bonificadorDiego = new Bonificador();
+        respuestaDiego = new Respuesta(diegoRonda2, eleccionDiego, bonificadorDiego);
 
-        List<Opcion> opcionDiegoDos = new ArrayList<Opcion>();
-        opcionDiegoDos.add(new OpcionComun("opcion2"));
-        opcionDiegoDos.add(new OpcionComun("opcion3"));
-        Eleccion segundaEleccionDiego = new Eleccion(opcionDiegoDos);
-        Bonificador segundoBonificadorDiego = new Bonificador();
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
 
-        Respuesta segundaRespuestaDiego = new Respuesta(jugador1, segundaEleccionDiego, segundoBonificadorDiego);
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda2 = rondaActiva.getJugadorActivo();
 
-        kahoot.agregarRespuesta(segundaRespuestaDiego);
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        assert(kahoot.haySiguienteJugador());
+        //Respuesta de Tomas
+        opcionTomas = new OpcionComun("Opcion correcta 1");
+        opcionesTomas = new ArrayList<>();
+        opcionesTomas.add(opcionTomas);
+        eleccionTomas = new Eleccion(opcionesTomas);
+        bonificadorTomas = new Bonificador();
+        respuestaTomas = new Respuesta(tomasRonda2, eleccionTomas, bonificadorTomas);
 
-        kahoot.siguienteJugador();
-        jugador2 = kahoot.getJugador();
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
 
-        List<Opcion> opcionTomasDos = new ArrayList<Opcion>();
-        opcionTomasDos.add(new OpcionComun("opcion1"));
-        opcionTomasDos.add(new OpcionComun("opcion2"));
-        Eleccion segundaEleccionTomas = new Eleccion(opcionTomasDos);
-        Bonificador segundoBonificadorTomas = new Bonificador();
+        jugadores = kahoot.terminarJuego();
 
-        Respuesta segundaRespuestaTomas = new Respuesta(jugador2, segundaEleccionTomas, segundoBonificadorTomas);
-
-        assertFalse(kahoot.haySiguienteJugador());
-
-        kahoot.responder();
-
-        assertFalse(kahoot.haySiguienteRonda());
-        assertEquals(jugador1.puntosTotales(),2);
-        assertEquals(jugador2.puntosTotales(),0);
-        Tabla tabla = kahoot.terminarJuego();
+        assertEquals(jugadores.get(0).getPuntos(), 2);
+        assertEquals(jugadores.get(1).getPuntos(), 0);
     }
+
     @Test
-    public void test03KahootConDosJugadoresYRondasOrderedYGroupPuedenSerJugadasYAsignanCorectamenteLosPuntosAlosJugadores(){
+    public void test03CuandoSeJuegaElSiguienteKahoot_GC_OC_VFCP_LosPuntajesDeLosJugadoresSonLosSiguientes(){
         Jugador diego = new Jugador("Diego");
-        Jugador tomas = new Jugador("Tomas");
+        Jugador tomas = new Jugador("Tomás");
 
-        List<Jugador> jugadores = new ArrayList<Jugador>();
+        List<Jugador> jugadores = new ArrayList<>();
         jugadores.add(diego);
         jugadores.add(tomas);
 
-        Kahoot kahoot = new Kahoot(jugadores,"Rondas02.json");
+        String rutaDeLaPrueba = "Kahoots/Testing/KahootTest03.json";
+        Kahoot kahoot = new Kahoot(jugadores, rutaDeLaPrueba);
 
+        //Group Choice
+        kahoot.proximaRonda();
 
-        assert(kahoot.haySiguienteRonda());
-        kahoot.siguienteRonda();
+        Ronda rondaActiva = kahoot.getRondaActiva();
 
-        assert(kahoot.haySiguienteJugador());
+        rondaActiva.proximoJugador();
+        Jugador diegoRonda1 = rondaActiva.getJugadorActivo();
 
-        //Timer
-        kahoot.siguienteJugador();
-        Jugador jugador1 = kahoot.getJugador();
+        RespondedorPorDefecto respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        List<Opcion> opcionDiegoUno = new ArrayList<Opcion>();
-        opcionDiegoUno.add(new OpcionOrdenada("opcion1",1));
-        opcionDiegoUno.add(new OpcionOrdenada("opcion2",2));
-        opcionDiegoUno.add(new OpcionOrdenada("opcion3",3));
-        Eleccion primeraEleccionDiego = new Eleccion(opcionDiegoUno);
+        //Respuesta de Diego
+        Opcion opcion1Diego = new OpcionDeGrupo("grupoA1", "A");
+        Opcion opcion2Diego = new OpcionDeGrupo("grupoA2", "A");
+        Opcion opcion3Diego = new OpcionDeGrupo("grupoB1", "B");
+        Opcion opcion4Diego = new OpcionDeGrupo("grupoB2", "B");
+
+        List<Opcion> opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcion1Diego);
+        opcionesDiego.add(opcion2Diego);
+        opcionesDiego.add(opcion3Diego);
+        opcionesDiego.add(opcion4Diego);
+
+        Eleccion eleccionDiego = new Eleccion(opcionesDiego);
         Bonificador bonificadorDiego = new Bonificador();
-        Respuesta primeraRespuestaDiego = new Respuesta(jugador1, primeraEleccionDiego, bonificadorDiego);
+        Respuesta respuestaDiego = new Respuesta(diegoRonda1, eleccionDiego, bonificadorDiego);
 
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
 
-        kahoot.agregarRespuesta(primeraRespuestaDiego);
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda1 = rondaActiva.getJugadorActivo();
 
-        assert(kahoot.haySiguienteJugador());
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
 
-        kahoot.siguienteJugador();
-        Jugador jugador2 = kahoot.getJugador();
+        //Respuesta de Tomas
+        List<Opcion> opcionesTomas = new ArrayList<>();
+        Opcion opcion1Tomas = new OpcionDeGrupo("grupoA1", "A");
+        Opcion opcion2Tomas = new OpcionDeGrupo("grupoA2", "A");
+        Opcion opcion3Tomas = new OpcionDeGrupo("grupoB1", "A");
+        Opcion opcion4Tomas = new OpcionDeGrupo("grupoB2", "B");
 
-        List<Opcion> opcionTomasUno = new ArrayList<Opcion>();
-        opcionTomasUno.add(new OpcionOrdenada("opcion1",1));
-        opcionTomasUno.add(new OpcionOrdenada("opcion3",2));
-        opcionTomasUno.add(new OpcionOrdenada("opcion2",3));
-        Eleccion primeraEleccionTomas = new Eleccion(opcionTomasUno);
+        opcionesTomas.add(opcion1Tomas);
+        opcionesTomas.add(opcion2Tomas);
+        opcionesTomas.add(opcion3Tomas);
+        opcionesTomas.add(opcion4Tomas);
+
+        Eleccion eleccionTomas = new Eleccion(opcionesTomas);
         Bonificador bonificadorTomas = new Bonificador();
-        Respuesta primeraRespuestaTomas = new Respuesta(jugador2, primeraEleccionTomas, bonificadorTomas);
+        Respuesta respuestaTomas = new Respuesta(tomasRonda1, eleccionTomas, bonificadorTomas);
 
-        kahoot.agregarRespuesta(primeraRespuestaTomas);
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
+
+        assert(kahoot.jugadorConMasPuntos().equals(diegoRonda1));
+
+        //Ordered Choice
+        kahoot.proximaRonda();
+
+        rondaActiva = kahoot.getRondaActiva();
+        rondaActiva.proximoJugador();
+
+        Jugador diegoRonda2 = rondaActiva.getJugadorActivo();
+
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
+
+        //Respuesta de Diego
+        opcion1Diego = new OpcionOrdenada("Primera", 1);
+        opcion2Diego = new OpcionOrdenada("Segunda", 2);
+        opcion3Diego = new OpcionOrdenada("Tercera", 3);
+
+        opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcion1Diego);
+        opcionesDiego.add(opcion2Diego);
+        opcionesDiego.add(opcion3Diego);
+
+        eleccionDiego = new Eleccion(opcionesDiego);
+        bonificadorDiego = new Bonificador();
+        respuestaDiego = new Respuesta(diegoRonda2, eleccionDiego, bonificadorDiego);
+
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
+
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda2 = rondaActiva.getJugadorActivo();
+
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
+
+        //Respuesta de Tomas
+        opcionesTomas = new ArrayList<>();
+        opcion1Tomas = new OpcionOrdenada("Primera", 1);
+        opcion2Tomas = new OpcionOrdenada("Segunda", 2);
+        opcion3Tomas = new OpcionOrdenada("Tercera", 3);
+
+        opcionesTomas.add(opcion1Tomas);
+        opcionesTomas.add(opcion2Tomas);
+        opcionesTomas.add(opcion3Tomas);
+
+        eleccionTomas = new Eleccion(opcionesTomas);
+        bonificadorTomas = new Bonificador();
+        respuestaTomas = new Respuesta(tomasRonda2, eleccionTomas, bonificadorTomas);
+
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
+
+        //Verdadero Falso con Penalidad
+        kahoot.proximaRonda();
+
+        rondaActiva = kahoot.getRondaActiva();
+        rondaActiva.proximoJugador();
+
+        Jugador diegoRonda3 = rondaActiva.getJugadorActivo();
+
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
+
+        //Respuesta de Diego
+        Opcion opcionDiego = new OpcionComun("Falso");
+        opcionesDiego = new ArrayList<>();
+        opcionesDiego.add(opcionDiego);
+
+        eleccionDiego = new Eleccion(opcionesDiego);
+        bonificadorDiego = new Bonificador();
+        respuestaDiego = new Respuesta(diegoRonda3, eleccionDiego, bonificadorDiego);
+
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaDiego);
+
+        rondaActiva.proximoJugador();
+        Jugador tomasRonda3 = rondaActiva.getJugadorActivo();
+
+        respondedor = new RespondedorPorDefecto(rondaActiva);
+        rondaActiva.jugadorVaAResponder(respondedor);
+
+        //Respuesta de Tomas
+        Opcion opcionTomas = new OpcionComun("Verdadero");
+        opcionesTomas = new ArrayList<>();
+        opcionesTomas.add(opcionTomas);
+        eleccionTomas = new Eleccion(opcionesTomas);
+        bonificadorTomas = new Bonificador();
+        respuestaTomas = new Respuesta(tomasRonda3, eleccionTomas, bonificadorTomas);
+
+        rondaActiva.jugadorYaRespondio();
+        rondaActiva.agregarRespuesta(respuestaTomas);
 
 
-        assertFalse(kahoot.haySiguienteJugador());
+        jugadores = kahoot.terminarJuego();
 
-        kahoot.responder();
-
-        assertEquals(jugador1.puntosTotales(),1);
-        assertEquals(jugador2.puntosTotales(),0);
-
-        assert(kahoot.haySiguienteRonda());
-        kahoot.siguienteRonda();
-
-        //Timer
-        kahoot.siguienteJugador();
-        jugador1 = kahoot.getJugador();
-
-        List<Opcion> opcionDiegoDos = new ArrayList<Opcion>();
-        opcionDiegoDos.add(new OpcionDeGrupo("opcion1","A"));
-        opcionDiegoDos.add(new OpcionDeGrupo("opcion2","A"));
-        opcionDiegoDos.add(new OpcionDeGrupo("opcion3","B"));
-        opcionDiegoDos.add(new OpcionDeGrupo("opcion4","B"));
-        Eleccion segundaEleccionDiego = new Eleccion(opcionDiegoDos);
-        Bonificador segundoBonificadorDiego = new Bonificador();
-
-        Respuesta segundaRespuestaDiego = new Respuesta(jugador1, segundaEleccionDiego, segundoBonificadorDiego);
-
-        kahoot.agregarRespuesta(segundaRespuestaDiego);
-
-        assert(kahoot.haySiguienteJugador());
-
-        kahoot.siguienteJugador();
-        jugador2 = kahoot.getJugador();
-
-        List<Opcion> opcionTomasDos = new ArrayList<Opcion>();
-        opcionTomasDos.add(new OpcionDeGrupo("opcion1","A"));
-        opcionTomasDos.add(new OpcionDeGrupo("opcion2","B"));
-        opcionTomasDos.add(new OpcionDeGrupo("opcion3","B"));
-        opcionTomasDos.add(new OpcionDeGrupo("opcion4","B"));
-        Eleccion segundaEleccionTomas = new Eleccion(opcionTomasDos);
-        Bonificador segundoBonificadorTomas = new Bonificador();
-
-        Respuesta segundaRespuestaTomas = new Respuesta(jugador2, segundaEleccionTomas, segundoBonificadorTomas);
-
-        assertFalse(kahoot.haySiguienteJugador());
-
-        kahoot.responder();
-
-        assertFalse(kahoot.haySiguienteRonda());
-        assertEquals(jugador1.puntosTotales(),2);
-        assertEquals(jugador2.puntosTotales(),0);
-        Tabla tabla = kahoot.terminarJuego();
+        assertEquals(jugadores.get(0).getPuntos(), 1);
+        assertEquals(jugadores.get(1).getPuntos(), 2);
     }
+
 }

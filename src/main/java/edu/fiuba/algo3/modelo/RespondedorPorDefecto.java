@@ -1,26 +1,28 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.opciones.OpcionComun;
+import edu.fiuba.algo3.modelo.respuestas.Respuesta;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class RespondedorPorDefecto extends Observable {
+public class RespondedorPorDefecto {
 
-    private Kahoot kahoot;
-    public RespondedorPorDefecto(Kahoot kahoot){
-        this.kahoot = kahoot;
+    private Ronda ronda;
+    public RespondedorPorDefecto(Ronda ronda){
+        this.ronda = ronda;
     }
 
     public void responder() {
 
-        this.kahoot.agregarRespuesta(this.respuestaPorDefecto());
-        this.setChanged();
-        this.notifyObservers();
+        this.ronda.agregarRespuesta(this.respuestaPorDefecto());
     }
 
 
     private Respuesta respuestaPorDefecto(){
-        Jugador unJugador = this.kahoot.getJugador();
+        Jugador unJugador = this.ronda.getJugadorActivo();
         Opcion opcionVacia = new OpcionComun("");
         List<Opcion> opcionesVacias = new ArrayList<>();
         opcionesVacias.add(opcionVacia);

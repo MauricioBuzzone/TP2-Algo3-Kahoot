@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.HashSet;
+import edu.fiuba.algo3.modelo.opciones.Opcion;
+import edu.fiuba.algo3.modelo.preguntas.Evaluador;
+
 import java.util.List;
-import java.util.Set;
 
 public class Eleccion {
 
@@ -23,29 +24,27 @@ public class Eleccion {
     }
 
     private boolean mismasOpciones(List<Opcion> otrasOpciones) {
+        boolean mismasOpciones = true;
+
         for(Opcion miOpcion : this.opciones){
-            int contador = 0;
-            for(Opcion otraOpcion : otrasOpciones){
-                if(miOpcion.igualA(otraOpcion)){
-                    contador++;
-                }
-            }
-            if(contador != 1){
-                return false;
+            if(miOpcion.cantidadDeConcurrencias(otrasOpciones) != 1){
+                mismasOpciones = false;
             }
         }
-        return true;
+
+        return mismasOpciones;
     }
+
 
     public int cantidadCoincidencias(Eleccion otraEleccion){
 
-       return otraEleccion.cantidadMismasOpciones(opciones);
+       return otraEleccion.cantidadDeMismasOpciones(opciones);
     }
 
-    private int cantidadMismasOpciones(List<Opcion> otrasOpciones){
+    private int cantidadDeMismasOpciones(List<Opcion> otrasOpciones){
 
         int coincidencias = 0;
-        for (Opcion opcion : otrasOpciones ){
+        for (Opcion opcion : otrasOpciones){
             if (opcion.estaContenidoEn(this.opciones)){
                 coincidencias++;
             }
@@ -58,13 +57,13 @@ public class Eleccion {
      */
     public int cantidadDeNoCoincidentes(Eleccion otraEleccion){
 
-        return otraEleccion.cantidadDeOpcionesQueNoEstanContenidas(opciones);
+        return otraEleccion.cantidadDeOpcionesQueNoEstanContenidasEn(opciones);
     }
 
     /*
-     *   Devuelve la cantidad de opciones MIAS que no pertenecen a la lista de opciones recibida
+     *   Devuelve la cantidad de opciones PROPIAS que no pertenecen a la lista de opciones RECIBIDA
      */
-    private int cantidadDeOpcionesQueNoEstanContenidas(List<Opcion> otrasOpciones){
+    private int cantidadDeOpcionesQueNoEstanContenidasEn(List<Opcion> otrasOpciones){
 
         int cantidadOpcionesNoCoincidentes = 0;
         for(Opcion miOpcion : opciones){
@@ -85,12 +84,12 @@ public class Eleccion {
     }
 
     private boolean contenidoEn(List<Opcion> otrasOpciones){
-
+        boolean estaContenido = true;
         for(Opcion miOpcion : this.opciones){
             if(!miOpcion.estaContenidoEn(otrasOpciones)){
-                return false;
+                estaContenido = false;
             }
         }
-        return true;
+        return estaContenido;
     }
 }

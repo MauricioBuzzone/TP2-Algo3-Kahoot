@@ -1,0 +1,18 @@
+{
+  "Rondas":[
+    {
+      "tiempo": 15,
+      "enunciado": "1: La opción correcta es: Verdadero",
+      "tipo": "VerdaderoFalso",
+      "solucion": [{"descripcion": "Verdadero"}],
+      "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
+    },
+    {
+      "tiempo": 20,
+      "enunciado": "1: Elija las opciones correctas",
+      "tipo": "MultipleChoiceClasico",
+      "solucion": [{"descripcion": "Opcion correcta 1"}],
+      "opciones": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion incorrecta 1"}]
+    }
+  ]
+}

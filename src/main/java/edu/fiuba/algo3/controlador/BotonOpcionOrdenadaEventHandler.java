@@ -1,43 +1,42 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Kahoot;
-import edu.fiuba.algo3.modelo.Respuesta;
-import edu.fiuba.algo3.modelo.Opcion;
-import edu.fiuba.algo3.modelo.OpcionOrdenada;
-
-import edu.fiuba.algo3.vista.VistaTurnoJugador;
-import javafx.event.EventHandler;
+import edu.fiuba.algo3.controlador.ControladorRespuesta;
+import edu.fiuba.algo3.modelo.opciones.OpcionOrdenada;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-
-import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 
 
 public class BotonOpcionOrdenadaEventHandler implements EventHandler<ActionEvent> {
 
-    private TextField textField;
     private ControladorRespuesta controladorRespuesta;
-    private int indice;
-    private Button boton;
+    private int miIndex;
+    private int indexAsociado;
+    private Label miLabel;
+    private Label labelAsociado;
 
-    public BotonOpcionOrdenadaEventHandler(ControladorRespuesta controladorRespuesta,  TextField textField, int indice, Button boton) {
-        this.controladorRespuesta = controladorRespuesta;
-        this.textField = textField;
-        this.indice = indice;
-        this.boton = boton;
+    public BotonOpcionOrdenadaEventHandler(ControladorRespuesta controlador, int miIndex, int indexAsociado,
+                                            Label miLabel, Label labelAsociado) {
+        this.controladorRespuesta = controlador;
+        this.miIndex = miIndex;
+        this.indexAsociado = indexAsociado;
+        this.miLabel = miLabel;
+        this.labelAsociado= labelAsociado;
+
     }
 
     public void handle(ActionEvent actionEvent) {
-        String descripcion = textField.getText();
-        Opcion opcionUsuario = new OpcionOrdenada(descripcion, indice);
-        controladorRespuesta.agregarOpcion(opcionUsuario);
-        boton.setDisable(true);
+        this.actualizarRespuesta();
+        this.permutar();
+    }
 
+    private void actualizarRespuesta(){
+        controladorRespuesta.actualizarOpcionConDescripcionPor(new OpcionOrdenada(miLabel.getText(), indexAsociado));
+        controladorRespuesta.actualizarOpcionConDescripcionPor(new OpcionOrdenada(labelAsociado.getText(), miIndex));
+    }
+    private void permutar(){
+        String aux = miLabel.getText();
+        miLabel.setText(labelAsociado.getText());
+        labelAsociado.setText(aux);
     }
 }

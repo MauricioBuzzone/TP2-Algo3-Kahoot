@@ -38,7 +38,7 @@ mvn test
 ```
 ## Ejecutando la aplicación
 ```
-mvn compile && mvn exec:java -Dexec.mainClass="edu.fiuba.algo3.App"
+mvn compile && mvn exec:java -Dexec.mainClass="edu.fiuba.algo3.vista.App"
 ```
 ## Licencia
 
