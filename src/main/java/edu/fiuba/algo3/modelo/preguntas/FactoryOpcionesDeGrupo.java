@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FactoryOpcionesDeGrupo extends FactoryOpciones {
+public class FactoryOpcionesDeGrupo implements FactoryOpciones {
 
     @Override
     public List<Opcion> crearOpciones(JsonArray arrayOpcion) {

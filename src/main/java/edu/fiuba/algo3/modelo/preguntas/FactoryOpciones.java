@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.opciones.Opcion;
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class FactoryOpciones {
+public interface FactoryOpciones {
 
-    public abstract List<Opcion> crearOpciones( JsonArray arrayOpcion);
+    public List<Opcion> crearOpciones( JsonArray arrayOpcion);
 }
