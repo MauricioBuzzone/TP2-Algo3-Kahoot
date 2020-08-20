@@ -24,15 +24,15 @@ public class BotonOpcionDeGrupoEventHandler implements EventHandler<ActionEvent>
     }
 
     public void handle(ActionEvent actionEvent) {
+        this.actualizarMenu();
+        controladorRespuesta.actualizarOpcionConDescripcionPor(opcionAsociada);
+    }
+
+    private void actualizarMenu(){
         menuDeGruposAsociado.setText(itemAsociado.getText());
         for(MenuItem item :menuDeGruposAsociado.getItems()) {
             item.setDisable(false);
         }
         itemAsociado.setDisable(true);
-
-        controladorRespuesta.eliminarPorDescripcion(opcionAsociada);
-        String descripcion =opcionAsociada.getDescripcion();
-
-        controladorRespuesta.agregarOpcion(opcionAsociada);
     }
 }

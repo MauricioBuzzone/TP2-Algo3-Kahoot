@@ -42,6 +42,11 @@ public class ControladorRespuesta implements EventHandler<ActionEvent> {
         }
     }
 
+    public void actualizarOpcionConDescripcionPor(Opcion opcionAactualizar) {
+        eliminarPorDescripcion(opcionAactualizar);
+        agregarOpcion(opcionAactualizar);
+    }
+
     public void reiniciarOpciones(){
         opcionesAlmacenadas = new ArrayList<Opcion>();
     }

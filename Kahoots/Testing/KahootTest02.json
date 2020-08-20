@@ -1,0 +1,18 @@
+{
+  "Rondas":[
+    {
+      "tiempo": 20,
+      "enunciado": "1: Elija las opciones correctas",
+      "tipo": "MultipleChoiceConPenalidad",
+      "solucion": [{"descripcion": "Opcion correcta 1"}],
+      "opciones": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion incorrecta 1"}]
+    },
+    {
+      "tiempo": 10,
+      "enunciado": "1: Elija las opciones correctas",
+      "tipo": "MultipleChoicePuntajeParcial",
+      "solucion": [{"descripcion": "Opcion correcta 1"}],
+      "opciones": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion incorrecta 1"}]
+    }
+  ]
+}

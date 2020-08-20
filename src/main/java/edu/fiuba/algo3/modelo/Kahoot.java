@@ -7,12 +7,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.google.gson.*;
+import edu.fiuba.algo3.modelo.excepciones.ArchivoJsonMalEscritoException;
+import edu.fiuba.algo3.modelo.excepciones.ErrorAlAbrirArchivoException;
+import edu.fiuba.algo3.modelo.excepciones.NoHayPreguntasException;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.respuestas.Respuesta;
 
 
 public class Kahoot extends Observable{
 
+    private static final int TIEMPO_MAXIMO = 60;
     public static final String RUTA_ARCHIVO_DEFAULT = "RondasDefault.json";
 
     private Ronda rondaActiva;
@@ -32,18 +35,21 @@ public class Kahoot extends Observable{
         }catch (IOException ex){
             this.abrirArchivoDefault();
         }
+        if(rondas.isEmpty()){
+            throw new NoHayPreguntasException();
+        }
     }
 
     private void abrirArchivoDefault(){
         try {
             this.agregarRonda(RUTA_ARCHIVO_DEFAULT);
         } catch (IOException ex) {
-            System.out.println(ex);
+            throw new ErrorAlAbrirArchivoException();
         }
     }
 
-    public void agregarPregunta(Pregunta pregunta){
-        Ronda ronda = new Ronda(pregunta,  this.jugadores);
+    public void agregarPregunta(Pregunta pregunta, int tiempo){
+        Ronda ronda = new Ronda(pregunta,  this.jugadores, tiempo);
         rondas.add(ronda);
     }
 
@@ -72,6 +78,16 @@ public class Kahoot extends Observable{
         return new ArrayList(rondas);
     }
 
+    public Jugador jugadorConMasPuntos(){
+        Jugador jugadorActualConMasPuntos = jugadores.get(0);
+        for(Jugador jugador : jugadores){
+            if(jugador.tieneMasPuntosQue(jugadorActualConMasPuntos)){
+                jugadorActualConMasPuntos = jugador;
+            }
+        }
+        return jugadorActualConMasPuntos;
+    }
+
     public List<Jugador> terminarJuego(){
         return this.jugadores;
     }
@@ -79,21 +95,29 @@ public class Kahoot extends Observable{
     //Json
     public void agregarRonda(String archivo) throws IOException{
 
-        String texto = Files.readString(Path.of(archivo));
+        try {
 
-        JsonObject jsonObject = JsonParser.parseString(texto).getAsJsonObject();
+            String texto = Files.readString(Path.of(archivo));
 
-        this.agregarRonda(jsonObject);
+            JsonObject jsonObject = JsonParser.parseString(texto).getAsJsonObject();
 
-    }
+            this.agregarRonda(jsonObject);
 
-    private void agregarRonda(JsonObject jsonObject){
-        JsonArray ArrayRondas = jsonObject.get("Rondas").getAsJsonArray();
-
-        for (JsonElement jsonRonda : ArrayRondas){
-            Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
-            this.agregarPregunta(pregunta);
+        }catch(JsonSyntaxException | NullPointerException ex1){
+            throw new ArchivoJsonMalEscritoException();
         }
     }
 
+    private void agregarRonda(JsonObject jsonObject) {
+        JsonArray ArrayRondas = jsonObject.get("Rondas").getAsJsonArray();
+
+        for (JsonElement jsonRonda : ArrayRondas) {
+            Pregunta pregunta = Pregunta.recuperar(jsonRonda.getAsJsonObject());
+            int tiempo = (jsonRonda.getAsJsonObject()).get("tiempo").getAsInt();
+            if(tiempo >= TIEMPO_MAXIMO){
+                tiempo = TIEMPO_MAXIMO;
+            }
+            this.agregarPregunta(pregunta, tiempo);
+        }
+    }
 }

@@ -13,10 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
 
+
+import java.util.LinkedList;
 import java.util.Observable;
+import java.util.List;
 import java.util.Observer;
+import java.util.Queue;
 
 
 public class VistaKahoot implements Observer{
@@ -29,10 +35,14 @@ public class VistaKahoot implements Observer{
     private static final String PREGUNTA_OC = "Ordered Choice";
     private static final String PREGUNTA_GC = "Group Choice";
 
-
-    private static final int ANCHO_ESCENA = 400;
-    private static final int LARGO_ESCENA = 350;
     private static final int ESPACIADO = 30;
+    private static final int ESPACIADO_TITULO_ENUNCIADO = 3;
+    private static final int TAMANIO_FONT_TITULO = 24;
+    private static final int TAMANIO_FONT_SUB_TITULO = 28;
+    private static final int TAMANIO_FONT_BOTON_AVANZAR = 22;
+    private static final int MAXIMOS_CARACTERES_VISIBLES = 48;
+    private static final int ALTO_BOTON = 14;
+    private static final int ANCHO_BOTON = 130;
 
     private Kahoot kahoot;
     private Stage stage;
@@ -60,24 +70,66 @@ public class VistaKahoot implements Observer{
     }
 
     private Scene crearEscenaRonda(Ronda ronda){
+        TipoDePreguntaColorHandler coloreador = new TipoDePreguntaColorHandler();
+
         Pregunta pregunta = ronda.getPregunta();
-        Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
-        Label enunciado = new Label(pregunta.getEnunciado());
+
+        Label titulo = this.crearLabelTitulo(pregunta);
+        Label enunciado = this.crearLabelEnunciado(pregunta);
+
         VBox contenedorSuperior = new VBox(titulo, enunciado);
-        contenedorSuperior.setSpacing(5);
-        Button avanzarATurno = new Button();
-        avanzarATurno.setText("Avanzar");
-        avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
+        contenedorSuperior.setSpacing(ESPACIADO_TITULO_ENUNCIADO);
+        contenedorSuperior.setAlignment(Pos.CENTER);
+
+        Button avanzarATurno = this.crearBotonAvanzar(ronda, pregunta, coloreador);
+
         VBox contenedorPrincipal = new VBox(contenedorSuperior, avanzarATurno);
         contenedorPrincipal.setSpacing(ESPACIADO);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+        contenedorPrincipal.setStyle(coloreador.colorBackground(pregunta.getTipoDePregunta()));
+
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
     }
 
+    private Scene crearEscenaTabla(){
+
+        Label titulo = new Label("¡Terminó el AlgoHoot!");
+        titulo.setFont(new Font(App.FUENTE, 26));
+
+        Label tituloFinal = new Label();
+
+        if(this.hayEmpate()){
+            tituloFinal.setText("Un inesperado empate!!! (╯°□°)╯︵ ┻┻");
+            tituloFinal.setFont(new Font(App.FUENTE, 22));
+        }else {
+            tituloFinal.setText("El ganador es: " + kahoot.jugadorConMasPuntos().getNombre());
+            tituloFinal.setFont(new Font(App.FUENTE, 22));
+        }
+        VBox contenedorTitulo = new VBox(titulo, tituloFinal);
+        contenedorTitulo.setSpacing(5);
+        contenedorTitulo.setAlignment(Pos.CENTER);
+
+
+        Label tituloTabla = new Label("Tabla final");
+        tituloTabla.setFont(new Font(App.FUENTE, 18));
+
+        Queue<Jugador> jugadores = new LinkedList<>(kahoot.terminarJuego());
+
+        TablaDePuntajes tabla = new TablaDePuntajes("puntos","Puntos Totales", jugadores);
+
+        VBox contenedorTabla = new VBox(tituloTabla, tabla);
+        contenedorTabla.setSpacing(5);
+        contenedorTabla.setAlignment(Pos.CENTER);
+
+        VBox contenedorPrincipal = new VBox(contenedorTitulo, contenedorTabla);
+        contenedorPrincipal.setSpacing(ESPACIADO);
+        return new Scene(contenedorPrincipal, App.ANCHO_ESCENA, App.LARGO_ESCENA);
+    }
 
     private String nombreTipoDePregunta(Pregunta pregunta){
         TipoDePregunta tipo = pregunta.getTipoDePregunta();
-        if(tipo.getClass() == VerdaderoFalso.class){
-            return PREGUNTA_VF;
+        if(tipo.getClass() == GroupChoice.class){
+            return PREGUNTA_GC;
         }else if(tipo.getClass() == VerdaderoFalsoConPenalidad.class){
             return PREGUNTA_VFCP;
         }else if(tipo.getClass() == MultipleChoiceClasico.class){
@@ -88,31 +140,49 @@ public class VistaKahoot implements Observer{
             return PREGUNTA_MCPP;
         }else if(tipo.getClass() == OrderedChoice.class) {
             return PREGUNTA_OC;
-        }else if(tipo.getClass() == GroupChoice.class) {
-            return PREGUNTA_GC;
+        }else{//(tipo.getClass() == VerdaderoFalso.class ) {
+            return PREGUNTA_VF;
         }
-        return "ALGO SALIÓ MAL"; // <<<<<<<<<<<<--------------------- BORRAR ESTO!!!!!!!!! DE ALGUNA MANERA!!! LANZAR EXCEPCIÓN
     }
 
-    private Scene crearEscenaTabla(){
+    private boolean hayEmpate(){
+        List<Jugador> jugadores = new LinkedList<>(kahoot.terminarJuego());
+        Jugador jugadorConMasPuntos = kahoot.jugadorConMasPuntos();
 
-        Label titulo = new Label("Puntaje final");
-        TableView tableView = new TableView();
-        TableColumn<String, Integer> column1 = new TableColumn<>("Nombre de jugador");
-        TableColumn<String, Integer> column2 = new TableColumn<>("Puntos Totales");
-
-        column1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        column2.setCellValueFactory(new PropertyValueFactory<>("puntos"));
-
-        tableView.getColumns().add(column1);
-        tableView.getColumns().add(column2);
-
-        for(Jugador jugador: kahoot.terminarJuego()){
-            tableView.getItems().add(jugador);
+        boolean hayEmpate = false;
+        for(Jugador jugador : jugadores){
+            if(jugador.jugadoresConMismosPuntos(jugadorConMasPuntos)){;
+                hayEmpate = true;
+            }
         }
-        VBox contenedorPrincipal = new VBox(titulo, tableView);
-        contenedorPrincipal.setSpacing(ESPACIADO);
-        return new Scene(contenedorPrincipal, ANCHO_ESCENA, LARGO_ESCENA);
+        return hayEmpate;
     }
 
+    private Button crearBotonAvanzar(Ronda ronda, Pregunta pregunta, TipoDePreguntaColorHandler coloreador){
+
+        Button avanzarATurno = new Button();
+        avanzarATurno.setText("Avanzar");
+        avanzarATurno.setFont(new Font(App.FUENTE, TAMANIO_FONT_BOTON_AVANZAR));
+        avanzarATurno.setOnAction(new BotonProximoJugadorEventHandler(ronda));
+        avanzarATurno.setPrefSize(ANCHO_BOTON,ALTO_BOTON);
+        avanzarATurno.setStyle(coloreador.colorBoton(pregunta.getTipoDePregunta()));
+        return  avanzarATurno;
+    }
+
+    private Label crearLabelEnunciado(Pregunta pregunta){
+        String enunciadoString = pregunta.getEnunciado();
+        String enunciadoCompleto = pregunta.getEnunciado();
+        if((enunciadoString).length()>MAXIMOS_CARACTERES_VISIBLES){
+            enunciadoCompleto = enunciadoString.substring(0,MAXIMOS_CARACTERES_VISIBLES) + "\n" + enunciadoString.substring(MAXIMOS_CARACTERES_VISIBLES,enunciadoString.length());
+        }
+        Label enunciado = new Label(enunciadoCompleto);
+        enunciado.setFont(new Font(App.FUENTE, TAMANIO_FONT_SUB_TITULO));
+        return enunciado;
+    }
+
+    private Label crearLabelTitulo(Pregunta pregunta){
+        Label titulo = new Label("Próxima pregunta: " + this.nombreTipoDePregunta(pregunta));
+        titulo.setFont(new Font(App.FUENTE, TAMANIO_FONT_TITULO));
+        return  titulo;
+    }
 }

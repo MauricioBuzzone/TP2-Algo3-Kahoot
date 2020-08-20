@@ -122,4 +122,18 @@ public class JugadorTest {
         assert(jugador1.puedeUtilizarExclusividad());
         assert(jugador2.puedeUtilizarExclusividad());
     }
+
+    @Test
+    public void test09UnJugadorAlCrearsePuedeUtilizarX3yX2(){
+        Jugador jugador = new Jugador("Pablo");
+        assert(jugador.puedeUtilizarx2() && jugador.puedeUtilizarx3());
+    }
+
+    @Test
+    public void test10UnJugadorAlUsarUnX2yX3YaNoTieneUsosYPorLoTantoNoPuedeUtilizarlo(){
+        Jugador jugador = new Jugador("Pablo");
+        jugador.activarx2();
+        jugador.activarx3();
+        assertFalse(jugador.puedeUtilizarx2() && jugador.puedeUtilizarx3());
+    }
 }

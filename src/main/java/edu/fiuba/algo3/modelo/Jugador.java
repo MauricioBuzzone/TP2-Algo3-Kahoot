@@ -58,10 +58,10 @@ public class Jugador {
         usosDeExclusividad--;
     }
 
-    public  void activarx2() {
+    public void activarx2() {
         usosDeX2--;
     }
-    public  void activarx3() {
+    public void activarx3() {
         usosDeX3--;
     }
 
@@ -76,6 +76,32 @@ public class Jugador {
         return usosDeX3 > 0;
     }
 
+    public int usosDisponiblesX2(){
+        return usosDeX2;
+    }
+    public int usosDisponiblesX3(){
+        return usosDeX3;
+    }
+    public int usosDisponiblesExclusividad(){
+        return usosDeExclusividad;
+    }
+
+    public boolean tieneMasPuntosQue(Jugador otroJugador){
+        return otroJugador.tieneMenosOLosMismosPuntosQue(this.puntosTotales());
+    }
+
+    private boolean tieneMenosOLosMismosPuntosQue(int otrosPuntos){
+        return (this.puntosTotales() <= otrosPuntos);
+    }
+
+    public boolean jugadoresConMismosPuntos(Jugador otroJugador){
+        return otroJugador.mismosPuntos(this.puntosTotales(), this.nombre);
+    }
+
+    private  boolean mismosPuntos(int otroPuntaje, String nombre){
+        return (this.puntosTotales() == otroPuntaje &&
+                this.nombre.equals(nombre) == false);
+    }
     //TestOnly
     public void asignarPuntos(int puntos){
         puntosPorRespuesta.add(puntos);

@@ -2,6 +2,10 @@ package edu.fiuba.algo3.controlador;
 
 
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.excepciones.NoHayPreguntasException;
+import edu.fiuba.algo3.modelo.excepciones.ArchivoJsonMalEscritoException;
+import edu.fiuba.algo3.modelo.excepciones.ErrorAlAbrirArchivoException;
+import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
 import edu.fiuba.algo3.vista.VistaKahoot;
 import edu.fiuba.algo3.vista.VistaRonda;
 import edu.fiuba.algo3.modelo.Kahoot;
@@ -44,12 +48,49 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
             alertaNombreInvalido.showAndWait();
             return;
         }
-        Kahoot kahoot = new Kahoot(jugadores, rutaKahoot);
 
-        VistaRonda vistaRonda = this.asignarVistaRonda(kahoot);
-        VistaKahoot vistaKahoot = new VistaKahoot(stage, kahoot, vistaRonda);
-        kahoot.addObserver(vistaKahoot);
-        kahoot.proximaRonda(); // Pone rondaActiva a la próxima ronda, en este caso la primera.
+
+        try {
+            Kahoot kahoot = new Kahoot(jugadores, rutaKahoot);
+            VistaRonda vistaRonda = this.asignarVistaRonda(kahoot);
+            VistaKahoot vistaKahoot = new VistaKahoot(stage, kahoot, vistaRonda);
+            kahoot.addObserver(vistaKahoot);
+            kahoot.proximaRonda(); // Pone rondaActiva a la próxima ronda, en este caso la primera.
+
+
+            //Si los usuarios fuesen mas considerados no deberia tener que hacer esto...
+        }catch (ErrorAlAbrirArchivoException ex){
+            Alert alertaNoSePuedoLeerElArchivo = new Alert(AlertType.INFORMATION);
+            alertaNoSePuedoLeerElArchivo.setTitle("Error");
+            alertaNoSePuedoLeerElArchivo.setHeaderText(null);
+            alertaNoSePuedoLeerElArchivo.setContentText("Hubo un problema al abrir el archivo");
+            alertaNoSePuedoLeerElArchivo.showAndWait();
+            System.exit(0);
+
+        }catch(ArchivoJsonMalEscritoException ex){
+            Alert alertaJsonMalEscrito = new Alert(AlertType.INFORMATION);
+            alertaJsonMalEscrito.setTitle("Error");
+            alertaJsonMalEscrito.setHeaderText(null);
+            alertaJsonMalEscrito.setContentText("Archivo Json mal escrito");
+            alertaJsonMalEscrito.showAndWait();
+
+        }catch(NoHayPreguntasException ex){
+            Alert alertaJsonNoHayPreguntas = new Alert(AlertType.INFORMATION);
+            alertaJsonNoHayPreguntas.setTitle("Error");
+            alertaJsonNoHayPreguntas.setHeaderText(null);
+            alertaJsonNoHayPreguntas.setContentText("Archivo Json no posee preguntas");
+            alertaJsonNoHayPreguntas.showAndWait();
+            System.exit(0);
+
+        }catch(SolucionInvalidaException ex){
+            Alert alertaJsonSinSolucion = new Alert(AlertType.INFORMATION);
+            alertaJsonSinSolucion.setTitle("Error");
+            alertaJsonSinSolucion.setHeaderText(null);
+            alertaJsonSinSolucion.setContentText("Al menos una de las preguntas no posee solucion");
+            alertaJsonSinSolucion.showAndWait();
+            System.exit(0);
+        }
+
     }
 
     private List<Jugador> obtenerJugadores() {
@@ -64,10 +105,10 @@ public class BotonComenzarEventHandler implements EventHandler<ActionEvent> {
 
     private VistaRonda asignarVistaRonda(Kahoot kahoot) {
         List<Ronda> rondas = kahoot.getRondas();
-        Button botonFinal = new Button();
-        botonFinal.setText("Finalizar ronda");
-        botonFinal.setOnAction(new BotonProximaRondaEventHandler(kahoot));
-        VistaRonda vistaRonda = new VistaRonda(stage, rondas.get(0), botonFinal);
+
+        Button botonProximaRonda = new Button();
+        botonProximaRonda.setOnAction(new BotonProximaRondaEventHandler(kahoot));
+        VistaRonda vistaRonda = new VistaRonda(stage, rondas.get(0), botonProximaRonda);
         for (Ronda ronda : rondas) {
             ronda.addObserver(vistaRonda);
         }

@@ -1,26 +1,30 @@
 {
   "Rondas":[
     {
+      "tiempo": 20,
       "enunciado": "1: Elija las opciones correctas",
-      "tipo": "MultipleChoicePuntajeParcial",
+      "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "Opcion correcta 1"}],
       "opciones": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion incorrecta 1"}]
     },
     {
+      "tiempo": 30,
       "enunciado": "2: Elija las opciones correctas",
-      "tipo": "MultipleChoicePuntajeParcial",
+      "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion correcta 2"}],
       "opciones": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion inccorrecta 1"},{"descripcion": "Opcion correcta 2"}]
     },
     {
+      "tiempo": 20,
       "enunciado": "3: Elija las opciones correctas",
-      "tipo": "MultipleChoicePuntajeParcial",
+      "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion correcta 2"}],
       "opciones": [{"descripcion": "Opcion inccorrecta 1"},{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion inccorrecta 2"},{"descripcion": "Opcion correcta 2"}]
     },
     {
+      "tiempo": 30,
       "enunciado": "4: Elija las opciones correctas",
-      "tipo": "MultipleChoicePuntajeParcial",
+      "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion correcta 2"}],
       "opciones": [{"descripcion": "Opcion correcta 1"},{"descripcion": "Opcion inccorrecta 1"},{"descripcion": "Opcion correcta 2"},{"descripcion": "Opcion inccorrecta 2"},{"descripcion": "Opcion inccorrecta 3"}]
     } 
