@@ -151,7 +151,7 @@ public class VistaKahoot implements Observer{
 
         boolean hayEmpate = false;
         for(Jugador jugador : jugadores){
-            if(jugador.jugadoresConMismosPuntos(jugadorConMasPuntos)){;
+            if(jugador.mismosPuntosQue(jugadorConMasPuntos) && !jugador.mismoNombreQue(jugadorConMasPuntos)){;
                 hayEmpate = true;
             }
         }

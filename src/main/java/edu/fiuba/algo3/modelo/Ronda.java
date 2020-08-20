@@ -39,7 +39,7 @@ public class Ronda extends Observable{
         return pregunta;
     }
 
-    public  int getTiempo(){
+    public int getTiempo(){
         return tiempo;
     }
 

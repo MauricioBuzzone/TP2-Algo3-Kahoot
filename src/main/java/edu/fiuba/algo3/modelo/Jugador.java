@@ -8,49 +8,48 @@ public class Jugador {
 
     private static final int USOS_DE_EXCLUSIVIDAD_MAXIMA = 2;
     private static final int USOS_DE_BONIFICADORES_MAXIMA = 1;
+    private static final int PUNTAJE_POR_DEFECTO = 0;
+
+    private List<Integer> puntosPorRespuesta = new ArrayList<Integer>();
+    private int ultimoPuntaje = PUNTAJE_POR_DEFECTO;
+    private int usosDeExclusividad = USOS_DE_EXCLUSIVIDAD_MAXIMA;
+    private int usosDeX2 = USOS_DE_BONIFICADORES_MAXIMA;
+    private int usosDeX3 = USOS_DE_BONIFICADORES_MAXIMA;
 
     private String nombre;
-    private List<Integer> puntosPorRespuesta;
-    private int ultimoPuntaje;
-    private int usosDeExclusividad;
-    private int usosDeX2;
-    private int usosDeX3;
 
     public Jugador(String nombre){
         this.nombre = nombre;
-        this.puntosPorRespuesta = new ArrayList<Integer>();
-        this.usosDeExclusividad = USOS_DE_EXCLUSIVIDAD_MAXIMA;
-        this.usosDeX2 = USOS_DE_BONIFICADORES_MAXIMA;
-        this.usosDeX3 = USOS_DE_BONIFICADORES_MAXIMA;
     }
 
     public String getNombre(){
         return nombre;
     }
 
-    //para la tabla
     public int getUltimoPuntaje(){
         return ultimoPuntaje;
     }
+
     public int getPuntos(){
         return this.puntosTotales();
     }
-    //
 
     public void responder(Puntaje puntaje, Bonificador bonificador){
         ultimoPuntaje = puntaje.aplicarBonificador(bonificador);
-        puntosPorRespuesta.add(puntaje.aplicarBonificador(bonificador));
+        puntosPorRespuesta.add(ultimoPuntaje);
     }
 
     public int puntosTotales(){
 
         int puntosTotales = 0;
-        Iterator<Integer> iterador = puntosPorRespuesta.iterator();
-        while(iterador.hasNext()){
-            puntosTotales += iterador.next();
+
+        for(Integer puntos : puntosPorRespuesta){
+            puntosTotales = puntosTotales + puntos;
         }
-        if(puntosTotales < 0)
-            return 0;
+
+        if(puntosTotales < 0) {
+            return PUNTAJE_POR_DEFECTO;
+        }
         return puntosTotales;
     }
 
@@ -94,14 +93,22 @@ public class Jugador {
         return (this.puntosTotales() <= otrosPuntos);
     }
 
-    public boolean jugadoresConMismosPuntos(Jugador otroJugador){
-        return otroJugador.mismosPuntos(this.puntosTotales(), this.nombre);
+    public boolean mismosPuntosQue(Jugador otroJugador){
+        return otroJugador.mismosPuntos(this.puntosTotales());
     }
 
-    private  boolean mismosPuntos(int otroPuntaje, String nombre){
-        return (this.puntosTotales() == otroPuntaje &&
-                this.nombre.equals(nombre) == false);
+    private boolean mismosPuntos(int otroPuntaje){
+        return (this.puntosTotales() == otroPuntaje);
     }
+
+    public boolean mismoNombreQue(Jugador otroJugador){
+        return otroJugador.mismosNombre(this.nombre);
+    }
+
+    private boolean mismosNombre(String unNombre){
+        return this.nombre.equals(unNombre);
+    }
+
     //TestOnly
     public void asignarPuntos(int puntos){
         puntosPorRespuesta.add(puntos);

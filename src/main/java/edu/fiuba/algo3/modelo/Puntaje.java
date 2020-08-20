@@ -8,13 +8,11 @@ public class Puntaje {
     }
 
     public static Puntaje crearPuntajeFavorable(int unosPuntos){
-        Puntaje puntaje=new Puntaje(unosPuntos);
-        return puntaje;
+        return new Puntaje(unosPuntos);
     }
 
     public static Puntaje crearPuntajeDesfavorable(int unosPuntos){
-        Puntaje puntaje=new Puntaje(unosPuntos*(-1));
-        return puntaje;
+        return new Puntaje(unosPuntos*(-1));
     }
 
     public int aplicarBonificador(Bonificador bonificador){
