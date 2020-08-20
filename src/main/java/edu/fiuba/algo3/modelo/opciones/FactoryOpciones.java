@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.preguntas;
+package edu.fiuba.algo3.modelo.opciones;
 
 import com.google.gson.*;
 import edu.fiuba.algo3.modelo.opciones.Opcion;

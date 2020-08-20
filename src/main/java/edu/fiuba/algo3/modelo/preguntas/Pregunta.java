@@ -3,8 +3,6 @@ package edu.fiuba.algo3.modelo.preguntas;
 import java.util.List;
 
 import com.google.gson.*;
-import edu.fiuba.algo3.modelo.preguntas.FactoryTipoDePregunta;
-import edu.fiuba.algo3.modelo.preguntas.FactoryOpciones;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.respuestas.Respuestas;
 

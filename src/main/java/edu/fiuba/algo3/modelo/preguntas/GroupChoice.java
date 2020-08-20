@@ -6,9 +6,10 @@ import com.google.gson.*;
 import edu.fiuba.algo3.modelo.*;
 
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
+import edu.fiuba.algo3.modelo.opciones.FactoryOpciones;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionesMultiples;
-import edu.fiuba.algo3.modelo.preguntas.FactoryOpcionesDeGrupo;
+import edu.fiuba.algo3.modelo.opciones.FactoryOpcionesDeGrupo;
 
 public class GroupChoice extends TipoDePregunta {
 

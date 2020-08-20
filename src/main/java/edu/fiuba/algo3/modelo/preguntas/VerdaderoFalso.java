@@ -5,9 +5,10 @@ import java.util.List;
 import com.google.gson.*;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.excepciones.SolucionInvalidaException;
+import edu.fiuba.algo3.modelo.opciones.FactoryOpciones;
 import edu.fiuba.algo3.modelo.opciones.Opcion;
 import edu.fiuba.algo3.modelo.validadores.ValidadorOpcionUnica;
-import edu.fiuba.algo3.modelo.preguntas.FactoryOpcionesComunes;
+import edu.fiuba.algo3.modelo.opciones.FactoryOpcionesComunes;
 
 public class VerdaderoFalso extends TipoDePregunta {
 

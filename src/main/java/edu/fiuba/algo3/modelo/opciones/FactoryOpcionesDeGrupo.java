@@ -1,9 +1,7 @@
-package edu.fiuba.algo3.modelo.preguntas;
+package edu.fiuba.algo3.modelo.opciones;
 
 import com.google.gson.*;
-import edu.fiuba.algo3.modelo.preguntas.FactoryOpciones;
-import edu.fiuba.algo3.modelo.opciones.Opcion;
-import edu.fiuba.algo3.modelo.opciones.OpcionDeGrupo;
+
 import java.util.List;
 import java.util.ArrayList;
 
