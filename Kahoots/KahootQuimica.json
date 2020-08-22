@@ -2,7 +2,7 @@
   "Rondas":[
     {
       "tiempo": 25,
-      "enunciado": "El orbital s tiene forma esferica",
+      "enunciado": "El orbital S tiene forma esférica",
       "tipo": "VerdaderoFalso",
       "solucion": [{"descripcion": "Verdadero"}],
       "opciones": [{"descripcion": "Verdadero"}, {"descripcion": "Falso"}]
@@ -16,35 +16,35 @@
     },
     {
       "tiempo": 10,
-      "enunciado": "�Cuantos isotopos tiene el cloro?",
+      "enunciado": "¿Cuántos isótopos tiene el cloro?",
       "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "9"}],
       "opciones": [{"descripcion": "17"},{"descripcion": "15"},{"descripcion": "9"},{"descripcion": "13"}]
     },
     {
       "tiempo": 20,
-      "enunciado": "�Cuales de los siguientes elementos son metales alcalinoterreos?",
+      "enunciado": "¿Cuáles de los siguientes elementos son metales alcalinoterreos?",
       "tipo": "MultipleChoicePuntajeParcial",
       "solucion": [{"descripcion": "Berilio"},{"descripcion": "Estroncio"}],
       "opciones": [{"descripcion": "Hidrogeno"},{"descripcion": "Sodio"},{"descripcion": "Berilio"},{"descripcion": "Rubidio"},{"descripcion": "Estroncio"}]
     },
     {
       "tiempo": 20,
-      "enunciado": "�Que color toma el Cobre al oxidarse?",
+      "enunciado": "¿Qué color toma el Cobre al oxidarse?",
       "tipo": "MultipleChoiceClasico",
       "solucion": [{"descripcion": "Verde"}],
       "opciones": [{"descripcion": "Rojo"},{"descripcion": "Marron"},{"descripcion": "Verde"}]
     },
     {
       "tiempo": 20,
-      "enunciado": "�Con que codigo se identifica al polipropileno entre los plasticos?",
+      "enunciado": "¿Con qué código se identifica al polipropileno entre los plásticos?",
       "tipo": "MultipleChoiceConPenalidad",
       "solucion": [{"descripcion": "5"}],
       "opciones": [{"descripcion": "1"},{"descripcion": "2"},{"descripcion": "3"},{"descripcion": "4"},{"descripcion": "5"}]
     },
     {
       "tiempo": 30,
-      "enunciado": "Ordenar segun electronegatividad creciente",
+      "enunciado": "Ordenar según electronegatividad creciente",
       "tipo": "OrderedChoice",
       "solucion": [{"descripcion": "Potasio", "indice":1},{"descripcion": "Sodio","indice":2},{"descripcion": "Azufre","indice":3},{"descripcion": "Fluor","indice":4}],
       "opciones": [{"descripcion": "Potasio", "indice":1},{"descripcion": "Fluor","indice":4},{"descripcion": "Sodio","indice":2},{"descripcion": "Azufre","indice":3}]
